@@ -1,5 +1,86 @@
 ---
-title: "BSTA_526_W26"
+title: ""
+toc: false
+sidebar: true
+page-layout: full
+link-external-newwindow: true
 ---
 
-UNDER CONSTRUCTION
+::: {style="background-color: #52bfeb"}
+::: {style="color: #FFFFFF"}
+::: grid
+
+::: g-col-4
+
+&nbsp;
+
+![](images/IMG_6759_med.png){fig-align="center" width="150"}
+
+:::
+
+::: g-col-8
+# Welcome to BSTA 526!
+
+### R Programming for Health Data Science
+
+Winter 2026
+
+OHSU-PSU School of Public Health
+
+Oregon Health & Science University
+
+:::
+
+:::
+:::
+:::
+
+::: grid
+
+::: g-col-3
+### Instructor
+
+{{< iconify fluent person-24-filled size=20px >}} Meike Niederhausen, PhD  
+{{< iconify tabler mail-filled size=20px >}} [niederha\@ohsu.edu](mailto:niederha@ohsu.edu)
+
+:::
+
+::: g-col-3
+### Course details
+
+{{< iconify ci calendar-days size=20px >}} Thursdays   
+{{< iconify icon-park-outline time size=20px >}} 9:00 am - 11:45 am
+{{< iconify fa6-solid person-chalkboard size=20px >}} In-person, VPT 264
+
+:::
+
+::: g-col-3
+### Office Hours
+
+* See [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26) for Webex links to office hours.
+
+:::
+
+<!-- {{< iconify fa6-solid fluent-mdl2:join-online-meeting size=20px >}}  -->
+<!-- arcticons:webex -->
+
+
+::: g-col-3
+### Contacting us
+
+E-mail or Slack is the best way to get in contact with me. 
+
+I will try to respond to all course-related e-mails within 24 hours Monday-Friday.
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-8
+:::
+
+::: g-col-4
+[{{< iconify icomoon-free github size=20px >}} View the source on GitHub](https://github.com/niederhausen/BSTA_526_W26)
+:::
+:::

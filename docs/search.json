@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "BSTA_526_W26",
+    "title": "Welcome to BSTA 526!",
     "section": "",
-    "text": "UNDER CONSTRUCTION"
+    "text": "Welcome to BSTA 526!\n\nR Programming for Health Data Science\nWinter 2026\nOHSU-PSU School of Public Health\nOregon Health & Science University\n\n\n\n\n\n\n\nInstructor\n Meike Niederhausen, PhD\nniederha@ohsu.edu\n\n\nCourse details\n Thursdays\n9:00 am - 11:45 am In-person, VPT 264\n\n\nOffice Hours\n\nSee Sakai for Webex links to office hours.\n\n\n\n\n\nContacting us\nE-mail or Slack is the best way to get in contact with me.\nI will try to respond to all course-related e-mails within 24 hours Monday-Friday.\n\n\n\n\n\n\n\n\n View the source on GitHub"
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,348 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "This course aims to develop programming skills in R, a powerful statistical programming language. This course assumes some prior familiarity with R and ranges from advanced beginner topics to intermediate topics. It will cover practical data science skills in R that are useful for a career in statistics, epidemiology, or data science, including loading data, data wrangling, visualization, automation, machine learning, and running statistical models. A laptop is required for class to participate in coding exercises."
+  },
+  {
+    "objectID": "syllabus.html#course-description",
+    "href": "syllabus.html#course-description",
+    "title": "Syllabus",
+    "section": "",
+    "text": "This course aims to develop programming skills in R, a powerful statistical programming language. This course assumes some prior familiarity with R and ranges from advanced beginner topics to intermediate topics. It will cover practical data science skills in R that are useful for a career in statistics, epidemiology, or data science, including loading data, data wrangling, visualization, automation, machine learning, and running statistical models. A laptop is required for class to participate in coding exercises."
+  },
+  {
+    "objectID": "syllabus.html#credit-hours",
+    "href": "syllabus.html#credit-hours",
+    "title": "Syllabus",
+    "section": "Credit Hours",
+    "text": "Credit Hours\n3 credit hours."
+  },
+  {
+    "objectID": "syllabus.html#learning-objectives",
+    "href": "syllabus.html#learning-objectives",
+    "title": "Syllabus",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nUnderstand and utilize R/RStudio, including using Quarto to create reproducible documents of statistical analyses.\nUnderstand basic data types and data structures in R.\nFamiliarize and load data files (Excel, Comma Separated Value files) into R/Rstudio, with tips on formatting.\nVisualize datasets using ggplot2 and understand how to build basic plots using ggplot2 syntax.\nFilter and format data in R for use with various routines.\nRun and Interpret some basic statistics in R.\nAutomate repetitive tasks in R, such as loading a folder of files.\n\nIf time allows:\n\nCreate nice tables in our R markdown reports with gt, gtsummary, and/or kableExtra."
+  },
+  {
+    "objectID": "syllabus.html#course-website",
+    "href": "syllabus.html#course-website",
+    "title": "Syllabus",
+    "section": "Course Website",
+    "text": "Course Website\nAll course information will be available here:\nhttps://niederhausen.github.io/BSTA_526_W26/\nInformation will also be available on Sakai.\nSlack will be used for course discussions. Link to join Slack is posted on Sakai."
+  },
+  {
+    "objectID": "syllabus.html#office-hours",
+    "href": "syllabus.html#office-hours",
+    "title": "Syllabus",
+    "section": "Office Hours",
+    "text": "Office Hours\n\nSee Sakai for Webex links to office hours\nIn addition to times below, office hours can be set up by appointment at other times. Please email or message on Slack whom who would like to set up an office hour with.\nTA Michael Daily’s office hours XXX on Webex. See Sakai for the link.\nDr. Niederhausen has office hours by appointment or after class. Don’t hesitate to ask for a meeting!"
+  },
+  {
+    "objectID": "syllabus.html#prerequisites-or-concurrent-enrollment-requirements",
+    "href": "syllabus.html#prerequisites-or-concurrent-enrollment-requirements",
+    "title": "Syllabus",
+    "section": "Prerequisites or Concurrent Enrollment Requirements",
+    "text": "Prerequisites or Concurrent Enrollment Requirements\n\nBSTA 511 or permission by instructor."
+  },
+  {
+    "objectID": "syllabus.html#instructor-information",
+    "href": "syllabus.html#instructor-information",
+    "title": "Syllabus",
+    "section": "Instructor Information",
+    "text": "Instructor Information\n\nInstructor\n\nPreferred Method of Contact: Email or Slack. When emailing, please include BSTA 526 in the subject line.\n\nExpected Response Time: 1 business day\nMeike Niederhausen, PhD\n\nniederha@ohsu.edu\n\n\n\n\nTeaching Assistant\n\nMichael Daily\n\ndailym@ohsu.edu"
+  },
+  {
+    "objectID": "syllabus.html#attendance",
+    "href": "syllabus.html#attendance",
+    "title": "Syllabus",
+    "section": "Attendance",
+    "text": "Attendance\n\nThis class will meet in-person and you are expected to attend class regularly. However, we understand that it is not always possible to attend class and daily attendance will not be monitored.\nClasses will be recorded, but we cannot guarantee the in-person format will lend itself to effective recordings. If you miss class, please reach out to a classmate for missed material.\n\n\nPost-class surveys\n\n5% of your grade is based on filling out post-class surveys as a way of telling us that you came to class and engaged with the material for that week.\nYou only need to fill out 5 surveys (of the 10 class sessions) for the full 5%. We encourage you to fill out as many surveys as possible to provide feedback on the class though.\nPlease fill out surveys by the following class period.\nThe questions on the survey are:\n\nRating the pace of the lecture and lab\nClearest Point: What point of the class was clearest for you?\nMuddiest Point: What point of class was the muddiest (unclear) for you?\nAnything Else: Anything else you’d like me to know?"
+  },
+  {
+    "objectID": "syllabus.html#homework",
+    "href": "syllabus.html#homework",
+    "title": "Syllabus",
+    "section": "Homework",
+    "text": "Homework\nHomework will be assigned weekly using Quarto in RStudio. It will be due via Sakai upload Thursdays at 11:55pm the night of the following week’s class (unless otherwise noted). Please turn in both your .qmd and rendered .html file.\nThe homework with the lowest score will be dropped from your homework average.\n\nLate Policy\nStudents get 1 free homework assignment to submit late within 3 days without penalties. Please email the instructors and the TA that you need more time. If you need an accommodation, please email us so we can figure out a way to help you."
+  },
+  {
+    "objectID": "syllabus.html#function-of-the-week",
+    "href": "syllabus.html#function-of-the-week",
+    "title": "Syllabus",
+    "section": "Function of the Week",
+    "text": "Function of the Week\nPlease choose a function from the Function of the Week sign-up sheet (link is posted on Sakai. A Quarto template to format your Function of the Week and presentation will be provided. Function of the Week presentations will start in week 4. On the sign-up sheet you will choose a week to present your function to the class, as well as the function. The presentation should be short, around 5 minutes. If presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class.\nPrevious years’ Functions of the Week can be found on the previous class websites:\n\nhttps://niederhausen.github.io/BSTA_526_W25/function_week.html\nhttps://niederhausen.github.io/BSTA_526_W24/function_week.html\nhttps://sph-r-programming-2023.netlify.app/functions/\nhttps://sph-r-programming-2022.netlify.app/functions/\nhttps://sph-r-programming.netlify.app/functions/ (2021)\n\nWe will create a similar website for this year’s Functions of the Week. If you do not wish yours to be on the public facing website, just let us know. Alternatively, we can also post it anonymously. See submitted Functions of the Week for this quarter at this link."
+  },
+  {
+    "objectID": "syllabus.html#midterm-and-final-projects",
+    "href": "syllabus.html#midterm-and-final-projects",
+    "title": "Syllabus",
+    "section": "Midterm and Final Projects",
+    "text": "Midterm and Final Projects\n\nMidterm and final projects/tests will be take home.\n\nThe midterm will be a project based on a dataset of your choosing.\n\nThe final will be based on an assigned dataset.\n\nExamples of previous years’ midterms can be found on the class websites:\n\nhttps://sph-r-programming-2023-midterms.netlify.app/\nhttps://sph-r-programming-2022-midterms.netlify.app/\nhttps://sph-midterm-projects.netlify.app/ (2021)\nWe will create a similar website for this year’s midterm projects.\n\nIf you do not wish your project to be on the public facing website, just let us know. Alternatively, we can also post it anonymously."
+  },
+  {
+    "objectID": "syllabus.html#grading-policy",
+    "href": "syllabus.html#grading-policy",
+    "title": "Syllabus",
+    "section": "Grading Policy",
+    "text": "Grading Policy\n\nAttendance (based on post-class surveys) 5%\nMidterm Project 30%\nFunction of the Week 5%\nHomework Assignments 30%\nFinal Project 30%\n\n\nGrading Scale\n\nAssessments will be graded on a 10 pt scale (0-10 points).\nA weighted average of the grade will be calculated using the percentages listed above, and final grades will be assigned based on the table below. Scores will be rounded up; for example an average of 7.5 will be assigned an A-.\n\n\n\n\n\nPoints\nLetter Grade\n\n\n\n\n10\nA\n\n\n9\nA-\n\n\n8\nB+\n\n\n7\nB\n\n\n6\nB-\n\n\n5\nC+\n\n\n4\nC\n\n\n3\nC-\n\n\n2\nD+\n\n\n1\nD\n\n\n0\nF\n\n\n\nIn assigning points 0-10, the following general guidelines will be applied:\n\n\n\n\nA\nExceeds the standard\n\n\nB\nMeets the standard\n\n\nC\nKey gaps in understanding of the standard\n\n\nD\nUnable to demonstrate B or C without assistance\n\n\nF\nNo evidence\n\n\n\nThis rubric was adapted from Chapter 12 of Grading for Equity by Joe Feldman.\n\n\nGrading Rubric\n\nAssessments will be graded on a 10 pt scale (0-10 points) using the rubric below.\nThe 10 pts for each assessment will be based on:\n\nAnswers: 4 pts\nDemonstrating process: 3 pts\nProviding context and relevance: 3 pts\n\n\nThe table below will be used to determine points for each of the three categories.\n\n\n\n\n\n\n\n\n\n\n\n\n\n4 points\n3 points\n2 points\n1 point\n0 points\n\n\nAnswers\n(4 pts max)\nAnswers are correct at least 90% of the time\nAnswers are usually correct (75-90%)\nAnswers are sometimes correct (50-74%)\nAnswers are generally incorrect (&lt;50%)\nAnswers are incorrect and no work was shown (demonstrating process has 0 pts)\n\n\nDemonstrating process\n(3 pts max)\n\nAll relevant work is shown, including all steps for figuring out answers.\nR code and output are provided for every question for which R was used.\nRelevant work and steps for figuring out answers are generally provided but incomplete.\nR code and output are generally provided but incomplete for questions that use R.\nRelevant work and steps for figuring out answers are generally missing.\nR code and output are generally missing for questions that use R.\nNo relevant work is shown, including steps for figuring out answers.\nR code and output are not provided for questions for which R was used.\n\n\nProviding context and relevance\n(3 pts max)\n\nAnswers are given in complete sentences with all relevant information for the question as appropriate (context of research question, units, descriptive statistics, explanation of what data visualization is showing, confidence intervals, p-values, test- statistics, etc.), and interpretation of results.\nAnswers are given in complete sentences. Some relevant information may be provided, but much is missing. Context of research question only sometimes provided.\nAnswers are rarely given in complete sentences. Relevant information is not provided. Little to no context is provided.\nAnswers are not in complete sentences. Relevant information and context are not provided."
+  },
+  {
+    "objectID": "syllabus.html#code-of-conduct",
+    "href": "syllabus.html#code-of-conduct",
+    "title": "Syllabus",
+    "section": "Code of Conduct",
+    "text": "Code of Conduct\nAnd as students of an OHSU course, we must abide by the OHSU Code of Conduct: https://www.ohsu.edu/integrity-department/code-conduct\nThis class is meant to be a psychologically safe space where it’s ok to ask questions. We want to normalize your own curiosity and fuel your desire to learn more.\nThere is a link on Sakai to a form to anonymously report to us any possible code of conduct violations, based on the OHSU Code of Conduct or the OHSU Biodata Code of Conduct."
+  },
+  {
+    "objectID": "syllabus.html#required-texts-and-readings",
+    "href": "syllabus.html#required-texts-and-readings",
+    "title": "Syllabus",
+    "section": "Required Texts and Readings",
+    "text": "Required Texts and Readings\nWe will be drawing on the following online textbooks during class and labs. These books are online and free, though you can order them as textbooks if you prefer that format.\n\nR for Data Science. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund. 2nd Edition. https://r4ds.hadley.nz/\nQuarto webpage https://quarto.org/\n\nThe Guide and Reference tabs have very helpful documentation.\n\nGetting Used to R, RStudio, and RMarkdown. Chester Ismay. https://ismayc.github.io/rbasics-book/\nData Science: A First Introduction. Tiffany Timbers, Trevor Campbell, Melissa Lee. https://datasciencebook.ca/  \nAdvanced R. Hadley Wickham. https://adv-r.hadley.nz/\n\n\nNote on RMarkdown vs. Quarto\n\nWe will be using the newer Quarto instead of RMarkdown for creating reproducible documents. Some of the links above are for RMarkdown, which is very similar.\n\nThe main differences are in setting up the yaml and code chunk options.\nMany of the RMarkdown code chunk options work with Quarto though.\nWith Quarto you will see a Render button instead of a Knit button to create the html output of the file."
+  },
+  {
+    "objectID": "syllabus.html#words-of-encouragement",
+    "href": "syllabus.html#words-of-encouragement",
+    "title": "Syllabus",
+    "section": "Words of Encouragement",
+    "text": "Words of Encouragement\n\nThis was adopted from Andrew Heiss. Thanks!\n\nI promise you can succeed in this class.\nLearning R can be difficult at first—it’s like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you’ll be using like ggplot2—made this wise observation:\n\nIt’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.\n\nEven experienced programmers find themselves bashing their heads against seemingly intractable errors. If you’re finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail us, etc.\n\n\n\nAlison Horst Jan 3, 2020 tweet\n\n\n\n\n\nAlison Horst: Gator error"
+  },
+  {
+    "objectID": "syllabus.html#learning-is-social",
+    "href": "syllabus.html#learning-is-social",
+    "title": "Syllabus",
+    "section": "LeaRning is Social",
+    "text": "LeaRning is Social\nStudents who work together with other students are often more successful than students who work alone. We are a learning community, and we should help each other to learn.\nIf you understand something and know someone is struggling with it, try and help them. If you are struggling, take a breath, try to pinpoint what you are struggling with, and don’t be afraid to ask for help.\nOur goal is to be better coders each day, not to be the perfect coder There’s no such thing as a perfect coder. I’ve been using R for over 20 years and still constantly learn new things."
+  },
+  {
+    "objectID": "syllabus.html#copyright-information",
+    "href": "syllabus.html#copyright-information",
+    "title": "Syllabus",
+    "section": "Copyright Information",
+    "text": "Copyright Information\nEvery reasonable effort has been made to protect the copyright requirements of materials used in this course. Class participants are warned not to copy, audio, or videotape in violation of copyright laws.\n\nTo comply with the fair use fair use doctrine of the US copyright law, Sakai course sites close three weeks after grades are posted with the Registrar. Please be sure to download all course material you wish to keep before this time as you will have no further access to your courses."
+  },
+  {
+    "objectID": "syllabus.html#school-of-public-health-handbook",
+    "href": "syllabus.html#school-of-public-health-handbook",
+    "title": "Syllabus",
+    "section": "School of Public Health Handbook",
+    "text": "School of Public Health Handbook\nAll students are responsible for following the policies and expectations outlined in the student handbook for their program of study. Students are responsible for their own academic work and are expected to have read and practice principles of academic honesty, as presented in the handbook: https://ohsu-psu-sph.org/current-graduate-students/policies-procedures/#academic-dishonesty."
+  },
+  {
+    "objectID": "syllabus.html#syllabus-changes-and-retention",
+    "href": "syllabus.html#syllabus-changes-and-retention",
+    "title": "Syllabus",
+    "section": "Syllabus Changes and Retention",
+    "text": "Syllabus Changes and Retention\nThis syllabus is not to be considered a contract between the student and the School of Public Health. It is recognized that changes may be made as the need arises. Students are responsible for keeping a copy of the course syllabus for their records.\nSyllabi are considered to be a learning agreement between students and the faculty of record. Information contained in syllabi, other than the minimum requirements, may be subject to change as deemed appropriate by the faculty of record in concurrence with the academic program and the Office of the Provost. Refer to the Course Syllabi Policy, 02-50-050."
+  },
+  {
+    "objectID": "syllabus.html#syllabus-statement-regarding-disability-services",
+    "href": "syllabus.html#syllabus-statement-regarding-disability-services",
+    "title": "Syllabus",
+    "section": "Syllabus Statement Regarding Disability Services",
+    "text": "Syllabus Statement Regarding Disability Services\nOHSU is committed to providing equal access to qualified students who experience a disability in compliance with Section 504 of the Rehabilitation Act of 1973, the Americans with Disabilities Act (ADA) of 1990, and the ADA Amendments Act (ADA-AA) of 2008. If you have a disability or think you may have a disability (physical, sensory, chronic health, psychological or learning) please contact the Office for Student Access at (503) 494-0082 or studentaccess@ohsu.edu to discuss eligibility for academic accommodations. Information is also available at www.ohsu.edu/student-access. Because accommodations may take time to implement and cannot be applied retroactively, it is important to have this discussion as soon as possible. All information regarding a student’s disability is kept in accordance with relevant state and federal laws.\nPlease see Student Access & Accomodations section for more details on the Sakai version of this Syllabus."
+  },
+  {
+    "objectID": "syllabus.html#commitment-of-equity-and-inclusion",
+    "href": "syllabus.html#commitment-of-equity-and-inclusion",
+    "title": "Syllabus",
+    "section": "Commitment of Equity and Inclusion",
+    "text": "Commitment of Equity and Inclusion\nThe School of Public Health is committed to providing an environment free of all forms of prohibited discrimination and discriminatory harassment. The School of Public Health students who have questions about an incident related to Title IX are welcome to contact either the OHSU or PSU’s Title IX Coordinator and they will direct you to the appropriate resource or office. Title IX pertains to any form of sex/gender discrimination, discriminatory harassment, sexual harassment or sexual violence.\nPSU’s Title IX Coordinator is Julie Caron, she may be reached at titleixccordinator@pdx.edu or 503-725-4410. Julie’s office is located at 1600 SW 4th Ave, In the Richard and Maureen Neuberger Center RMNC - Suite 830.\nThe OHSU Title IX Coordinator’s may be reached at 503-494-0258 or titleix@ohsu.edu and is located at 2525 SW 3rd St.\nPlease note that faculty and the Title IX Coordinators will keep the information you disclose private but are not confidential. If you would like to speak with a confidential advocate, who will not disclose the information to a university official without your written consent, you may contact an advocate at PSU or OHSU.\nPSU’s confidential advocates are available in Women’s Resource Center (serving all genders) in Smith Student Memorial Union 479. You may schedule an appointment by (503-725-5672) or schedule on line at https://psuwrc.youcanbook.me. For more information about resources at PSU, please see PSU’s Response to Sexual Misconduct website.\nOHSU’s advocates are available through the Confidential Advocacy Program (CAP) at 833-495-CAPS (2277) or by email CAPsupport@ohsu.edu, but please note, email is not a secure form of communication. Also visit www.ohsu.edu/CAP.\nAt OHSU, if you encounter any harassment, or discrimination based on race, color, religion, age, national origin or ancestry, veteran or military status, sex, marital status, pregnancy or parenting status, sexual orientation, gender identity or expression, disability or any other protected status, please contact the Affirmative Action and Equal Opportunity (AAEO) Department at 503- 494-5148 or aaeo@ohsu.edu.\nAt PSU, you may contact the Office of Equity and Compliance if you experience any form of discrimination or discriminatory harassment as listed above at equityandcompliance@pdx.edu or by calling 503-725-5919."
+  },
+  {
+    "objectID": "syllabus.html#academic-honesty",
+    "href": "syllabus.html#academic-honesty",
+    "title": "Syllabus",
+    "section": "Academic Honesty",
+    "text": "Academic Honesty\n\nCourse participants are expected to maintain academic honesty in their course work. Participants should refrain from seeking past published solutions to any assignments. Literature and resources (including internet resources and generative AI) employed in fulfilling assignments must be cited.\n\nSee Purdue University’s Online Writing Lab for resources on plagiarism and importantly avoiding plagiarism (thanks to Steve Bedrick for this link!).\nAssignments suspected of plagiarism (including copying past solutions or another student’s assignment) will receive 0 points for the assignment and the dean of the student’s academic program will be notified.\n\nIn an effort to uphold the principles and practice of academic honesty, faculty members at OHSU may use originality checking systems such as Turnitin to compare a student’s submitted work against multiple sources.\n\nTo protect student privacy in this process, it will be necessary to remove all personal information, i.e. student name, email address, student u-number, or any other personal information, from documents BEFORE submission.*\n\n\n\nUse of generative AI for assignments\nGenerative AI tools (such as ChatGPT) can be great resources for learning how to code and/or troubleshoot code that does not work. However, the work you turn in must be your own. Thus it is inappropriate to directly ask AI to provide you with solutions to homework questions or write text that you are submitting in your assignment.\nIf you do use AI tools to help you with an assignment, these must be cited along with how they were used.\nPlease see the Plagiarism & Attribution section (Code Snippets and AI Tools subsection) of Dr. Steve Bedrick’s BMI 525: Principles and Practice of DataVisualization webpage for examples of appropriate and inappropriate uses generative AI."
+  },
+  {
+    "objectID": "syllabus.html#use-of-sakai",
+    "href": "syllabus.html#use-of-sakai",
+    "title": "Syllabus",
+    "section": "Use of Sakai",
+    "text": "Use of Sakai\nSakai is OHSU’s online course management system. Some course information will only be available on Sakai, and you will be turning in all assignments using Sakai. For any technical questions or if you need help logging in, please contact the Sakai Help Desk. See also the Sakai Student Guide for more information."
+  },
+  {
+    "objectID": "function_week.html",
+    "href": "function_week.html",
+    "title": "Functions of the Week",
+    "section": "",
+    "text": "Links to function of the week presentations.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nundefined\n\n\nFunctions of the Week\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "function_week/data/function_week.html",
+    "href": "function_week/data/function_week.html",
+    "title": "Functions of the Week",
+    "section": "",
+    "text": "Links to function of the week presentations\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Schedule is subject to change.\nLinks have been added to all weeks, but weeks we have not covered yet will have broken links.\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopics\n\n\n\n\n1\nTh 01/08\nIntroduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types\n\n\n\n\n\n\n\n2\nTh 01/15\nLoading Data, data.frames, and ggplot2\n\n\n\n\nHW 1 due\n\n\n\n\n\n\n\n3\nTh 01/22\ndplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets\n\n\n\n\nHW 2 due\n\n\n\n\n\n\n\n4\nTh 01/29\ndplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales\n\n\n\n\nHW 3 due\n\n\n\n\n\n\n\n5\nTh 02/05\ndata wrangling practice: forcats, stringr, separate(); combining multiple tables (left_join() etc); reshaping data (i.e. pivot_longer())\n\n\n\n\nHW 4 due\n\n\n\nTh 02/05\nTake Home Midterm Assigned\n\n\n\n\n\n\n\n6\nTh 02/12\nMore data wrangling practice\n\n\n\n\nHW 5 due\n\n\n\n\n\n\n\n7\nTh 02/19\nMore data wrangling practice ctd.\n\n\n\n\nHW 6 due\n\n\n\nSu 02/22\nTake home Midterm due (Sunday)\n\n\n\n\n\n\n\n8\nTh 02/26\nIntro to functions, working with lists\n\n\n\n\nHW 7 due\n\n\n\n\n\n\n\n9\nTh 03/05\nIteration\n\n\n\n\nHW 8 due\n\n\n\n\n\n\n\n10\nTu 03/10\nFinal Exam Assigned (Tuesday)\n\n\n\nTh 03/12\nMore Stats/Purrr\n\n\n\n\nHW 9 due\n\n\n\n\n\n\n\n11\nTh 03/19\nNo Class, Office Hour\n\n\n\n\nHW 10 due\n\n\n\nFri 03/20\nFinal Exam Due (Friday 5pm end of term)"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#rrstudio",
+    "href": "part1/part_01_b526_slides.html#rrstudio",
+    "title": "1: Functions and vectors",
+    "section": "1.1 R/RStudio",
+    "text": "1.1 R/RStudio\nLink to video: https://youtu.be/oFmjHxl28H0\n\nWinter 2025:\n\nStart at minute 2. The first 2 minutes are on using RStudio server in the Cloud, which we are not using.\nThis video provides an overview of what the difference parts of the RStudio interface are used for.\nReplace references to RMarkdown (or .Rmd) with Quarto (or .qmd).\n\n\n\nvembedr::embed_youtube(\"oFmjHxl28H0\", width = 600, height=300)\n\n\n\n\n\n\n\n\n\nA good reference built into RStudio is Help -&gt; Cheatsheets -&gt; RStudio IDE cheat sheet\nA nice summary of the RStudio anatomy is here:\n\n Here are some useful gifs about customizing the RStudio panels"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#rstudio-projects",
+    "href": "part1/part_01_b526_slides.html#rstudio-projects",
+    "title": "1: Functions and vectors",
+    "section": "1.2 RStudio projects",
+    "text": "1.2 RStudio projects\n\nHow do you eat an elephant?\nOne bite at a time. We will go over topics related to RStudio/file management again and again this class, so don’t worry if it is confusing at first.\n\n\nWe will be using RStudio projects.\n\nWe will talk about them again later, but for now,\nopen RStudio by double clicking on the .Rproj file for part 1 (part_01.Rproj)\n\n\nYou may read this for more info, and watch this short video on creating new projects:\nLink to video: https://youtu.be/D22THnoPA6w\n\nvembedr::embed_youtube(\"D22THnoPA6w\", width = 600, height=300)"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#quarto-.qmd",
+    "href": "part1/part_01_b526_slides.html#quarto-.qmd",
+    "title": "1: Functions and vectors",
+    "section": "1.3 Quarto (.qmd)",
+    "text": "1.3 Quarto (.qmd)\n\nSee intro to Quarto from BSTA 511 Week 1\n\nCan view slides as html, pdf, or “continuous” webpage.\n\n\n1.3.1 Create a Quarto file\n\nSee BSTA 511/611 Day 1 section on Create a Quarto file.\n\n1.3.2 Markdown for “word processing”\n\nThe Quarto (qmd) document uses markdown language for text outside of code chunks.\nSome markdown resources:\n\nBSTA 511/611 Day 1 notes on markdown\nOfficial Quarto webpage on markdown basics\nFrom BSTA 504: Read more about markdown here.\n\nSkip the last two sections on Front matter and Citations, since these are different for Quarto."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#code-chunks",
+    "href": "part1/part_01_b526_slides.html#code-chunks",
+    "title": "1: Functions and vectors",
+    "section": "1.4 Code chunks",
+    "text": "1.4 Code chunks\nLink to video: https://youtu.be/0iETdE7WkqU\n\nvembedr::embed_youtube(\"0iETdE7WkqU\", width = 600, height=300)\n\n\n\n\n\n\n\n\nThe grey box below is a code chunk:\n\n# basic math\n4 + 5 \n\n[1] 9\n\n\n\nEverything that starts with a # is called a comment and is not code that runs. It is useful for making notes for yourself.\nBelow the comment is the actual code.\n\nHow do we run the code?\n\n\nTry this one out. It’s the same code as above, but with no spaces. Does it still run?\n\n# same code as above, without spaces\n4+5\n\n[1] 9"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#useful-keyboard-shortcuts-tools-keyboard-shortcuts-help",
+    "href": "part1/part_01_b526_slides.html#useful-keyboard-shortcuts-tools-keyboard-shortcuts-help",
+    "title": "1: Functions and vectors",
+    "section": "1.5 Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)",
+    "text": "1.5 Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)\n\n\n\n\n\n\n\n\naction\nmac\nwindows/linux\n\n\n\n\nRun code in qmd or script\ncmd + enter\nctrl + enter\n\n\nAdd code chunk\ncmd + option + i\nctrl + alt + i\n\n\n&lt;-\noption + -\nalt + -\n\n\ninterrupt currently running code\nesc\nesc\n\n\nin console, go to previously run code\nup/down\nup/down\n\n\n%&gt;%\ncmd + shift + m\nctrl + shift + m\n\n\nsearch files\ncmd + shift + f\nctrl + shift + f\n\n\nrender qmd\ncmd + shift + k\nctrl + shift + k\n\n\nrun entire code chunk\ncmd + option + c\nctrl + alt + c\n\n\nkeyboard shortcut help\noption + shift + k\nalt + shift + k\n\n\n\n(see full list)"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#getting-help",
+    "href": "part1/part_01_b526_slides.html#getting-help",
+    "title": "1: Functions and vectors",
+    "section": "2.1 Getting Help",
+    "text": "2.1 Getting Help\nLearn more about the round() function with ?round:\n\n?round\n\n\nWe can also type ?round in the Console instead of including it in a code chunk.\n\n\n# can switch order of arguments (if you name them)\nround(digits = 1, x = 3.14)\n\n[1] 3.1\n\n\n\nYou may notice that boxes pop up as you type. These represent RStudio’s attempts to guess what you’re typing and share additional options.\n\nThere are many ways to get help. The more you learn how to get help, the easier your coding life will be. Here’s a list of options:\n\nGoogle “question + rcran” (i.e “hist rcran” or “make a boxplot ggplot”)\nGoogle error in quotes (i.e. “Evaluation error: invalid type (closure) for variable ‘***’”)\nSearch RStudio community (now called Posit)\nSearch Stack Overflow #r tag\nSearch github for your function name to see examples or search the error\nUse generative AI (ChatGPT, Perplexity, etc.)\n\nPost a question somewhere friendly:\n\nRStudio community\n\nto pick on my friend/coworker Emile, an example\n\nR for Data Science Online Learning Community - join the slack channel\ntwitter #rstats\n\nor #rstats on other social media platforms"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#challenge-1",
+    "href": "part1/part_01_b526_slides.html#challenge-1",
+    "title": "1: Functions and vectors",
+    "section": "2.2 Challenge 1",
+    "text": "2.2 Challenge 1\n\nWhat does the function hist do?\n\nWhat are its main arguments?\nHow did you determine this?\n\n\n\nTricky bonus: what about +, which is actually a function?"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#object-not-found",
+    "href": "part1/part_01_b526_slides.html#object-not-found",
+    "title": "1: Functions and vectors",
+    "section": "3.1 “Object not found”",
+    "text": "3.1 “Object not found”\nThis happens when text is entered for a non-existent variable (object)\n\nhello\n\nCan be due to missing quotes\n\ninstall.packages(dplyr)\n\nor misspellings (R is case-sensitive)!"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#incomplete-commands",
+    "href": "part1/part_01_b526_slides.html#incomplete-commands",
+    "title": "1: Functions and vectors",
+    "section": "3.2 Incomplete commands",
+    "text": "3.2 Incomplete commands\n\nIn the console:\n\nWhen the console is waiting for a new command, the prompt line begins with &gt;\n\nIf the console prompt is +, then a previous command is incomplete\nYou can finish typing the command in the console window\nIf stressed and confused, press ESC many times (ESC = ESCAPE ME OUT OF HERE)\n\n\nIn a code chunk:\n\nR will let you know there is an error with a red circle containing a white X (see below).\n\nNote that all code chunks below this one will still have the red error circles until you fix the code.\n\nWhat happens if you try to run the code below?\n\n\n\n3 + (2*6\n\nChange #| eval: false above to #| eval: true after you fix the code error."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#could-not-find-function",
+    "href": "part1/part_01_b526_slides.html#could-not-find-function",
+    "title": "1: Functions and vectors",
+    "section": "3.3 “could not find function”",
+    "text": "3.3 “could not find function”\n\nThis can happen when you are calling a function but haven’t loaded the package that it “lives” in.\nFor example, the function day() being used below is from the lubridate package.\n\nWhat error do we get when we run the code?\n\n\n\nday(\"2025-01-09\")\n\nHow do we fix this code?\n\n# either specify the package in front of ::function()\nlubridate::day(\"2025-01-09\")\n\n[1] 9\n\n# or load the package first (preferably at beginning of script)\nlibrary(lubridate)\nday(\"2025-01-09\")\n\n[1] 9\n\n\nOr, maybe there was a misspelling…\n\ndsy(\"2025-01-09\")"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#removing-objects",
+    "href": "part1/part_01_b526_slides.html#removing-objects",
+    "title": "1: Functions and vectors",
+    "section": "4.1 Removing objects",
+    "text": "4.1 Removing objects\n\nYou can clear the entire environment using the button at the top of the Environment panel with a picture of a broom.\n\nThis may seem extreme, but don’t worry! We can re-create all the work we’ve already done by running each line of code again.\n\nTo remove an individual object, use the remove() function:\n\n\n# remove object\nremove(weight_lb)"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#challenge-2",
+    "href": "part1/part_01_b526_slides.html#challenge-2",
+    "title": "1: Functions and vectors",
+    "section": "4.2 Challenge 2",
+    "text": "4.2 Challenge 2\nWhat is the value of each item at each step? (Hint, you can see the value of an object by typing in the name of the object, such as with the mass line below.)\n\nmass &lt;- 47.5            # 1. mass?\nmass\n\n[1] 47.5\n\nwidth  &lt;- 122             # 2. width?\nmass &lt;- mass * 2.0      # 3. mass?\nwidth  &lt;- width - 20        #4.  width?\nmass_index &lt;- mass/width  # 5. mass_index?\n\nMake your answers here:"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#creating-vectors",
+    "href": "part1/part_01_b526_slides.html#creating-vectors",
+    "title": "1: Functions and vectors",
+    "section": "5.1 Creating vectors",
+    "text": "5.1 Creating vectors\n\nc is for combine or concatenate\n\n\n# assign vector\nages &lt;- c(50, 55, 60, 65) \n\n# recall vector\nages\n\n[1] 50 55 60 65"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#learning-things-about-vectors",
+    "href": "part1/part_01_b526_slides.html#learning-things-about-vectors",
+    "title": "1: Functions and vectors",
+    "section": "5.2 Learning things about vectors",
+    "text": "5.2 Learning things about vectors\n\n# how many things are in the object?\nlength(ages)\n\n[1] 4\n\n\n\n# what type of object?\nclass(ages)\n\n[1] \"numeric\"\n\n\n\n# performing functions with vectors\nmean(ages)\n\n[1] 57.5\n\nrange(ages)\n\n[1] 50 65"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#character-vectors",
+    "href": "part1/part_01_b526_slides.html#character-vectors",
+    "title": "1: Functions and vectors",
+    "section": "5.3 Character vectors",
+    "text": "5.3 Character vectors\n\n# vector of body parts\norgans &lt;- c(\"lung\", \"prostate\", \"breast\")\n\nIn the example above, each word within the vector is encased in quotation marks, indicating these are character data, rather than object names."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#challenge-3",
+    "href": "part1/part_01_b526_slides.html#challenge-3",
+    "title": "1: Functions and vectors",
+    "section": "5.4 Challenge 3",
+    "text": "5.4 Challenge 3\nPlease answer the following questions about organs:\n\nHow many values are in organs?\nWhat type of object is organs?\n\nAnswers here:"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#challenge-4",
+    "href": "part1/part_01_b526_slides.html#challenge-4",
+    "title": "1: Functions and vectors",
+    "section": "6.1 Challenge 4",
+    "text": "6.1 Challenge 4\n\nR tends to handle interpreting data types in the background of most operations.\nThe following code is designed to cause some unexpected results in R.\n\nWhat is unusual about each of the following objects?\n\n\n\nnum_char &lt;- c(1, 2, 3, \"a\")\nnum_logical &lt;- c(1, 2, 3, TRUE)\nchar_logical &lt;- c(\"a\", \"b\", \"c\", TRUE)\ntricky &lt;- c(1, 2, 3, \"4\")\nhola &lt;- c(\"hi\", \"guten tag\", hello)"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#adding-values-to-vectors",
+    "href": "part1/part_01_b526_slides.html#adding-values-to-vectors",
+    "title": "1: Functions and vectors",
+    "section": "7.1 Adding values to vectors",
+    "text": "7.1 Adding values to vectors\n\nages\n\n[1] 50 55 60 65\n\n# add a value to end of vector\n(ages &lt;- c(ages, 90) )\n\n[1] 50 55 60 65 90\n\n\n\n# add value at the beginning\n(ages &lt;- c(30, ages))\n\n[1] 30 50 55 60 65 90"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#extracting-or-excluding-values-from-vectors",
+    "href": "part1/part_01_b526_slides.html#extracting-or-excluding-values-from-vectors",
+    "title": "1: Functions and vectors",
+    "section": "7.2 Extracting (or excluding) values from vectors",
+    "text": "7.2 Extracting (or excluding) values from vectors\n\n# extracting second value\norgans[2] \n\n[1] \"prostate\"\n\n\n\n# excluding second value\norgans[-2] \n\n[1] \"lung\"   \"breast\"\n\n\n\n# extracting first and third values\norgans[c(1, 3)] \n\n[1] \"lung\"   \"breast\""
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#challenge-5",
+    "href": "part1/part_01_b526_slides.html#challenge-5",
+    "title": "1: Functions and vectors",
+    "section": "8.1 Challenge 5",
+    "text": "8.1 Challenge 5\nComplete the following tasks after creating this vector (Note: there are multiple solutions):\n\nRemove NAs on more_heights (assign it to the object more_heights_complete)\nCalculate the median() of more_heights_complete\n\n\n# create vector\nmore_heights &lt;- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)\n# remove NAs\n\n\n# calculate the median"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#loading-packages-libraryorpacmanp_load",
+    "href": "part1/part_01_b526_slides.html#loading-packages-libraryorpacmanp_load",
+    "title": "1: Functions and vectors",
+    "section": "10.1 Loading packages: library()orpacman::p_load()`",
+    "text": "10.1 Loading packages: library()orpacman::p_load()`\n\nYou can load packages with the library() function or p_load() function in the pacman package.\nThe following code loads two packages, though the tidyverse package is actually a suite of many packages.\n\nThis code assumes you have already installed the packages!!!\n\n\n\nlibrary(tidyverse)\nlibrary(janitor)\n\n# OR do this:\npacman::p_load(tidyverse, janitor)"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#before-you-get-started",
+    "href": "part1/part_01_b526_slides.html#before-you-get-started",
+    "title": "1: Functions and vectors",
+    "section": "0.1 Before you get started",
+    "text": "0.1 Before you get started\n\nPlease save a copy of this as part01_b526_YOURNAMEorINITIALS.qmd and work from that.\n\nThis way, you’ll have the original as a reference just in case.\n\nAlso, the first time you try something, try to type out the answer rather than copying and pasting.\n\nIt will help you understand what’s going on, because it forces you to read the code.\nHowever, if you find yourself getting too in the weeds with typing during class, copying and pasting works too! Practice typing on your own."
   }
 ]

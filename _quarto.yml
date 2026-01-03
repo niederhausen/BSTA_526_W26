@@ -1,18 +1,55 @@
 project:
   type: website
+  execute-dir: project
   output-dir: docs
 
 website:
-  title: "BSTA_526_W26"
+  title: "BSTA 526 Winter 2026"
   navbar:
-    left:
+    background: primary
+    search: true
+    logo: "images/IMG_6759_med.png"
+    foreground: "#fff"
+    collapse-below: sm
+    right:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: schedule.qmd
+        text: Schedule
+      - href: weeks.qmd
+        text: Weeks
+      - href: readings.qmd
+        text: Readings
+      - href: survey_feedback_previous_years.qmd
+        text: Survey
+      - href: about.qmd
+        text: About
+  sidebar:
+    style: "docked"
+    search: true
+    collapse-level: 4
+    contents:
+      - href: index.qmd
+        text: Home
+      - href: syllabus.qmd
+        text: Syllabus        
+      - href: schedule.qmd
+        text: Schedule
+      - href: weeks.qmd
+        text: Weeks
+      - href: readings.qmd
+        text: Readings
+      - href: survey_feedback_previous_years.qmd
+        text: Survey Feedback
+      - href: function_week.qmd
+        text: Functions of the Week
 
+            
 format:
   html:
-    theme: cosmo
+    theme: 
+      - minty
+      - minty_adapt2.scss
     css: styles.css
     toc: true
 

@@ -1,0 +1,345 @@
+---
+title: "Syllabus"
+pagetitle: "Syllabus BSTA 526"
+date: "1/5/2026"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+## Course Description
+
+This course aims to develop programming skills in R, a powerful statistical programming language. This course assumes some prior familiarity with R and ranges from advanced beginner topics to intermediate topics. It will cover practical data science skills in R that are useful for a career in statistics, epidemiology, or data science, including loading data, data wrangling, visualization, automation, machine learning, and running statistical models. A laptop is required for class to participate in coding exercises.
+
+
+## Credit Hours
+
+3 credit hours. 
+
+## Learning Objectives
+
+1. **Understand** and **utilize** **R/RStudio**, including using **Quarto** to create **reproducible** documents of statistical analyses.
+2. **Understand** basic data types and data structures in R.
+3. **Familiarize** and **load** data files (Excel, Comma Separated Value files) into R/Rstudio, with tips on formatting.
+4. **Visualize** datasets using **ggplot2** and understand how to build basic plots using **ggplot2** syntax.
+5. **Filter** and **format** data in R for use with various routines.
+6. **Run** and **Interpret** some basic statistics in R.
+7. **Automate** repetitive tasks in R, such as loading a folder of files.
+
+*__If time allows__*:
+
+8. **Create** nice tables in our R markdown reports with `gt`, `gtsummary`, and/or `kableExtra`.
+
+
+## Course Website
+
+All course information will be available here:
+
+<https://niederhausen.github.io/BSTA_526_W26/>
+
+Information will also be available on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26).
+
+Slack will be used for course discussions. Link to join Slack is posted on Sakai.
+
+## Office Hours
+
+* See [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26) for Webex links to office hours
+* In addition to times below, office hours can be set up by appointment at other times. Please email or message on Slack whom who would like to set up an office hour with.
+
+- TA Michael Daily's office hours XXX on Webex. See Sakai for the link.
+- Dr. Niederhausen has office hours by appointment or after class. Don't hesitate to ask for a meeting!
+
+
+## Prerequisites or Concurrent Enrollment Requirements
+
+* BSTA 511 or permission by instructor. 
+
+
+## Instructor Information
+
+### Instructor
+
+- **Preferred Method of Contact**: Email or Slack. When emailing, please include BSTA 526 in the subject line.   
+- **Expected Response Time**: 1 business day 
+* Meike Niederhausen, PhD
+    - [niederha\@ohsu.edu](mailto:niederha@ohsu.edu)
+
+
+### Teaching Assistant
+
+* Michael Daily 
+    - [dailym\@ohsu.edu](mailto:dailym@ohsu.edu)
+
+
+## Attendance 
+
+* This class will meet in-person and you are expected to attend class regularly. However, we understand that it is not always possible to attend class and daily attendance will not be monitored. 
+* Classes will be recorded, but we cannot guarantee the in-person format will lend itself to effective recordings. If you miss class, please reach out to a classmate for missed material.
+
+### Post-class surveys
+
+* 5% of your grade is based on filling out [post-class surveys](https://ohsu.ca1.qualtrics.com/jfe/form/SV_dhbhugCU2UnjYOi) as a way of telling us that you came to class and engaged with the material for that week.
+* You only need to fill out 5 surveys (of the 10 class sessions) for the full 5%. We encourage you to fill out as many surveys as possible to provide feedback on the class though.
+* __Please fill out surveys by the following class period.__
+* The questions on the survey are:
+    * Rating the pace of the lecture and lab
+    * Clearest Point: *What point of the class was clearest for you?*
+    * Muddiest Point: *What point of class was the muddiest (unclear) for you?*
+    * Anything Else: *Anything else you'd like me to know?*
+
+
+## Homework
+
+Homework will be assigned weekly using Quarto in RStudio. It will be due via Sakai upload Thursdays at 11:55pm the night of the following week's class (unless otherwise noted). Please turn in *both your .qmd and rendered .html file.*
+
+The homework with the lowest score will be dropped from your homework average. 
+
+### Late Policy
+
+Students get 1 free homework assignment to submit late within 3 days without penalties. *Please email the instructors and the TA that you need more time.* If you need an accommodation, please email us so we can figure out a way to help you.
+
+
+
+## Function of the Week
+
+Please choose a function from the Function of the Week sign-up sheet (link is posted on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26). *A Quarto template to format your Function of the Week and presentation will be provided*. Function of the Week presentations will start in week 4. On the sign-up sheet you will choose a week to present your function to the class, as well as the function. The presentation should be short, around 5 minutes. If presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class. 
+
+Previous years' Functions of the Week can be found on the previous class websites:
+
+* <https://niederhausen.github.io/BSTA_526_W25/function_week.html>
+* <https://niederhausen.github.io/BSTA_526_W24/function_week.html>
+* <https://sph-r-programming-2023.netlify.app/functions/>
+* <https://sph-r-programming-2022.netlify.app/functions/>
+* <https://sph-r-programming.netlify.app/functions/> (2021)
+
+We will create a similar website for this year's Functions of the Week. *If you do not wish yours to be on the public facing website, just let us know. Alternatively, we can also post it anonymously.* See submitted Functions of the Week for this quarter at this [link](function_week.qmd).
+
+
+## Midterm and Final Projects
+
+* Midterm and final projects/tests will be take home. 
+    * The midterm will be a project based on a dataset of your choosing.      
+    * The final will be based on an assigned dataset. 
+* Examples of previous years' midterms can be found on the class websites:
+    - <https://sph-r-programming-2023-midterms.netlify.app/>
+    - <https://sph-r-programming-2022-midterms.netlify.app/>
+    - <https://sph-midterm-projects.netlify.app/> (2021)
+    - We will create a similar website for this year's midterm projects.
+        - *If you do not wish your project to be on the public facing website, just let us know. Alternatively, we can also post it anonymously.*
+
+
+## Grading Policy
+
+- Attendance (based on post-class surveys) 5%
+- Midterm Project 30%
+- Function of the Week 5%
+- Homework Assignments 30%
+- Final Project 30%
+
+### Grading Scale
+
+* Assessments will be graded on a 10 pt scale (0-10 points). 
+* A weighted average of the grade will be calculated using the percentages listed above, and final grades will be assigned based on the table below. Scores will be rounded up; for example an average of 7.5 will be assigned an A-. 
+
+| Points | Letter Grade |
+|:------:|:------------:|
+|   10   |      A       |
+|   9    |      A-      |
+|   8    |      B+      |
+|   7    |      B       |
+|   6    |      B-      |
+|   5    |      C+      |
+|   4    |      C       |
+|   3    |      C-      |
+|   2    |      D+      |
+|   1    |      D       |
+|   0    |      F       |
+
+: {tbl-colwidths="[25,75]"}{.striped .hover}
+
+In assigning points 0-10, the following general guidelines will be applied:
+
+|       |                                                 |
+|:-----:|-------------------------------------------------|
+| **A** | Exceeds the standard                            |
+| **B** | Meets the standard                              |
+| **C** | Key gaps in understanding of the standard       |
+| **D** | Unable to demonstrate B or C without assistance |
+| **F** | No evidence                                     |
+
+: {tbl-colwidths="[25,75]"}{.striped .hover}
+
+This rubric was adapted from Chapter 12 of *Grading for Equity* by Joe Feldman.
+
+
+### Grading Rubric
+
+* Assessments will be graded on a 10 pt scale (0-10 points) using the rubric below. 
+* The 10 pts for each assessment will be based on:
+    * Answers: 4 pts
+    * Demonstrating process: 3 pts
+    * Providing context and relevance: 3 pts
+
+The table below will be used to determine points for each of the three categories.
+
++--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+|                                      | 4 points                                       | 3 points                                                                                                                                                                                                                                                                                                               | 2 points                                                                                                                                                           | 1 point                                                                                                                      | 0 points                                                                                       |
++--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+| Answers                              | Answers are correct at least 90% of the time   | Answers are usually correct (75-90%)                                                                                                                                                                                                                                                                                   | Answers are sometimes correct (50-74%)                                                                                                                             | Answers are generally incorrect (\<50%)                                                                                      | Answers are incorrect and no work was shown (demonstrating process has 0 pts)                  |
+|                                      |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
+| (4 pts max)                          |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
++--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+| Demonstrating process                |                                                | All relevant work is shown, including all steps for figuring out answers.                                                                                                                                                                                                                                              | Relevant work and steps for figuring out answers are generally provided but incomplete.                                                                            | Relevant work and steps for figuring out answers are generally missing.                                                      | No relevant work is shown, including steps for figuring out answers.                           |
+|                                      |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
+| (3 pts max)                          |                                                | R code and output are provided for every question for which R was used.                                                                                                                                                                                                                                                | R code and output are generally provided but incomplete for questions that use R.                                                                                  | R code and output are generally missing for questions that use R.                                                            | R code and output are not provided for questions for which R was used.                         |
++--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+| Providing context and relevance      |                                                | Answers are given in complete sentences with all relevant information for the question as appropriate (context of research question, units, descriptive statistics, explanation of what data visualization is showing, confidence intervals, p-values, test- statistics, etc.), and interpretation of results.         | Answers are given in complete sentences. Some relevant information may be provided, but much is missing. Context of research question only sometimes provided.     | Answers are rarely given in complete sentences. Relevant information is not provided. Little to no context is provided.      | Answers are not in complete sentences. Relevant information and context are not provided.      |
+|                                      |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
+| (3 pts max)                          |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
++--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+
+: {.striped .hover}
+
+
+## Code of Conduct
+
+And as students of an OHSU course, we must abide by the OHSU Code of Conduct: <https://www.ohsu.edu/integrity-department/code-conduct>
+
+This class is meant to be a psychologically safe space where it's ok to ask questions. We want to normalize your own curiosity and fuel your desire to learn more.
+
+*There is a link on Sakai to a form to anonymously report to us any possible code of conduct violations, based on the OHSU Code of Conduct or the OHSU Biodata Code of Conduct.* 
+
+
+## Required Texts and Readings
+
+We will be drawing on the following online textbooks during class and labs. These books are online and free, though you can order them as textbooks if you prefer that format.
+
++ **R for Data Science**. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund. 2nd Edition. <https://r4ds.hadley.nz/>
++ **Quarto** webpage <https://quarto.org/>
+    + The [Guide](https://quarto.org/docs/guide/) and [Reference](https://quarto.org/docs/reference/) tabs have very helpful documentation.
++ **Getting Used to R, RStudio, and RMarkdown**. Chester Ismay.
+<https://ismayc.github.io/rbasics-book/>
++ **Data Science: A First Introduction**. Tiffany Timbers, Trevor Campbell, Melissa Lee. <https://datasciencebook.ca/>
+<!-- + **RMarkdown for Scientists**. Nick Tierney. <https://rmd4sci.njtierney.com/> -->
+<!-- + **Statistical Inference via Data Science: A ModernDive into R and the Tidyverse**. Chester Ismay and Albert Y. Kim. <https://moderndive.com/v2/> -->
++ **Advanced R**. Hadley Wickham. <https://adv-r.hadley.nz/>
+
+    
+
+### Note on RMarkdown vs. Quarto
+
+* We will be using the newer Quarto instead of RMarkdown for creating reproducible documents. Some of the links above are for RMarkdown, which is very similar. 
+    * The main differences are in setting up the yaml and code chunk options.
+    * Many of the RMarkdown code chunk options work with Quarto though. 
+    * With Quarto you will see a `Render` button instead of a `Knit` button to create the html output of the file. 
+
+## Words of Encouragement
+
+> This was adopted from Andrew Heiss. Thanks!
+
+I *promise* you can succeed in this class.
+
+Learning R can be difficult at first—it's like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you'll be using like `ggplot2`—[made this wise observation](https://r-posts.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/): 
+
+> It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.
+
+Even experienced programmers find themselves bashing their heads against seemingly intractable errors. If you're finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail us, etc. 
+
+
+![[Alison Horst Jan 3, 2020 tweet](https://twitter.com/allison_horst/status/1213275783675822080)](/images/syllabus/hosrt_error_tweet.png){width=60%}
+
+
+![[Alison Horst: Gator error](https://twitter.com/allison_horst/status/1213275783675822080)](/images/syllabus/gator_error.jpg){fig-align="center"}
+
+
+## LeaRning is Social
+
+Students who work together with other students are often more successful than students who work alone. We are a learning community, and we should help each other to learn.
+
+If you understand something and know someone is struggling with it, try and help them. If you are struggling, take a breath, try to pinpoint what you are struggling with, and *don't be afraid to ask for help*. 
+
+Our goal is to be better coders each day, not to be the perfect coder There's no such thing as a perfect coder. I've been using R for over 20 years and still constantly learn new things.
+
+
+## Copyright Information
+
+Every reasonable effort has been made to protect the copyright requirements of materials used in this course. Class participants are warned not to copy, audio, or videotape in violation of copyright laws.
+
+<!-- Journal articles will be kept on reserve at the library or online for student access. Copyright law does allow for making one personal copy of each article from the original article. This limit also applies to electronic sources. -->
+
+To comply with the fair use fair use doctrine of the US copyright law, Sakai course sites close three weeks after grades are posted with the Registrar. Please be sure to download all course material you wish to keep before this time as you will have no further access to your courses.
+
+## School of Public Health Handbook
+
+All students are responsible for following the policies and expectations outlined in the student handbook for their program of study. Students are responsible for their own academic work and are expected to have read and practice principles of academic honesty, as presented in the handbook: <https://ohsu-psu-sph.org/current-graduate-students/policies-procedures/#academic-dishonesty>.
+
+## Syllabus Changes and Retention
+
+This syllabus is not to be considered a contract between the student and the School of Public Health. It is recognized that changes may be made as the need arises. Students are responsible for keeping a copy of the course syllabus for their records.
+
+Syllabi are considered to be a learning agreement between students and the faculty of record. Information contained in syllabi, other than the minimum requirements, may be subject to change as deemed appropriate by the faculty of record in concurrence with the academic program and the Office of the Provost. Refer to the [Course Syllabi Policy, 02-50-050](https://o2.ohsu.edu/policies-and-compliance/ohsu-policy-manual/chapter-2-student-affairs/ohsu-policy-02-50-050.cfm).
+
+
+## Syllabus Statement Regarding Disability Services
+
+OHSU is committed to providing equal access to qualified students who experience a disability in compliance with Section 504 of the Rehabilitation Act of 1973, the Americans with Disabilities Act (ADA) of
+1990, and the ADA Amendments Act (ADA-AA) of 2008. If you have a disability or think you may have a disability (physical, sensory, chronic health, psychological or learning) please contact the Office for Student Access at (503) 494-0082 or <studentaccess@ohsu.edu> to discuss
+eligibility for academic accommodations. Information is also available at [www.ohsu.edu/student-access.](http://www.ohsu.edu/student-access) Because accommodations may take time to implement and cannot be applied retroactively, it is important to have this discussion as soon as
+possible. All information regarding a student's disability is kept in accordance with relevant state and federal laws.
+
+Please see Student Access & Accomodations section for more details on the Sakai version of this Syllabus.
+
+
+## Commitment of Equity and Inclusion
+
+The School of Public Health is committed to providing an environment free of all forms of prohibited discrimination and discriminatory harassment. The School of Public Health students who have questions about an incident related to Title IX are welcome to contact either the OHSU or PSU's Title IX Coordinator and they will direct you to the appropriate resource or office. Title IX pertains to any form of sex/gender discrimination, discriminatory harassment, sexual harassment or sexual violence.
+
+PSU’s Title IX Coordinator is Julie Caron, she may be reached at titleixccordinator@pdx.edu or 503-725-4410. Julie's office is located at 1600 SW 4th Ave, In the Richard and Maureen Neuberger Center RMNC - Suite 830.
+
+The OHSU Title IX Coordinator’s may be reached at 503-494-0258 or titleix@ohsu.edu and is located at 2525 SW 3rd St.
+
+Please note that faculty and the Title IX Coordinators will keep the information you disclose private but are not confidential. If you would like to speak with a confidential advocate, who will not disclose the information to a university official without your written consent, you may contact an advocate at PSU or OHSU.
+
+PSU’s confidential advocates are available in Women’s Resource Center (serving all genders) in Smith Student Memorial Union 479. You may schedule an appointment by (503-725-5672) or schedule on line at https://psuwrc.youcanbook.me. For more information about resources at PSU, please see PSU’s Response to Sexual Misconduct website.
+
+OHSU’s advocates are available through the Confidential Advocacy Program (CAP) at 833-495-CAPS (2277) or by email CAPsupport@ohsu.edu, but please note, email is not a secure form of communication. Also visit www.ohsu.edu/CAP.
+
+At OHSU, if you encounter any harassment, or discrimination based on race, color, religion, age, national origin or ancestry, veteran or military status, sex, marital status, pregnancy or parenting status, sexual orientation, gender identity or expression, disability or any other protected status, please contact the Affirmative Action and Equal Opportunity (AAEO) Department at 503- 494-5148 or aaeo@ohsu.edu.
+
+At PSU, you may contact the Office of Equity and Compliance if you experience any form of discrimination or discriminatory harassment as listed above at equityandcompliance@pdx.edu or by calling 503-725-5919.
+
+## Academic Honesty
+
+* Course participants are expected to maintain academic honesty in their course work. Participants should refrain from seeking past published solutions to any assignments. Literature and resources (including
+internet resources and generative AI) employed in fulfilling assignments must be cited. 
+    * See [Purdue University's Online Writing Lab](https://owl.purdue.edu/owl/avoiding_plagiarism/index.html) for resources on plagiarism and importantly avoiding plagiarism (thanks to [Steve Bedrick](https://dmice.ohsu.edu/bedricks/courses/bmi525/policies.html) for this link!).
+    * Assignments suspected of plagiarism (including copying past solutions or another student's assignment) will receive 0 points for the assignment and the dean of the student's academic program will be notified. 
+* In an effort to uphold the principles and practice of academic honesty,
+faculty members at OHSU may use originality checking systems such as
+Turnitin to compare a student's submitted work against multiple
+sources.
+    * To protect student privacy in this process, it will be necessary to
+remove all personal information, i.e. student name, email address,
+student u-number, or any other personal information, from documents
+BEFORE submission.*
+
+### Use of generative AI for assignments
+
+Generative AI tools (such as ChatGPT) can be great resources for learning how to code and/or troubleshoot code that does not work. However, the work you turn in must be your own. Thus it is inappropriate to directly ask AI to provide you with solutions to homework questions or write text that you are submitting in your assignment. 
+
+***If you do use AI tools to help you with an assignment, these must be cited along with how they were used.*** 
+
+Please see the Plagiarism & Attribution section (Code Snippets and AI Tools subsection) of Dr. Steve Bedrick's [BMI 525: Principles and Practice of DataVisualization](https://dmice.ohsu.edu/bedricks/courses/bmi525/policies.html) webpage for examples of appropriate and inappropriate uses generative AI.
+
+
+
+## Use of Sakai
+
+[Sakai](https://sakai.ohsu.edu/portal) is OHSU's online course management system. Some course information will only be available on Sakai, and you will be turning in all assignments using Sakai. For any technical questions or if you need help logging in, please contact the Sakai Help Desk. See also the [Sakai Student Guide](https://sakai.ohsu.edu/portal/site/student_guides/tool/8943ec8a-4c24-4652-bf0d-c9624fa4c241) for more information. 
+    
+    

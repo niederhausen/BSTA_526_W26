@@ -1,0 +1,17 @@
+---
+title: "Functions of the Week"
+pagetitle: "Functions of the Week BSTA 526"
+format: 
+  html:
+    listing: 
+      contents: function_week
+      type: table
+      table-hover: true
+      fields: [date, title, description]
+      sort: "date asc"
+      date-format: "short"
+    link-external-newwindow: true
+---
+
+
+Links to function of the week presentations.

@@ -1,0 +1,85 @@
+---
+title: "Welcome!"
+pagetitle: "0: Welcome!"
+subtitle: "BSTA 526: R Programming for Health Data Science"
+author: "Meike Niederhausen, PhD"
+institute: "OHSU-PSU School of Public Health"
+date: "1/08/2026"
+date-modified: "today"
+format: 
+  # html:
+  #   link-external-newwindow: true
+  #   toc: true
+  #   toc_float:
+  #     collapsed: false
+  #   number-sections: true
+  #   number-depth: 4
+  #   theme: minty
+  #   self-contained: true
+  #   html-math-method: mathjax
+  revealjs:
+      incremental: false
+      scrollable: true
+      chalkboard: true
+      theme: [../sky_modified_smaller_font_B526_W26.scss]
+      width:  1100 #1200 # 1050 #default 1050; ipad 3:4, 1600
+      # height: 825 #900 #800 #default 700; 788 for 3:4, 1200
+      slide-number: true
+      number-sections: true
+      number-depth: 4
+      link-external-newwindow: true
+      html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(echo = TRUE)
+# alternative to library()
+pacman::p_load(vembedr, 
+               stringr) 
+```
+
+
+# Welcome to R Programming!
+
+This course introduces you to R in two parts:
+
+Part 1 focuses on working through common tasks in data science:
+
+-   importing data
+-   wrangling data
+-   visualizing data
+-   summarizing data
+
+Part 2 focuses on more advanced topics:
+
+-   joining and merging data tables
+-   automating analyses (`purrr`/for loops),
+
+We might get to:
+
+-   running basic statistical procedures
+-   fancy tables in Quarto with `kable`, `gt`, and `gtsummary`
+-   advanced Quarto topics
+
+Throughout, we'll work on concepts of reproducibility by utilizing RStudio project and Quarto document-based workflows as a way of reproducibly sharing our work.
+
+# What is R?
+
+-   R is an open source statistical and programming computer language widely used for a variety of applications.
+-   Why "R"??
+    -   Scheme inspired S (invented at Bell Labs in 1976) which inspired R (free and open source! in 1992)
+
+# Learning Objectives
+
+By the end of this session, you should be able to:
+
+1.  **Work** within the RStudio interface to **run** R code in a Quarto document
+2.  **Understand** basic R syntax to **use** functions and **assign** values to objects
+3.  **Create** and **manipulate** vectors and **understand** how R deals with missing data
+4.  **Install** and **load** R packages
