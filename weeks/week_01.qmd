@@ -1,0 +1,115 @@
+---
+title: "Week 1"
+pagetitle: "Week 1 BSTA 526"
+description: "Intro to R/RStudio, Functions, Vectors, Data Types"
+date: "`r library(here); source(here('schedule_class_dates.R')); w1d1`"
+date-modified: "today"
+categories: [""]
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+source(here::here("schedule_class_dates.R"))
+```
+
+
+## Topics
+
+* Introduction to course/expectations (syllabus)
+* Intro to R & RStudio
+    * [Handout](../resources/R info.pdf) with directions on installing R & RStudio
+* Introduction to Quarto
+* Functions, Vectors, Data Types
+
+
+## Announcements
+
+* Class materials for BSTA 526 will be provided in the shared OneDrive folder [BSTA_526_W26_class_materials_public]().  (*link coming soon*) 
+* For today's class, make sure to download to your computer the folder called `part_01`. Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.
+
+<!-- * Please join the [BSTA 526 Slack channel](https://join.slack.com/t/bsta526w25/shared_invite/zt-2x4jl264g-KV9YvPTAqKWuEBB1gE10BA) and introduce yourself by posting in the `#random` channel. -->
+
+
+## Class materials
+
+* OneDrive [part_01 folder]()  (*link coming soon*)
+
+## Readings
+
+
+### Required
+
+These readings are mostly supplemental and will help you if there are concepts that are unclear in class.
+
+- [R and RStudio Basics (Chapter 3)](https://ismayc.github.io/rbasics-book/3-rstudiobasics.html) - make sure to watch the videos.
+    * Skip the following sections in Chapter 3:
+        * 3.3.1, 3.3.3, 
+- [Intro to R & Rstudio, and Quarto](https://niederhausen.github.io/BSTA_511_F25/slides_md/Day01_bsta511_md.html) from Day 1 of my BSTA 511/611 class in Fall 2025 ([slides version](https://niederhausen.github.io/BSTA_511_F25/slides/Day01_bsta511.html#/title-slide))
+- [Vectors and Data Frames (Section 3.3)](https://datasciencebook.ca/wrangling.html#data-frames-vectors-and-lists) from [Data Science: A First Introduction](https://datasciencebook.ca/) by Timbers, Campbell, & Lee
+- [Workflow: scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html) from R for Data Science (2e) by Wickham, Cetinkaya-Rundel, & Grolemund
+    * [Section 6.1: Scripts](https://r4ds.hadley.nz/workflow-scripts.html#scripts)
+    * [Section 6.2: Projects](https://r4ds.hadley.nz/workflow-scripts.html#projects)
+
+
+### Optional 
+
+#### Posit/R Cheatsheets
+
+- Many useful information and tips can be found in the list of [cheatsheets](https://posit.co/resources/cheatsheets/) on the Posit website
+
+#### Markdown / Quarto 
+
+*   Slides on how to do [Markdown and other formatting in Quarto files](https://ohsu-octri-berd.github.io/Quarto_BERD_2025/slides/part2_intro.html#/types-of-quarto-content-text). This is optional, but may be a helpful reference as you create your own Quarto files. 
+    *   *Slides are from the OCTRI-BERD workshop on [Creating Professional Presentations and Websites using R/Quarto](https://ohsu-octri-berd.github.io/Quarto_BERD_2025/) presented by Jessica Minnier & myself in July 2025. *
+    *   *There are also slides for [Creating Presentations](https://ohsu-octri-berd.github.io/Quarto_BERD_2025/slides/part3_presentations.html#/title-slide) and [Creating Websites](https://ohsu-octri-berd.github.io/Quarto_BERD_2025/slides/part4_websites.html#/title-slide) using Quarto.*
+*   Quarto's website for [Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html)
+    *   [Quarto YAML for html](https://quarto.org/docs/reference/formats/html.html)
+    *   [Quarto front matter](https://quarto.org/docs/authoring/front-matter.html)
+
+
+#### Swirl Basics
+
+This is a resource for learning basic R concepts using the R package `swirl`. 
+
+To start it, run the following code in the *console* in RStudio:
+
+```{r}
+#| eval: false
+# first install the swirl package
+library(swirl)
+swirl()
+
+# Note: type bye() to exit swirl
+```
+
+You'll want to take a look at the `R Programming` course, especially the following sections:
+
+1. Basic Building Blocks
+3. Sequences of Numbers
+4. Vectors
+5. Missing values
+
+
+## Post-class survey
+
+* Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) to provide feedback. Thank you!
+* Previous muddiest points and clearest points with responses are collected  [here](../survey_feedback_previous_years.qmd).
+
+## Homework
+
+* See OneDrive folder for homework assignment.
+* HW 1 due on `r format(w2d1, "%m/%d")`.
+
+## Recording
+
+* __In-class__ recording links are on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&studentItemId=0&backPath=&bltiAppStores=false&errorMessage=&clearAttr=&messageId=&source=&title=&newTopLevel=false&sendingPage=232002&postedComment=false&addBefore=&itemId=5509813&path=push&reviewAssessment=false&topicId=&addTool=-1&recheck=&id=&forumId=). Navigate to _Course Materials_ -> _Schedule with links to in-class recordings_. 
+
+
+
+
+

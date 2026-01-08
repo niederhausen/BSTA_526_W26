@@ -16,12 +16,14 @@ website:
         text: Home
       - href: schedule.qmd
         text: Schedule
-      - href: weeks.qmd
-        text: Weeks
-      - href: readings.qmd
-        text: Readings
+      # - href: weeks.qmd
+      #   text: Weeks
+      # - href: readings.qmd
+      #   text: Readings
       - href: survey_feedback_previous_years.qmd
         text: Survey
+      - href: function_week.qmd
+        text: FotW
       - href: about.qmd
         text: About
   sidebar:
@@ -35,10 +37,34 @@ website:
         text: Syllabus        
       - href: schedule.qmd
         text: Schedule
-      - href: weeks.qmd
-        text: Weeks
-      - href: readings.qmd
-        text: Readings
+      - section: "Weekly pages"
+        contents: 
+          - href: weeks/week_01.qmd
+            text: Week 1
+          # - href: weeks/week_02.qmd
+          #   text: Week 2
+          # - href: weeks/week_03.qmd
+          #   text: Week 3            
+          # - href: weeks/week_04.qmd
+          #   text: Week 4  
+          # - href: weeks/week_05.qmd
+          #   text: Week 5  
+          # - href: weeks/week_06.qmd
+          #   text: Week 6 
+          # - href: weeks/week_07.qmd
+          #   text: Week 7 
+          # - href: weeks/week_08.qmd
+          #   text: Week 8 
+          # - href: weeks/week_09.qmd
+          #   text: Week 9 
+          # - href: weeks/week_10.qmd
+          #   text: Week 10 
+          # - href: weeks/week_11.qmd
+          #   text: Week 11 
+      # - href: weeks.qmd
+      #   text: Weeks
+      # - href: readings.qmd
+      #   text: Readings
       - href: survey_feedback_previous_years.qmd
         text: Survey Feedback
       - href: function_week.qmd

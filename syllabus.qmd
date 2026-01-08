@@ -83,8 +83,8 @@ Slack will be used for course discussions. Link to join Slack is posted on Sakai
 
 ### Post-class surveys
 
-* 5% of your grade is based on filling out [post-class surveys](https://ohsu.ca1.qualtrics.com/jfe/form/SV_dhbhugCU2UnjYOi) as a way of telling us that you came to class and engaged with the material for that week.
-* You only need to fill out 5 surveys (of the 10 class sessions) for the full 5%. We encourage you to fill out as many surveys as possible to provide feedback on the class though.
+* 5% of your grade is based on filling out [post-class surveys](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) as a way of telling us that you came to class and engaged with the material for that week.
+* You only need to fill out 7 surveys (of the 10 class sessions) for the full 5%. We encourage you to fill out as many surveys as possible to provide feedback on the class though.
 * __Please fill out surveys by the following class period.__
 * The questions on the survey are:
     * Rating the pace of the lecture and lab
@@ -105,9 +105,13 @@ Students get 1 free homework assignment to submit late within 3 days without pen
 
 
 
-## Function of the Week
+## Functions of the Week
 
-Please choose a function from the Function of the Week sign-up sheet (link is posted on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26). *A Quarto template to format your Function of the Week and presentation will be provided*. Function of the Week presentations will start in week 4. On the sign-up sheet you will choose a week to present your function to the class, as well as the function. The presentation should be short, around 5 minutes. If presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class. 
+-   Please choose a function(s) from the Functions of the Week sign-up sheet (link is posted on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&studentItemId=0&backPath=&bltiAppStores=false&errorMessage=&clearAttr=&messageId=&source=&title=&newTopLevel=false&sendingPage=232003&postedComment=false&addBefore=&itemId=5509815&path=push&reviewAssessment=false&topicId=&addTool=-1&recheck=&id=&forumId=). 
+-   *A Quarto template to format your Function of the Week and presentation will be provided*. -   Functions of the Week presentations will start in week 4. 
+-   On the sign-up sheet you will choose a week to present your function(s) to the class, as well as the function(s). 
+-   The presentation should be short, around 5 minutes. 
+-   If presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class. 
 
 Previous years' Functions of the Week can be found on the previous class websites:
 
@@ -117,7 +121,7 @@ Previous years' Functions of the Week can be found on the previous class website
 * <https://sph-r-programming-2022.netlify.app/functions/>
 * <https://sph-r-programming.netlify.app/functions/> (2021)
 
-We will create a similar website for this year's Functions of the Week. *If you do not wish yours to be on the public facing website, just let us know. Alternatively, we can also post it anonymously.* See submitted Functions of the Week for this quarter at this [link](function_week.qmd).
+I will create a similar website for this year's Functions of the Week. *If you do not wish yours to be on the public facing website, just let us know. Alternatively, we can also post it anonymously.* See submitted Functions of the Week for this quarter at this [link](function_week.qmd).
 
 
 ## Midterm and Final Projects

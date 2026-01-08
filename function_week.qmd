@@ -13,5 +13,8 @@ format:
     link-external-newwindow: true
 ---
 
+See the [syllabus](https://niederhausen.github.io/BSTA_526_W26/syllabus.html#function-of-the-week) for information about the Functions of the Week, as well as links to presentations from previous years.
 
-Links to function of the week presentations.
+
+Below are links to functions of the week presentations.
+

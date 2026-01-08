@@ -1,0 +1,95 @@
+---
+title: "`package::function`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "(template file) Very brief description of function"
+author: "Your name"
+date: "1/8/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+See the [syllabus](https://niederhausen.github.io/BSTA_526_W26/syllabus.html#function-of-the-week) for links to presentations from previous years.
+
+## Instructions
+
+1.  Please sign up for a function(s) here (Enter your name and the week you want to present):  **URL coming soon**
+2.  Please submit on Sakai
+    a.    both the `.qmd` and the `.html` files, and 
+    b.    your dataset if you are loading your own dataset (*without your dataset I will not be able to render the file and add it to the website*)
+3.  *It is VERY important that your yaml is updated so that posting your file on the website is seamless.* **Update in the yaml** above the following:
+    a.    **title**: use the format `package::function`, such as `dplyr::slice`.
+    b.    **description**: a brief description of your function(s)
+    c.    **author**: your name
+    d.    **date** : date you are presenting
+4.  Do not change the `pagetitle` or `subtitle`. 
+5.  Your submission will be added to the class website. Remove your name from the yaml if you do not wish it to be included and let us know if it is okay to post it anonymously. 
+6. Delete the sections with the `Instructions` and `Dataset instructions` from this file before submitting. 
+
+
+## Dataset instructions
+
+*   Please use a dataset that is publicly available. In particular, do not use a dataset with PHI that we cannot publicly share.
+*   Include a description of the dataset and from where it was downloaded or how it was created. 
+*   If these are data from a project you have worked on, make sure there are no identifying information and also slightly alter them so that they are not the original data. 
+
+### Datasets that are included in an R package
+
+It is easiest to use a dataset that is a part of base R or a part of an R package. 
+
+Some R packages that include datasets are:
+
+*   The datasets in the package `datasets` are included with base R and "ready" to use without having to load them first. Learn more about the available datasets [here](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) and [here](https://www.sthda.com/english/wiki/r-built-in-data-sets).   
+*   [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) package 
+*   [fivethirtyeight](https://cran.r-project.org/web/packages/fivethirtyeight/vignettes/fivethirtyeight.html) package 
+*   A [list](https://vincentarelbundock.github.io/Rdatasets/datasets.html) of R packages and datasets included in them. *This list is not comprehensive.*
+
+### Load your own dataset
+
+*   If loading a dataset from a file(which could be one downloaded from the internet somewhere), make sure the dataset is in a folder called data and use `here::here()` to load it. This is to make it easier to include it in the website.
+*   Upload the dataset on Sakai along with your .qmd and .html files so that I can render your .qmd file. 
+
+
+# `Function(s) Name(s)`
+
+> What function(s) is being presented and what package is it from?
+
+
+# What is it for?
+
+> Discuss what the function(s) does. 
+
+
+# Examples
+
+> Provide at least two examples that you have created yourself for your dataset of choice that show how to use the function(s).
+
+
+# Is it helpful?
+
+> Discuss whether you think this function(s) is useful for you and your work. Is it the best thing since sliced bread, or is it not really relevant to your work? If not relevant to you, can you think of examples of when it would be useful?
+
+

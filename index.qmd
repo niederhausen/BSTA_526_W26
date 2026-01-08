@@ -57,7 +57,11 @@ Oregon Health & Science University
 ::: g-col-3
 ### Office Hours
 
-* See [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26) for Webex links to office hours.
+{{< iconify fa6-solid calendar-days size=20px >}} __Tuesdays 11-11:50 am__ (Meike)    
+<!-- <i class="fa-solid fa-globe"></i> -->
+{{< fa globe >}} Webex (link on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/page/44279282-bb72-45fb-af28-327f751eef44))
+
+<!-- * See [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26) for Webex links to office hours. -->
 
 :::
 

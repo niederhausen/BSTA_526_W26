@@ -15,8 +15,7 @@ editor_options:
 -   Links have been added to all weeks, but weeks we have not covered yet will have broken links.
 
 ```{r setup, include=FALSE}
-library(here)
-source(here("schedule_class_dates.R"))
+source(here::here("schedule_class_dates.R"))
 ```
 
 
@@ -24,33 +23,33 @@ source(here("schedule_class_dates.R"))
 |:---:|:--:|:---|
 | [1](weeks/week_01.qmd) | Th `r format(w1d1, "%m/%d")` | Introduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types |
 |  |  |  |  |
-| [2](weeks/week_02.qmd) | Th `r format(w2d1, "%m/%d")` | Loading Data, data.frames, and ggplot2 |
+| 2 | Th `r format(w2d1, "%m/%d")` | Loading Data, data.frames, and ggplot2 |
 |  | | HW 1 due |
 |  |  |  |  |
-| [3](weeks/week_03.qmd) | Th `r format(w3d1, "%m/%d")` | dplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets |
+| 3 | Th `r format(w3d1, "%m/%d")` | dplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets |
 |  | | HW 2 due |
 |  |  |  |  |
-| [4](weeks/week_04.qmd) | Th `r format(w4d1, "%m/%d")` | dplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales |
+| 4 | Th `r format(w4d1, "%m/%d")` | dplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales |
 |  | | HW 3 due |
 |  |  |  |  |
-| [5](weeks/week_05.qmd) | Th `r format(w5d1, "%m/%d")` |  data wrangling practice: forcats, stringr, separate(); combining multiple tables (left_join() etc); reshaping data (i.e. pivot_longer()) |
+| 5 | Th `r format(w5d1, "%m/%d")` |  data wrangling practice: forcats, stringr, separate(); combining multiple tables (left_join() etc); reshaping data (i.e. pivot_longer()) |
 |  | | HW 4 due |
 |  |Th `r format(midterm_open, "%m/%d")` | **[Take Home Midterm Assigned]{style="color:#046b94;"}** |  |
 |  |  |  |  |
-| [6](weeks/week_06.qmd) | Th `r format(w6d1, "%m/%d")` | More data wrangling practice |
+| 6 | Th `r format(w6d1, "%m/%d")` | More data wrangling practice |
 |  | | HW 5 due |
 |  |  |  |  |
-| [7](weeks/week_07.qmd) | Th `r format(w7d1, "%m/%d")` | More data wrangling practice ctd.  |
+| 7 | Th `r format(w7d1, "%m/%d")` | More data wrangling practice ctd.  |
 |  | | HW 6 due |
 |  | Su `r format(midterm_due, "%m/%d")` | **[Take home Midterm due (Sunday)]{style="color:#046b94;"}** |  |
 |  |  |  |  |
-| [8](weeks/week_08.qmd) | Th `r format(w8d1, "%m/%d")` | Intro to functions, working with lists |
+| 8 | Th `r format(w8d1, "%m/%d")` | Intro to functions, working with lists |
 |  | | HW 7 due |
 |  |  |  |  |
-| [9](weeks/week_09.qmd) | Th `r format(w9d1, "%m/%d")` | Iteration |
+| 9 | Th `r format(w9d1, "%m/%d")` | Iteration |
 |  | | HW 8 due |
 |  |  |  |  |
-| [10](weeks/week_10.qmd) | Tu `r format(final_open, "%m/%d")` | **[Final Exam Assigned (Tuesday)]{style="color:#046b94;"}** |  |
+| 10 | Tu `r format(final_open, "%m/%d")` | **[Final Exam Assigned (Tuesday)]{style="color:#046b94;"}** |  |
 |  | Th `r format(w10d1, "%m/%d")` | More Stats/Purrr |
 |  | | HW 9 due |
 |  |  |  |  |

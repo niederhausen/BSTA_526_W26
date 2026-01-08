@@ -2,8 +2,37 @@
 title: "About"
 ---
 
-About this site
+## Instructor
 
-```{r}
-1 + 1
-```
+### Meike Niederhausen
+
+* [Associate Professor of Biostatistics](https://ohsu-psu-sph.org/our-school/faculty-directory/name/meike-niederhausen/) in the [OHSU-PSU School of Public Health](https://ohsu-psu-sph.org/)
+* Faculty Biostatistician for OHSU's [Biostatistics & Design Program](https://www.ohsu.edu/research-cores/biostatistics-design-program)
+* Affiliate Investigator for the HSR&D Center to Improve Veteran Involvement in Care ([CIVIC](https://www.portlandcoin.research.va.gov/index.asp)) at the Portland VA
+
+<!-- ### Jessica Minnier -->
+
+<!-- * [Associate Professor of Biostatistics](https://www.ohsu.edu/people/jessica-minnier-phd) -->
+<!-- * Faculty Biostatistician in the [Biostatistics Shared Resource](https://www.ohsu.edu/knight-cancer-institute/biostatistics-shared-resource) of OHSU's [Knight Cancer Institute](https://www.ohsu.edu/knight-cancer-institute). -->
+<!-- * [jessicaminnier.com](http://jessicaminnier.com/) -->
+
+
+## Course info
+
+This webpage was created for BSTA 526 (*R Programming for Health Data Science*) in the [OHSU-PSU School of Public Health](https://ohsu-psu-sph.org/). 
+
+## Acknowledgements
+
+### BSTA 526 class materials
+
+* BSTA 526 was taught in previous years as BSTA 504 by [Ted Laderas](https://laderast.github.io/) ([2021](https://sph-r-programming.netlify.app/)) and [Jessica Minnier](http://jessicaminnier.com/) ([2022](https://sph-r-programming-2022.netlify.app/), [2023](https://sph-r-programming-2023.netlify.app/)).
+* Almost all course materials were created by Ted and Jessica with minor changes for BSTA 526 (such as updating from RMarkdown to Quarto). Their work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). See previous class websites linked to above for links to their source code on GitHub.
+* In 2024, [Meike Niederhausen](https://ohsu-psu-sph.org/our-school/faculty-directory/name/meike-niederhausen/) and [Emile Latour](https://www.ohsu.edu/knight-cancer-institute/biostatistics-shared-resource) taught BSTA 526 using these materials, <https://niederhausen.github.io/BSTA_526_W24/>.
+* In 2025, Meike and Jessica taught BSTA 526 using these materials, <https://niederhausen.github.io/BSTA_526_W25/>.
+
+
+### Quarto webpage 
+
+* Thank you to [Nicky Wakim](https://github.com/nwakim/) for creating her amazing webpage for [BSTA 550](https://nwakim.github.io/F2023_BSTA_550/), and sharing her code on [GitHub](https://github.com/nwakim/F2023_BSTA_550). Having her template made creating this website a much smoother process.
+* Thank you also to [Andrew Bray](https://andrewpbray.github.io/) for presenting the [From R Markdown to Quarto](https://andrew.quarto.pub/oregon-asa/) ASA Travelling Workshop to the Oregon Chapter of the ASA in June 2023. This workshop was a great starting point in making the switch from RMarkdown to Quarto and also create Quarto webpages. 
+

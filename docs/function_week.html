@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-date','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-title","listing-author"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -122,20 +122,16 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.qmd" rel="" target="">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
  <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./readings.qmd" rel="" target="">
- <span class="menu-text">Readings</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./weeks.qmd" rel="" target="">
- <span class="menu-text">Weeks</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./survey_feedback_previous_years.qmd" rel="" target="">
+    <a class="nav-link" href="./survey_feedback_previous_years.html" rel="" target="">
  <span class="menu-text">Survey</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./function_week.html" rel="" target="">
+ <span class="menu-text">FotW</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html" rel="" target="">
@@ -186,25 +182,30 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.qmd" class="sidebar-item-text sidebar-link">
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Weekly pages</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./readings.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Readings</span></a>
+  <a href="./weeks/week_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 1</span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./survey_feedback_previous_years.qmd" class="sidebar-item-text sidebar-link">
+  <a href="./survey_feedback_previous_years.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Survey Feedback</span></a>
   </div>
 </li>
@@ -242,7 +243,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Links to function of the week presentations.</p>
+<p>See the <a href="https://niederhausen.github.io/BSTA_526_W26/syllabus.html#function-of-the-week">syllabus</a> for information about the Functions of the Week, as well as links to presentations from previous years.</p>
+<p>Below are links to functions of the week presentations.</p>
 
 
 
@@ -286,16 +288,16 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1736970256000" data-listing-reading-time-sort="1" data-listing-title-sort="Functions of the Week" data-listing-filename-sort="function_week.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1767859200000" data-listing-file-modified-sort="1767833646354" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="`package::function`" data-listing-filename-sort="presentation_template.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
-<span class="listing-date">undefined</span>
+<span class="listing-date">1/8/26</span>
 </td>
 <td>
-<a href="./function_week/data/function_week.html" class="title listing-title">Functions of the Week</a>
+<a href="./function_week/presentation_template.html" class="title listing-title"><code>package::function</code></a>
 </td>
 <td>
-<span class="listing-description">Links to function of the week presentations</span>
+<span class="listing-description">(template file) Very brief description of function</span>
 </td>
 </tr>
 </tbody>
