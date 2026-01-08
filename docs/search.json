@@ -46,14 +46,14 @@
     "href": "syllabus.html#course-website",
     "title": "Syllabus",
     "section": "Course Website",
-    "text": "Course Website\nAll course information will be available here:\nhttps://niederhausen.github.io/BSTA_526_W26/\nInformation will also be available on Sakai.\nSlack will be used for course discussions. Link to join Slack is posted on Sakai."
+    "text": "Course Website\nAll course information will be available here:\nhttps://niederhausen.github.io/BSTA_526_W26/\nInformation will also be available on Sakai."
   },
   {
     "objectID": "syllabus.html#office-hours",
     "href": "syllabus.html#office-hours",
     "title": "Syllabus",
     "section": "Office Hours",
-    "text": "Office Hours\n\nSee Sakai for Webex links to office hours\nIn addition to times below, office hours can be set up by appointment at other times. Please email or message on Slack whom who would like to set up an office hour with.\nTA Michael Daily’s office hours XXX on Webex. See Sakai for the link.\nDr. Niederhausen has office hours by appointment or after class. Don’t hesitate to ask for a meeting!"
+    "text": "Office Hours\n\nSee Sakai for Webex links to office hours\nIn addition to times below, office hours can be set up by appointment at other times. Please email whom who would like to set up an office hour with.\nTA Michael Daily’s office hours XXX on Webex. See Sakai for the link.\nDr. Niederhausen has office hours Tuesdays 11-11:50 am via Webex (link on Sakai) and by appointment or after class. Don’t hesitate to ask for a meeting!"
   },
   {
     "objectID": "syllabus.html#prerequisites-or-concurrent-enrollment-requirements",
@@ -67,21 +67,21 @@
     "href": "syllabus.html#instructor-information",
     "title": "Syllabus",
     "section": "Instructor Information",
-    "text": "Instructor Information\n\nInstructor\n\nPreferred Method of Contact: Email or Slack. When emailing, please include BSTA 526 in the subject line.\n\nExpected Response Time: 1 business day\nMeike Niederhausen, PhD\n\nniederha@ohsu.edu\n\n\n\n\nTeaching Assistant\n\nMichael Daily\n\ndailym@ohsu.edu"
+    "text": "Instructor Information\n\nInstructor\n\nPreferred Method of Contact: Email. When emailing, please include BSTA 526 in the subject line.\n\nExpected Response Time: 1 business day\nMeike Niederhausen, PhD\n\nniederha@ohsu.edu\n\n\n\n\nTeaching Assistant\n\nMichael Daily\n\ndailym@ohsu.edu"
   },
   {
     "objectID": "syllabus.html#attendance",
     "href": "syllabus.html#attendance",
     "title": "Syllabus",
     "section": "Attendance",
-    "text": "Attendance\n\nThis class will meet in-person and you are expected to attend class regularly. However, we understand that it is not always possible to attend class and daily attendance will not be monitored.\nClasses will be recorded, but we cannot guarantee the in-person format will lend itself to effective recordings. If you miss class, please reach out to a classmate for missed material.\n\n\nPost-class surveys\n\n5% of your grade is based on filling out post-class surveys as a way of telling us that you came to class and engaged with the material for that week.\nYou only need to fill out 7 surveys (of the 10 class sessions) for the full 5%. We encourage you to fill out as many surveys as possible to provide feedback on the class though.\nPlease fill out surveys by the following class period.\nThe questions on the survey are:\n\nRating the pace of the lecture and lab\nClearest Point: What point of the class was clearest for you?\nMuddiest Point: What point of class was the muddiest (unclear) for you?\nAnything Else: Anything else you’d like me to know?"
+    "text": "Attendance\n\nThis class will meet in-person and you are expected to attend class regularly. However, I understand that it is not always possible to attend class and daily attendance will not be monitored.\nClasses will be recorded, but I cannot guarantee the in-person format will lend itself to effective recordings. If you miss class, please reach out to a classmate for missed material.\n\n\nPost-class surveys\n\n5% of your grade is based on filling out post-class surveys as a way of indicating that you came to class and engaged with the material for that week.\nYou only need to fill out 7 surveys (of the 10 class sessions) for the full 5%.\n\nI encourage you to fill out as many surveys as possible to provide feedback on the class though.\n\nPlease fill out surveys by the following Wednesday at noon.\nThe questions on the survey are:\n\nRating the pace of the class\nClearest Point: Which topic of the class was clearest for you?\nMuddiest Point: Which topic of class was the muddiest (unclear) for you?\nAnything Else: Anything else you’d like me to know?"
   },
   {
     "objectID": "syllabus.html#homework",
     "href": "syllabus.html#homework",
     "title": "Syllabus",
     "section": "Homework",
-    "text": "Homework\nHomework will be assigned weekly using Quarto in RStudio. It will be due via Sakai upload Thursdays at 11:55pm the night of the following week’s class (unless otherwise noted). Please turn in both your .qmd and rendered .html file.\nThe homework with the lowest score will be dropped from your homework average.\n\nLate Policy\nStudents get 1 free homework assignment to submit late within 3 days without penalties. Please email the instructors and the TA that you need more time. If you need an accommodation, please email us so we can figure out a way to help you."
+    "text": "Homework\n\nHomework will be assigned weekly using Quarto in RStudio.\n\nIt will be due via Sakai upload Thursdays at 11:55pm the night of the following week’s class (unless otherwise noted).\nPlease turn in both your .qmd and rendered .html file.\n\nThe homework with the lowest score will be dropped from your homework average.\n\n\nLate Policy\n\nStudents get 1 free homework assignment to submit late within 3 days without penalty.\nPlease email the instructor and the TA that you need more time.\nIf you need an accommodation, please email me so I can figure out a way to help you."
   },
   {
     "objectID": "syllabus.html#function-of-the-week",
@@ -95,35 +95,35 @@
     "href": "syllabus.html#midterm-and-final-projects",
     "title": "Syllabus",
     "section": "Midterm and Final Projects",
-    "text": "Midterm and Final Projects\n\nMidterm and final projects/tests will be take home.\n\nThe midterm will be a project based on a dataset of your choosing.\n\nThe final will be based on an assigned dataset.\n\nExamples of previous years’ midterms can be found on the class websites:\n\nhttps://sph-r-programming-2023-midterms.netlify.app/\nhttps://sph-r-programming-2022-midterms.netlify.app/\nhttps://sph-midterm-projects.netlify.app/ (2021)\nWe will create a similar website for this year’s midterm projects.\n\nIf you do not wish your project to be on the public facing website, just let us know. Alternatively, we can also post it anonymously."
+    "text": "Midterm and Final Projects\n\nMidterm and final projects/tests will be take home.\n\nThe midterm will be a project based on a dataset of your choosing.\n\nThe final will be based on an assigned dataset.\n\nExamples of previous years’ midterms can be found on the class websites:\n\nhttps://sph-r-programming-2023-midterms.netlify.app/\nhttps://sph-r-programming-2022-midterms.netlify.app/\nhttps://sph-midterm-projects.netlify.app/ (2021)\nI will create a similar website for this year’s midterm projects.\n\nIf you do not wish your project to be on the public facing website, just let us know. Alternatively, I can also post it anonymously."
   },
   {
     "objectID": "syllabus.html#grading-policy",
     "href": "syllabus.html#grading-policy",
     "title": "Syllabus",
     "section": "Grading Policy",
-    "text": "Grading Policy\n\nAttendance (based on post-class surveys) 5%\nMidterm Project 30%\nFunction of the Week 5%\nHomework Assignments 30%\nFinal Project 30%\n\n\nGrading Scale\n\nAssessments will be graded on a 10 pt scale (0-10 points).\nA weighted average of the grade will be calculated using the percentages listed above, and final grades will be assigned based on the table below. Scores will be rounded up; for example an average of 7.5 will be assigned an A-.\n\n\n\n\n\nPoints\nLetter Grade\n\n\n\n\n10\nA\n\n\n9\nA-\n\n\n8\nB+\n\n\n7\nB\n\n\n6\nB-\n\n\n5\nC+\n\n\n4\nC\n\n\n3\nC-\n\n\n2\nD+\n\n\n1\nD\n\n\n0\nF\n\n\n\nIn assigning points 0-10, the following general guidelines will be applied:\n\n\n\n\nA\nExceeds the standard\n\n\nB\nMeets the standard\n\n\nC\nKey gaps in understanding of the standard\n\n\nD\nUnable to demonstrate B or C without assistance\n\n\nF\nNo evidence\n\n\n\nThis rubric was adapted from Chapter 12 of Grading for Equity by Joe Feldman.\n\n\nGrading Rubric\n\nAssessments will be graded on a 10 pt scale (0-10 points) using the rubric below.\nThe 10 pts for each assessment will be based on:\n\nAnswers: 4 pts\nDemonstrating process: 3 pts\nProviding context and relevance: 3 pts\n\n\nThe table below will be used to determine points for each of the three categories.\n\n\n\n\n\n\n\n\n\n\n\n\n\n4 points\n3 points\n2 points\n1 point\n0 points\n\n\nAnswers\n(4 pts max)\nAnswers are correct at least 90% of the time\nAnswers are usually correct (75-90%)\nAnswers are sometimes correct (50-74%)\nAnswers are generally incorrect (&lt;50%)\nAnswers are incorrect and no work was shown (demonstrating process has 0 pts)\n\n\nDemonstrating process\n(3 pts max)\n\nAll relevant work is shown, including all steps for figuring out answers.\nR code and output are provided for every question for which R was used.\nRelevant work and steps for figuring out answers are generally provided but incomplete.\nR code and output are generally provided but incomplete for questions that use R.\nRelevant work and steps for figuring out answers are generally missing.\nR code and output are generally missing for questions that use R.\nNo relevant work is shown, including steps for figuring out answers.\nR code and output are not provided for questions for which R was used.\n\n\nProviding context and relevance\n(3 pts max)\n\nAnswers are given in complete sentences with all relevant information for the question as appropriate (context of research question, units, descriptive statistics, explanation of what data visualization is showing, confidence intervals, p-values, test- statistics, etc.), and interpretation of results.\nAnswers are given in complete sentences. Some relevant information may be provided, but much is missing. Context of research question only sometimes provided.\nAnswers are rarely given in complete sentences. Relevant information is not provided. Little to no context is provided.\nAnswers are not in complete sentences. Relevant information and context are not provided."
+    "text": "Grading Policy\n\nAttendance (based on post-class surveys) 5%\nHomework Assignments 30%\nFunction of the Week 5%\nMidterm Exam 30%\nFinal Exam 30%\n\n\nGrading Scale\n\nAssessments will be graded on a 10 pt scale (0-10 points).\nA weighted average of the grade will be calculated using the percentages listed above, and final grades will be assigned based on the table below. Scores will be rounded up; for example an average of 7.5 will be assigned an A-.\n\n\n\n\n\nPoints\nLetter Grade\n\n\n\n\n10\nA\n\n\n9\nA-\n\n\n8\nB+\n\n\n7\nB\n\n\n6\nB-\n\n\n5\nC+\n\n\n4\nC\n\n\n3\nC-\n\n\n2\nD+\n\n\n1\nD\n\n\n0\nF\n\n\n\nIn assigning points 0-10, the following general guidelines will be applied:\n\n\n\n\nA\nExceeds the standard\n\n\nB\nMeets the standard\n\n\nC\nKey gaps in understanding of the standard\n\n\nD\nUnable to demonstrate B or C without assistance\n\n\nF\nNo evidence\n\n\n\nThis rubric was adapted from Chapter 12 of Grading for Equity by Joe Feldman.\n\n\nGrading Rubric\n\nAssessments will be graded on a 10 pt scale (0-10 points) using the rubric below.\nThe 10 pts for each assessment will be based on:\n\nAnswers: 4 pts\nDemonstrating process: 3 pts\nProviding context and relevance: 3 pts\n\n\nThe table below will be used to determine points for each of the three categories.\n\n\n\n\n\n\n\n\n\n\n\n\n\n4 points\n3 points\n2 points\n1 point\n0 points\n\n\nAnswers\n(4 pts max)\nAnswers are correct at least 90% of the time\nAnswers are usually correct (75-90%)\nAnswers are sometimes correct (50-74%)\nAnswers are generally incorrect (&lt;50%)\nAnswers are incorrect and no work was shown (demonstrating process has 0 pts)\n\n\nDemonstrating process\n(3 pts max)\n\nAll relevant work is shown, including all steps for figuring out answers.\nR code and output are provided for every question for which R was used.\nRelevant work and steps for figuring out answers are generally provided but incomplete.\nR code and output are generally provided but incomplete for questions that use R.\nRelevant work and steps for figuring out answers are generally missing.\nR code and output are generally missing for questions that use R.\nNo relevant work is shown, including steps for figuring out answers.\nR code and output are not provided for questions for which R was used.\n\n\nProviding context and relevance\n(3 pts max)\n\nAnswers are given in complete sentences with all relevant information for the question as appropriate (context of research question, units, descriptive statistics, explanation of what data visualization is showing, confidence intervals, p-values, test- statistics, etc.), and interpretation of results.\nAnswers are given in complete sentences. Some relevant information may be provided, but much is missing. Context of research question only sometimes provided.\nAnswers are rarely given in complete sentences. Relevant information is not provided. Little to no context is provided.\nAnswers are not in complete sentences. Relevant information and context are not provided."
   },
   {
     "objectID": "syllabus.html#code-of-conduct",
     "href": "syllabus.html#code-of-conduct",
     "title": "Syllabus",
     "section": "Code of Conduct",
-    "text": "Code of Conduct\nAnd as students of an OHSU course, we must abide by the OHSU Code of Conduct: https://www.ohsu.edu/integrity-department/code-conduct\nThis class is meant to be a psychologically safe space where it’s ok to ask questions. We want to normalize your own curiosity and fuel your desire to learn more.\nThere is a link on Sakai to a form to anonymously report to us any possible code of conduct violations, based on the OHSU Code of Conduct or the OHSU Biodata Code of Conduct."
+    "text": "Code of Conduct\nAnd as students of an OHSU course, we must abide by the OHSU Code of Conduct: https://www.ohsu.edu/integrity-department/code-conduct\nThis class is meant to be a psychologically safe space where it’s ok to ask questions. We want to normalize your own curiosity and fuel your desire to learn more."
   },
   {
     "objectID": "syllabus.html#required-texts-and-readings",
     "href": "syllabus.html#required-texts-and-readings",
     "title": "Syllabus",
     "section": "Required Texts and Readings",
-    "text": "Required Texts and Readings\nWe will be drawing on the following online textbooks during class and labs. These books are online and free, though you can order them as textbooks if you prefer that format.\n\nR for Data Science. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund. 2nd Edition. https://r4ds.hadley.nz/\nQuarto webpage https://quarto.org/\n\nThe Guide and Reference tabs have very helpful documentation.\n\nGetting Used to R, RStudio, and RMarkdown. Chester Ismay. https://ismayc.github.io/rbasics-book/\nData Science: A First Introduction. Tiffany Timbers, Trevor Campbell, Melissa Lee. https://datasciencebook.ca/  \nAdvanced R. Hadley Wickham. https://adv-r.hadley.nz/\n\n\nNote on RMarkdown vs. Quarto\n\nWe will be using the newer Quarto instead of RMarkdown for creating reproducible documents. Some of the links above are for RMarkdown, which is very similar.\n\nThe main differences are in setting up the yaml and code chunk options.\nMany of the RMarkdown code chunk options work with Quarto though.\nWith Quarto you will see a Render button instead of a Knit button to create the html output of the file."
+    "text": "Required Texts and Readings\nThis course will be drawing on the following online textbooks. These books are online and free, though you can order them as textbooks if you prefer that format.\n\nR for Data Science. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund. 2nd Edition. https://r4ds.hadley.nz/\nQuarto webpage https://quarto.org/\n\nThe Guide and Reference tabs have very helpful documentation.\n\nGetting Used to R, RStudio, and RMarkdown. Chester Ismay. https://ismayc.github.io/rbasics-book/\nData Science: A First Introduction. Tiffany Timbers, Trevor Campbell, Melissa Lee. https://datasciencebook.ca/  \nAdvanced R. Hadley Wickham. https://adv-r.hadley.nz/\n\n\nNote on RMarkdown vs. Quarto\n\nWe will be using the newer Quarto instead of RMarkdown for creating reproducible documents. Some of the links above are for RMarkdown, which is very similar.\n\nThe main differences are in setting up the yaml and code chunk options.\nMany of the RMarkdown code chunk options work with Quarto though.\nWith Quarto you will see a Render button instead of a Knit button to create the html output of the file."
   },
   {
     "objectID": "syllabus.html#words-of-encouragement",
     "href": "syllabus.html#words-of-encouragement",
     "title": "Syllabus",
     "section": "Words of Encouragement",
-    "text": "Words of Encouragement\n\nThis was adopted from Andrew Heiss. Thanks!\n\nI promise you can succeed in this class.\nLearning R can be difficult at first—it’s like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you’ll be using like ggplot2—made this wise observation:\n\nIt’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.\n\nEven experienced programmers find themselves bashing their heads against seemingly intractable errors. If you’re finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail us, etc.\n\n\n\nAlison Horst Jan 3, 2020 tweet\n\n\n\n\n\nAlison Horst: Gator error"
+    "text": "Words of Encouragement\n\nThis was adopted from Andrew Heiss. Thanks!\n\nI promise you can succeed in this class.\nLearning R can be difficult at first—it’s like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you’ll be using like ggplot2—made this wise observation:\n\nIt’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.\n\nEven experienced programmers find themselves bashing their heads against seemingly intractable errors. If you’re finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail me, etc.\n\n\n\nAlison Horst Jan 3, 2020 tweet\n\n\n\n\n\nAlison Horst: Gator error"
   },
   {
     "objectID": "syllabus.html#learning-is-social",
@@ -206,169 +206,169 @@
     "objectID": "part1/part_01_b526_slides.html#rrstudio",
     "href": "part1/part_01_b526_slides.html#rrstudio",
     "title": "1: Functions and vectors",
-    "section": "R/RStudio",
-    "text": "R/RStudio\nLink to video: https://youtu.be/oFmjHxl28H0\n\nWinter 2025:\n\nStart at minute 2. The first 2 minutes are on using RStudio server in the Cloud, which we are not using.\nThis video provides an overview of what the difference parts of the RStudio interface are used for.\nReplace references to RMarkdown (or .Rmd) with Quarto (or .qmd).\n\n\n\nvembedr::embed_youtube(\"oFmjHxl28H0\", width = 600, height=300)\n\n\n\n\n\n\n\n\n\nA good reference built into RStudio is Help -&gt; Cheatsheets -&gt; RStudio IDE cheat sheet\nA nice summary of the RStudio anatomy is here:\n\n Here are some useful gifs about customizing the RStudio panels"
+    "section": "1.3 R/RStudio",
+    "text": "1.3 R/RStudio\n\nA good reference built into RStudio is Help -&gt; Cheatsheets -&gt; RStudio IDE cheat sheet"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#rstudio-projects",
     "href": "part1/part_01_b526_slides.html#rstudio-projects",
-    "title": "1: Functions and vectors",
-    "section": "RStudio projects",
-    "text": "RStudio projects\n\nHow do you eat an elephant?\nOne bite at a time. We will go over topics related to RStudio/file management again and again this class, so don’t worry if it is confusing at first.\n\n\nWe will be using RStudio projects.\n\nWe will talk about them again later, but for now,\nopen RStudio by double clicking on the .Rproj file for part 1 (part_01.Rproj)\n\n\nYou may read this for more info, and watch this short video on creating new projects:\nLink to video: https://youtu.be/D22THnoPA6w\n\nvembedr::embed_youtube(\"D22THnoPA6w\", width = 600, height=300)"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "1.3 RStudio Projects",
+    "text": "1.3 RStudio Projects\n\nWe will be using RStudio projects.\nSee Projects in RStudio webpage\nOpen RStudio by double clicking on the .Rproj file in the main OneDrive folder (BSTA_526_W26_class_materials_public.Rproj)\n\n1.3.1 Creating projects\nTed Laderas’s short video on creating new projects: https://youtu.be/D22THnoPA6w\n\nvembedr::embed_youtube(\"D22THnoPA6w\", width = 600, height=300)"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#quarto-.qmd",
     "href": "part1/part_01_b526_slides.html#quarto-.qmd",
     "title": "1: Functions and vectors",
-    "section": "Quarto (.qmd)",
-    "text": "Quarto (.qmd)\n\nSee intro to Quarto from BSTA 511 Week 1\n\nCan view slides as html, pdf, or “continuous” webpage.\n\n\n\nCreate a Quarto file\n\nSee BSTA 511/611 Day 1 section on Create a Quarto file.\n\n\n\nMarkdown for “word processing”\n\nThe Quarto (qmd) document uses markdown language for text outside of code chunks.\nSome markdown resources:\n\nBSTA 511/611 Day 1 notes on markdown\nOfficial Quarto webpage on markdown basics\nFrom BSTA 504: Read more about markdown here.\n\nSkip the last two sections on Front matter and Citations, since these are different for Quarto."
+    "section": "1.4 Quarto (.qmd)",
+    "text": "1.4 Quarto (.qmd)\n\nSee intro to Quarto from BSTA 511/611 Week 1\n\nCan view slides as html, pdf, or “continuous” webpage.\n\n\n1.4.1 Create a Quarto file\n\nSee BSTA 511/611 Day 1 section on Create a Quarto file.\n\n1.4.2 Markdown for “word processing”\n\nThe Quarto (qmd) document uses markdown language for text outside of code chunks.\nSome markdown resources:\n\nBSTA 511/611 Day 1 notes on markdown\nBERD workshop slides on how to do Markdown and other formatting in Quarto files.\nOfficial Quarto webpage on markdown basics"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#code-chunks",
     "href": "part1/part_01_b526_slides.html#code-chunks",
-    "title": "1: Functions and vectors",
-    "section": "Code chunks",
-    "text": "Code chunks\nLink to video: https://youtu.be/0iETdE7WkqU\n\nvembedr::embed_youtube(\"0iETdE7WkqU\", width = 600, height=300)\n\n\n\n\n\n\n\n\nThe grey box below is a code chunk:\n\n# basic math\n4 + 5 \n\n[1] 9\n\n\n\nEverything that starts with a # is called a comment and is not code that runs. It is useful for making notes for yourself.\nBelow the comment is the actual code.\n\nHow do we run the code?\n\n\nTry this one out. It’s the same code as above, but with no spaces. Does it still run?\n\n# same code as above, without spaces\n4+5\n\n[1] 9"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "2.3 Code chunks",
+    "text": "2.3 Code chunks\nThe grey box below is a code chunk:\n\n# basic math\n4 + 5 \n\n[1] 9\n\n\n\nEverything that starts with a # is called a comment and is not code that runs. It is useful for making notes for yourself.\nBelow the comment is the actual code.\n\nHow do we run the code?\n\n\n\n2.3.1 More on code chunks\n\nBERD workshop slides on code chunks."
   },
   {
     "objectID": "part1/part_01_b526_slides.html#useful-keyboard-shortcuts-tools-keyboard-shortcuts-help",
     "href": "part1/part_01_b526_slides.html#useful-keyboard-shortcuts-tools-keyboard-shortcuts-help",
-    "title": "1: Functions and vectors",
-    "section": "Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)",
-    "text": "Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)\n\n\n\n\n\n\n\n\naction\nmac\nwindows/linux\n\n\n\n\nRun code in qmd or script\ncmd + enter\nctrl + enter\n\n\nAdd code chunk\ncmd + option + i\nctrl + alt + i\n\n\n&lt;-\noption + -\nalt + -\n\n\ninterrupt currently running code\nesc\nesc\n\n\nin console, go to previously run code\nup/down\nup/down\n\n\n%&gt;%\ncmd + shift + m\nctrl + shift + m\n\n\nsearch files\ncmd + shift + f\nctrl + shift + f\n\n\nrender qmd\ncmd + shift + k\nctrl + shift + k\n\n\nrun entire code chunk\ncmd + option + c\nctrl + alt + c\n\n\nkeyboard shortcut help\noption + shift + k\nalt + shift + k\n\n\n\n(see full list)"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "2.4 Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)",
+    "text": "2.4 Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)\n\n\n\n\n\n\n\n\naction\nmac\nwindows/linux\n\n\n\n\nRun code in qmd or script\ncmd + enter\nctrl + enter\n\n\nAdd code chunk\ncmd + option + i\nctrl + alt + i\n\n\n&lt;-\noption + -\nalt + -\n\n\ninterrupt currently running code\nesc\nesc\n\n\nin console, go to previously run code\nup/down\nup/down\n\n\n%&gt;%\ncmd + shift + m\nctrl + shift + m\n\n\nsearch files\ncmd + shift + f\nctrl + shift + f\n\n\nrender qmd\ncmd + shift + k\nctrl + shift + k\n\n\nrun entire code chunk\ncmd + option + c\nctrl + alt + c\n\n\nkeyboard shortcut help\noption + shift + k\nalt + shift + k\n\n\n\n(see full list)"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#getting-help",
     "href": "part1/part_01_b526_slides.html#getting-help",
     "title": "1: Functions and vectors",
-    "section": "Getting Help",
-    "text": "Getting Help\nLearn more about the round() function with ?round:\n\n?round\n\n\nWe can also type ?round in the Console instead of including it in a code chunk.\n\n\n# can switch order of arguments (if you name them)\nround(digits = 1, x = 3.14)\n\n[1] 3.1\n\n\n\nYou may notice that boxes pop up as you type. These represent RStudio’s attempts to guess what you’re typing and share additional options.\n\nThere are many ways to get help. The more you learn how to get help, the easier your coding life will be. Here’s a list of options:\n\nGoogle “question + rcran” (i.e “hist rcran” or “make a boxplot ggplot”)\nGoogle error in quotes (i.e. “Evaluation error: invalid type (closure) for variable ‘***’”)\nSearch RStudio community (now called Posit)\nSearch Stack Overflow #r tag\nSearch github for your function name to see examples or search the error\nUse generative AI (ChatGPT, Perplexity, etc.)\n\nPost a question somewhere friendly:\n\nRStudio community\n\nto pick on my friend/coworker Emile, an example\n\nR for Data Science Online Learning Community - join the slack channel\ntwitter #rstats\n\nor #rstats on other social media platforms"
+    "section": "1.7 Getting Help",
+    "text": "1.7 Getting Help\n1.7.1 Within RStudio\nLearn more about the round() function with ?round:\n\n?round\n\n\nWe can also type ?round in the Console instead of including it in a code chunk.\n\n\n# can switch order of arguments (if you name them)\nround(digits = 1, x = 3.14)\n\n[1] 3.1\n\n\n\nYou may notice that boxes pop up as you type. These represent RStudio’s attempts to guess what you’re typing and share additional options.\n\n1.7.2 On the internet\nThere are many ways to get help. The more you learn how to get help, the easier your coding life will be. Here’s a list of options:\n\nGoogle “question + rcran” (i.e “hist rcran” or “make a boxplot ggplot”)\nGoogle error in quotes (i.e. “Evaluation error: invalid type (closure) for variable ‘***’”)\nSearch RStudio community (now called Posit)\nSearch Stack Overflow #r tag\nSearch github for your function name to see examples or search the error\nUse generative AI (ChatGPT, Perplexity, etc.)\n\nPost a question somewhere friendly:\n\nRStudio community\n\nto pick on my friend/coworker Emile, an example\n\nR for Data Science Online Learning Community - join the slack channel\n#rstats on social media platforms"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#challenge-1",
     "href": "part1/part_01_b526_slides.html#challenge-1",
-    "title": "1: Functions and vectors",
-    "section": "Challenge 1",
-    "text": "Challenge 1\n\nWhat does the function hist do?\n\nWhat are its main arguments?\nHow did you determine this?\n\n\n\nTricky bonus: what about +, which is actually a function?"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "3.4 Challenge 1",
+    "text": "3.4 Challenge 1\n\nWhat does the function hist do?\n\nWhat are its main arguments?\nHow did you determine this?\n\n\n\nTricky bonus: what about +, which is actually a function?"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#object-not-found",
     "href": "part1/part_01_b526_slides.html#object-not-found",
-    "title": "1: Functions and vectors",
-    "section": "“Object not found”",
-    "text": "“Object not found”\nThis happens when text is entered for a non-existent variable (object)\n\nhello\n\nCan be due to missing quotes\n\ninstall.packages(dplyr)\n\nor misspellings (R is case-sensitive)!"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "4.1 “Object not found”",
+    "text": "4.1 “Object not found”\nThis happens when text is entered for a non-existent variable (object)\n\nhello\n\nCan be due to missing quotes\n\ninstall.packages(dplyr)\n\nor misspellings (R is case-sensitive)!"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#incomplete-commands",
     "href": "part1/part_01_b526_slides.html#incomplete-commands",
-    "title": "1: Functions and vectors",
-    "section": "Incomplete commands",
-    "text": "Incomplete commands\n\nIn the console:\n\nWhen the console is waiting for a new command, the prompt line begins with &gt;\n\nIf the console prompt is +, then a previous command is incomplete\nYou can finish typing the command in the console window\nIf stressed and confused, press ESC many times (ESC = ESCAPE ME OUT OF HERE)\n\n\nIn a code chunk:\n\nR will let you know there is an error with a red circle containing a white X (see below).\n\nNote that all code chunks below this one will still have the red error circles until you fix the code.\n\nWhat happens if you try to run the code below?\n\n\n\n3 + (2*6\n\nChange #| eval: false above to #| eval: true after you fix the code error."
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "4.2 Incomplete commands",
+    "text": "4.2 Incomplete commands\n\nIn the console:\n\nWhen the console is waiting for a new command, the prompt line begins with &gt;\n\nIf the console prompt is +, then a previous command is incomplete\nYou can finish typing the command in the console window\nIf stressed and confused, press ESC many times\n\n\nIn a code chunk:\n\nR will let you know there is an error with a red circle containing a white X (see below in the code file).\n\nNote that all code chunks below this one will still have the red error circles until you fix the code.\n\nWhat happens if you try to run the code below?\n\n\n\n3 + (2*6\n\nChange #| eval: false above to #| eval: true after you fix the code error."
   },
   {
     "objectID": "part1/part_01_b526_slides.html#could-not-find-function",
     "href": "part1/part_01_b526_slides.html#could-not-find-function",
-    "title": "1: Functions and vectors",
-    "section": "“could not find function”",
-    "text": "“could not find function”\n\nThis can happen when you are calling a function but haven’t loaded the package that it “lives” in.\nFor example, the function day() being used below is from the lubridate package.\n\nWhat error do we get when we run the code?\n\n\n\nday(\"2025-01-09\")\n\nHow do we fix this code?\n\n# either specify the package in front of ::function()\nlubridate::day(\"2025-01-09\")\n\n[1] 9\n\n# or load the package first (preferably at beginning of script)\nlibrary(lubridate)\n\n\nAttaching package: 'lubridate'\n\n\nThe following object is masked from 'package:vembedr':\n\n    hms\n\n\nThe following objects are masked from 'package:base':\n\n    date, intersect, setdiff, union\n\nday(\"2025-01-09\")\n\n[1] 9\n\n\nOr, maybe there was a misspelling…\n\ndsy(\"2025-01-09\")"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "4.3 “could not find function”",
+    "text": "4.3 “could not find function”\n\nThis can happen when you are calling a function but haven’t loaded the package that it “lives” in.\nFor example, the function day() being used below is from the lubridate package.\n\nWhat error do we get when we run the code?\n\n\n\nday(\"2025-01-09\")\n\nHow do we fix this code?\n\n# either specify the package in front of ::function()\nlubridate::day(\"2025-01-09\")\n\n[1] 9\n\n# or load the package first (preferably at beginning of script)\nlibrary(lubridate)\nday(\"2025-01-09\")\n\n[1] 9\n\n\nOr, maybe there was a misspelling…\n\ndsy(\"2025-01-09\")"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#removing-objects",
     "href": "part1/part_01_b526_slides.html#removing-objects",
-    "title": "1: Functions and vectors",
-    "section": "Removing objects",
-    "text": "Removing objects\n\nYou can clear the entire environment using the button at the top of the Environment panel with a picture of a broom.\n\nThis may seem extreme, but don’t worry! We can re-create all the work we’ve already done by running each line of code again.\n\nTo remove an individual object, use the remove() function:\n\n\n# remove object\nremove(weight_lb)"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "5.3 Removing objects",
+    "text": "5.3 Removing objects\n\nYou can clear the entire environment using the button at the top of the Environment panel with a picture of a broom.\n\nThis may seem extreme, but don’t worry! We can re-create all the work we’ve already done by running each line of code again.\n\nTo remove an individual object, use the remove() function:\n\n\n# remove object\nremove(weight_lb)"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#challenge-2",
     "href": "part1/part_01_b526_slides.html#challenge-2",
-    "title": "1: Functions and vectors",
-    "section": "Challenge 2",
-    "text": "Challenge 2\nWhat is the value of each item at each step? (Hint, you can see the value of an object by typing in the name of the object, such as with the mass line below.)\n\nmass &lt;- 47.5            # 1. mass?\nmass\n\n[1] 47.5\n\nwidth  &lt;- 122             # 2. width?\nmass &lt;- mass * 2.0      # 3. mass?\nwidth  &lt;- width - 20        #4.  width?\nmass_index &lt;- mass/width  # 5. mass_index?\n\nMake your answers here:"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "5.4 Challenge 2",
+    "text": "5.4 Challenge 2\nWhat is the value of each item at each step? (Hint, you can see the value of an object by typing in the name of the object, such as with the mass line below.)\n\nmass &lt;- 47.5            # 1. mass?\nmass\n\n[1] 47.5\n\nwidth  &lt;- 122             # 2. width?\nmass &lt;- mass * 2.0      # 3. mass?\nwidth  &lt;- width - 20        #4.  width?\nmass_index &lt;- mass/width  # 5. mass_index?\n\nMake your answers here:"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#creating-vectors",
     "href": "part1/part_01_b526_slides.html#creating-vectors",
-    "title": "1: Functions and vectors",
-    "section": "Creating vectors",
-    "text": "Creating vectors\n\nc is for combine or concatenate\n\n\n# assign vector\nages &lt;- c(50, 55, 60, 65) \n\n# recall vector\nages\n\n[1] 50 55 60 65"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "6.1 Creating vectors",
+    "text": "6.1 Creating vectors\n\nc is for combine or concatenate\n\n\n# assign vector\nages &lt;- c(50, 55, 60, 65) \n\n# recall vector\nages\n\n[1] 50 55 60 65"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#learning-things-about-vectors",
     "href": "part1/part_01_b526_slides.html#learning-things-about-vectors",
-    "title": "1: Functions and vectors",
-    "section": "Learning things about vectors",
-    "text": "Learning things about vectors\n\n# how many things are in the object?\nlength(ages)\n\n[1] 4\n\n\n\n# what type of object?\nclass(ages)\n\n[1] \"numeric\"\n\n\n\n# performing functions with vectors\nmean(ages)\n\n[1] 57.5\n\nrange(ages)\n\n[1] 50 65"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "6.2 Learning things about vectors",
+    "text": "6.2 Learning things about vectors\n\n# how many things are in the object?\nlength(ages)\n\n[1] 4\n\n\n\n# what type of object?\nclass(ages)\n\n[1] \"numeric\"\n\n\n\n# performing functions with vectors\nmean(ages)\n\n[1] 57.5\n\nrange(ages)\n\n[1] 50 65"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#character-vectors",
     "href": "part1/part_01_b526_slides.html#character-vectors",
-    "title": "1: Functions and vectors",
-    "section": "Character vectors",
-    "text": "Character vectors\n\n# vector of body parts\norgans &lt;- c(\"lung\", \"prostate\", \"breast\")\n\nIn the example above, each word within the vector is encased in quotation marks, indicating these are character data, rather than object names."
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "6.3 Character vectors",
+    "text": "6.3 Character vectors\n\n# vector of body parts\norgans &lt;- c(\"lung\", \"prostate\", \"breast\")\n\nIn the example above, each word within the vector is encased in quotation marks, indicating these are character data, rather than object names."
   },
   {
     "objectID": "part1/part_01_b526_slides.html#challenge-3",
     "href": "part1/part_01_b526_slides.html#challenge-3",
-    "title": "1: Functions and vectors",
-    "section": "Challenge 3",
-    "text": "Challenge 3\nPlease answer the following questions about organs:\n\nHow many values are in organs?\nWhat type of object is organs?\n\nAnswers here:"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "6.4 Challenge 3",
+    "text": "6.4 Challenge 3\nPlease answer the following questions about organs:\n\nHow many values are in organs?\nWhat type of object is organs?\n\nAnswers here:"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#challenge-4",
     "href": "part1/part_01_b526_slides.html#challenge-4",
-    "title": "1: Functions and vectors",
-    "section": "Challenge 4",
-    "text": "Challenge 4\n\nR tends to handle interpreting data types in the background of most operations.\nThe following code is designed to cause some unexpected results in R.\n\nWhat is unusual about each of the following objects?\n\n\n\nnum_char &lt;- c(1, 2, 3, \"a\")\nnum_logical &lt;- c(1, 2, 3, TRUE)\nchar_logical &lt;- c(\"a\", \"b\", \"c\", TRUE)\ntricky &lt;- c(1, 2, 3, \"4\")\nhola &lt;- c(\"hi\", \"guten tag\", hello)"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "7.1 Challenge 4",
+    "text": "7.1 Challenge 4\n\nR tends to handle interpreting data types in the background of most operations.\nThe following code is designed to cause some unexpected results in R.\n\nWhat is unusual about each of the following objects?\n\n\n\nnum_char &lt;- c(1, 2, 3, \"a\")\nnum_logical &lt;- c(1, 2, 3, TRUE)\nchar_logical &lt;- c(\"a\", \"b\", \"c\", TRUE)\ntricky &lt;- c(1, 2, 3, \"4\")\nhola &lt;- c(\"hi\", \"guten tag\", hello)"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#adding-values-to-vectors",
     "href": "part1/part_01_b526_slides.html#adding-values-to-vectors",
-    "title": "1: Functions and vectors",
-    "section": "Adding values to vectors",
-    "text": "Adding values to vectors\n\nages\n\n[1] 50 55 60 65\n\n# add a value to end of vector\n(ages &lt;- c(ages, 90) )\n\n[1] 50 55 60 65 90\n\n\n\n# add value at the beginning\n(ages &lt;- c(30, ages))\n\n[1] 30 50 55 60 65 90"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "8.1 Adding values to vectors",
+    "text": "8.1 Adding values to vectors\n\nages\n\n[1] 50 55 60 65\n\n# add a value to end of vector\n(ages &lt;- c(ages, 90) )\n\n[1] 50 55 60 65 90\n\n\n\n# add value at the beginning\n(ages &lt;- c(30, ages))\n\n[1] 30 50 55 60 65 90"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#extracting-or-excluding-values-from-vectors",
     "href": "part1/part_01_b526_slides.html#extracting-or-excluding-values-from-vectors",
-    "title": "1: Functions and vectors",
-    "section": "Extracting (or excluding) values from vectors",
-    "text": "Extracting (or excluding) values from vectors\n\n# extracting second value\norgans[2] \n\n[1] \"prostate\"\n\n\n\n# excluding second value\norgans[-2] \n\n[1] \"lung\"   \"breast\"\n\n\n\n# extracting first and third values\norgans[c(1, 3)] \n\n[1] \"lung\"   \"breast\""
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "8.2 Extracting (or excluding) values from vectors",
+    "text": "8.2 Extracting (or excluding) values from vectors\n\n# extracting second value\norgans[2] \n\n[1] \"prostate\"\n\n\n\n# excluding second value\norgans[-2] \n\n[1] \"lung\"   \"breast\"\n\n\n\n# extracting first and third values\norgans[c(1, 3)] \n\n[1] \"lung\"   \"breast\""
   },
   {
     "objectID": "part1/part_01_b526_slides.html#challenge-5",
     "href": "part1/part_01_b526_slides.html#challenge-5",
-    "title": "1: Functions and vectors",
-    "section": "Challenge 5",
-    "text": "Challenge 5\nComplete the following tasks after creating this vector (Note: there are multiple solutions):\n\nRemove NAs on more_heights (assign it to the object more_heights_complete)\nCalculate the median() of more_heights_complete\n\n\n# create vector\nmore_heights &lt;- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)\n# remove NAs\n\n\n# calculate the median"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "9.2 Challenge 5",
+    "text": "9.2 Challenge 5\nComplete the following tasks after creating this vector (Note: there are multiple solutions):\n\nRemove NAs on more_heights (assign it to the object more_heights_complete)\nCalculate the median() of more_heights_complete\n\n\n# create vector\nmore_heights &lt;- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, \n                  63, 63, NA, 72, 65, 64, 70, 63, 65)\n# remove NAs\n\n\n# calculate the median"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#loading-packages-libraryorpacmanp_load",
     "href": "part1/part_01_b526_slides.html#loading-packages-libraryorpacmanp_load",
     "title": "1: Functions and vectors",
-    "section": "Loading packages: library()orpacman::p_load()`",
-    "text": "Loading packages: library()orpacman::p_load()`\n\nYou can load packages with the library() function or p_load() function in the pacman package.\nThe following code loads two packages, though the tidyverse package is actually a suite of many packages.\n\nThis code assumes you have already installed the packages!!!\n\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr   1.1.4     ✔ readr   2.1.5\n✔ forcats 1.0.0     ✔ tibble  3.2.1\n✔ ggplot2 3.5.1     ✔ tidyr   1.3.1\n✔ purrr   1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter()  masks stats::filter()\n✖ lubridate::hms() masks vembedr::hms()\n✖ dplyr::lag()     masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\n# OR do this:\npacman::p_load(tidyverse, janitor)"
+    "section": "11.1 Loading packages: library()orpacman::p_load()`",
+    "text": "11.1 Loading packages: library()orpacman::p_load()`\n\nYou can load packages with the library() function or p_load() function in the pacman package.\nThe following code loads two packages, though the tidyverse package is actually a suite of many packages.\n\nThis code assumes you have already installed the packages!!!\n\n\n\nlibrary(tidyverse)\nlibrary(janitor)\n\n# OR do this:\npacman::p_load(tidyverse, janitor)"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#before-you-get-started",
     "href": "part1/part_01_b526_slides.html#before-you-get-started",
-    "title": "1: Functions and vectors",
-    "section": "",
-    "text": "Please save a copy of this as part01_b526_YOURNAMEorINITIALS.qmd and work from that.\n\nThis way, you’ll have the original as a reference just in case.\n\nAlso, the first time you try something, try to type out the answer rather than copying and pasting.\n\nIt will help you understand what’s going on, because it forces you to read the code.\nHowever, if you find yourself getting too in the weeds with typing during class, copying and pasting works too! Practice typing on your own."
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "0.1 Before you get started",
+    "text": "0.1 Before you get started\n\nPlease save a copy of this as part01_b526_YOURNAMEorINITIALS.qmd and work from that.\n\nThis way, you’ll have the original as a reference just in case.\n\nAlso, the first time you try something, try to type out the answer rather than copying and pasting.\n\nIt will help you understand what’s going on, because it forces you to read the code.\nHowever, if you find yourself getting too in the weeds with typing during class, copying and pasting works too! Practice typing on your own."
   },
   {
     "objectID": "weeks/week_01.html",
     "href": "weeks/week_01.html",
     "title": "Week 1",
     "section": "",
-    "text": "Introduction to course/expectations (syllabus)\nIntro to R & RStudio\n\nHandout with directions on installing R & RStudio\n\nIntroduction to Quarto\nFunctions, Vectors, Data Types"
+    "text": "Part 0: Welcome\n\nIntroduction to course & expectations (syllabus)\n\nPart 1:\n\nIntro to R & RStudio\n\nHandout with directions on installing R & RStudio\n\nIntroduction to Quarto\nFunctions, Vectors, Data Types"
   },
   {
     "objectID": "weeks/week_01.html#topics",
     "href": "weeks/week_01.html#topics",
     "title": "Week 1",
     "section": "",
-    "text": "Introduction to course/expectations (syllabus)\nIntro to R & RStudio\n\nHandout with directions on installing R & RStudio\n\nIntroduction to Quarto\nFunctions, Vectors, Data Types"
+    "text": "Part 0: Welcome\n\nIntroduction to course & expectations (syllabus)\n\nPart 1:\n\nIntro to R & RStudio\n\nHandout with directions on installing R & RStudio\n\nIntroduction to Quarto\nFunctions, Vectors, Data Types"
   },
   {
     "objectID": "weeks/week_01.html#announcements",
@@ -382,7 +382,7 @@
     "href": "weeks/week_01.html#class-materials",
     "title": "Week 1",
     "section": "Class materials",
-    "text": "Class materials\n\nOneDrive part_01 folder (link coming soon)"
+    "text": "Class materials\n\n\n\n\n\n\n\n\n\n\nPart\nOneDrive folder\nSlides\nWebpage\n\n\n\n\n0\n\n\n\n\n\n1"
   },
   {
     "objectID": "weeks/week_01.html#readings",
@@ -450,9 +450,9 @@
   {
     "objectID": "part1/part_01_b526.html",
     "href": "part1/part_01_b526.html",
-    "title": "1: Functions and vectors",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
     "section": "",
-    "text": "Please save a copy of this as part1_FIRSTNAME_LASTNAME.qmd and work from that (where FIRSTNAME is your first name, and LASTNAME is your last name). This way, you’ll have the original as a reference just in case.\nAlso, the first time you try something, try to type out the answer rather than copying and pasting. It will help you understand what’s going on, because it forces you to read the code. However, if you find yourself getting too in the weeds with typing during class, copying and pasting works too! Practice typing on your own."
+    "text": "Please save a copy of this as part01_b526_YOURNAMEorINITIALS.qmd and work from that.\n\nThis way, you’ll have the original as a reference just in case.\n\nAlso, the first time you try something, try to type out the answer rather than copying and pasting.\n\nIt will help you understand what’s going on, because it forces you to read the code.\nHowever, if you find yourself getting too in the weeds with typing during class, copying and pasting works too! Practice typing on your own."
   },
   {
     "objectID": "part1/part_01_b526.html#rrstudio",
@@ -464,9 +464,9 @@
   {
     "objectID": "part1/part_01_b526.html#rstudio-projects",
     "href": "part1/part_01_b526.html#rstudio-projects",
-    "title": "1: Functions and vectors",
-    "section": "5.2 RStudio projects",
-    "text": "5.2 RStudio projects\n\nHow do you eat an elephant?\nOne bite at a time. We will go over topics related to RStudio/file management again and again this class, so don’t worry if it is confusing at first.\n\n\nWe will be using RStudio projects.\n\nWe will talk about them again later, but for now,\nopen RStudio by double clicking on the .Rproj file for part 1 (part_01.Rproj)\n\n\nYou may read this for more info, and watch this short video on creating new projects:\nLink to video: https://youtu.be/D22THnoPA6w\n\nvembedr::embed_youtube(\"D22THnoPA6w\", width = 600, height=300)"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "1.3 RStudio Projects",
+    "text": "1.3 RStudio Projects\n\nWe will be using RStudio projects.\nSee Projects in RStudio webpage\nOpen RStudio by double clicking on the .Rproj file in the main OneDrive folder (BSTA_526_W26_class_materials_public.Rproj)\n\n\n1.3.1 Creating projects\nTed Laderas’s short video on creating new projects: https://youtu.be/D22THnoPA6w\n\nvembedr::embed_youtube(\"D22THnoPA6w\", width = 600, height=300)"
   },
   {
     "objectID": "part1/part_01_b526.html#quarto-.qmd",
@@ -478,16 +478,16 @@
   {
     "objectID": "part1/part_01_b526.html#code-chunks",
     "href": "part1/part_01_b526.html#code-chunks",
-    "title": "1: Functions and vectors",
-    "section": "5.4 Code chunks",
-    "text": "5.4 Code chunks\nLink to video: https://youtu.be/0iETdE7WkqU\n\nvembedr::embed_youtube(\"0iETdE7WkqU\", width = 600, height=300)\n\n\n\n\n\n\n\n\nThe grey box below is a code chunk:\n\n# basic math\n4 + 5 \n\n[1] 9\n\n\n\nEverything that starts with a # is called a comment and is not code that runs. It is useful for making notes for yourself.\nBelow the comment is the actual code.\n\nHow do we run the code?\n\n\nTry this one out. It’s the same code as above, but with no spaces. Does it still run?\n\n# same code as above, without spaces\n4+5\n\n[1] 9"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "2.3 Code chunks",
+    "text": "2.3 Code chunks\nThe grey box below is a code chunk:\n\n# basic math\n4 + 5 \n\n[1] 9\n\n\n\nEverything that starts with a # is called a comment and is not code that runs. It is useful for making notes for yourself.\nBelow the comment is the actual code.\n\nHow do we run the code?\n\n\n\n\n2.3.1 More on code chunks\n\nBERD workshop slides on code chunks."
   },
   {
     "objectID": "part1/part_01_b526.html#useful-keyboard-shortcuts-tools-keyboard-shortcuts-help",
     "href": "part1/part_01_b526.html#useful-keyboard-shortcuts-tools-keyboard-shortcuts-help",
-    "title": "1: Functions and vectors",
-    "section": "5.5 Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)",
-    "text": "5.5 Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)\n\n\n\n\n\n\n\n\naction\nmac\nwindows/linux\n\n\n\n\nRun code in qmd or script\ncmd + enter\nctrl + enter\n\n\nAdd code chunk\ncmd + option + i\nctrl + alt + i\n\n\n&lt;-\noption + -\nalt + -\n\n\ninterrupt currently running code\nesc\nesc\n\n\nin console, go to previously run code\nup/down\nup/down\n\n\n%&gt;%\ncmd + shift + m\nctrl + shift + m\n\n\nsearch files\ncmd + shift + f\nctrl + shift + f\n\n\nrender qmd\ncmd + shift + k\nctrl + shift + k\n\n\nrun entire code chunk\ncmd + option + c\nctrl + alt + c\n\n\nkeyboard shortcut help\noption + shift + k\nalt + shift + k\n\n\n\n(see full list)"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "2.4 Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)",
+    "text": "2.4 Useful keyboard shortcuts (Tools → Keyboard Shortcuts Help)\n\n\n\n\n\n\n\n\naction\nmac\nwindows/linux\n\n\n\n\nRun code in qmd or script\ncmd + enter\nctrl + enter\n\n\nAdd code chunk\ncmd + option + i\nctrl + alt + i\n\n\n&lt;-\noption + -\nalt + -\n\n\ninterrupt currently running code\nesc\nesc\n\n\nin console, go to previously run code\nup/down\nup/down\n\n\n%&gt;%\ncmd + shift + m\nctrl + shift + m\n\n\nsearch files\ncmd + shift + f\nctrl + shift + f\n\n\nrender qmd\ncmd + shift + k\nctrl + shift + k\n\n\nrun entire code chunk\ncmd + option + c\nctrl + alt + c\n\n\nkeyboard shortcut help\noption + shift + k\nalt + shift + k\n\n\n\n(see full list)"
   },
   {
     "objectID": "part1/part_01_b526.html#getting-help",
@@ -499,100 +499,100 @@
   {
     "objectID": "part1/part_01_b526.html#challenge-1",
     "href": "part1/part_01_b526.html#challenge-1",
-    "title": "1: Functions and vectors",
-    "section": "6.2 Challenge 1",
-    "text": "6.2 Challenge 1\n\nWhat does the function hist do?\n\nWhat are its main arguments?\nHow did you determine this?\n\n\n\nTricky bonus: what about +, which is actually a function?"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "3.4 Challenge 1",
+    "text": "3.4 Challenge 1\n\nWhat does the function hist do?\n\nWhat are its main arguments?\nHow did you determine this?\n\n\n\nTricky bonus: what about +, which is actually a function?"
   },
   {
     "objectID": "part1/part_01_b526.html#object-not-found",
     "href": "part1/part_01_b526.html#object-not-found",
-    "title": "1: Functions and vectors",
-    "section": "7.1 “Object not found”",
-    "text": "7.1 “Object not found”\nThis happens when text is entered for a non-existent variable (object)\n\nhello\n\nCan be due to missing quotes\n\ninstall.packages(dplyr)\n\nor misspellings (R is case-sensitive)!"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "4.1 “Object not found”",
+    "text": "4.1 “Object not found”\nThis happens when text is entered for a non-existent variable (object)\n\nhello\n\nCan be due to missing quotes\n\ninstall.packages(dplyr)\n\nor misspellings (R is case-sensitive)!"
   },
   {
     "objectID": "part1/part_01_b526.html#incomplete-commands",
     "href": "part1/part_01_b526.html#incomplete-commands",
-    "title": "1: Functions and vectors",
-    "section": "7.2 Incomplete commands",
-    "text": "7.2 Incomplete commands\n\nIn the console:\n\nWhen the console is waiting for a new command, the prompt line begins with &gt;\n\nIf the console prompt is +, then a previous command is incomplete\nYou can finish typing the command in the console window\nIf stressed and confused, press ESC many times (ESC = ESCAPE ME OUT OF HERE)\n\n\nIn a code chunk:\n\nR will let you know there is an error with a red circle containing a white X (see below).\n\nNote that all code chunks below this one will still have the red error circles until you fix the code.\n\nWhat happens if you try to run the code below?\n\n\n\n3 + (2*6\n\nChange #| eval: false above to #| eval: true after you fix the code error."
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "4.2 Incomplete commands",
+    "text": "4.2 Incomplete commands\n\nIn the console:\n\nWhen the console is waiting for a new command, the prompt line begins with &gt;\n\nIf the console prompt is +, then a previous command is incomplete\nYou can finish typing the command in the console window\nIf stressed and confused, press ESC many times\n\n\nIn a code chunk:\n\nR will let you know there is an error with a red circle containing a white X (see below in the code file).\n\nNote that all code chunks below this one will still have the red error circles until you fix the code.\n\nWhat happens if you try to run the code below?\n\n\n\n3 + (2*6\n\nChange #| eval: false above to #| eval: true after you fix the code error."
   },
   {
     "objectID": "part1/part_01_b526.html#could-not-find-function",
     "href": "part1/part_01_b526.html#could-not-find-function",
-    "title": "1: Functions and vectors",
-    "section": "7.3 “could not find function”",
-    "text": "7.3 “could not find function”\n\nThis can happen when you are calling a function but haven’t loaded the package that it “lives” in.\nFor example, the function day() being used below is from the lubridate package.\n\nWhat error do we get when we run the code?\n\n\n\nday(\"2025-01-09\")\n\nHow do we fix this code?\n\n# either specify the package in front of ::function()\nlubridate::day(\"2025-01-09\")\n\n[1] 9\n\n# or load the package first (preferably at beginning of script)\nlibrary(lubridate)\n\n\nAttaching package: 'lubridate'\n\n\nThe following object is masked from 'package:vembedr':\n\n    hms\n\n\nThe following objects are masked from 'package:base':\n\n    date, intersect, setdiff, union\n\nday(\"2025-01-09\")\n\n[1] 9\n\n\nOr, maybe there was a misspelling…\n\ndsy(\"2025-01-09\")"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "4.3 “could not find function”",
+    "text": "4.3 “could not find function”\n\nThis can happen when you are calling a function but haven’t loaded the package that it “lives” in.\nFor example, the function day() being used below is from the lubridate package.\n\nWhat error do we get when we run the code?\n\n\n\nday(\"2025-01-09\")\n\nHow do we fix this code?\n\n# either specify the package in front of ::function()\nlubridate::day(\"2025-01-09\")\n\n[1] 9\n\n# or load the package first (preferably at beginning of script)\nlibrary(lubridate)\n\n\nAttaching package: 'lubridate'\n\n\nThe following object is masked from 'package:vembedr':\n\n    hms\n\n\nThe following objects are masked from 'package:base':\n\n    date, intersect, setdiff, union\n\nday(\"2025-01-09\")\n\n[1] 9\n\n\nOr, maybe there was a misspelling…\n\ndsy(\"2025-01-09\")"
   },
   {
     "objectID": "part1/part_01_b526.html#removing-objects",
     "href": "part1/part_01_b526.html#removing-objects",
-    "title": "1: Functions and vectors",
-    "section": "8.1 Removing objects",
-    "text": "8.1 Removing objects\n\nYou can clear the entire environment using the button at the top of the Environment panel with a picture of a broom.\n\nThis may seem extreme, but don’t worry! We can re-create all the work we’ve already done by running each line of code again.\n\nTo remove an individual object, use the remove() function:\n\n\n# remove object\nremove(weight_lb)"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "5.3 Removing objects",
+    "text": "5.3 Removing objects\n\nYou can clear the entire environment using the button at the top of the Environment panel with a picture of a broom.\n\nThis may seem extreme, but don’t worry! We can re-create all the work we’ve already done by running each line of code again.\n\nTo remove an individual object, use the remove() function:\n\n\n# remove object\nremove(weight_lb)"
   },
   {
     "objectID": "part1/part_01_b526.html#challenge-2",
     "href": "part1/part_01_b526.html#challenge-2",
-    "title": "1: Functions and vectors",
-    "section": "8.2 Challenge 2",
-    "text": "8.2 Challenge 2\nWhat is the value of each item at each step? (Hint, you can see the value of an object by typing in the name of the object, such as with the mass line below.)\n\nmass &lt;- 47.5            # 1. mass?\nmass\n\n[1] 47.5\n\nwidth  &lt;- 122             # 2. width?\nmass &lt;- mass * 2.0      # 3. mass?\nwidth  &lt;- width - 20        #4.  width?\nmass_index &lt;- mass/width  # 5. mass_index?\n\nMake your answers here:"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "5.4 Challenge 2",
+    "text": "5.4 Challenge 2\nWhat is the value of each item at each step? (Hint, you can see the value of an object by typing in the name of the object, such as with the mass line below.)\n\nmass &lt;- 47.5            # 1. mass?\nmass\n\n[1] 47.5\n\nwidth  &lt;- 122             # 2. width?\nmass &lt;- mass * 2.0      # 3. mass?\nwidth  &lt;- width - 20        #4.  width?\nmass_index &lt;- mass/width  # 5. mass_index?\n\nMake your answers here:"
   },
   {
     "objectID": "part1/part_01_b526.html#creating-vectors",
     "href": "part1/part_01_b526.html#creating-vectors",
-    "title": "1: Functions and vectors",
-    "section": "9.1 Creating vectors",
-    "text": "9.1 Creating vectors\n\nc is for combine or concatenate\n\n\n# assign vector\nages &lt;- c(50, 55, 60, 65) \n\n# recall vector\nages\n\n[1] 50 55 60 65"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "6.1 Creating vectors",
+    "text": "6.1 Creating vectors\n\nc is for combine or concatenate\n\n\n# assign vector\nages &lt;- c(50, 55, 60, 65) \n\n# recall vector\nages\n\n[1] 50 55 60 65"
   },
   {
     "objectID": "part1/part_01_b526.html#learning-things-about-vectors",
     "href": "part1/part_01_b526.html#learning-things-about-vectors",
-    "title": "1: Functions and vectors",
-    "section": "9.2 Learning things about vectors",
-    "text": "9.2 Learning things about vectors\n\n# how many things are in the object?\nlength(ages)\n\n[1] 4\n\n\n\n# what type of object?\nclass(ages)\n\n[1] \"numeric\"\n\n\n\n# performing functions with vectors\nmean(ages)\n\n[1] 57.5\n\nrange(ages)\n\n[1] 50 65"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "6.2 Learning things about vectors",
+    "text": "6.2 Learning things about vectors\n\n# how many things are in the object?\nlength(ages)\n\n[1] 4\n\n\n\n# what type of object?\nclass(ages)\n\n[1] \"numeric\"\n\n\n\n# performing functions with vectors\nmean(ages)\n\n[1] 57.5\n\nrange(ages)\n\n[1] 50 65"
   },
   {
     "objectID": "part1/part_01_b526.html#character-vectors",
     "href": "part1/part_01_b526.html#character-vectors",
-    "title": "1: Functions and vectors",
-    "section": "9.3 Character vectors",
-    "text": "9.3 Character vectors\n\n# vector of body parts\norgans &lt;- c(\"lung\", \"prostate\", \"breast\")\n\nIn the example above, each word within the vector is encased in quotation marks, indicating these are character data, rather than object names."
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "6.3 Character vectors",
+    "text": "6.3 Character vectors\n\n# vector of body parts\norgans &lt;- c(\"lung\", \"prostate\", \"breast\")\n\nIn the example above, each word within the vector is encased in quotation marks, indicating these are character data, rather than object names."
   },
   {
     "objectID": "part1/part_01_b526.html#challenge-3",
     "href": "part1/part_01_b526.html#challenge-3",
-    "title": "1: Functions and vectors",
-    "section": "9.4 Challenge 3",
-    "text": "9.4 Challenge 3\nPlease answer the following questions about organs:\n\nHow many values are in organs?\nWhat type of object is organs?\n\nAnswers here:"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "6.4 Challenge 3",
+    "text": "6.4 Challenge 3\nPlease answer the following questions about organs:\n\nHow many values are in organs?\nWhat type of object is organs?\n\nAnswers here:"
   },
   {
     "objectID": "part1/part_01_b526.html#challenge-4",
     "href": "part1/part_01_b526.html#challenge-4",
-    "title": "1: Functions and vectors",
-    "section": "10.1 Challenge 4",
-    "text": "10.1 Challenge 4\n\nR tends to handle interpreting data types in the background of most operations.\nThe following code is designed to cause some unexpected results in R.\n\nWhat is unusual about each of the following objects?\n\n\n\nnum_char &lt;- c(1, 2, 3, \"a\")\nnum_logical &lt;- c(1, 2, 3, TRUE)\nchar_logical &lt;- c(\"a\", \"b\", \"c\", TRUE)\ntricky &lt;- c(1, 2, 3, \"4\")\nhola &lt;- c(\"hi\", \"guten tag\", hello)"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "7.1 Challenge 4",
+    "text": "7.1 Challenge 4\n\nR tends to handle interpreting data types in the background of most operations.\nThe following code is designed to cause some unexpected results in R.\n\nWhat is unusual about each of the following objects?\n\n\n\nnum_char &lt;- c(1, 2, 3, \"a\")\nnum_logical &lt;- c(1, 2, 3, TRUE)\nchar_logical &lt;- c(\"a\", \"b\", \"c\", TRUE)\ntricky &lt;- c(1, 2, 3, \"4\")\nhola &lt;- c(\"hi\", \"guten tag\", hello)"
   },
   {
     "objectID": "part1/part_01_b526.html#adding-values-to-vectors",
     "href": "part1/part_01_b526.html#adding-values-to-vectors",
-    "title": "1: Functions and vectors",
-    "section": "11.1 Adding values to vectors",
-    "text": "11.1 Adding values to vectors\n\nages\n\n[1] 50 55 60 65\n\n# add a value to end of vector\n(ages &lt;- c(ages, 90) )\n\n[1] 50 55 60 65 90\n\n\n\n# add value at the beginning\n(ages &lt;- c(30, ages))\n\n[1] 30 50 55 60 65 90"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "8.1 Adding values to vectors",
+    "text": "8.1 Adding values to vectors\n\nages\n\n[1] 50 55 60 65\n\n# add a value to end of vector\n(ages &lt;- c(ages, 90) )\n\n[1] 50 55 60 65 90\n\n\n\n# add value at the beginning\n(ages &lt;- c(30, ages))\n\n[1] 30 50 55 60 65 90"
   },
   {
     "objectID": "part1/part_01_b526.html#extracting-or-excluding-values-from-vectors",
     "href": "part1/part_01_b526.html#extracting-or-excluding-values-from-vectors",
-    "title": "1: Functions and vectors",
-    "section": "11.2 Extracting (or excluding) values from vectors",
-    "text": "11.2 Extracting (or excluding) values from vectors\n\n# extracting second value\norgans[2] \n\n[1] \"prostate\"\n\n\n\n# excluding second value\norgans[-2] \n\n[1] \"lung\"   \"breast\"\n\n\n\n# extracting first and third values\norgans[c(1, 3)] \n\n[1] \"lung\"   \"breast\""
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "8.2 Extracting (or excluding) values from vectors",
+    "text": "8.2 Extracting (or excluding) values from vectors\n\n# extracting second value\norgans[2] \n\n[1] \"prostate\"\n\n\n\n# excluding second value\norgans[-2] \n\n[1] \"lung\"   \"breast\"\n\n\n\n# extracting first and third values\norgans[c(1, 3)] \n\n[1] \"lung\"   \"breast\""
   },
   {
     "objectID": "part1/part_01_b526.html#challenge-5",
     "href": "part1/part_01_b526.html#challenge-5",
-    "title": "1: Functions and vectors",
-    "section": "12.1 Challenge 5",
-    "text": "12.1 Challenge 5\nComplete the following tasks after creating this vector (Note: there are multiple solutions):\n\nRemove NAs on more_heights (assign it to the object more_heights_complete)\nCalculate the median() of more_heights_complete\n\n\n# create vector\nmore_heights &lt;- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)\n# remove NAs\n\n\n# calculate the median"
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "9.2 Challenge 5",
+    "text": "9.2 Challenge 5\nComplete the following tasks after creating this vector (Note: there are multiple solutions):\n\nRemove NAs on more_heights (assign it to the object more_heights_complete)\nCalculate the median() of more_heights_complete\n\n\n# create vector\nmore_heights &lt;- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, \n                  63, 63, NA, 72, 65, 64, 70, 63, 65)\n# remove NAs\n\n\n# calculate the median"
   },
   {
     "objectID": "part1/part_01_b526.html#loading-packages-libraryorpacmanp_load",
@@ -620,7 +620,7 @@
     "href": "syllabus.html#functions-of-the-week",
     "title": "Syllabus",
     "section": "Functions of the Week",
-    "text": "Functions of the Week\n\nPlease choose a function(s) from the Functions of the Week sign-up sheet (link is posted on Sakai.\nA Quarto template to format your Function of the Week and presentation will be provided. - Functions of the Week presentations will start in week 4.\nOn the sign-up sheet you will choose a week to present your function(s) to the class, as well as the function(s).\nThe presentation should be short, around 5 minutes.\nIf presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class.\n\nPrevious years’ Functions of the Week can be found on the previous class websites:\n\nhttps://niederhausen.github.io/BSTA_526_W25/function_week.html\nhttps://niederhausen.github.io/BSTA_526_W24/function_week.html\nhttps://sph-r-programming-2023.netlify.app/functions/\nhttps://sph-r-programming-2022.netlify.app/functions/\nhttps://sph-r-programming.netlify.app/functions/ (2021)\n\nI will create a similar website for this year’s Functions of the Week. If you do not wish yours to be on the public facing website, just let us know. Alternatively, we can also post it anonymously. See submitted Functions of the Week for this quarter at this link."
+    "text": "Functions of the Week\n\nPlease choose a function(s) from the Functions of the Week sign-up sheet (link is posted on Sakai.\nA Quarto template to format your Function of the Week and presentation will be provided.\nFunctions of the Week presentations will start in week 4.\nOn the sign-up sheet you will choose a week to present your function(s) to the class, as well as the function(s).\nThe presentation should be short, around 5 minutes.\nIf presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class.\n\nPrevious years’ Functions of the Week can be found on the previous class websites:\n\nhttps://niederhausen.github.io/BSTA_526_W25/function_week.html\nhttps://niederhausen.github.io/BSTA_526_W24/function_week.html\nhttps://sph-r-programming-2023.netlify.app/functions/\nhttps://sph-r-programming-2022.netlify.app/functions/\nhttps://sph-r-programming.netlify.app/functions/ (2021)\n\nI will create a similar website for this year’s Functions of the Week. If you do not wish yours to be on the public facing website, just let me know. Alternatively, I can also post it anonymously. See submitted Functions of the Week for this quarter at this link."
   },
   {
     "objectID": "function_week/presentation_template.html",
@@ -803,5 +803,348 @@
     "title": "About",
     "section": "Acknowledgements",
     "text": "Acknowledgements\n\nBSTA 526 class materials\n\nBSTA 526 was taught in previous years as BSTA 504 by Ted Laderas (2021) and Jessica Minnier (2022, 2023).\nAlmost all course materials were created by Ted and Jessica with minor changes for BSTA 526 (such as updating from RMarkdown to Quarto). Their work is licensed under a Creative Commons Attribution 4.0 International License. See previous class websites linked to above for links to their source code on GitHub.\nIn 2024, Meike Niederhausen and Emile Latour taught BSTA 526 using these materials, https://niederhausen.github.io/BSTA_526_W24/.\nIn 2025, Meike and Jessica taught BSTA 526 using these materials, https://niederhausen.github.io/BSTA_526_W25/.\n\n\n\nQuarto webpage\n\nThank you to Nicky Wakim for creating her amazing webpage for BSTA 550, and sharing her code on GitHub. Having her template made creating this website a much smoother process.\nThank you also to Andrew Bray for presenting the From R Markdown to Quarto ASA Travelling Workshop to the Oregon Chapter of the ASA in June 2023. This workshop was a great starting point in making the switch from RMarkdown to Quarto and also create Quarto webpages."
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#welcome-to-r-programming",
+    "href": "part0/part_00_b526_slides.html#welcome-to-r-programming",
+    "title": "Welcome!",
+    "section": "Welcome to R Programming!",
+    "text": "Welcome to R Programming!\nThis course introduces you to R in two parts:\nPart 1 focuses on working through common tasks in data science:\n\nimporting data\nwrangling data\nvisualizing data\nsummarizing data\n\nPart 2 focuses on more advanced topics:\n\njoining and merging data tables\nautomating tasks (functions, purrr/for loops),\n\nWe might get to:\n\nrunning basic statistical procedures\nfancy tables in Quarto with kable, gt, and gtsummary\nadvanced Quarto topics\n\nThroughout, we’ll work on concepts of reproducibility by utilizing RStudio project and Quarto document-based workflows as a way of reproducibly sharing our work."
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#instructor-information",
+    "href": "part0/part_00_b526_slides.html#instructor-information",
+    "title": "Welcome!",
+    "section": "Instructor Information",
+    "text": "Instructor Information\nInstructor\n\nMeike Niederhausen, PhD\n\nniederha@ohsu.edu\n\n\nTeaching Assistant\n\nMichael Daily\n\ndailym@ohsu.edu"
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#learning-objectives",
+    "href": "part0/part_00_b526_slides.html#learning-objectives",
+    "title": "Welcome!",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nUnderstand and utilize R/RStudio, including using Quarto to create reproducible documents of statistical analyses.\nUnderstand basic data types and data structures in R.\nFamiliarize and load data files (Excel, Comma Separated Value files) into R/Rstudio, with tips on formatting.\nVisualize datasets using ggplot2 and understand how to build basic plots using ggplot2 syntax.\nFilter and format data in R for use with various routines.\nRun and Interpret some basic statistics in R.\nAutomate repetitive tasks in R, such as loading a folder of files.\n\nIf time allows:\n\nCreate nice tables in our R markdown reports with gt, gtsummary, and/or kableExtra."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#learning-objectives",
+    "href": "part1/part_01_b526_slides.html#learning-objectives",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "0.2 Learning Objectives",
+    "text": "0.2 Learning Objectives\nBy the end of this session, you should be able to:\n\nWork within the RStudio interface to run R code in a Quarto document\nUnderstand basic R syntax to use functions and assign values to objects\nCreate and manipulate vectors and understand how R deals with missing data\nInstall and load R packages"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#what-is-r",
+    "href": "part1/part_01_b526_slides.html#what-is-r",
+    "title": "1: Functions and vectors",
+    "section": "1.1 What is R?",
+    "text": "1.1 What is R?\n\nR is an open source statistical and programming computer language widely used for a variety of applications.\nWhy “R”??\n\nScheme inspired S (invented at Bell Labs in 1976) which inspired R (free and open source! in 1992)"
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#attendance",
+    "href": "part0/part_00_b526_slides.html#attendance",
+    "title": "Welcome!",
+    "section": "Attendance",
+    "text": "Attendance\n\nRegular attendance is expected, but will not be monitored.\nClasses will be recorded, but I cannot guarantee the in-person format will lend itself to effective recordings.\n\nPost-class surveys\n\n5% of your grade is based on filling out post-class surveys as a way of indicating that you came to class and engaged with the material for that week.\nYou only need to fill out 7 surveys (of the 10 class sessions) for the full 5%.\n\nI encourage you to fill out as many surveys as possible to provide feedback on the class though.\n\nPlease fill out surveys by the following Wednesday at noon.\nThe questions on the survey are:\n\nRating the pace of the class\nClearest Point: Which topic of the class was clearest for you?\nMuddiest Point: Which topic of class was the muddiest (unclear) for you?\nAnything Else: Anything else you’d like me to know?"
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#homework",
+    "href": "part0/part_00_b526_slides.html#homework",
+    "title": "Welcome!",
+    "section": "Homework",
+    "text": "Homework\n\nHomework will be assigned weekly using Quarto in RStudio.\n\nIt will be due via Sakai upload Thursdays at 11:55pm the night of the following week’s class (unless otherwise noted).\nPlease turn in both your .qmd and rendered .html file.\n\nThe homework with the lowest score will be dropped from your homework average.\n\nLate Policy\n\nStudents get 1 free homework assignment to submit late within 3 days without penalty.\nPlease email the instructor and the TA that you need more time.\nIf you need an accommodation, please email me so I can figure out a way to help you."
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#functions-of-the-week",
+    "href": "part0/part_00_b526_slides.html#functions-of-the-week",
+    "title": "Welcome!",
+    "section": "Functions of the Week",
+    "text": "Functions of the Week\n\nPlease choose a function(s) from the Functions of the Week sign-up sheet\n\nLink will be posted on Sakai.\n\nA Quarto template to format your Function of the Week and presentation will be provided.\nFunctions of the Week presentations will start in week 4.\nOn the sign-up sheet you will choose a week to present your function(s) to the class, as well as the function(s).\nThe presentation should be short, around 5 minutes.\nIf presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class.\n\nPrevious years’ Functions of the Week can be found on the previous class websites:\n\nhttps://niederhausen.github.io/BSTA_526_W25/function_week.html\nhttps://niederhausen.github.io/BSTA_526_W24/function_week.html\nhttps://sph-r-programming-2023.netlify.app/functions/\nhttps://sph-r-programming-2022.netlify.app/functions/\nhttps://sph-r-programming.netlify.app/functions/ (2021)\n\nI will create a similar website for this year’s Functions of the Week. If you do not wish yours to be on the public facing website, just let me know. Alternatively, I can also post it anonymously. See submitted Functions of the Week for this quarter at this link."
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#required-texts-and-readings",
+    "href": "part0/part_00_b526_slides.html#required-texts-and-readings",
+    "title": "Welcome!",
+    "section": "Required Texts and Readings",
+    "text": "Required Texts and Readings\nThis course will be drawing on the following online textbooks. These books are online and free, though you can order them as textbooks if you prefer that format.\n\nR for Data Science. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund. 2nd Edition. https://r4ds.hadley.nz/\nQuarto webpage https://quarto.org/\n\nThe Guide and Reference tabs have very helpful documentation.\n\nGetting Used to R, RStudio, and RMarkdown. Chester Ismay. https://ismayc.github.io/rbasics-book/\nData Science: A First Introduction. Tiffany Timbers, Trevor Campbell, Melissa Lee. https://datasciencebook.ca/\nAdvanced R. Hadley Wickham. https://adv-r.hadley.nz/"
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#grade-breakdown",
+    "href": "part0/part_00_b526_slides.html#grade-breakdown",
+    "title": "Welcome!",
+    "section": "Grade breakdown",
+    "text": "Grade breakdown\n\nAttendance (based on post-class surveys) 5%\nHomework Assignments 30%\nFunction of the Week 5%\nMidterm Exam 30%\nFinal Exam 30%"
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#midterm-and-final-exams",
+    "href": "part0/part_00_b526_slides.html#midterm-and-final-exams",
+    "title": "Welcome!",
+    "section": "Midterm and Final Exams",
+    "text": "Midterm and Final Exams\n\nMidterm and final exams will be take home.\n\nThe midterm will be a project based on a dataset of your choosing.\n\nThe final will be based on an assigned dataset.\n\nExamples of previous years’ midterms can be found on the class websites:\n\nhttps://sph-r-programming-2023-midterms.netlify.app/\nhttps://sph-r-programming-2022-midterms.netlify.app/\nhttps://sph-midterm-projects.netlify.app/ (2021)\nI will create a similar website for this year’s midterm projects.\n\nIf you do not wish your project to be on the public facing website, just let me know. Alternatively, I can also post it anonymously."
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#section",
+    "href": "part0/part_00_b526_slides.html#section",
+    "title": "Welcome!",
+    "section": "",
+    "text": "Artwork by @allison_horst"
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#words-of-encouragement",
+    "href": "part0/part_00_b526_slides.html#words-of-encouragement",
+    "title": "Welcome!",
+    "section": "Words of Encouragement",
+    "text": "Words of Encouragement\n\nThis was adopted from Andrew Heiss. Thanks!\n\nI promise you can succeed in this class.\nLearning R can be difficult at first—it’s like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you’ll be using like ggplot2—made this wise observation:\n\nIt’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.\n\nEven experienced programmers find themselves bashing their heads against seemingly intractable errors. If you’re finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail me, etc.\n\n\n\nAlison Horst Jan 3, 2020 tweet\n\n\n\n\n\nAlison Horst: Gator error"
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#section-1",
+    "href": "part0/part_00_b526_slides.html#section-1",
+    "title": "Welcome!",
+    "section": "",
+    "text": "Artwork by @allison_horst"
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#learning-is-social",
+    "href": "part0/part_00_b526_slides.html#learning-is-social",
+    "title": "Welcome!",
+    "section": "LeaRning is Social",
+    "text": "LeaRning is Social\nStudents who work together with other students are often more successful than students who work alone. We are a learning community, and we should help each other to learn.\n\nIf you understand something and know someone is struggling with it, try and help them.\n\nIf you are struggling, take a breath, try to pinpoint what you are struggling with, and don’t be afraid to ask for help.\n\nOur goal is to be better coders each day, not to be the perfect coder There’s no such thing as a perfect coder. I’ve been using R for over 20 years and still constantly learn new things."
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#use-of-generative-ai-for-assignments",
+    "href": "part0/part_00_b526_slides.html#use-of-generative-ai-for-assignments",
+    "title": "Welcome!",
+    "section": "Use of generative AI for assignments",
+    "text": "Use of generative AI for assignments\n\nGenerative AI tools (such as ChatGPT) can be great resources for learning how to code and/or troubleshoot code that does not work.\nHowever, the work you turn in must be your own.\nThus it is inappropriate to directly ask AI to provide you with solutions to homework questions or write text that you are submitting in your assignment.\n\nIf you do use AI tools to help you with an assignment, these must be cited along with how they were used.\n\nPlease see the Plagiarism & Attribution section (Code Snippets and AI Tools subsection) of Dr. Steve Bedrick’s BMI 525: Principles and Practice of DataVisualization webpage for examples of appropriate and inappropriate uses generative AI."
+  },
+  {
+    "objectID": "part0/part_00_b526_slides.html#using-ai-to-learn-how-to-code",
+    "href": "part0/part_00_b526_slides.html#using-ai-to-learn-how-to-code",
+    "title": "Welcome!",
+    "section": "Using AI to learn how to code",
+    "text": "Using AI to learn how to code\nAndrew Heiss’ thoughts on this:\n\nHowever, they’re only useful if you know what you’re doing first. If you skip the learning-the-process-of-writing-code step and just copy/paste output from ChatGPT, you will not learn. You cannot learn. You cannot improve. You will not understand the code.\n\n\nThe only way to gain domain knowledge, data analysis expertise, and coding ability is to struggle. To get errors. To google those errors. To look over the documentation. To copy/paste your own code and adapt it for different purposes. To explore messy datasets. To struggle to clean those datasets. To spend an hour looking for a missing comma."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#rstudio-anatomy",
+    "href": "part1/part_01_b526_slides.html#rstudio-anatomy",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "1.1 RStudio anatomy",
+    "text": "1.1 RStudio anatomy\n\nEmma Rand\nRead more about RStudio’s layout in Section 3.4 of “Getting Used to R, RStudio, and R Markdown” (Ismay and Kennedy 2016)\nA good reference built into RStudio is Help -&gt; Cheatsheets -&gt; RStudio IDE cheat sheet"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#customizing-rstudio",
+    "href": "part1/part_01_b526_slides.html#customizing-rstudio",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "1.2 Customizing RStudio",
+    "text": "1.2 Customizing RStudio\nSome useful gifs about customizing the RStudio panels"
+  },
+  {
+    "objectID": "resources/Projects_in_R.html",
+    "href": "resources/Projects_in_R.html",
+    "title": "Projects in RStudio",
+    "section": "",
+    "text": "I highly, highly, HIGHLY recommend using R Projects to organize your analyses and make it easier to load data files and also save output.\nWhen you create an R Project on your computer, the Project is associated with the folder (directory) you created it in.\n\nThis folder becomes the “root” of your working directory, and RStudio’s point of reference from where to load files from and to.\n\nI create separate Projects for every analysis project and every class I teach.\nYou can run multiple sessions of RStudio by opening different Projects, and the environments (or working directory) of each are working independently of each other.\n\n\n\n\n\n\n\nNote\n\n\n\n\nAlthough we are using Quarto files,\n\nI will show how to set up and use a “regular” R Project\ninstead of “Quarto Project”\n\nQuarto Projects include extra features and thus complexity. Once you are used to how regular R Projects work, you can try out a Quarto Project.\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\n\nMany (if not most) of the resources below refer to RMarkdown instead of Quarto files to create reproducible reports.\nThis is not a problem. Projects work the same way with Quarto files.\n\n\n\n\n1 Learn more about Projects and why you should always be using them\nBelow are various resources to learn more about RStudio Projects.\n\nRStudio Projects and Working Directories: A Beginner’s Guide\n\nFrom R-bloggers website\nTOC\n\nWhat is a RStudio Project, and why?\nEasy file path referencing with RStudio Projects\nStructuring your working directory\nFurther reading\n\n\nPosit’s (RStudio’s) directions on creating Projects\n\nhttps://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects\nThis page provides concise directions, but not much motivation on why you should be using Projects.\n\nR for Data Science\n\nExcellent book R for Data Science (2nd edition) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund\nSee Chapter 6 Section 2: Projects (https://r4ds.hadley.nz/workflow-scripts#projects) for\n\nWhat is the source of truth?\nWhere does your analysis live?\nRStudio Projects\nRelative and absolute paths\nSummary\n\n\nJenny Bryant’s STAT 545 class notes\n\nCheck out Chapter 2 R basics and workflows https://stat545.com/r-basics.html\nSection 2.2: Workspace and working directory\nSection 2.3: RStudio Projects\n\n\n\n\n2 YouTube videos on how to create an R Project\nThis video demonstrates how to create an R Project, and how to open RStudio using the Project file.\n\nThe Basics of Projects in RStudio by Sam Burer\nhttps://www.youtube.com/watch?v=hKoSJGWnFFA\nIntroduction to RStudio Projects by Michael Seaman https://www.youtube.com/watch?v=wqOme7xsZvs"
+  },
+  {
+    "objectID": "syllabus.html#midterm-and-final-exams",
+    "href": "syllabus.html#midterm-and-final-exams",
+    "title": "Syllabus",
+    "section": "Midterm and Final Exams",
+    "text": "Midterm and Final Exams\n\nMidterm and final exams will be take home.\n\nThe midterm will be a project based on a dataset of your choosing.\n\nThe final will be based on an assigned dataset.\n\nExamples of previous years’ midterms can be found on the class websites:\n\nhttps://sph-r-programming-2023-midterms.netlify.app/\nhttps://sph-r-programming-2022-midterms.netlify.app/\nhttps://sph-midterm-projects.netlify.app/ (2021)\nI will create a similar website for this year’s midterm projects.\n\nIf you do not wish your project to be on the public facing website, just let me know. Alternatively, I can also post it anonymously."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#create-a-quarto-file",
+    "href": "part1/part_01_b526_slides.html#create-a-quarto-file",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "2.1 Create a Quarto file",
+    "text": "2.1 Create a Quarto file\n\nSee BSTA 511/611 Day 1 section on Create a Quarto file."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#markdown-for-word-processing",
+    "href": "part1/part_01_b526_slides.html#markdown-for-word-processing",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "2.2 Markdown for “word processing”",
+    "text": "2.2 Markdown for “word processing”\n\nThe Quarto (qmd) document uses markdown language for text outside of code chunks.\nSome markdown resources:\n\nBSTA 511/611 Day 1 notes on markdown\nBERD workshop slides on how to do Markdown and other formatting in Quarto files.\nOfficial Quarto webpage on markdown basics"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#using-functions",
+    "href": "part1/part_01_b526_slides.html#using-functions",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "3.1 Using functions",
+    "text": "3.1 Using functions\nBelow is an example of an R function:\n\n# using a function: rounding numbers\nround(3.14)\n\n[1] 3\n\npi\n\n[1] 3.141593\n\nround(pi)\n\n[1] 3\n\n\nR functions can have multiple arguments\n\n# using a function with more arguments\nround(x = 3.14, digits = 1)\n\n[1] 3.1\n\n\nDo we have to “name” the arguments?"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#within-rstudio",
+    "href": "part1/part_01_b526_slides.html#within-rstudio",
+    "title": "1: Functions and vectors",
+    "section": "4.1 Within RStudio",
+    "text": "4.1 Within RStudio\nLearn more about the round() function with ?round:\n\n?round\n\n\nWe can also type ?round in the Console instead of including it in a code chunk.\n\n\n# can switch order of arguments (if you name them)\nround(digits = 1, x = 3.14)\n\n[1] 3.1\n\n\n\nYou may notice that boxes pop up as you type. These represent RStudio’s attempts to guess what you’re typing and share additional options."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#on-the-internet",
+    "href": "part1/part_01_b526_slides.html#on-the-internet",
+    "title": "1: Functions and vectors",
+    "section": "4.2 On the internet",
+    "text": "4.2 On the internet\nThere are many ways to get help. The more you learn how to get help, the easier your coding life will be. Here’s a list of options:\n\nGoogle “question + rcran” (i.e “hist rcran” or “make a boxplot ggplot”)\nGoogle error in quotes (i.e. “Evaluation error: invalid type (closure) for variable ‘***’”)\nSearch RStudio community (now called Posit)\nSearch Stack Overflow #r tag\nSearch github for your function name to see examples or search the error\nUse generative AI (ChatGPT, Perplexity, etc.)\n\nPost a question somewhere friendly:\n\nRStudio community\n\nto pick on my friend/coworker Emile, an example\n\nR for Data Science Online Learning Community - join the slack channel\n#rstats on social media platforms"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#help-within-rstudio",
+    "href": "part1/part_01_b526_slides.html#help-within-rstudio",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "3.2 Help within RStudio",
+    "text": "3.2 Help within RStudio\nLearn more about the round() function with ?round:\n\n?round\n\n\nWe can also type ?round in the Console instead of including it in a code chunk.\n\n\n# can switch order of arguments (if you name them)\nround(digits = 1, x = 3.14)\n\n[1] 3.1\n\n\n\nYou may notice that boxes pop up as you type. These represent RStudio’s attempts to guess what you’re typing and share additional options."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#help-on-the-internet",
+    "href": "part1/part_01_b526_slides.html#help-on-the-internet",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "3.3 Help on the internet",
+    "text": "3.3 Help on the internet\nThere are many ways to get help. The more you learn how to get help, the easier your coding life will be. Here’s a list of options:\n\nGoogle “question + rcran” (i.e “hist rcran” or “make a boxplot ggplot”)\nGoogle error in quotes (i.e. “Evaluation error: invalid type (closure) for variable ‘***’”)\nSearch RStudio community (now called Posit)\nSearch Stack Overflow #r tag\nSearch github for your function name to see examples or search the error\nUse generative AI (ChatGPT, Perplexity, etc.)\n\nPost a question somewhere friendly:\n\nRStudio community\n\nto pick on my friend/coworker Emile, an example\n\nR for Data Science Online Learning Community - join the slack channel\n#rstats on social media platforms"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#naming-conventions-in-r",
+    "href": "part1/part_01_b526_slides.html#naming-conventions-in-r",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "5.1 Naming conventions in R",
+    "text": "5.1 Naming conventions in R\n\nSome naming conventions in R\n\nObjects cannot start with a number\nObject names are case sensitive\nNo spaces in object names\n\n\n\n# assigning value to an object\nweight_kg &lt;- 55\n\n\nNow that the object has been assigned, we can reference that object by running its name:\n\n\n# recall object\nweight_kg\n\n[1] 55"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#object-as-a-variables",
+    "href": "part1/part_01_b526_slides.html#object-as-a-variables",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "5.2 Object as a variables",
+    "text": "5.2 Object as a variables\n\nWe can also use the object as a variable:\n\n\n# multiple an object (convert kg to lb)\n2.2 * weight_kg\n\n[1] 121\n\n\n\nWe can create a new object (variable) based on the existing one:\n\n\n# assign weight conversion to object\nweight_lb &lt;- 2.2 * weight_kg\n\n\n\nNote that the code above only saves the value for weight_lb, but it doesn’t show us what the value is.\nTo see what the value is, you can\n\nCheck the Environment tab (this is not reproducible though)\nAdd () around the whole line of code to also see the value:\n\n\n\n# added parentheses to see value of weight_lb in output\n(weight_lb &lt;- 2.2 * weight_kg)\n\n[1] 121\n\n\n\nBelow we assign a new value to weight_kg\n\nDid this change the value of weight_lb?\n\n\n\n# reassign new value to an object\nweight_kg &lt;- 100"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#calculations-with-missing-data",
+    "href": "part1/part_01_b526_slides.html#calculations-with-missing-data",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "9.1 Calculations with missing data",
+    "text": "9.1 Calculations with missing data\n\nWhat happens when we try to calculate the mean or max of a vector with missing data?\n\n\n# calculate mean and max on vector with missing data\nmean(heights)\n\n[1] NA\n\nmax(heights)\n\n[1] NA\n\n\n\nHow do we fix this?\n\n\n# add argument to remove NA\nmean(heights, na.rm = TRUE)\n\n[1] 4\n\nmax(heights, na.rm = TRUE)\n\n[1] 6\n\n\n\nOr, can use na.omit - be careful with this!!\n\n\n# remove incomplete cases\nna.omit(heights) \n\n[1] 2 4 4 6\nattr(,\"na.action\")\n[1] 4\nattr(,\"class\")\n[1] \"omit\"\n\n\n\nmean(na.omit(heights))\n\n[1] 4"
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#vectorization-examples",
+    "href": "part1/part_01_b526_slides.html#vectorization-examples",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "10.1 Vectorization examples",
+    "text": "10.1 Vectorization examples\nWe can see this when we try to add vectors together:\n\nx &lt;- 1:4\ny &lt;- 6:9\nz &lt;- x + y\nz\n\n[1]  7  9 11 13\n\n\nAll mathematical and logical operators are vectorized functions:\n\nz^2\n\n[1]  49  81 121 169\n\nz + 1\n\n[1]  8 10 12 14\n\nz == 9\n\n[1] FALSE  TRUE FALSE FALSE\n\nz &gt; 9\n\n[1] FALSE FALSE  TRUE  TRUE\n\nx / y\n\n[1] 0.1666667 0.2857143 0.3750000 0.4444444\n\n\nBut other common functions are as well:\n\nz &lt;- x / y\nround(z, 2)\n\n[1] 0.17 0.29 0.38 0.44\n\n\n\nz &lt;- c(\"no\", \"nope\", \"maybe\")\npaste(z, \"hi\")\n\n[1] \"no hi\"    \"nope hi\"  \"maybe hi\"\n\nstringr::str_replace(z, \"o\",\"7\")\n\n[1] \"n7\"    \"n7pe\"  \"maybe\""
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#loading-packages-library-or-pacmanp_load",
+    "href": "part1/part_01_b526_slides.html#loading-packages-library-or-pacmanp_load",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "11.2 Loading packages: library() or pacman::p_load()",
+    "text": "11.2 Loading packages: library() or pacman::p_load()\n\nYou can load packages with the\n\nlibrary() function or\np_load() function in the pacman package.\n\nThe following code loads two packages, though the tidyverse package is actually a suite of many packages.\n\nThis code assumes you have already installed the packages!!!\n\n\n\nlibrary(tidyverse)\nlibrary(janitor)\n\n# OR do this:\npacman::p_load(tidyverse, janitor) \n\n\nI encourage you to start using pacman::p_load() in BSTA 526 instead of library()."
+  },
+  {
+    "objectID": "part1/part_01_b526_slides.html#installing-packages",
+    "href": "part1/part_01_b526_slides.html#installing-packages",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "11.1 Installing packages",
+    "text": "11.1 Installing packages\nFrom BSTA 511/611: R packages"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#before-you-get-started",
+    "href": "part1/part_01_b526.html#before-you-get-started",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "",
+    "text": "Please save a copy of this as part01_b526_YOURNAMEorINITIALS.qmd and work from that.\n\nThis way, you’ll have the original as a reference just in case.\n\nAlso, the first time you try something, try to type out the answer rather than copying and pasting.\n\nIt will help you understand what’s going on, because it forces you to read the code.\nHowever, if you find yourself getting too in the weeds with typing during class, copying and pasting works too! Practice typing on your own."
+  },
+  {
+    "objectID": "part1/part_01_b526.html#learning-objectives",
+    "href": "part1/part_01_b526.html#learning-objectives",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "0.2 Learning Objectives",
+    "text": "0.2 Learning Objectives\nBy the end of this session, you should be able to:\n\nWork within the RStudio interface to run R code in a Quarto document\nUnderstand basic R syntax to use functions and assign values to objects\nCreate and manipulate vectors and understand how R deals with missing data\nInstall and load R packages"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#rstudio-anatomy",
+    "href": "part1/part_01_b526.html#rstudio-anatomy",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "1.1 RStudio anatomy",
+    "text": "1.1 RStudio anatomy\n\n\n\nEmma Rand\n\n\n\nRead more about RStudio’s layout in Section 3.4 of “Getting Used to R, RStudio, and R Markdown” (Ismay and Kennedy 2016)\nA good reference built into RStudio is Help -&gt; Cheatsheets -&gt; RStudio IDE cheat sheet"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#customizing-rstudio",
+    "href": "part1/part_01_b526.html#customizing-rstudio",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "1.2 Customizing RStudio",
+    "text": "1.2 Customizing RStudio\nSome useful gifs about customizing the RStudio panels"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#create-a-quarto-file",
+    "href": "part1/part_01_b526.html#create-a-quarto-file",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "2.1 Create a Quarto file",
+    "text": "2.1 Create a Quarto file\n\nSee BSTA 511/611 Day 1 section on Create a Quarto file."
+  },
+  {
+    "objectID": "part1/part_01_b526.html#markdown-for-word-processing",
+    "href": "part1/part_01_b526.html#markdown-for-word-processing",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "2.2 Markdown for “word processing”",
+    "text": "2.2 Markdown for “word processing”\n\nThe Quarto (qmd) document uses markdown language for text outside of code chunks.\nSome markdown resources:\n\nBSTA 511/611 Day 1 notes on markdown\nBERD workshop slides on how to do Markdown and other formatting in Quarto files.\nOfficial Quarto webpage on markdown basics"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#using-functions",
+    "href": "part1/part_01_b526.html#using-functions",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "3.1 Using functions",
+    "text": "3.1 Using functions\nBelow is an example of an R function:\n\n# using a function: rounding numbers\nround(3.14)\n\n[1] 3\n\npi\n\n[1] 3.141593\n\nround(pi)\n\n[1] 3\n\n\nR functions can have multiple arguments\n\n# using a function with more arguments\nround(x = 3.14, digits = 1)\n\n[1] 3.1\n\n\nDo we have to “name” the arguments?"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#help-within-rstudio",
+    "href": "part1/part_01_b526.html#help-within-rstudio",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "3.2 Help within RStudio",
+    "text": "3.2 Help within RStudio\nLearn more about the round() function with ?round:\n\n?round\n\n\nWe can also type ?round in the Console instead of including it in a code chunk.\n\n\n# can switch order of arguments (if you name them)\nround(digits = 1, x = 3.14)\n\n[1] 3.1\n\n\n\nYou may notice that boxes pop up as you type. These represent RStudio’s attempts to guess what you’re typing and share additional options."
+  },
+  {
+    "objectID": "part1/part_01_b526.html#help-on-the-internet",
+    "href": "part1/part_01_b526.html#help-on-the-internet",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "3.3 Help on the internet",
+    "text": "3.3 Help on the internet\nThere are many ways to get help. The more you learn how to get help, the easier your coding life will be. Here’s a list of options:\n\nGoogle “question + rcran” (i.e “hist rcran” or “make a boxplot ggplot”)\nGoogle error in quotes (i.e. “Evaluation error: invalid type (closure) for variable ‘***’”)\nSearch RStudio community (now called Posit)\nSearch Stack Overflow #r tag\nSearch github for your function name to see examples or search the error\nUse generative AI (ChatGPT, Perplexity, etc.)\n\nPost a question somewhere friendly:\n\nRStudio community\n\nto pick on my friend/coworker Emile, an example\n\nR for Data Science Online Learning Community - join the slack channel\n#rstats on social media platforms"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#naming-conventions-in-r",
+    "href": "part1/part_01_b526.html#naming-conventions-in-r",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "5.1 Naming conventions in R",
+    "text": "5.1 Naming conventions in R\n\nSome naming conventions in R\n\nObjects cannot start with a number\nObject names are case sensitive\nNo spaces in object names\n\n\n\n# assigning value to an object\nweight_kg &lt;- 55\n\n\nNow that the object has been assigned, we can reference that object by running its name:\n\n\n# recall object\nweight_kg\n\n[1] 55"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#object-as-a-variables",
+    "href": "part1/part_01_b526.html#object-as-a-variables",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "5.2 Object as a variables",
+    "text": "5.2 Object as a variables\n\nWe can also use the object as a variable:\n\n\n# multiple an object (convert kg to lb)\n2.2 * weight_kg\n\n[1] 121\n\n\n\nWe can create a new object (variable) based on the existing one:\n\n\n# assign weight conversion to object\nweight_lb &lt;- 2.2 * weight_kg\n\n\n\nNote that the code above only saves the value for weight_lb, but it doesn’t show us what the value is.\nTo see what the value is, you can\n\nCheck the Environment tab (this is not reproducible though)\nAdd () around the whole line of code to also see the value:\n\n\n\n# added parentheses to see value of weight_lb in output\n(weight_lb &lt;- 2.2 * weight_kg)\n\n[1] 121\n\n\n\nBelow we assign a new value to weight_kg\n\nDid this change the value of weight_lb?\n\n\n\n# reassign new value to an object\nweight_kg &lt;- 100"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#calculations-with-missing-data",
+    "href": "part1/part_01_b526.html#calculations-with-missing-data",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "9.1 Calculations with missing data",
+    "text": "9.1 Calculations with missing data\n\nWhat happens when we try to calculate the mean or max of a vector with missing data?\n\n\n# calculate mean and max on vector with missing data\nmean(heights)\n\n[1] NA\n\nmax(heights)\n\n[1] NA\n\n\n\nHow do we fix this?\n\n\n# add argument to remove NA\nmean(heights, na.rm = TRUE)\n\n[1] 4\n\nmax(heights, na.rm = TRUE)\n\n[1] 6\n\n\n\nOr, can use na.omit - be careful with this!!\n\n\n# remove incomplete cases\nna.omit(heights) \n\n[1] 2 4 4 6\nattr(,\"na.action\")\n[1] 4\nattr(,\"class\")\n[1] \"omit\"\n\n\n\nmean(na.omit(heights))\n\n[1] 4"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#vectorization-examples",
+    "href": "part1/part_01_b526.html#vectorization-examples",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "10.1 Vectorization examples",
+    "text": "10.1 Vectorization examples\nWe can see this when we try to add vectors together:\n\nx &lt;- 1:4\ny &lt;- 6:9\nz &lt;- x + y\nz\n\n[1]  7  9 11 13\n\n\nAll mathematical and logical operators are vectorized functions:\n\nz^2\n\n[1]  49  81 121 169\n\nz + 1\n\n[1]  8 10 12 14\n\nz == 9\n\n[1] FALSE  TRUE FALSE FALSE\n\nz &gt; 9\n\n[1] FALSE FALSE  TRUE  TRUE\n\nx / y\n\n[1] 0.1666667 0.2857143 0.3750000 0.4444444\n\n\nBut other common functions are as well:\n\nz &lt;- x / y\nround(z, 2)\n\n[1] 0.17 0.29 0.38 0.44\n\n\n\nz &lt;- c(\"no\", \"nope\", \"maybe\")\npaste(z, \"hi\")\n\n[1] \"no hi\"    \"nope hi\"  \"maybe hi\"\n\nstringr::str_replace(z, \"o\",\"7\")\n\n[1] \"n7\"    \"n7pe\"  \"maybe\""
+  },
+  {
+    "objectID": "part1/part_01_b526.html#installing-packages",
+    "href": "part1/part_01_b526.html#installing-packages",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "11.1 Installing packages",
+    "text": "11.1 Installing packages\nFrom BSTA 511/611: R packages"
+  },
+  {
+    "objectID": "part1/part_01_b526.html#loading-packages-library-or-pacmanp_load",
+    "href": "part1/part_01_b526.html#loading-packages-library-or-pacmanp_load",
+    "title": "1: R/Quarto intro, projects, packages, getting help, functions, and vectors",
+    "section": "11.2 Loading packages: library() or pacman::p_load()",
+    "text": "11.2 Loading packages: library() or pacman::p_load()\n\nYou can load packages with the\n\nlibrary() function or\np_load() function in the pacman package.\n\nThe following code loads two packages, though the tidyverse package is actually a suite of many packages.\n\nThis code assumes you have already installed the packages!!!\n\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr   1.1.4     ✔ readr   2.1.5\n✔ forcats 1.0.0     ✔ tibble  3.2.1\n✔ ggplot2 3.5.1     ✔ tidyr   1.3.1\n✔ purrr   1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter()  masks stats::filter()\n✖ lubridate::hms() masks vembedr::hms()\n✖ dplyr::lag()     masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\n# OR do this:\npacman::p_load(tidyverse, janitor) \n\n\nI encourage you to start using pacman::p_load() in BSTA 526 instead of library()."
   }
 ]

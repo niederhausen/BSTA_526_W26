@@ -25,8 +25,8 @@ format:
       width:  1100 #1200 # 1050 #default 1050; ipad 3:4, 1600
       # height: 825 #900 #800 #default 700; 788 for 3:4, 1200
       slide-number: true
-      number-sections: true
-      number-depth: 4
+      # number-sections: true
+      # number-depth: 4
       link-external-newwindow: true
       html-math-method: mathjax
 execute:
@@ -45,7 +45,7 @@ pacman::p_load(vembedr,
 ```
 
 
-# Welcome to R Programming!
+## Welcome to R Programming!
 
 This course introduces you to R in two parts:
 
@@ -59,7 +59,7 @@ Part 1 focuses on working through common tasks in data science:
 Part 2 focuses on more advanced topics:
 
 -   joining and merging data tables
--   automating analyses (`purrr`/for loops),
+-   automating tasks (functions, `purrr`/for loops),
 
 We might get to:
 
@@ -69,17 +69,196 @@ We might get to:
 
 Throughout, we'll work on concepts of reproducibility by utilizing RStudio project and Quarto document-based workflows as a way of reproducibly sharing our work.
 
-# What is R?
 
--   R is an open source statistical and programming computer language widely used for a variety of applications.
--   Why "R"??
-    -   Scheme inspired S (invented at Bell Labs in 1976) which inspired R (free and open source! in 1992)
+## Instructor Information
 
-# Learning Objectives
+### Instructor
 
-By the end of this session, you should be able to:
+* Meike Niederhausen, PhD
+    - [niederha\@ohsu.edu](mailto:niederha@ohsu.edu)
 
-1.  **Work** within the RStudio interface to **run** R code in a Quarto document
-2.  **Understand** basic R syntax to **use** functions and **assign** values to objects
-3.  **Create** and **manipulate** vectors and **understand** how R deals with missing data
-4.  **Install** and **load** R packages
+
+### Teaching Assistant
+
+* Michael Daily 
+    - [dailym\@ohsu.edu](mailto:dailym@ohsu.edu)
+
+
+
+# Syllabus
+
+
+<https://niederhausen.github.io/BSTA_526_W26/syllabus.html>
+
+## Learning Objectives
+
+1. **Understand** and **utilize** **R/RStudio**, including using **Quarto** to create **reproducible** documents of statistical analyses.
+2. **Understand** basic data types and data structures in R.
+3. **Familiarize** and **load** data files (Excel, Comma Separated Value files) into R/Rstudio, with tips on formatting.
+4. **Visualize** datasets using **ggplot2** and understand how to build basic plots using **ggplot2** syntax.
+5. **Filter** and **format** data in R for use with various routines.
+6. **Run** and **Interpret** some basic statistics in R.
+7. **Automate** repetitive tasks in R, such as loading a folder of files.
+
+*__If time allows__*:
+
+8. **Create** nice tables in our R markdown reports with `gt`, `gtsummary`, and/or `kableExtra`.
+
+
+## Required Texts and Readings
+
+This course will be drawing on the following online textbooks. These books are online and free, though you can order them as textbooks if you prefer that format.
+
++ **R for Data Science**. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund. 2nd Edition. <https://r4ds.hadley.nz/>
++ **Quarto** webpage <https://quarto.org/>
+    + The [Guide](https://quarto.org/docs/guide/) and [Reference](https://quarto.org/docs/reference/) tabs have very helpful documentation.
++ **Getting Used to R, RStudio, and RMarkdown**. Chester Ismay.
+<https://ismayc.github.io/rbasics-book/>
++ **Data Science: A First Introduction**. Tiffany Timbers, Trevor Campbell, Melissa Lee. <https://datasciencebook.ca/>
++ **Advanced R**. Hadley Wickham. <https://adv-r.hadley.nz/>
+
+
+
+## Grade breakdown
+
+- Attendance (based on post-class surveys) 5%
+- Homework Assignments 30%
+- Function of the Week 5%
+- Midterm Exam 30%
+- Final Exam 30%
+
+
+## Attendance 
+
+*   Regular attendance is expected, but will not be monitored.
+*   Classes will be recorded, but I cannot guarantee the in-person format will lend itself to effective recordings. 
+
+
+### Post-class surveys
+
+*   5% of your grade is based on filling out [post-class surveys](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) as a way of indicating that you came to class and engaged with the material for that week.
+*   You only need to fill out 7 surveys (of the 10 class sessions) for the full 5%. 
+    -   I encourage you to fill out as many surveys as possible to provide feedback on the class though.
+* __Please fill out surveys by the following Wednesday at noon.__
+* The questions on the survey are:
+    * Rating the pace of the class
+    * Clearest Point: *Which topic of the class was clearest for you?*
+    * Muddiest Point: *Which topic of class was the muddiest (unclear) for you?*
+    * Anything Else: *Anything else you'd like me to know?*
+    
+
+## Homework
+
+-   Homework will be assigned weekly using Quarto in RStudio. 
+    -   It will be due via Sakai upload Thursdays at 11:55pm the night of the following week's class (unless otherwise noted). 
+    -   Please turn in *both your .qmd and rendered .html file.*
+-   The homework with the lowest score will be dropped from your homework average. 
+
+### Late Policy
+
+-   Students get 1 free homework assignment to submit late within 3 days without penalty. 
+-   *Please email the instructor and the TA that you need more time.* 
+-   If you need an accommodation, please email me so I can figure out a way to help you.
+
+## Functions of the Week
+
+-   Please choose a function(s) from the Functions of the Week sign-up sheet
+    -   Link will be posted on Sakai.
+-   *A Quarto template to format your Function of the Week and presentation will be provided*. 
+-   Functions of the Week presentations will start in week 4. 
+-   On the sign-up sheet you will choose a week to present your function(s) to the class, as well as the function(s). 
+-   The presentation should be short, around 5 minutes. 
+-   If presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class. 
+
+Previous years' Functions of the Week can be found on the previous class websites:
+
+* <https://niederhausen.github.io/BSTA_526_W25/function_week.html>
+* <https://niederhausen.github.io/BSTA_526_W24/function_week.html>
+* <https://sph-r-programming-2023.netlify.app/functions/>
+* <https://sph-r-programming-2022.netlify.app/functions/>
+* <https://sph-r-programming.netlify.app/functions/> (2021)
+
+I will create a similar website for this year's Functions of the Week. *If you do not wish yours to be on the public facing website, just let me know. Alternatively, I can also post it anonymously.* See submitted Functions of the Week for this quarter at this [link](function_week.qmd).
+
+
+## Midterm and Final Exams
+
+* Midterm and final exams will be take home. 
+    * The midterm will be a project based on a dataset of your choosing.      
+    * The final will be based on an assigned dataset. 
+* Examples of previous years' midterms can be found on the class websites:
+    - <https://sph-r-programming-2023-midterms.netlify.app/>
+    - <https://sph-r-programming-2022-midterms.netlify.app/>
+    - <https://sph-midterm-projects.netlify.app/> (2021)
+    - I will create a similar website for this year's midterm projects.
+        - *If you do not wish your project to be on the public facing website, just let me know. Alternatively, I can also post it anonymously.*
+
+## 
+
+![[Artwork by @allison_horst](https://allisonhorst.com/)](/images/horst_r_first_then.png){fig-align="center"}
+
+##
+
+![[Artwork by @allison_horst](https://allisonhorst.com/everything-else)](/images/horst_timeline_Rlearning.png){fig-align="center"}
+
+
+
+
+## Words of Encouragement
+
+> This was adopted from Andrew Heiss. Thanks!
+
+I *promise* you can succeed in this class.
+
+Learning R can be difficult at first—it's like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you'll be using like `ggplot2`—[made this wise observation](https://r-posts.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/): 
+
+> It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.
+
+
+Even experienced programmers find themselves bashing their heads against seemingly intractable errors. If you're finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail me, etc. 
+
+
+![[Alison Horst Jan 3, 2020 tweet](https://twitter.com/allison_horst/status/1213275783675822080)](/images/syllabus/hosrt_error_tweet.png){width=60%}
+
+
+![[Alison Horst: Gator error](https://twitter.com/allison_horst/status/1213275783675822080)](/images/syllabus/gator_error.jpg){fig-align="center"}
+
+
+## LeaRning is Social
+
+Students who work together with other students are often more successful than students who work alone. We are a learning community, and we should help each other to learn.
+
+<br>
+
+If you understand something and know someone is struggling with it, try and help them. 
+
+<br>
+
+If you are struggling, take a breath, try to pinpoint what you are struggling with, and *don't be afraid to ask for help*. 
+
+<br>
+
+Our goal is to be better coders each day, not to be the perfect coder There's no such thing as a perfect coder. I've been using R for over 20 years and still constantly learn new things.
+
+## Using AI to learn how to code
+
+[Andrew Heiss'](https://datavizf25.classes.andrewheiss.com/news/2025-12-10_faqs_week-15.html#why-wont-you-incorporate-llms-and-ai-prompting-into-the-course) thoughts on this:
+
+> However, they’re only useful if you know what you’re doing first. If you skip the learning-the-process-of-writing-code step and just copy/paste output from ChatGPT, you will not learn. You cannot learn. You cannot improve. You will not understand the code.
+
+
+> The only way to gain domain knowledge, data analysis expertise, and coding ability is to struggle. To get errors. To google those errors. To look over the documentation. To copy/paste your own code and adapt it for different purposes. To explore messy datasets. To struggle to clean those datasets. To spend an hour looking for a missing comma.
+
+
+## Use of generative AI for assignments
+
+-   Generative AI tools (such as ChatGPT) can be great resources for learning how to code and/or troubleshoot code that does not work. 
+-   However, the work you turn in must be your own. 
+-   Thus it is inappropriate to directly ask AI to provide you with solutions to homework questions or write text that you are submitting in your assignment. 
+
+***If you do use AI tools to help you with an assignment, these must be cited along with how they were used.*** 
+
+-   Please see the Plagiarism & Attribution section (Code Snippets and AI Tools subsection) of Dr. Steve Bedrick's [BMI 525: Principles and Practice of DataVisualization](https://dmice.ohsu.edu/bedricks/courses/bmi525/policies.html) webpage for examples of appropriate and inappropriate uses generative AI.
+
+
+

@@ -20,11 +20,13 @@ source(here::here("schedule_class_dates.R"))
 
 ## Topics
 
-* Introduction to course/expectations (syllabus)
-* Intro to R & RStudio
-    * [Handout](../resources/R info.pdf) with directions on installing R & RStudio
-* Introduction to Quarto
-* Functions, Vectors, Data Types
+-   Part 0: Welcome
+    -   Introduction to course & expectations (syllabus)
+-   Part 1: 
+    -   Intro to R & RStudio
+        * [Handout](../resources/R info.pdf) with directions on installing R & RStudio
+    - Introduction to Quarto
+    - Functions, Vectors, Data Types
 
 
 ## Announcements
@@ -32,12 +34,18 @@ source(here::here("schedule_class_dates.R"))
 * Class materials for BSTA 526 will be provided in the shared OneDrive folder [BSTA_526_W26_class_materials_public]().  (*link coming soon*) 
 * For today's class, make sure to download to your computer the folder called `part_01`. Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.
 
-<!-- * Please join the [BSTA 526 Slack channel](https://join.slack.com/t/bsta526w25/shared_invite/zt-2x4jl264g-KV9YvPTAqKWuEBB1gE10BA) and introduce yourself by posting in the `#random` channel. -->
 
 
 ## Class materials
 
-* OneDrive [part_01 folder]()  (*link coming soon*)
+
+| Part | OneDrive folder | Slides | Webpage |
+|--------------|--------------|--------------|--------------------------------|
+| 0 | [{{< iconify logos:microsoft-onedrive >}}]() | [{{< iconify simple-icons:quarto >}}](../part0/part_00_b526_slides.qmd) |  |
+| 1 | [{{< iconify logos:microsoft-onedrive >}}]() | [{{< iconify simple-icons:quarto >}}](../part1/part_01_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part1/part_01_b526.qmd) |
+
+: {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"}
+
 
 ## Readings
 

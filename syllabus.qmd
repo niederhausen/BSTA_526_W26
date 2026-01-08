@@ -44,15 +44,14 @@ All course information will be available here:
 
 Information will also be available on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26).
 
-Slack will be used for course discussions. Link to join Slack is posted on Sakai.
 
 ## Office Hours
 
 * See [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26) for Webex links to office hours
-* In addition to times below, office hours can be set up by appointment at other times. Please email or message on Slack whom who would like to set up an office hour with.
+* In addition to times below, office hours can be set up by appointment at other times. Please email whom who would like to set up an office hour with.
 
 - TA Michael Daily's office hours XXX on Webex. See Sakai for the link.
-- Dr. Niederhausen has office hours by appointment or after class. Don't hesitate to ask for a meeting!
+- Dr. Niederhausen has office hours Tuesdays 11-11:50 am via Webex (link on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/page/44279282-bb72-45fb-af28-327f751eef44)) and by appointment or after class. Don't hesitate to ask for a meeting!
 
 
 ## Prerequisites or Concurrent Enrollment Requirements
@@ -64,7 +63,7 @@ Slack will be used for course discussions. Link to join Slack is posted on Sakai
 
 ### Instructor
 
-- **Preferred Method of Contact**: Email or Slack. When emailing, please include BSTA 526 in the subject line.   
+- **Preferred Method of Contact**: Email. When emailing, please include BSTA 526 in the subject line.   
 - **Expected Response Time**: 1 business day 
 * Meike Niederhausen, PhD
     - [niederha\@ohsu.edu](mailto:niederha@ohsu.edu)
@@ -78,37 +77,41 @@ Slack will be used for course discussions. Link to join Slack is posted on Sakai
 
 ## Attendance 
 
-* This class will meet in-person and you are expected to attend class regularly. However, we understand that it is not always possible to attend class and daily attendance will not be monitored. 
-* Classes will be recorded, but we cannot guarantee the in-person format will lend itself to effective recordings. If you miss class, please reach out to a classmate for missed material.
+* This class will meet in-person and you are expected to attend class regularly. However, I understand that it is not always possible to attend class and daily attendance will not be monitored. 
+* Classes will be recorded, but I cannot guarantee the in-person format will lend itself to effective recordings. If you miss class, please reach out to a classmate for missed material.
 
 ### Post-class surveys
 
-* 5% of your grade is based on filling out [post-class surveys](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) as a way of telling us that you came to class and engaged with the material for that week.
-* You only need to fill out 7 surveys (of the 10 class sessions) for the full 5%. We encourage you to fill out as many surveys as possible to provide feedback on the class though.
-* __Please fill out surveys by the following class period.__
+* 5% of your grade is based on filling out [post-class surveys](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) as a way of indicating that you came to class and engaged with the material for that week.
+*   You only need to fill out 7 surveys (of the 10 class sessions) for the full 5%. 
+    -   I encourage you to fill out as many surveys as possible to provide feedback on the class though.
+* __Please fill out surveys by the following Wednesday at noon.__
 * The questions on the survey are:
-    * Rating the pace of the lecture and lab
-    * Clearest Point: *What point of the class was clearest for you?*
-    * Muddiest Point: *What point of class was the muddiest (unclear) for you?*
+    * Rating the pace of the class
+    * Clearest Point: *Which topic of the class was clearest for you?*
+    * Muddiest Point: *Which topic of class was the muddiest (unclear) for you?*
     * Anything Else: *Anything else you'd like me to know?*
 
 
 ## Homework
 
-Homework will be assigned weekly using Quarto in RStudio. It will be due via Sakai upload Thursdays at 11:55pm the night of the following week's class (unless otherwise noted). Please turn in *both your .qmd and rendered .html file.*
-
-The homework with the lowest score will be dropped from your homework average. 
+-   Homework will be assigned weekly using Quarto in RStudio. 
+    -   It will be due via Sakai upload Thursdays at 11:55pm the night of the following week's class (unless otherwise noted). 
+    -   Please turn in *both your .qmd and rendered .html file.*
+-   The homework with the lowest score will be dropped from your homework average. 
 
 ### Late Policy
 
-Students get 1 free homework assignment to submit late within 3 days without penalties. *Please email the instructors and the TA that you need more time.* If you need an accommodation, please email us so we can figure out a way to help you.
-
+-   Students get 1 free homework assignment to submit late within 3 days without penalty. 
+-   *Please email the instructor and the TA that you need more time.* 
+-   If you need an accommodation, please email me so I can figure out a way to help you.
 
 
 ## Functions of the Week
 
 -   Please choose a function(s) from the Functions of the Week sign-up sheet (link is posted on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&studentItemId=0&backPath=&bltiAppStores=false&errorMessage=&clearAttr=&messageId=&source=&title=&newTopLevel=false&sendingPage=232003&postedComment=false&addBefore=&itemId=5509815&path=push&reviewAssessment=false&topicId=&addTool=-1&recheck=&id=&forumId=). 
--   *A Quarto template to format your Function of the Week and presentation will be provided*. -   Functions of the Week presentations will start in week 4. 
+-   *A Quarto template to format your Function of the Week and presentation will be provided*. 
+-   Functions of the Week presentations will start in week 4. 
 -   On the sign-up sheet you will choose a week to present your function(s) to the class, as well as the function(s). 
 -   The presentation should be short, around 5 minutes. 
 -   If presenting to the class feels prohibitive, you may submit a 5-10 minute screen recording with your voice narrating the presentation, and this will be distributed to the class. 
@@ -121,29 +124,30 @@ Previous years' Functions of the Week can be found on the previous class website
 * <https://sph-r-programming-2022.netlify.app/functions/>
 * <https://sph-r-programming.netlify.app/functions/> (2021)
 
-I will create a similar website for this year's Functions of the Week. *If you do not wish yours to be on the public facing website, just let us know. Alternatively, we can also post it anonymously.* See submitted Functions of the Week for this quarter at this [link](function_week.qmd).
+I will create a similar website for this year's Functions of the Week. *If you do not wish yours to be on the public facing website, just let me know. Alternatively, I can also post it anonymously.* See submitted Functions of the Week for this quarter at this [link](function_week.qmd).
 
 
-## Midterm and Final Projects
+## Midterm and Final Exams
 
-* Midterm and final projects/tests will be take home. 
+* Midterm and final exams will be take home. 
     * The midterm will be a project based on a dataset of your choosing.      
     * The final will be based on an assigned dataset. 
 * Examples of previous years' midterms can be found on the class websites:
     - <https://sph-r-programming-2023-midterms.netlify.app/>
     - <https://sph-r-programming-2022-midterms.netlify.app/>
     - <https://sph-midterm-projects.netlify.app/> (2021)
-    - We will create a similar website for this year's midterm projects.
-        - *If you do not wish your project to be on the public facing website, just let us know. Alternatively, we can also post it anonymously.*
+    - I will create a similar website for this year's midterm projects.
+        - *If you do not wish your project to be on the public facing website, just let me know. Alternatively, I can also post it anonymously.*
 
 
 ## Grading Policy
 
 - Attendance (based on post-class surveys) 5%
-- Midterm Project 30%
-- Function of the Week 5%
 - Homework Assignments 30%
-- Final Project 30%
+- Function of the Week 5%
+- Midterm Exam 30%
+- Final Exam 30%
+
 
 ### Grading Scale
 
@@ -216,12 +220,11 @@ And as students of an OHSU course, we must abide by the OHSU Code of Conduct: <h
 
 This class is meant to be a psychologically safe space where it's ok to ask questions. We want to normalize your own curiosity and fuel your desire to learn more.
 
-*There is a link on Sakai to a form to anonymously report to us any possible code of conduct violations, based on the OHSU Code of Conduct or the OHSU Biodata Code of Conduct.* 
 
 
 ## Required Texts and Readings
 
-We will be drawing on the following online textbooks during class and labs. These books are online and free, though you can order them as textbooks if you prefer that format.
+This course will be drawing on the following online textbooks. These books are online and free, though you can order them as textbooks if you prefer that format.
 
 + **R for Data Science**. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund. 2nd Edition. <https://r4ds.hadley.nz/>
 + **Quarto** webpage <https://quarto.org/>
@@ -252,7 +255,7 @@ Learning R can be difficult at first—it's like learning a new language, just l
 
 > It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.
 
-Even experienced programmers find themselves bashing their heads against seemingly intractable errors. If you're finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail us, etc. 
+Even experienced programmers find themselves bashing their heads against seemingly intractable errors. If you're finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail me, etc. 
 
 
 ![[Alison Horst Jan 3, 2020 tweet](https://twitter.com/allison_horst/status/1213275783675822080)](/images/syllabus/hosrt_error_tweet.png){width=60%}
