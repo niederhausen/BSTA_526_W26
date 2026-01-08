@@ -31,7 +31,7 @@ source(here::here("schedule_class_dates.R"))
 
 ## Announcements
 
-* Class materials for BSTA 526 will be provided in the shared OneDrive folder [BSTA_526_W26_class_materials_public]().  (*link coming soon*) 
+* Class materials for BSTA 526 will be provided in the shared OneDrive folder [BSTA_526_W26_class_materials_public](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic&FolderCTID=0x012000BFB90517C627AA4D890D4550289841BE).
 * For today's class, make sure to download to your computer the folder called `part_01`. Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.
 
 
@@ -41,8 +41,8 @@ source(here::here("schedule_class_dates.R"))
 
 | Part | OneDrive folder | Slides | Webpage |
 |--------------|--------------|--------------|--------------------------------|
-| 0 | [{{< iconify logos:microsoft-onedrive >}}]() | [{{< iconify simple-icons:quarto >}}](../part0/part_00_b526_slides.qmd) |  |
-| 1 | [{{< iconify logos:microsoft-onedrive >}}]() | [{{< iconify simple-icons:quarto >}}](../part1/part_01_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part1/part_01_b526.qmd) |
+| 0 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart0) | [{{< iconify simple-icons:quarto >}}](../part0/part_00_b526_slides.qmd) |  |
+| 1 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart1) | [{{< iconify simple-icons:quarto >}}](../part1/part_01_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part1/part_01_b526.qmd) |
 
 : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"}
 

@@ -91,7 +91,7 @@ R Intro from [BSTA 511/611](https://niederhausen.github.io/BSTA_511_F25/slides_m
 
 -   We will be using RStudio projects.
 
--   See [Projects in RStudio](../resources/Projects_in_R.html) webpage
+-   See [Projects in RStudio](https://niederhausen.github.io/BSTA_526_W26/resources/Projects_in_R.html) webpage
 
 -   Open RStudio by double clicking on the .Rproj file in the main OneDrive folder (`BSTA_526_W26_class_materials_public.Rproj`)
 
