@@ -142,35 +142,21 @@ I will create a similar website for this year's Functions of the Week. *If you d
 
 ## Grading Policy
 
+A weighted average of the grade will be calculated using the assessment weights listed below.
+
 - Attendance (based on post-class surveys) 5%
 - Homework Assignments 30%
 - Function of the Week 5%
 - Midterm Exam 30%
 - Final Exam 30%
 
+*Please note that the Sakai grade book is not programmed to calculate your final grades. It will list your scores on each individual assessment, but ignore the overall grade it provides.*
+
 
 ### Grading Scale
 
-* Assessments will be graded on a 10 pt scale (0-10 points). 
-* A weighted average of the grade will be calculated using the percentages listed above, and final grades will be assigned based on the table below. Scores will be rounded up; for example an average of 7.5 will be assigned an A-. 
-
-| Points | Letter Grade |
-|:------:|:------------:|
-|   10   |      A       |
-|   9    |      A-      |
-|   8    |      B+      |
-|   7    |      B       |
-|   6    |      B-      |
-|   5    |      C+      |
-|   4    |      C       |
-|   3    |      C-      |
-|   2    |      D+      |
-|   1    |      D       |
-|   0    |      F       |
-
-: {tbl-colwidths="[25,75]"}{.striped .hover}
-
-In assigning points 0-10, the following general guidelines will be applied:
+-   Final grades will be assigned based on cutoffs in the table below. 
+-   When final grades for the quarter are calculated, percentages will be rounded up; for example 89.5% is an A-. 
 
 |       |                                                 |
 |:-----:|-------------------------------------------------|
@@ -182,36 +168,21 @@ In assigning points 0-10, the following general guidelines will be applied:
 
 : {tbl-colwidths="[25,75]"}{.striped .hover}
 
-This rubric was adapted from Chapter 12 of *Grading for Equity* by Joe Feldman.
+| Letter Grade | Percentage |
+|--------------|------------|
+| A            | ≥93%       |
+| A-           | 90-92%     |
+| B+           | 88-89%     |
+| B            | 83-87%     |
+| B-           | 80-82%     |
+| C+           | 78-79%     |
+| C            | 73-77%     |
+| C-           | 70-72%     |
+| D            | 60 – 69%   |
+| F            | \<60%      |
 
+: {tbl-colwidths="[25,75]"}{.striped .hover}
 
-### Grading Rubric
-
-* Assessments will be graded on a 10 pt scale (0-10 points) using the rubric below. 
-* The 10 pts for each assessment will be based on:
-    * Answers: 4 pts
-    * Demonstrating process: 3 pts
-    * Providing context and relevance: 3 pts
-
-The table below will be used to determine points for each of the three categories.
-
-+--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
-|                                      | 4 points                                       | 3 points                                                                                                                                                                                                                                                                                                               | 2 points                                                                                                                                                           | 1 point                                                                                                                      | 0 points                                                                                       |
-+--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
-| Answers                              | Answers are correct at least 90% of the time   | Answers are usually correct (75-90%)                                                                                                                                                                                                                                                                                   | Answers are sometimes correct (50-74%)                                                                                                                             | Answers are generally incorrect (\<50%)                                                                                      | Answers are incorrect and no work was shown (demonstrating process has 0 pts)                  |
-|                                      |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
-| (4 pts max)                          |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
-+--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
-| Demonstrating process                |                                                | All relevant work is shown, including all steps for figuring out answers.                                                                                                                                                                                                                                              | Relevant work and steps for figuring out answers are generally provided but incomplete.                                                                            | Relevant work and steps for figuring out answers are generally missing.                                                      | No relevant work is shown, including steps for figuring out answers.                           |
-|                                      |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
-| (3 pts max)                          |                                                | R code and output are provided for every question for which R was used.                                                                                                                                                                                                                                                | R code and output are generally provided but incomplete for questions that use R.                                                                                  | R code and output are generally missing for questions that use R.                                                            | R code and output are not provided for questions for which R was used.                         |
-+--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
-| Providing context and relevance      |                                                | Answers are given in complete sentences with all relevant information for the question as appropriate (context of research question, units, descriptive statistics, explanation of what data visualization is showing, confidence intervals, p-values, test- statistics, etc.), and interpretation of results.         | Answers are given in complete sentences. Some relevant information may be provided, but much is missing. Context of research question only sometimes provided.     | Answers are rarely given in complete sentences. Relevant information is not provided. Little to no context is provided.      | Answers are not in complete sentences. Relevant information and context are not provided.      |
-|                                      |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
-| (3 pts max)                          |                                                |                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                    |                                                                                                                              |                                                                                                |
-+--------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
-
-: {.striped .hover}
 
 
 ## Code of Conduct
