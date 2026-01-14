@@ -1,0 +1,85 @@
+---
+title: "Week 2"
+pagetitle: "Week 2 BSTA 526"
+description: "Projects, data frames, reading in data, visualizing data with ggplot2"
+date: "`r library(here); source(here('schedule_class_dates.R')); w2d1`"
+date-modified: "today"
+categories: [""]
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+source(here::here("schedule_class_dates.R"))
+```
+
+
+## Topics
+
+Part 2: 
+
+-   Projects
+-   Data frames
+-   Tidy data
+-   Reading in data
+-   Getting to know a dataset
+-   Visualizing data with ggplot2 (intro)
+
+
+## Announcements
+
+* Class materials for BSTA 526 will be provided in the shared OneDrive folder [BSTA_526_W26_class_materials_public](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic).
+* For today's class, make sure to download to your computer the folder called `part_02`. Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.
+
+
+
+## Class materials
+
+
+| Part | OneDrive folder | Slides | Webpage |
+|--------------|--------------|--------------|--------------------------------|
+| 2 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart1) | [{{< iconify simple-icons:quarto >}}](../part2/part_02_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part2/part_02_b526.qmd) |
+
+: {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"}
+
+
+## Readings
+
+
+### Required
+
+-   [Data Organization in Spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989) by Kara Woo and Karl Broman 
+    -   This paper is a must read for anyone that works with data. 
+    -   Note in particular Section 4: *Write Dates as YYYY-MM-DD*
+-   [Absolute and Relative File Paths (Section 2.3)](https://ubc-dsci.github.io/introduction-to-datascience/reading.html#absolute-and-relative-file-paths) from [Data Science: A First Introduction](https://datasciencebook.ca/) by Timbers, Campbell, & Lee
+    -   Understanding file paths can be difficult if you are not used to working with files on your computer. For programming, it is important to understand file paths and in particular the difference between absolute and relative paths. This is a great follow up reading. 
+
+
+
+### Optional 
+
+-   [Exploring missing values in `naniar`](https://allisonhorst.shinyapps.io/missingexplorer/#section-introduction) . The notes for part 2 refer to the `visdat` package for visualizing missing values in your data. I also recommend the `naniar` package, and the link above is a great tutorial with an introduction to some really useful visualizations for missingness. 
+
+
+## Post-class survey
+
+* Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) to provide feedback. Thank you!
+* Previous muddiest points and clearest points with responses are collected  [here](../survey_feedback_previous_years.qmd).
+
+## Homework
+
+* See OneDrive folder for homework assignment.
+* HW 2 due on `r format(w3d1, "%m/%d")`.
+
+## Recording
+
+* __In-class__ recording links are on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&studentItemId=0&backPath=&bltiAppStores=false&errorMessage=&clearAttr=&messageId=&source=&title=&newTopLevel=false&sendingPage=232002&postedComment=false&addBefore=&itemId=5509813&path=push&reviewAssessment=false&topicId=&addTool=-1&recheck=&id=&forumId=). Navigate to _Course Materials_ -> _Schedule with links to in-class recordings_. 
+
+
+
+
+

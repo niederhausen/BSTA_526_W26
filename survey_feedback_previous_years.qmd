@@ -2594,17 +2594,17 @@ For the different join types, here are some visuals I find helpful.
 
 When we use `bind_rows()` we stack cases on top of each other like so:
 
-<img src="/img/bind_rows_add.png" alt=""  width="70%" height="40%"/>
+![](/images/survey_feedback/bind_rows_add.png){fig-align="center" width=25%}
 
 
 For joins, we put columns next to each other based on matching keys. The "intersection" of keys is shown in these diagrams for each type of join, with the blue denoting which keys/rows we keep from which table:
 
-<img src="/img/dplyr_join_venn.png" alt=""  width="70%" height="70%"/>
+![](/images/survey_feedback/dplyr_join_venn.png){fig-align="center" width=40%}
+
 
 A more data oriented visual is shown below. The lines denote the keys that match:
 
-<img src="/img/joins_colors.png" alt=""  />
-
+![](/images/survey_feedback/joins_colors.png){fig-align="center" width=50%}
 
 
 This is from the part5 Rmd:
