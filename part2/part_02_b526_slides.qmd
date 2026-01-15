@@ -1134,6 +1134,7 @@ You may want to review previous years' feedback [here](https://niederhausen.gith
 # Acknowledgements
 
 -   Part 2 is based on the BSTA 504 Winter 2023 course, taught by Jessica Minnier. 
-    -   I made modifications to update the material from RMarkdown to Quarto, and streamlined content for slides
+    -   I made modifications to update the material from RMarkdown to Quarto, and streamlined content for slides.
+    -   Also redid the Importing data section to account for the project file being in the main folder instead of the part2 folder. Introduced `here::here()` here.
 -   Minnier's Acknowledgements:
     -   This part was adapted from materials from [Ted Laderas' 2021 materials](https://sph-r-programming.netlify.app/), the OCTRI BERD workshops [Intro to R](https://jminnier-berd-r-courses.netlify.app/01-intro-r-eda/01_intro_r_eda_part1.html), [Data wrangling with the tidyverse part 1](http://bit.ly/berd_tidy1) and [part 2](http://bit.ly/berd_tidy2) and [Data Visualization with ggplot2](https://jminnier-berd-r-courses.netlify.app/04-ggplot/04_ggplot_slides.html) that I taught with Meike Niederhausen.
