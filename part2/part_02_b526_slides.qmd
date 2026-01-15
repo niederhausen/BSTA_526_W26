@@ -1,0 +1,1139 @@
+---
+title: "2: Projects, data frames, reading in data, visualizing data with ggplot2"
+pagetitle: "2: Projects, data frames, reading in data, visualizing data with ggplot2"
+subtitle: "BSTA 526: R Programming for Health Data Science"
+author: "Meike Niederhausen, PhD & Jessica Minnier, PhD"
+institute: "OHSU-PSU School of Public Health"
+date: "1/15/2026"
+date-modified: "today"
+format: 
+  # html:
+  #   link-external-newwindow: true
+  #   toc: true
+  #   toc_float:
+  #     collapsed: false
+  #   number-sections: true
+  #   number-depth: 4
+  #   theme: minty
+  #   self-contained: true
+  #   html-math-method: mathjax
+  revealjs:
+      incremental: false
+      scrollable: true
+      chalkboard: true
+      theme: [../sky_modified_smaller_font_B526_W26.scss]
+      width:  1100 #1200 # 1050 #default 1050; ipad 3:4, 1600
+      # height: 825 #900 #800 #default 700; 788 for 3:4, 1200
+      slide-number: true
+      number-sections: true
+      number-depth: 4
+      link-external-newwindow: true
+      html-math-method: mathjax
+execute:
+  echo: true
+  eval: true
+  include: true
+  message: false
+  warning: false
+  fig.path: "figs/"
+  fig.align: "center"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The first chunk is special 
+# because if you try to run a chunk below without running anything else first, 
+# R will automatically run this first
+
+# Here I am loading libraries/packages and installing packages you don't have yet. 
+# This may take a long time if you do not have tidyverse installed. 
+# Add the argument `update=TRUE` if you want to update your packages.
+pacman::p_load(
+  here,         # loading files
+  vembedr,      # youtube embedder
+  skimr,        # get overview of data
+  rstatix,      # summary stats; WARNING sometimes this package causes problems!
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import excel data
+  gt,           # nicer table output
+  visdat,       # visualize data
+  gtsummary,     # summary statistics and tests
+  janitor,       # for data cleaning, making tables
+  palmerpenguins # penguins data set for the homework
+  )
+
+```
+
+# Welcome to R Programming: Part 2!
+
+In this session, we'll continue our introduction to R by working with a large dataset that more closely resembles that which you may encounter while analyzing data for research.
+
+## Before you get started
+
+Remember to save this notebook under a new name, such as `part_02_b526_YOURNAME.qmd`.
+
+## Learning Objectives
+
+By the end of this session, you should be able to:
+
+1.  **Import** spreadsheet-style data into R as a `data.frame` with `here::here()`
+2.  **Understand** properties of `data.frames`, especially variables.
+3.  **Summarize** data with `summary()`, `skim::skimr`, `rstatix::`get_summary_stats()`, `visdat`, and `gtsummary::tbl_summary()` to gain an overview of your data
+4.  **Visualize** numeric data using `ggplot2`
+
+## A note about Base R versus the Tidyverse
+
+We'll primarily be focusing on using functions from the [tidyverse](https://www.tidyverse.org/) package (aka library).
+
+-   The Tidyverse is essentially a package of packages 
+    -   each of these packages contains functions 
+    -   that are either essential for or *greatly* simplify the process 
+    -   of data manipulation and visualization for data scientists.
+
+-   `Base R` refers to the core R language and the set of functions that come with R out of the box, before loading any additional packages.
+
+## Packages (libraries) for today
+
+-   Packages are sometimes also referred to as libraries
+-   You only need to load packages once during an R session
+-   It's best practice to put these *at the top of your script/qmd* all together so we know what we have loaded. 
+-   Check the first code chunk in the .qmd file labeled `setup` for what packages are loaded above.
+
+### `pacman::p_load()`
+
+The `p_load()` function from `pacman` package 
+
+-   Packages in this .qmd file are loaded above with the `pacman::p_load()` function instead of using the `library()` function
+-   `p_load()` loads your packages AND installs them if they aren't already installed. 
+-   This is useful in many cases, but just be aware of what it's doing 
+    -   You can use the `update = TRUE` argument to also update packages, 
+    -   but this sometimes breaks your previous code...
+    -   especially if older packages are dependencies of the packages you are installing
+
+
+# Importing data into R
+
+Goal: load the Excel file `tcga_clinical_data.xlsx`
+
+But first... where are our files???
+
+## File management in general
+
+**Where on your computer are you saving your files??**
+
+-   Best practices:
+    -   Have a folder for each class (or data analysis project) saved on your computer
+        -   Such as your (My)Documents folder
+    -   Strongly recommended: 
+        -   Sync a cloud platform to your computer's hard drive so that your files are backed up
+            -   GoogleDrive, OneDrive, Dropbox, etc. 
+
+<br>
+
+-   **Do NOT save your files in your Downloads folder or your Desktop**
+
+## Locations of specific files
+
+Before importing data into R, you need to know:
+
+-   Where is the data file located?
+-   Where is the qmd file located?
+-   Where is the R project file (`.Rproj` file) located?
+
+![](image/rstudio_proj_part2.png){fig-align="center"}
+
+## R project file (`.Rproj` file) location
+
+-   The location of the file R Project file is the `root` directory of the project.
+-   Its location is the starting point that determines the file directory path for loading data.
+-   The locations of all other files are *relative* to the root directory.
+
+::: callout-tip
+-   The terms *folders* and *directories* are used interchangeably.
+-   Project files always have the same name as the root folder.
+:::
+
+::: {.callout-note}
+## Example
+
+-   In our case the root folder is `BSTA_526_W26_class_materials_public`
+    -   It contains the `.Rproj` file called `BSTA_526_W26_class_materials_public.Rproj`
+:::
+
+## `getwd()`
+
+You can use `getwd()` (get working directory) to see your root folder location:
+
+```{r}
+getwd()
+```
+
+::: {.callout-important}
+1. Run `getwd()` within RStudio.
+2. Render the qmd file and check what you get with `getwd()` on your rendered html file.
+
+**Did you get the same working directories???**
+:::
+
+::: callout-warning
+*If you are looking at the html file posted on the class webpage, you will see that the root folder is BSTA_526_W26 and not the shared OneDrive folder.*
+:::
+
+## `dir()`
+
+-   `dir()` lists the files in a directory (aka folder)
+-   Without specifying a location, we get the files in our working directory
+
+```{r}
+dir()
+```
+
+::: {.callout-important}
+1. Run `dir()` within RStudio.
+2. Render the qmd file and check what you get with `dir()` on your rendered html file.
+
+**Do you see the same files???**
+:::
+
+
+::: callout-warning
+*If you are looking at the html file posted on the class webpage, the working directory is the Quarto  project used to create the class webpage, and `dir()` lists all the files in the main folder for the webpage.*
+:::
+
+
+## Qmd file location (& relative file paths)
+
+::: {.panel-tabset}
+### Qmd file location
+
+-   Where is the location of this qmd file? 
+    -   (or, if you are looking at the html file, where is the qmd file that created the html file?)
+-   More specifically, where is the qmd file located **relative to** the R project file?
+    -   This location is called a **relative** *file path*. 
+
+::: {.callout-note}
+## Example
+
+-   In our case the qmd `part_02_b526.qmd` is in the folder `part2`,
+    -   which is contained in the root folder `BSTA_526_W26_class_materials_public`
+-   The **relative** *file path* of the qmd file is `part2/part_02_b526.qmd`
+:::
+
+
+-   Using R projects lets us use the shorthand relative file paths. 
+-   Without an R project, we would need an *absolute* file path, such as:
+
+`Username/Dropbox/School/BSTA526/BSTA_526_W26_class_materials_public/part2/part_02_b526.qmd`
+
+### Folder setup reminder
+
+![](image/rstudio_proj_part2.png){fig-align="center" width="80%"}
+
+:::
+
+
+## Data file location
+
+Goal: load the Excel file `tcga_clinical_data.xlsx`
+
+-   It's a best practice to keep your data in a separate folder, usually called `data`
+-   Look inside the `data/` folder within the `part2` folder, and you will find the file  `tcga_clinical_data.xlsx`.
+
+What is the relative file path of the Excel file?
+
+`part2/data/tcga_clinical_data.xlsx`
+
+![](image/rstudio_proj_part2.png){fig-align="center" width="50%"}
+
+
+## Load the Excel file
+
+Goal: load the Excel file `tcga_clinical_data.xlsx` *using its relative file path*
+
+-   We will use the `read_excel()` function from the `readxl` package
+
+::: {.callout-important}
+1. Run the code chunk below within RStudio. Did it work? (i.e. did the dataset load or did you get an error?) 
+2. Comment out (or delete) the code chunk option `#| eval: false` and Render the qmd file. Did it work?
+
+:::
+
+
+```{r}
+#| echo: fenced
+#| eval: false
+
+brca_clinical2 <- read_excel("data/tcga_clinical_data.xlsx",
+                            sheet = 1, 
+                            skip = 1,
+                            na = "NA"
+                            )
+names(brca_clinical2)
+
+```
+
+*What's going on???* 🤯
+
+::: callout-tip
+-   Note that the code chunk also includes the option `#| echo: fenced` (only visible in the qmd file).
+-   What does this option do?
+:::
+
+
+## `here::here()` to the rescue!
+
+In the various examples we've been noticing discrepancies in what is considered the working directory, depending on if we are running code directly within RStudio or rendering the qmd file.
+
+-   Within RStudio:
+    -   The working directory is the project folder (root)
+-   When rendering a qmd file:
+    -   The working directory is the folder where the qmd file lives
+
+To make our workflow easier, we use there `here()` function from the `here` package (hence `here::here()`).
+
+-   When loading data with `here()`, the R project folder location is ALWAYS the root location, 
+-   Run `here()` below to check what your root location is (make sure it's what you want it to be)
+
+```{r}
+here()
+```
+
+::: callout-warning
+*When working with a Quarto webpage project, the working directory is always the project folder (root) no matter in which folder the qmd file is. When rendering a single qmd file, RStudio is actually rendering the whole website and not just the one file.*
+:::
+
+
+## Load the data with `here::here()`
+
+-   Specify the relative path 
+    -   with folders listed within `" "`, 
+    -   nested folders are separated with commas instead of using `/`, and
+    -   the last item listed within `" "` is the dataset name.
+
+```{r}
+brca_clinical <- read_excel(here("part2", "data", "tcga_clinical_data.xlsx"),
+                            sheet = 1, 
+                            skip = 1,
+                            na = "NA"
+                            )
+```
+
+The code above will run regardless of whether you are running it within RStudio or rendering the qmd file. 😁
+
+![](image/rstudio_proj_part2.png){fig-align="center"}
+
+
+## R projects & `here::here()`
+
+-   Recommended readings:
+    -   [Ode to the here package](https://github.com/jennybc/here_here) from Jenny Bryan
+    -   [Project-oriented workflow](https://tidyverse.org/blog/2017/12/workflow-vs-script/) from Jenny Bryan
+        -   Includes a discussion on why not to use `setwd()` (and why to use projects instead)
+
+![](image/setwd_fire.png){fig-align="center"}
+
+-   `here::here()` can only direct to files that are within your R project folder.
+    -   If you need to access a file (such as a data file) that is not within your R project folder, you can still use relative file paths
+    -   However... you should be avoiding this... your project folder should have everything you need contained inside of it.
+    
+
+## How do I know the data successfully loaded?
+
+-   You should see `brca_clinical` appear in the Environment window panel in RStudio. 
+-   If you click on the spreadsheet icon to the right of `brca_clinical`, a new tab will appear next to your qmd script containing the dataset.
+
+> Clicking on this spreadsheet icon in the Environment window is a shortcut for running `View(brca_clinical)`; you'll see this code appear in the Console after clicking.
+
+```{r}
+#| echo: fenced
+#| eval: false
+
+# View does not work when rendering the qmd file, which is why I added eval: false
+
+View(brca_clinical)
+```
+
+## Notes on the Data
+
+-   These data are clinical cancer data from the [National Cancer Institute's Genomic Data Commons](https://gdc.cancer.gov), specifically from The Cancer Genome Atlas, or [TCGA](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga).
+
+-   Each row represents a patient
+-   Each column represents patient information, such as demographics (race, age at diagnosis, etc) and disease (e.g., cancer type).
+
+<br>
+
+-   The data were downloaded and aggregated using an R script, which you can view in the [GitHub repository for the fredhutch.io course](https://github.com/fredhutchio/R_intro/blob/master/0dataset.R).
+
+
+
+## Challenge 1 (10 minutes)
+
+Hints: For the questions below,
+
+-   Look at the documentation for `read_excel()` (from the `readxl` package), which is installed as part of the `tidyverse`.
+-   Open the Excel file itself on your computer to see what it looks like
+
+```{r}
+brca_clinical <- read_excel(here("part2", "data", "tcga_clinical_data.xlsx"),
+                            sheet = 1, 
+                            skip = 1,
+                            na = "NA"
+                            )
+```
+
+1.    What `read_excel()` options were used when loading the data and what do they do?
+2.    Which of the options did we *have* to specify and which were default values that we could've skipped?
+3.    Do we need to refer to a `sheet` (tab) within an excel file as a number, or can we refer to it as the sheet name instead? (Try doing this)
+4.    What does the `range` argument do?
+5.    How do we include other possible missing value markers (i.e. 9999)
+6.    As mentioned above, the `readxl` package is installed as part of the `tidyverse`. The setup code chunk loads the `readxl` package in addition to the `tidyverse` package though. Was that necessary, or could we have just loaded the `tidyverse` package?
+
+
+## Challenge 2 (5 minutes)
+
+Inspect, and import the following sheets (tabs) from the `tcga_clinical_data.xlsx` excel file.
+
+Confirm that you have loaded them correctly by clicking on the objects in the `Environment` pane.
+
+1.  The `CESC` sheet. Save it as `cesc_clinical`.
+2.  The `LUSC` sheet. Save it as `lusc_clinical`.
+
+```{r}
+#| eval: false
+# change eval: false to true in the code chunk options
+
+# Load cesc_clinical
+#     What should be the sheet argument?
+#     Do you need to skip a line?
+
+cesc_clinical <- read_excel(here::here("part2", "data", "tcga_clinical_data.xlsx"),
+                            sheet = ____, 
+                            skip = ___,
+                            na = "NA"
+                            )  
+
+# Load lusc_clinical:
+
+lusc_clinical <- 
+
+
+```
+
+
+## Point & click options for loading data
+
+Two options:
+
+1.  Environment -\> Import Dataset 
+2.  Clicking on data set file in Files window within RStudio
+
+::: callout-warning
+If using the interactive pop-up window to load your data, make sure to copy the code to your qmd file.  
+Otherwise the qmd file doesn't load the data and your code doesn't work!
+:::
+
+
+## More on loading data
+
+-   Importing data can be tricky and frustrating. 
+    -   However, if you can't get your data into R, you can't do anything to analyze or visualize it. 
+    -   It's worth understanding how to do it effectively to save you time and energy later.
+
+-   We will be covering loading in another format that you can export from many different software programs, the *comma separated value* format, or `csv` format in another section.
+
+-   I highly recommend reading the [introduction/vignette for the `readxl`](https://readxl.tidyverse.org/) package and looking at the [cheatsheet.](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf)
+
+
+# Tips on formating your data file before importing it into R
+
+
+## Tidy data
+
+![](image/tidydata_1.jpg) 
+[Image from Allison Horst](https://allisonhorst.com/other-r-fun)
+
+
+![](image/tidy-1.png) 
+[Image from R4DS](https://r4ds.had.co.nz/tidy-data.html)
+
+## Tidy tips
+
+![](image/tidy-1.png){fig-align="center" width="60%"} 
+[Image from R4DS](https://r4ds.had.co.nz/tidy-data.html)
+
+1.  **Tidy is Best**. Try to format your spreadsheet where the columns correspond to variables you're measuring, and a row corresponds to an observation.
+
+In our example:
+
+-   each row corresponds to a patient
+-   each column corresponds to a *variable* of clinical data
+-   each cell has one value
+
+This format is called **Tidy Data**, and it lets us do all sorts of things in R successfully.
+
+2.  **Transpose is your Friend in Excel.** If your data isn't in the tidy format, no worries! You can copy it to a new sheet and use the transpose option when you're pasting it, and then load that in.
+
+3.  **Every column needs a name.** Every one of your columns should be named at the top, and should begin with a letter. Numbers and special characters can cause errors in your data analysis pipeline.
+
+4.  **Color information is hard to get into R**. Avoid using color coding of cells if that is extra information attached to a cell. Instead, make the information the color is representing its own column.
+
+5.  **Extra Lines are OK!** Extra lines (rows) above the column header row are ok, as you've seen. It's sometimes better to have a "notes" sheet where you put extra information or, better yet, a data dictionary. (Extra lines at the end of data are more difficult to deal with, and often unexpected!)
+
+## Untidy data examples
+
+Why are these data untidy? How would you make them tidy?
+
+*You will learn how to tidy these type of data!*
+
+::: {.panel-tabset}
+### Example 1
+
+```{r}
+untidy_data <- tibble(
+  name = c("Ana","Bob","Cara"),
+  meds = c("advil 600mg 2xday","tylenol 650mg 4xday", "advil 200mg 3xday")
+)
+untidy_data
+```
+
+### Example 2
+
+```{r}
+untidy_data2 <- tibble(
+  name = c("Ana","Bob","Cara"),
+  wt_07_01_2018 = c(100, 150, 140),
+  wt_08_01_2018 = c(104, 155, 138),
+  wt_09_01_2018 = c(NA, 160, 142)
+)
+untidy_data2
+```
+
+:::
+
+
+## Required Reading: Organizing Data in Spreadsheets
+
+-   Everyone doing any data related work should read is Kara Woo and Karl Broman's paper [Organizing Data in Spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989). 
+    -   This is one of the best papers about how to organize data.
+
+-   The opening has a great sentence about spreadsheets:
+
+> Spreadsheets, for all of their mundane rectangularness, have been the subject of angst and controversy for decades.
+
+
+
+## One last bit of Tidy-related wisdom
+
+![](image/tidydata_2.jpg)
+
+[Illustration by Allison Horst](https://allisonhorst.com/other-r-fun)
+
+
+# Data inspection
+
+## `data.frame`s
+
+Now that we have data imported and available, we can start to inspect the data more closely. 
+
+-   These data have been interpreted by R to be a `data.frame`, which is a data structure (that is, a way of organizing data) that is analogous to tabular or spreadsheet style data.
+-   A `data.frame` is:
+    -   a table made of vectors (columns) of all the same length.
+
+-   In part 1 we learned that a vector needs to include all of the same type of data (e.g., `character`, `numeric`).
+-   A `data.frame`, however, can include vectors (columns) of different data types. This makes them an extremely versatile way of storing information.
+
+## Tibbles vs. data frames
+
+-   Note that in the tidyverse (which includes `readxl::read_excel`), we use a `tibble`, 
+    -   which is basically a [`data.frame` with some perks](https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html), that you don't need to worry about. 
+    -   Read the link if you are curious, but the main points from that linked vignette are:
+
+Most useful and obvious **differences**:
+
+-   When you print a tibble, it only shows the first ten rows and all the columns that fit on one screen. 
+    -   It also prints an abbreviated description of the column type, and uses font styles and color for highlighting
+-   Tibbles are quite strict about subsetting. 
+    -   Subsetting a tibble always returns another tibble. 
+    -   In contrast, subsetting a data frame sometimes returns a data frame and sometimes it returns a vector
+-   It never changes an input’s type (i.e., no more `stringsAsFactors = FALSE`!) - *although newer versions of R no longer do this*
+
+
+## Getting to know a `data.frame`
+
+-   What are its dimensions?
+    -   Output shows the number of rows, then the number of columns
+
+```{r}
+# assess size of data frame
+dim(brca_clinical)
+```
+
+-   Preview the data frame by showing the first few rows:
+
+```{r}
+# preview first few rows
+head(brca_clinical) 
+```
+
+-   Show the last few rows - this is useful if you have any "weird stuff" at the bottom of your excel sheet
+
+```{r}
+# preview last few rows
+tail(brca_clinical)
+```
+
+::: callout-caution
+What happens if you just type `brca_clinical` in the console window?
+:::
+
+
+## Column names
+
+We often need to reference the names of *variables* (also known as columns) in our `data.frame`, so it's useful to print only those to the screen:
+
+```{r}
+# view column names
+colnames(brca_clinical) 
+
+# can also use
+names(brca_clinical) 
+```
+
+
+### Row names?
+
+It's also possible to view row names using `rownames(brca_clinical)`, but our data only possess numbers for row names so it's not very informative.
+
+```{r}
+# rownames(brca_clinical)
+rownames(brca_clinical) %>% head(20)
+```
+
+
+
+## `glimpse()` what's in the data frame
+
+We can use `glimpse()` to provide a general overview of the object:
+
+```{r}
+# show overview of data.frame
+
+glimpse(brca_clinical) 
+```
+
+The output provided by `glimpse()` includes:
+
+-   dimensions
+-   column-by-column information; each prefaced with a `$`, and includes the 
+    -   column name, 
+    -   data type (num, int, Factor)
+
+
+We can also find out some under the hood information about the data frame:
+
+```{r}
+class(brca_clinical)
+```
+
+Here we see the `tbl_df` and `tbl` classes are here, as is `data.frame`. It is all of these things!
+
+## Accessing columns with the `$`
+
+The base R way to get at a column in a `data.frame` is to use the `$` operator.
+
+```{r}
+# brca_clinical$tumor_stage
+
+head(brca_clinical$tumor_stage)
+```
+
+
+::: {.callout-note}
+We won't be using this very often (in fact, part of the reason to use the `tidyverse` is that we can avoid using this), but I just want you to be aware of it because it's used in a section below, and it is useful knowledge.
+
+:::
+
+# Summarizing Data
+
+## `summary()`
+
+Use this base R function to examine basic summary statistics for each column:
+
+```{r}
+# provide summary statistics for each column
+summary(brca_clinical) 
+
+```
+
+-   For numeric data (such as `year_of_death`), this output includes common statistics like median and mean, as well as the number of rows (patients) with missing data (as `NA`).
+-   For `character` variables, we don't learn very much from the `summary()` output.
+-   For `factor`s (grouped categorical variables) you're given a count of the number of times the top six most frequent factors (categories) occur in the data frame. 
+    -   We don't have any `factor` variables just yet.
+    -   We will talk more about `factors` in the next classes.
+
+
+## `{skimr}`
+
+The `skimr` package is really useful for getting an overview of your dataset.
+
+```{r}
+#| eval: false
+# The first code chunk installed this already using pacman 
+# (if it wasn't already installed), 
+# but as a reminder, this is another option. 
+# Note eval=FALSE here, so this is not run when rendering.
+install.packages("skimr")
+```
+
+-   There main function of the `skimr` package is called `skim()`.
+-   What information does `skim()` give us?
+
+```{r}
+# skimr is already loaded, this is just to remind you one way of loading packages
+# library(skimr)
+skim(brca_clinical)
+
+```
+
+
+
+## `rstatix` package: `get_summary_stats()`
+
+-   The `rstatix` package has a useful function called `get_summary_stats()` for quick summary statistics of **numeric variables**
+
+::: {.panel-tabset}
+### Example
+
+-   The `type` options are
+    -   `type = c("full", "common", "robust", "five_number", "mean_sd", "mean_se", "mean_ci", "median_iqr", "median_mad", "quantile", "mean", "median", "min", "max")`
+
+```{r}
+# library(rstatix)
+
+brca_clinical %>% 
+  get_summary_stats(
+    age_at_diagnosis, days_to_death,
+    type = "common"
+    ) 
+```
+
+Note the output is a tibble!
+
+### Combined with `group_by()` 
+
+You can also stratify the statistics using `group_by()`
+
+```{r}
+brca_clinical %>% 
+  group_by(tumor_stage) %>%
+  get_summary_stats(
+    days_to_death,
+    type = "common"
+    ) 
+```
+
+### Combined with `group_by()` \& `gt()`
+
+Add on `gt()` from the `gt` package for a nicer looking table:
+
+```{r}
+brca_clinical %>% 
+  group_by(tumor_stage) %>%
+  get_summary_stats(
+    days_to_death,
+    type = "common"
+    ) %>% 
+  gt()
+```
+
+
+:::
+
+## Challenge 3 (5 minutes)
+
+1.  Use skim on `cesc_clinical`. Try running this both in a code chunk and the console window.
+2.  What is stored in the variable `days_to_last_known_disease_status` and others with type logical?
+3.  What is the percent missing of the variable `height`, and does the distribution look symmetric or skewed?
+
+```{r}
+cesc_clinical <- read_excel(here::here("part2", "data", "tcga_clinical_data.xlsx"),
+                            sheet = "CESC",
+                            na = "NA"
+                            )  
+
+
+
+```
+
+
+## `visdat` package
+
+-   Another useful package for visualizing your data is `visdat`. 
+-   It's especially useful for understanding missing values in your data.
+
+::: {.panel-tabset}
+### `vis_dat()`
+
+```{r}
+#library(visdat)
+#To learn more about a package, you can usually add "-package" to the package name
+help("visdat-package")
+
+vis_dat(brca_clinical)
+```
+
+### `vis_miss()`
+
+```{r}
+visdat::vis_miss(brca_clinical, sort_miss = TRUE) # note, use :: here just to highlight that this is in the visdat package; not necessary!
+```
+
+:::
+
+## Exploring missing values in `naniar` [more in part 9-10]
+
+-   I recommended [Exploring missing values in `naniar`](https://allisonhorst.shinyapps.io/missingexplorer/#section-introduction) in the optional readings.
+
+-   I highly recommend the `naniar` package for creating missingness visualizations, and the link above is a great tutorial with an introduction to some really useful functions for this. It imports the `vis_miss` function and adds functionality for missingness
+
+
+
+## `gtsummary::tbl_summary()` for tables [more in part 9-10]
+
+We will learn how to use this more effectively later, but here's a quick way to see useful information, but possibly too much information (what would you output differently if you knew how?):
+
+```{r}
+brca_clinical %>%
+  select(-submitter_id) %>% # do not include this variable in the table - why???
+  gtsummary::tbl_summary() # note, use :: here just to highlight that this is in the gtsummary package; not necessary!
+```
+
+
+# Introducing `ggplot2` for data viz
+
+This is just an introduction to `ggplot2`. We will work towards more advanced plots and customization in future classes.
+
+![](image/ggplot2_exploratory.png)
+
+[Image from Allison Horst](https://allisonhorst.github.io/rice-data-viz/)
+
+
+## Working Towards a Graph
+
+We're going to work towards the following graph today:
+
+![](image/days_to_last_followup.png){fig-align="center"}
+
+## `ggplot2`: A Grammar of Graphics 
+
+-   `ggplot2` is an extremely powerful software package for visualization.
+-   The `gg` is short for Grammar of Graphics, which means that visualizations are expressed in a very specific way.
+
+Here's a visual summary of the different parts we're talking about today.
+
+![](image/khealy_ggplot1_part1.jpg){fig-align="center"}
+
+[Image from Kieran Healy](https://socviz.co/)
+
+
+## Learning to read `ggplot2` code
+
+A `ggplot2` graphic consists of a:
+
+-   `mapping` of variables in `data` to
+-   `aes()`thetic attributes of
+-   `geom_`etric objects.
+
+
+::: {.panel-tabset}
+### Code outline
+
+In code, this is translated as:
+
+```         
+#start the plot with ggplot()
+
+ggplot(data = brca_clinical) +   
+
+
+# make the mapping
+# map the x-axis to age_at_diagnosis
+
+      aes(
+          x = age_at_diagnosis, 
+          y = days_to_birth 
+          ) +
+
+# add the geometry
+  geom_point()
+```
+
+### Note the `+`
+
+-   We chain these three things together with `+` (plus sign). 
+-   I tend to read the plus as `and then`.
+
+### `aes()` (aesthetics)
+
+-   The `aes()` function maps variables to visual properties of the graph
+-   [example](https://jminnier-berd-r-courses.netlify.app/04-ggplot/04_ggplot_slides.html#55)
+-   Another example (note placement of `aes()`):
+
+![](image/ggplot_basics_from_ppt.png)
+:::
+
+## Challenge 4 (3 minutes)
+
+-   Based on the "Age versus Days to Last Followup" figure that we are working towards (shown again in 2nd tab), map the appropriate variables in `brca_clinical` to the x, and y aesthetics. 
+
+::: {.panel-tabset}
+### Update this code
+
+-   Run your plot code. 
+-   Is the figure what you expected?
+
+What's missing compared to the sample figure?
+
+```{r}
+#| eval: false
+# change eval: true in code chunk option
+
+ggplot(data = brca_clinical) +
+
+  aes(x = _____ ,
+      y = _____ ) +
+  
+  geom_point()
+
+```
+
+### Figure we are working towards
+
+![](image/days_to_last_followup.png){fig-align="center" width="70%}
+
+:::
+
+
+## Simple arithmetic
+
+Huh. `age_at_diagnosis` is in days, not years. We can fix that by dividing it by 365:
+
+```{r}
+ggplot(data = brca_clinical) +
+
+  aes(x = age_at_diagnosis / 365 ,
+      y = days_to_last_follow_up ) +
+  
+  geom_point()
+
+```
+
+## Color
+
+We can also map a `character` variable to our graph to color.
+
+Try mapping `gender` to color:
+
+```{r}
+#| eval: false
+# change eval: true after finishing this code
+
+ggplot(data = brca_clinical) +
+
+  aes(x = age_at_diagnosis / 365 ,
+      y = days_to_last_follow_up,  
+      color = _____) +
+  
+  geom_point() 
+```
+
+## Titles
+
+We can add more details to our graph. We can add a title using the `labs()` function:
+
+```{r}
+ggplot(data = brca_clinical) +
+
+  aes(x = age_at_diagnosis / 365 ,
+      y = days_to_last_follow_up,  
+      color = gender) +
+  
+  geom_point() +
+  
+  labs(title="Age versus Days to Last followup") 
+
+```
+
+## Changing the Axis Labels
+
+We can change the x-axis titles and the y-axis titles also using the `labs()` function:
+
+```{r}
+ggplot(data = brca_clinical) +
+
+  aes(x = age_at_diagnosis / 365 ,
+      y = days_to_last_follow_up,  
+      color = gender) +
+  
+  geom_point() +
+  
+  labs(title = "Age versus Days to Last followup",
+       x = "Age at Diagnosis (Years)",
+       y = "Days to Follow Up") 
+
+```
+
+## Saving the figure
+
+Now we've re-created the above plot! 
+
+-   Let's save it using `ggsave()`. 
+-   `ggsave()` saves the last created plot to a file. 
+-   We'll save it as a `jpg` file. 
+-   `ggsave()` is smart enough to know that we want to save it as a `jpg` from adding the extension `.jpg` to our filename.
+
+```{r}
+ggsave("follow-up-plot.jpg")
+```
+
+::: {.callout-important}
+Where did the figure get saved to?
+:::
+
+::: callout-tip
+Speaking of saving figures, check out what's in the `figs` folder. How did that happen?
+:::
+
+
+## `ggplot2` practice
+
+-   You can practice your `ggplot2` skills by taking the first chapter of the R-Bootcamp:
+    -   <https://r-bootcamp.netlify.app/chapter1>
+
+<br>
+
+-   If you want a whirlwind tour of more sophisticated `ggplot2` plots, 
+    -   you can watch the [OCTRI-BERD workshop on ggplot2](https://echo360.org/media/34465dc2-ae46-4508-b5a7-b0fee860682e/public) and/or 
+    -   look at the [slides](https://jminnier-berd-r-courses.netlify.app/04-ggplot/04_ggplot_slides.html).
+
+
+# Importing data from other software with `haven` (Optional)
+
+The package `haven` allows us to import data in other software formats, including SAS, Stata, or SPSS data.
+
+## `haven`
+
+::: {.panel-tabset}
+### SAS, SPSS, Stata
+
+Here is an example reading in a SAS dataset:
+
+```{r}
+library(haven)
+# mtsas <- read_sas("data/mtcars.sas7bdat")
+mtsas <- read_sas(here::here("part2", "data", "mtcars.sas7bdat"))
+head(mtsas)
+```
+
+-   If the data is in SAS export (.xpt) format, we can use the `read_xpt()` function 
+-   For SPSS, the function we need is `read_sav()`
+-   while for Stata, the function we need is `read_dta()`
+
+These all read in the data as tibbles. 
+
+### Exporting data 
+
+We can also export data into these formats using the `write_*` versions of these functions such as `write_sas()`.
+
+### Labels
+
+-   Often, the data set from these software have additional attributes, such as labels. 
+-   You can read more about dealing with these attributes in the `haven` vignettes: <https://haven.tidyverse.org/articles/semantics.html>
+
+:::
+
+
+## SPSS example with data labels
+
+Here, we have downloaded data from the CDC's National Ambulatory Medical Care Survey located and described at: <https://www.cdc.gov/nchs/ahcd/datasets_documentation_related.htm#data>
+
+-   This is a very large SPSS data set from one year (2015) of the survey. 
+-   We can read it in using `haven`
+-   Note that many of the variables have labeled attributes ("dbl+lbl" format in `glimpse`):
+
+```{r}
+namcs <- read_sav(here::here("part2", "data", "namcs2015-spss.sav"))
+
+glimpse(namcs[,1:5])
+```
+
+When we print one of the columns, we see the labels printed at the bottom:
+
+```{r}
+namcs$RACEUN[1:10]
+```
+
+We can see more detail with `str()`, including the column label better defining the value "Patient race - unimputed":
+
+```{r}
+str(namcs$RACEUN)
+```
+
+-   But note that the values of the vector are the numeric values. 
+    -   This can be cumbersome for analysis, 
+    -   and as stated in the [haven conversion vignette](https://haven.tidyverse.org/articles/semantics.html), 
+    -   the goal of `haven` is not to give you a data set and labels to use for analysis, 
+    -   but to give an intermediate data set that can be processed and wrangled into the analysis data set that you want to use. 
+    
+One such way is to convert these labeled columns to factors with the `haven` function `as_factor()`:
+
+```{r}
+namcs <- namcs %>% 
+  mutate(
+    race_fac = as_factor(RACEUN)
+    )
+head(namcs$race_fac)
+levels(namcs$race_fac)
+```
+
+-   Now, we have preserved the labels in R, 
+-   and we could further convert this vector to a character vector with `as.character()` if that works better for our analysis pipeline.
+
+
+## More information importing data with labels
+
+Importing labeled data can be challenging. This is a good post that delves more into loaded labeled data with `haven`:
+
+<https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/>
+
+
+# What you learned today:
+
+-   Using `here::here()` to load data
+-   Loading excel data and tips for formatting your data in excel (tidy data!)
+-   Understanding basic properties of `data.frame`s
+-   Different ways to summarize data
+-   The basics of the "grammar of graphics" with `ggplot2`
+
+
+
+
+# Post Class Survey
+
+Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo). 
+
+Your responses are anonymous in that I separate your names from the survey answers before compiling/reading. 
+
+You may want to review previous years' feedback [here](https://niederhausen.github.io/BSTA_526_W26/survey_feedback_previous_years).
+
+
+
+# Acknowledgements
+
+-   Part 2 is based on the BSTA 504 Winter 2023 course, taught by Jessica Minnier. 
+    -   I made modifications to update the material from RMarkdown to Quarto, and streamlined content for slides
+-   Minnier's Acknowledgements:
+    -   This part was adapted from materials from [Ted Laderas' 2021 materials](https://sph-r-programming.netlify.app/), the OCTRI BERD workshops [Intro to R](https://jminnier-berd-r-courses.netlify.app/01-intro-r-eda/01_intro_r_eda_part1.html), [Data wrangling with the tidyverse part 1](http://bit.ly/berd_tidy1) and [part 2](http://bit.ly/berd_tidy2) and [Data Visualization with ggplot2](https://jminnier-berd-r-courses.netlify.app/04-ggplot/04_ggplot_slides.html) that I taught with Meike Niederhausen.

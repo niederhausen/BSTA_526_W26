@@ -1,7 +1,7 @@
 ---
 title: "Week 2"
 pagetitle: "Week 2 BSTA 526"
-description: "Projects, data frames, reading in data, visualizing data with ggplot2"
+description: "Projects, reading in data, data frames, summarizing data, visualizing data with ggplot2"
 date: "`r library(here); source(here('schedule_class_dates.R')); w2d1`"
 date-modified: "today"
 categories: [""]
@@ -23,17 +23,19 @@ source(here::here("schedule_class_dates.R"))
 Part 2: 
 
 -   Projects
--   Data frames
--   Tidy data
 -   Reading in data
+-   Tidy data
+-   Data frames
 -   Getting to know a dataset
 -   Visualizing data with ggplot2 (intro)
 
 
 ## Announcements
 
-* Class materials for BSTA 526 will be provided in the shared OneDrive folder [BSTA_526_W26_class_materials_public](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic).
-* For today's class, make sure to download to your computer the folder called `part_02`. Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.
+-   I updated the [Grading Scale](https://niederhausen.github.io/BSTA_526_W26/syllabus.html#grading-scale) in the syllabus
+-   Class materials for BSTA 526 will be provided in the shared OneDrive folder [BSTA_526_W26_class_materials_public](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic).
+-   For today's class, make sure to download to your computer the folder called `part2`. 
+-   Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.
 
 
 
@@ -42,7 +44,7 @@ Part 2:
 
 | Part | OneDrive folder | Slides | Webpage |
 |--------------|--------------|--------------|--------------------------------|
-| 2 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart1) | [{{< iconify simple-icons:quarto >}}](../part2/part_02_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part2/part_02_b526.qmd) |
+| 2 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart2) | [{{< iconify simple-icons:quarto >}}](../part2/part_02_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part2/part_02_b526.qmd) |
 
 : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"}
 
