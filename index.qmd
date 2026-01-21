@@ -57,7 +57,7 @@ Oregon Health & Science University
 ::: g-col-3
 ### Office Hours
 
-{{< iconify fa6-solid calendar-days size=20px >}} __Mondays 3:30-4:30 pm__ (Michael)    
+{{< iconify fa6-solid calendar-days size=20px >}} __Mondays 3:00-4:00 pm__ (Michael)    
 <!-- <i class="fa-solid fa-globe"></i> -->
 {{< fa globe >}} Webex (link on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/page/44279282-bb72-45fb-af28-327f751eef44))
 

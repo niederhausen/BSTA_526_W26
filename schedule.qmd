@@ -23,10 +23,10 @@ source(here::here("schedule_class_dates.R"))
 |:---:|:--:|:---|
 | [1](weeks/week_01.qmd) | Th `r format(w1d1, "%m/%d")` | Introduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types |
 |  |  |  |  |
-| 2 | Th `r format(w2d1, "%m/%d")` | Loading Data, data.frames, and ggplot2 |
+| [2](weeks/week_02.qmd) | Th `r format(w2d1, "%m/%d")` | Loading Data, data.frames, and ggplot2 |
 |  | | HW 1 due |
 |  |  |  |  |
-| 3 | Th `r format(w3d1, "%m/%d")` | dplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets |
+|[3](weeks/week_03.qmd) | Th `r format(w3d1, "%m/%d")` | dplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets |
 |  | | HW 2 due |
 |  |  |  |  |
 | 4 | Th `r format(w4d1, "%m/%d")` | dplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales |

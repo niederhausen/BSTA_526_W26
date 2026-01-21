@@ -1,0 +1,130 @@
+---
+title: "Week 3"
+pagetitle: "Week 3 BSTA 526"
+description: "Errors, data manipulation with `dplyr`, `ggplot`: themes, colors, facets"
+date: "`r library(here); source(here('schedule_class_dates.R')); w3d1`"
+date-modified: "today"
+categories: [""]
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+source(here::here("schedule_class_dates.R"))
+```
+
+
+## Topics
+
+Part 3: 
+
+-   Getting help with errors
+-   Data manipulation with `dplyr` package
+    -   pipe (`%>%` or `|>`)
+    -   Rows: `arrange`, `filter`
+    -   Columns: `select`, tidyselect
+-   Saving data files
+-   More `ggplot`
+    -   Themes, colors 
+    -   Boxplots 
+    -   Facets
+
+
+## Announcements
+
+::: {.columns}
+                                        
+::: {.column width="70%"}
+-   TA's office hours are Mondays 3:00-4:00 pm (Michael Daily) via Webex. Webex link is on main course page of [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/page/44279282-bb72-45fb-af28-327f751eef44).   
+-   [Cascadia R Conf](https://cascadiarconf.com/) in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on. 
+:::
+                                          
+::: {.column width="30%"}
+![](../images/CascadiaR_logo_2026.png){fig-align="center" width="60%"}
+:::
+                                          
+:::
+
+## Class materials
+
+COMING SOON
+
+-   Class materials in OneDrive folder [BSTA_526_W26_class_materials_public](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic).
+-   For today's class, make sure to download to your computer the folder called `part3`. 
+-   *Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.*
+
+
+
+<!-- | Part | OneDrive folder | Slides | Webpage | -->
+<!-- |--------------|--------------|--------------|--------------------------------| -->
+<!-- | 3 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart3) | [{{< iconify simple-icons:quarto >}}](../part3/part_03_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part3/part_03_b526.qmd) | -->
+
+<!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
+
+
+## Readings
+
+
+### Required
+
+#### `ggplot2`
+
+-   R4DS book
+    -   [Chapter 1](https://r4ds.hadley.nz/data-visualize.html): Data visualization intro
+    -   [Sections 9.1-9.3](https://r4ds.hadley.nz/layers.html#introduction): Aesthetic mappings, geometric objects, facets
+    -   [Section 11.5](https://r4ds.hadley.nz/communication.html#sec-themes): ggplot themes
+
+
+#### `dplyr`
+
+-   R4DS book sections 3.1-3.3 (skip 3.3.1, which will be covered in part 4), 12.3
+-   [`dplyr` cheatsheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html) - one of the best references.
+-   [Combining functions using the pipe operator, |> which is mostly equivalent to %>%](https://ubc-dsci.github.io/introduction-to-datascience/wrangling.html#combining-functions-using-the-pipe-operator); if you're confused about `|>` or `%>%`, please read this.
+
+
+### Optional 
+
+#### `ggplot2` 
+
+If you are interested in learning more about ggplot:
+
+- [ggplot2 BERD workshop slides](https://sph-r-programming.netlify.app/ggplot_flipbookr_berd/04_ggplot_slides.html) - lots more on different `geoms` and how to customize plots
+- [Themes to improve your ggplot figures](https://rfortherestofus.com/2019/08/themes-to-improve-your-ggplot-figures/) by David Keyes is really helpful for learning how to do more styling. 
+- RStudio also publishes a [ggplot cheat sheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf) that is really handy!
+- [Customizing ggplot2 Cheatsheet](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/) is also handy, because it organizes ggplot2 commands by task.
+- Documentation for all `ggplot` features is available [here](https://ggplot2.tidyverse.org).
+-   [New `ggplot` options](https://tidyverse.org/blog/2025/09/ggplot2-4-0-0/) with the latest version 4 released in September 2025
+
+#### `janitor` package
+
+Take a look at the [`janitor` vignette](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html) to learn more about functions include in the `janitor` package
+
+Below are `janitor` functions being covered in part 3:
+
+-   [`clean_names()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#clean-dataframe-names-with-clean_names)
+-   [`remove_empty()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#remove_empty-rows-and-columns)
+-   [`tabyl()`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#tabyl---a-better-version-of-table)
+
+
+## Post-class survey
+
+* Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) to provide feedback. Thank you!
+* Previous muddiest points and clearest points with responses are collected  [here](../survey_feedback_previous_years.qmd).
+
+## Homework
+
+* See OneDrive folder for homework assignment.
+* HW 3 due on `r format(w4d1, "%m/%d")`.
+
+## Recording
+
+* __In-class__ recording links are on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&studentItemId=0&backPath=&bltiAppStores=false&errorMessage=&clearAttr=&messageId=&source=&title=&newTopLevel=false&sendingPage=232002&postedComment=false&addBefore=&itemId=5509813&path=push&reviewAssessment=false&topicId=&addTool=-1&recheck=&id=&forumId=). Navigate to _Course Materials_ -> _Schedule with links to in-class recordings_. 
+
+
+
+
+
