@@ -59,11 +59,11 @@ COMING SOON
 
 
 
-<!-- | Part | OneDrive folder | Slides | Webpage | -->
-<!-- |--------------|--------------|--------------|--------------------------------| -->
-<!-- | 3 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart3) | [{{< iconify simple-icons:quarto >}}](../part3/part_03_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part3/part_03_b526.qmd) | -->
+| Part | OneDrive folder | Slides | Webpage |
+|--------------|--------------|--------------|--------------------------------|
+| 3 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart3) | [{{< iconify simple-icons:quarto >}}](../part3/part_03_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part3/part_03_b526.qmd) |
 
-<!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
+: {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"}
 
 
 ## Readings

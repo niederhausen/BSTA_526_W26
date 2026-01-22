@@ -1,0 +1,1193 @@
+---
+title: "3: Data Visualization and Data Manipulation"
+pagetitle: "3: Data Visualization and Data Manipulation"
+subtitle: "BSTA 526: R Programming for Health Data Science"
+author: "Meike Niederhausen, PhD & Jessica Minnier, PhD"
+institute: "OHSU-PSU School of Public Health"
+date: "1/22/2026"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    theme: minty
+    self-contained: true
+    html-math-method: mathjax
+  # revealjs:
+  #     incremental: false
+  #     scrollable: true
+  #     chalkboard: true
+  #     theme: [../sky_modified_smaller_font_B526_W26.scss]
+  #     width:  1100 #1200 # 1050 #default 1050; ipad 3:4, 1600
+  #     # height: 825 #900 #800 #default 700; 788 for 3:4, 1200
+  #     slide-number: true
+  #     number-sections: true
+  #     number-depth: 4
+  #     link-external-newwindow: true
+  #     html-math-method: mathjax
+  #     auto-stretch: false  # stop autosizing figures
+execute:
+  echo: true
+  eval: true
+  include: true
+  message: false
+  warning: false
+  fig.path: "figs/"
+  fig.align: "center"
+  fig-width: 4
+  fig-height: 3
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The first chunk is special 
+# because if you try to run a chunk below without running anything else first, 
+# R will automatically run this first
+
+# Here I am loading libraries/packages and installing packages you don't have yet. 
+# This may take a long time if you do not have tidyverse installed. 
+# Add the argument `update=TRUE` if you want to update your packages.
+pacman::p_load(
+  vembedr,      # youtube embedder
+  skimr,        # get overview of data
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import excel data
+  writexl,      # export excel data
+  visdat,       # visualize data
+  ggthemes,     # lots of themes
+  gtsummary,    # summary statistics and tests
+  here,         # helps with file management
+  janitor       # for data cleaning, making tables
+  )
+
+# set ggplot theme for slides 
+# theme_set(theme_bw(base_size = 22))
+# theme_update(text = element_text(size=22))  # set global text size for ggplots
+
+```
+
+# Welcome to R Programming: Part 3!
+
+In this session, we will cover the basics of data wrangling with `dplyr`  functions and some options for customizing ggplots. 
+
+<br>
+
+Before you get started:
+
+>Remember to save this notebook under a new name, such as `part_03_b526_YOURNAME.qmd`.
+
+## Learning Objectives
+
+By the end of this session, you should be able to:
+
+
+1. **Learn** about errors and warnings and where to ask for help
+1. Become more confident with file management and uploading data
+1. Sort by a variable in a dataset using `arrange()`
+1. Select variables in a dataset using `select()`
+1. Filter a dataset using the `filter()` function
+1. Create and modify scatterplots and boxplots
+1. Split figures into multiple panels using `facet_wrap()`
+1. Customize your plots using built in `theme()`s
+
+
+
+# Getting Help on Errors
+
+## Understanding the difference between warnings and errors
+
+-   A *warning* is an indication that the data or arguments isn't quite what the function expected. 
+    -   You can usually run the code, but you should be careful about it and verify the output.
+
+<br>
+
+-   An *error* means that the code can't run at all given what you have given the function.
+    -   Errors can be difficult to understand, which is why...
+
+
+## Googling is StandaRd pRactice foR eRRors
+
+The first thing I do when I encounter an error that I don't understand is to search the internet for the error. 
+
+There are some resources that I especially check (in order):
+
+-   Search "question + rcran" (i.e "hist rcran" or "make a boxplot ggplot")
+-   Search error in quotes (i.e. "Evaluation error: invalid type (closure) for variable '***'")
+-   AI: such as [Claude](https://claude.ai/), [Perplexity](https://www.perplexity.ai/), [chatgpt](https://openai.com/index/chatgpt/),  etc.
+-   More advanced/specific searches
+    - Posit/Rstudio Community (for `tidyverse`): <https://forum.posit.co/>
+    - [Stack Overflow #r tag](https://stackoverflow.com/questions/tagged/r)
+    - Biostars (for Bioinformatics): <https://www.biostars.org/>
+    - The package's github page (especially issues)
+    - Advanced search [github](https://github.com/search/advanced?q=language:R) for your function name to see examples or search the error
+
+
+## How to find examples and information on function arguments
+
+- Read the vignettes! (or user guide if there is one)
+- Read the help documentation (sometimes not that useful)
+- Look at cheatsheets: <https://posit.co/resources/cheatsheets/>
+- Search the internet as above, or use AI.
+
+
+
+# Revisiting data loading and file management
+
+Useful resources from last time:
+
+-   `readxl` intro vignette: <https://readxl.tidyverse.org/>
+-   [Data import cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf).
+
+## Challenge 1 (10 minutes)
+
+1. Create a new .qmd file and name it `smoke_messy.qmd`. Save it in the "part3" folder.
+2. Load data from the file `data/smoke_complete.xlsx` from the second tab/sheet "smoke_messy" using the `read_excel()` function and the appropriate arguments. Remember to look at the data first! Remember to load your packages! Name the data `smoke_messy`.
+3. Use `glimpse` and `View` to view your data and observe the column names and column types, making sure numeric columns are numeric (class `dbl`).
+
+*Discussion questions*
+
+-   What tenets of the paper "[Data Organization in Spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989)" are broken here?
+-   What has been the hardest part about loading data in R for you?
+
+
+# Data Manipulation using `dplyr`
+
+-   We're going to start off our data work with some data manipulation using the tidyverse package: `dplyr`. 
+-   `dplyr` is your all-purpose toolbox for filtering, summarizing, and transforming data.
+
+## Common `dplyr` "verbs"
+
+`dplyr` uses common verbs to wrangle data
+
+
+Examples:
+
+- `arrange()` - sorts a dataset by a variable
+- `filter()` - subsets a dataset by criteria
+- `select()` - returns only a few columns from a dataset
+- `group_by()/summarize()` - summarizes a dataset, such as counting frequencies and calculating means
+- `mutate()` - transforms variables in a dataset
+
+<br> 
+
+- `%>%` - the pipe function lets us join "verbs" together in a *sequence of operations that transform a dataset*.
+
+
+## Getting set up: load the `smoke_complete` dataset
+
+```{r}
+#| label: prep
+#| message: false
+#| warning: false
+
+# load the first tab smoke_complete
+smoke_complete <- read_excel(
+  here("part3", "data", "smoke_complete.xlsx"),
+  sheet = 1, 
+  na = "NA"
+  )
+
+# Remove some columns for easier viewing - we'll talk about the select function later
+
+smoke_complete <- smoke_complete %>% 
+  select(age_at_diagnosis, 
+         tumor_stage,
+         cigarettes_per_day, 
+         gender, 
+         vital_status, 
+         disease)
+```
+
+# Introducing the pipe (`%>%` or `|>`)
+
+
+## Connect multiple operations with `%>%`
+
+-   Often we want to do multiple operations on our data and in a specific order.
+-   For example, I might want to do the following:
+    -   *Take* my dataset `smoke_complete` **and then**
+    -   *Sort* it by `cigarettes_per_day` **and then**
+    -   *filter* to have only `males` from the data.
+
+The pipe (`%>%`) function acts like the **"and then"**:
+
+
+```{r}
+# Take my dataset smoke complete **and then**
+smoke_complete %>%
+  
+# sort it by cigarettes_per day **and then**
+  arrange(cigarettes_per_day) %>%
+
+# filter it to only have males
+  filter(gender == "male")
+
+```
+
+## `%>%`: output of one step is the input of another
+
+-   You can think of a pipe as putting the output of one step as an input of another. 
+-   These two statements are equivalent:
+
+
+```{r}
+smoke_complete %>%
+  arrange(cigarettes_per_day)
+```
+
+and
+
+```{r}
+arrange(smoke_complete, cigarettes_per_day)
+```
+
+## Why pipes?
+
+-   Pipes make it easier to put together commands.
+-   Without pipes, I'd have to do the following:
+
+```{r}
+arrange(
+  filter(smoke_complete, 
+         gender == "male"),
+  cigarettes_per_day
+)
+```
+
+-   You can see that as you add more and more verbs, it gets more and more complicated. 
+-   We end up with very very nested parentheses. Or, many steps like this:
+
+```{r}
+smoke_complete_new <- filter(smoke_complete, gender=="male")
+smoke_complete_new <- arrange(smoke_complete_new, cigarettes_per_day)
+```
+
+That's what pipes are supposed to save us from.
+
+
+## One Step at a Time
+
+-   One big advantage of the pipe is that you can build your processing line by line.
+-   In practice, as I work, I will often pipe things into `View()` to confirm I did things correctly:
+
+
+```{r}
+#| eval: false
+smoke_complete %>%
+  arrange(cigarettes_per_day) %>%
+  View()
+```
+
+-   This is a good way to work. By building each step and verifying that the output is correct, we can build really long *sequence* of processing.
+-   Even better is to include checks in your code to verify that your work is correct. 
+
+**IMPORTANT POINT:** 
+
+-   The code above has not saved our work. 
+-   The data frame object has not changed, the excel file has not changed. 
+-   To save your data frame after wrangling/cleaning/arranging it, save it as the same or another object:
+
+```{r}
+# replaces previous version with new sorted version
+smoke_complete <- smoke_complete %>%
+  arrange(cigarettes_per_day)
+
+# creates a new object
+smoke_complete_sorted <- smoke_complete %>%
+  arrange(cigarettes_per_day)
+
+# look at your Environment tab
+```
+
+
+
+## The difference between `+` and `%>%`
+
+-   Remember 
+    -   that `+` is for `ggplot2` and 
+    -   that `%>%` is for `dplyr`. 
+-   To keep them distinct and avoid confusion, I recommend keeping data processing and plotting steps separate.
+-   You can chain them, but it can get confusing
+
+```{r}
+# keeping data processing and plotting steps separate
+smoke_complete_sorted <- smoke_complete %>%
+  arrange(cigarettes_per_day)
+
+ggplot(data = smoke_complete_sorted) +
+  aes(x = cigarettes_per_day) +
+  geom_histogram()
+```
+
+## Base R pipe `|>`
+
+-   R version 4.1.0 introduced the "native" pipe operator `|>` 
+    -   that comes as part of the R syntax without the need for loading additional packages (i.e. the tidyverse). 
+
+-   Learn more about this at the [Tidyverse website](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/){target="_blank"} and the [pipe section of R for Data Science](https://r4ds.hadley.nz/data-transform.html#the-pipe){target="_blank"}. 
+
+You really just need to know that
+
+> The behaviour of the native pipe is by and large the same as that of the %>% pipe provided by the magrittr package. Both operators (|> and %>%) let you “pipe” an object forward to a function or call expression, thereby allowing you to express a sequence of operations that transform an object...there’s no need to commit entirely to one pipe or the other — you can use the base pipe for the majority of cases where it’s sufficient and use the magrittr pipe when you really need its special features - From the [Tidyverse website](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/)
+
+It's fine to use either one. You will come across both of them in code that you see, so you should be aware.
+
+-   You can change your RStudio app options to use `|>` instead of `%>%` if you like:
+    -   Tools -> Global Options -> Code -> select Use native pipe operator
+
+
+
+# Row wrangling
+
+-   `arrange()`
+-   `filter()`
+-   `&`, `|`, `!`
+
+## Sorting data frames using `arrange()`
+
+-   `arrange()` is a function that lets us sort a dataset by a specified variable
+
+-   By default, it sorts in *ascending* order:
+
+```{r}
+smoke_complete %>% 
+  arrange(cigarettes_per_day)
+```
+
+-   To sort by descending order, you need to wrap the variable in the `desc()` function:
+
+```{r}
+smoke_complete %>%
+  arrange(desc(cigarettes_per_day))
+```
+
+-   You can also arrange by multiple variables. 
+
+```{r}
+smoke_complete %>%
+  arrange(desc(cigarettes_per_day),
+          tumor_stage)
+```
+
+-   Note that order of variables in `arrange()` matters!
+
+```{r}
+smoke_complete %>%
+  arrange(
+    tumor_stage,
+    desc(cigarettes_per_day)
+          )
+```
+
+## (Mini) Challenge 2
+
+Use `arrange()` to sort by `disease` and descending by  `tumor_stage`.
+
+```{r}
+# edit the code below
+smoke_complete %>%
+  arrange()
+```
+
+
+## `filter()`ing our data
+
+-   `filter()` lets us subset our data according to specific criteria.
+-   Let's filter on the `numeric` variable `cigarettes_per_day`:
+
+```{r}
+smoke_complete %>%
+  filter(cigarettes_per_day < 20)
+```
+
+-   We can also filter categorical variables. 
+    -   This requires us to know the values (levels) of the categorical variable. *More on this in a bit...*
+
+```{r}
+smoke_complete %>%
+  filter(tumor_stage == "stage iv")
+```
+
+-   We can also combine different filtering conditions:
+
+```{r}
+smoke_complete %>%
+  filter(tumor_stage == "stage iv", # note the comma
+         cigarettes_per_day < 20)
+```
+
+-   **Using a comma requires BOTH conditions to be true.** 
+    -   In other words, in logic this is equivalent to using "and". More on this next.
+
+
+
+## Filtering requires a little logic
+
+-   We can chain multiple criteria using differnt operators:
+    -   `,` (AND)
+    -   `&` (AND) 
+    -   `|` (OR) 
+-   But we need to review a little logic before we do this.
+
+
+::: {.panel-tabset}
+### AND: `&`, `,`
+
+-   If we want to restrict to patients who were 
+    -   `male` **and** `stage iv`, 
+    -   we would use an `&` to chain these criteria together:
+
+```{r}
+smoke_complete %>%
+  filter(gender == "male" & 
+           tumor_stage == "stage iv")
+
+```
+
+-   Note that we could also use the comma in this case, as above:
+
+```{r}
+smoke_complete %>%
+  filter(gender == "male",
+         tumor_stage == "stage iv")
+
+```
+
+### OR: `|`
+
+-   If we want to restrict to patients who were 
+    -   `male` **or** `stage iv`,
+    -   we would use an `|` to chain these criteria together.
+
+```{r}
+smoke_complete %>%
+  filter(gender == "male" |
+           tumor_stage == "stage iv")
+```
+
+### Which option is "bigger"?
+
+Think about it: which of the above two code blocks will return a larger number of patients?
+
+
+:::
+
+## `!=` NOT EQUAL
+
+-   We can also negate operators. 
+-   `!=` means NOT EQUAL
+
+```{r}
+smoke_complete %>%
+  filter(gender != "male")
+```
+
+-   Or, we can negate a whole statement:
+
+```{r}
+smoke_complete %>%
+  filter(!(gender == "male"))
+```
+
+-   We can get a little complex. 
+    -   What does the code below do? 
+    -   What do you think `%in%` does?
+
+```{r}
+smoke_complete %>%
+  filter(tumor_stage!="not reported",
+         disease %in% c("CESC", "LUSC"))
+```
+
+
+## More filter examples
+
+See [this BERD workshop slide](https://jminnier-berd-r-courses.netlify.app/02-data-wrangling-tidyverse/02_data_wrangling_slides_part1.html#27){target="_blank"}
+
+## How to check what values exist in a categorical variable
+
+-   We've already seen both `skim()` and `glimpse()` can give us an idea of what values exist in a categorical variable.
+-   We can use `distinct()` to grab all of the unique values for a categorical variable, 
+    -   and then use `arrange()` to sort them.
+
+```{r}
+smoke_complete %>%
+  distinct(tumor_stage) %>%
+  arrange(tumor_stage)
+```
+
+-   This can also alert us if there are categorical coding mistakes (such as misspellings) in our data.
+
+-   Another tidy way to do this is to use the `tabyl()` function from the `janitor` package:
+
+```{r}
+# library(janitor) # already loaded above, but just a heads up this function tabyl is from the janitor package
+
+smoke_complete %>%
+  tabyl(tumor_stage)
+```
+
+-   We'll learn about more `tabyl()` options later in the term.
+
+
+## (Mini) Challenge 3
+
+-   Use `filter()` to restrict to patients from  `smoke_complete` who have 
+    -   disease == "LUSC" and
+    -   who smoke less than 1 `cigarettes_per_day`. 
+-   How many rows are left?
+
+```{r}
+# edit this code
+smoke_complete %>%
+  filter()
+
+```
+
+
+
+## More about comparison and logical operators
+
+
+-   This is a useful reference for all the different operators (both logical and comparison) that you can use: <https://www.datamentor.io/r-programming/operator/>{target="_blank"}
+
+-   From R4DS (class textbook) section 12.3 on [Boolean algebra](https://r4ds.hadley.nz/logicals.html#boolean-algebra){target="_blank"}:
+
+![](image/R4DS_logical_operators_transform.png){fig-align="center" width="100%"} 
+
+
+
+# Column wrangling
+
+-   `select()`
+-   `tidyselect` helpers
+
+## Selecting columns using `select()`
+
+-   `select()` allows us to select variables from our dataset
+
+```{r}
+smoke_complete %>%
+  select(gender, tumor_stage) %>% 
+  names()
+
+```
+
+-   We can also select multiple consecutive columns with `:`
+
+```{r}
+smoke_complete %>%
+  select(gender:disease) %>% 
+  names()
+```
+
+-   To select everything *except* some variables, 
+    -   use a `-` or `!` in front of the variables. 
+
+```{r}
+smoke_complete %>%
+  select(-gender) %>% 
+  names()
+
+smoke_complete %>%
+  select(-gender, -disease) %>% 
+  names()
+
+# with !
+smoke_complete %>%
+  select(!gender) %>% 
+  names()
+
+smoke_complete %>%
+  select(!c(gender, disease)) %>% # note the c()
+  names()
+```
+
+
+## `tidyselect` helpers
+
+-   There are ways to select column names by "searching"  them. 
+-   These are called the `tidyselect` helpers. You can see examples [here](https://tidyselect.r-lib.org/reference/language.html){target="_blank"}.
+
+::: {.panel-tabset}
+### `contains()`
+
+-   For instance, it might be useful (though not really in our case, although it would be with the `brca_clinical` data from last week), to select all columns where the column name includes the word "day":
+
+```{r}
+smoke_complete %>% 
+  select(contains("day"))
+```
+
+### `starts_with()`, `ends_with()`
+
+```{r}
+smoke_complete %>% 
+  select(starts_with("v"))
+
+smoke_complete %>% 
+  select(ends_with("s"))
+```
+
+### `last_col()`
+
+Just the last column:
+
+```{r}
+smoke_complete %>% 
+  select(last_col())
+```
+
+### column numbers
+
+This is one useful shortcut (though use with caution, you need to know your column names and order):
+
+```{r}
+smoke_complete %>% select(1:3, 5)
+```
+
+
+### `any_of()`, `all_of()`
+
+-   You might also have a character vector of column names that you want to pull out. 
+-   Let's say you have one saved:
+
+```{r}
+mynames <- c("disease", "tumor_stage", "vital_status")
+
+smoke_complete %>% select(any_of(mynames))
+```
+
+-   There is a similar function `all_of` which fails if the column name is missing:
+
+```{r}
+#| eval: false
+
+smoke_complete %>% select(all_of(mynames))
+
+mynames2 <- c("id", mynames)
+smoke_complete %>% select(any_of(mynames2))
+smoke_complete %>% select(all_of(mynames2))  # error
+```
+
+:::
+
+## Rearranging the order of columns
+
+
+### With `select()` and `everything()`
+
+-   `everything()` is useful for some quick rearranging of columns
+- Below we move `tumor_stage` and `disease` to the beginning of the dataset:
+
+```{r}
+smoke_complete %>% names()
+smoke_complete %>% 
+  select(tumor_stage, disease, everything()) %>% 
+  names()
+```
+
+### With `relocate()`
+
+```{r}
+smoke_complete %>% 
+  relocate(tumor_stage, disease, everything()) %>% 
+  names()
+```
+
+### `.after` and `.before`
+
+```{r}
+smoke_complete %>% 
+  relocate(tumor_stage, .before = age_at_diagnosis) %>% 
+  names()
+
+smoke_complete %>% 
+  relocate(disease, .after = vital_status) %>% 
+  names()
+
+smoke_complete %>% 
+  relocate(disease, .after = last_col()) %>% 
+  names()
+```
+
+
+
+
+## More tidyselect examples
+
+See some more examples in [this slide](https://jminnier-berd-r-courses.netlify.app/02-data-wrangling-tidyverse/02_data_wrangling_slides_part1.html#32){target="_blank"}
+
+For more info and learning about tidyselect, run this code in your console: (just the first 2 sections on tidyselect)
+
+```{r}
+#| eval: false
+# install remotes package
+install.packages("remotes")
+# use remotes to install this package from github
+remotes::install_github("laderast/tidyowl")
+
+# load tidyowl package
+library(tidyowl)
+
+# interactive tutorial
+tidyowl::learn_tidyselect()
+```
+
+
+
+
+## The difference between `filter()` and `select()`
+
+
+-   One thing to keep in mind is that:
+    -   `filter()` works on rows (think FILTER in Excel!), and
+    -   `select()` works on columns (select your relevant variables)
+
+
+Keep that in mind!
+
+
+## Saving our results
+
+-   Let's save our processed data into the `data/` folder.
+-   We'll save it as a `csv` file, which is short for *comma separated value*. 
+    -   This is a file type that can be easily imported into Excel.
+
+```{r}
+processed_data <- smoke_complete %>%
+  select(-gender) %>%
+  filter(cigarettes_per_day < 20)
+
+write_excel_csv(
+  x = processed_data,
+  file = here("part3", "data","processed_data.csv"))
+```
+
+-   If you want to save it as an Excel file, you can use a function in the `writexl` package:
+
+```{r}
+writexl::write_xlsx(
+  x = processed_data,
+  path = here("part3", "data","processed_data.xlsx"))
+```
+
+
+
+## Challenge 4 (10+ minutes)
+
+Go back to your `smoke_messy.qmd` file.
+
+Using the messy `smoke_messy` data, write code to do these data cleaning steps:
+
+1. Use `clean_names()` from the janitor package to clean up the column names. Read the help documentation if you've never seen this.
+2. Use `remove_empty()` from the janitor package to remove empty columns and rows.
+3. Use `fill()` to fill in tumor stage values. (Read the example code in `?fill` to see how to use it, you do need to specify arguments here).
+4. Remove the "Notes" column.
+5. Save the resulting data frame as a `.csv` file using `write_excel_csv()` in the `data/` folder. Remember to use `here()`.
+
+
+## Further Reading about `dplyr`
+
+Please refer to [this week's readings](https://niederhausen.github.io/BSTA_526_W26/weeks/week_03.html#readings){target="_blank"} for more reading about `dplyr`.
+
+
+
+
+# Customizing `ggplot`s
+
+
+## Customizing a Scatterplot
+
+Now that we have the data formatted nicely, we can start creating and customizing a figure.
+
+::: {.columns}
+                                        
+::: {.column width="50%"}
+```{r cig_age_scatter}
+our_plot <- ggplot(
+  smoke_complete,
+  aes(x = age_at_diagnosis, 
+      y = cigarettes_per_day, 
+      color = disease)) +
+  geom_point() +
+  labs(
+    title = "Cigarettes per Day versus Age at Diagnosis",
+    x = "Age at Diagnosis",
+    y = "Cigarettes Smoked per Day"
+    )
+
+```
+:::
+                                          
+::: {.column width="50%"}
+```{r}
+our_plot
+```
+
+:::
+                                          
+:::
+
+
+
+## Changing visual properties using built in themes
+
+-   Adding (layering) a theme will change the settings of many visual aspects of the plot. 
+-   There are many different themes. 
+-   A nice simple one is `theme_minimal()` which comes with the `ggplot2` package:
+
+```{r}
+our_plot +   # our_plot created above
+  theme_minimal()  # layer a theme onto our_plot
+```
+
+## More themes
+
+-   A complete list of themes included with `ggplot2` is available [here](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}, 
+and 
+    -   we'll cover ways to customize our own themes later in this lesson.
+
+-   Other packages have additional themes, such ass `ggthemes`:
+
+::: {.panel-tabset}
+### `theme_clean()`
+
+```{r}
+our_plot + ggthemes::theme_clean()
+```
+
+
+### `theme_economist()`
+
+```{r}
+our_plot + ggthemes::theme_economist()
+```
+
+### `theme_excel_new()`
+
+```{r}
+our_plot + ggthemes::theme_excel_new()
+```
+:::
+
+
+
+## Using `theme()` to customize
+
+-   Adding the `theme()` function lets us customize our plot further. 
+-   Most of these settings are set within one of the built in themes, 
+    -   so if you want to overwrite what is in the theme, 
+    -   you'll need to set these settings *after* setting the theme, by adding them in order.
+
+There are a few arguments that are really helpful to modify:
+
+- `axis.title`
+- `axis.title.x`  (label for the x-axis)
+- `axis.title.y`  (label for the y-axis)
+- `legend.position` (Placing the legend, including removing it)
+
+and many more.  You can read [this (in progress) chapter](https://ggplot2-book.org/themes.html){target="_blank"} in the ggplot2 book about themes to see more examples.
+
+```{r}
+our_plot + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r}
+our_plot + 
+  theme_bw() + 
+  theme(
+    # change legend position
+    legend.position = "bottom"
+  )
+```
+
+
+
+```{r}
+our_plot + 
+  theme_bw() +
+  theme(
+    # remove legends
+    legend.position = "none",
+    # also change font of various elements
+    plot.title = element_text(face = "bold", size = 12))
+```
+
+
+
+## Saving your work
+
+
+-   After you're satisfied with a plot, it's likely you'd want to share it with other people or include in a manuscript or report.
+
+```{r}
+# save plot to file
+ggsave("awesomePlot.jpg", width = 10, height = 10, dpi = 300)
+```
+
+-   This automatically saves the last plot for which code was run in your root directory. 
+-   This command interprets the file format for export using the file suffix you specify. 
+-   The other arguments dictate the size (`width` and `height`) and resolution (`dpi`).
+
+-   You can specify a different directory!
+
+```{r}
+ggsave(here("part3", "image","awesomePlot.jpg"), width = 10, height = 10, dpi = 300)
+```
+
+
+
+## Boxplots
+
+-   Boxplots compare the distribution of a quantitative variable among categories.
+-   Remember, `vital_status` is a `character` vector, but we're not too worried about the implicit order of the categories, so we can use it as is in our boxplot.
+
+```{r}
+#| label: box
+# creating a boxplot
+
+ggplot(smoke_complete,
+       aes(x = vital_status, 
+           y = cigarettes_per_day)) +
+  geom_boxplot() 
+```
+
+-   The main differences from the scatterplots we created earlier are the `geom` type and the variables plotted.
+
+## Change colors
+
+-   We can change the color of boxplots similarly to scatterplots. 
+-   However, we map to `fill` and not `color`:
+
+*Challenge*: change `fill` to `color` and/or add a map to `color.`
+
+```{r}
+#| label: box_color
+# add color
+ggplot(smoke_complete,
+       aes(x = vital_status, 
+           y = cigarettes_per_day, 
+           fill = vital_status)) +
+  geom_boxplot() 
+```
+
+## `fill` or `color` scales
+
+-   Similar to themes, there are built in color palettes you can use to change the colors in your plot. 
+-   You can also do this manually.
+
+::: {.panel-tabset}
+### Default
+
+Here is the default fill scale:
+
+```{r}
+#| label: box_scale_fill
+# add color
+ggplot(smoke_complete,
+       aes(x = tumor_stage, 
+           y = cigarettes_per_day, 
+           fill = tumor_stage)) +
+  geom_boxplot() 
+```
+
+### `scale_fill_colorblind()`
+
+-   The functions that change the fill start with `scale_` such as this colorblind friendly scale in the ggthemes package. 
+-   However, it runs out of colors! So be careful with these.
+
+```{r}
+#| label: box_scale_fill_colorblind
+# adding color
+ggplot(smoke_complete,
+       aes(x = tumor_stage, 
+           y = cigarettes_per_day, 
+           fill = tumor_stage)) +
+  geom_boxplot() +
+  scale_fill_colorblind()
+```
+
+### viridis
+
+-   A useful also colorblind friendly palate is the viridis palette built into ggplot2. 
+-   Read more about it, and the other palettes built in [in the viridis package vignette](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html){target="_blank"}.
+
+```{r}
+#| label: box_scale_fill_viridis
+# adding color
+ggplot(smoke_complete,
+       aes(x = tumor_stage, 
+           y = cigarettes_per_day, 
+           fill = tumor_stage)) +
+  geom_boxplot() +
+  scale_fill_viridis_d()
+```
+
+-   There are several you can use here:
+
+```{r}
+#| label: box_scale_fill_viridis2
+# adding color
+ggplot(smoke_complete,
+       aes(x = tumor_stage, 
+           y = cigarettes_per_day, 
+           fill = tumor_stage)) +
+  geom_boxplot() +
+  scale_fill_viridis_d(option = "A")
+```
+
+
+### manual changes
+
+-   We can also change fills/colors manually, such as:
+
+```{r}
+#| label: box_scale_fill_manual
+# adding color
+ggplot(smoke_complete,
+       aes(x = tumor_stage, 
+           y = cigarettes_per_day, 
+           fill = gender)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("purple","lightgreen"))
+```
+
+:::
+
+
+## Faceting our boxplot
+
+-   One of the most powerful ways to change a visualization is by *faceting*. 
+-   We can make multiple plots using another categorical variable.
+-   To do this, we have to add the `facet_wrap()` command to our plot. 
+    -   We need to specify the variable to `facet_wrap` by using the `vars()` function to specify it as a variable.
+
+
+```{r}
+#| label: box_color_facet
+# adding color
+ggplot(smoke_complete,
+       aes(x = vital_status, 
+           y = cigarettes_per_day, 
+           fill = vital_status)) +
+  geom_boxplot() +
+  ylim(c(0,20)) + # just to see the boxes better
+  facet_wrap(vars(disease))
+```
+
+-   *Don't try to facet on a `numeric` variable - it won't work.*
+
+-   Don't forget to look at the help documentation (e.g., `?facet_wrap`) to learn more about additional ways to customize your plots!
+
+
+## (Mini) Challenge 5
+ 
+-   Facet the boxplot by `gender`. Don't forget `vars()`
+
+```{r}
+#| eval: false
+# update code
+# change to eval: TRUE once completed
+
+ggplot(smoke_complete,
+       aes(x = vital_status, 
+           y = cigarettes_per_day, 
+           fill = vital_status)) +
+  geom_boxplot() +
+  ylim(c(0,20)) +
+  facet_wrap()
+
+```
+
+## `facet_grid()`
+
+-   Another way to facet our plots is with `facet_grid()`, 
+    -   which lets us select both rows and columns based on categorical variables:
+
+```{r}
+ggplot(smoke_complete,
+       aes(x = vital_status, 
+           y = cigarettes_per_day, 
+           fill = vital_status)) +
+  geom_boxplot() +
+  ylim(c(0,10)) +
+  facet_grid(rows = vars(disease), 
+             cols = vars(gender))
+```
+
+
+## Challenge 6 (10 minutes)
+ 
+1. Create a boxplot of age at diagnosis (in years) stratified by tumor status. Make the y-axis tumor stage.
+2. Map fill to tumor stage.
+3. Use the minimal theme.
+4. Use facet grid to facet on disease (rows) and vital status (cols).
+5. Set arguments in `facet_grid` to have scales and space set to "free_y".
+6. Change axis labels to look nicer, and change fill scale to another scale.
+
+```{r}
+#| eval: false
+# update code
+# change to eval: true once completed
+
+ggplot(smoke_complete,
+       aes()) +
+
+```
+
+
+
+## Further ggplot learning
+
+If you are interested in learning more about ggplot:
+
+- Documentation for all `ggplot` features is available [here](https://ggplot2.tidyverse.org){target="_blank"}.
+- RStudio also publishes a [ggplot cheat sheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf){target="_blank"} that is really handy!
+    -   Note: this is for version 3 of ggplot
+- [Customizing ggplot2 Cheatsheet](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/){target="_blank"} is also handy, because it organizes ggplot2 commands by task.
+    -   Note: this is for version 2 of ggplot
+-   [New `ggplot` options](https://tidyverse.org/blog/2025/09/ggplot2-4-0-0/) with the latest version 4 released in September 2025
+
+
+
+# What you learned today
+
+-   Pipes (`%>%`) 
+-   `arrange()`
+-   `filter()`
+-   `select()`
+-   Customizing `ggplots` using `theme()` 
+-   Making boxplots 
+-   Intro to using scales in `ggplot2` (more to come)
+-   Faceting plots
+
+# Post Class Survey
+
+Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo). 
+
+Your responses are anonymous in that I separate your names from the survey answers before compiling/reading. 
+
+You may want to review previous years' feedback [here](https://niederhausen.github.io/BSTA_526_W26/survey_feedback_previous_years).
+
+
+
+# Acknowledgements
+
+
+-   Part 3 is based on the BSTA 504 Winter 2023 course, taught by Jessica Minnier. 
+    -   I made modifications to update the material from RMarkdown to Quarto, and streamlined/edited content for slides.
+    -   Added: relocate, ! for not selecting columns, ggplot v. 4 resource
+-   Minnier's Acknowledgements:
+    -   This notebook was adapted from material from Kate Hertweck and <https://fredhutch.io> and from the R-Bootcamp by Ted Laderas and Jessica Minnier, as well as the "Data Wrangling in R with the Tidyverse" and "Data Visualization with R and ggplot2" [OCTRI-BERD workshops](https://github.com/jminnier/berd_r_courses) by Jessica & Meike Niederhausen.
+
+
