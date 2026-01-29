@@ -1,0 +1,1480 @@
+---
+title: "4: `mutate()`, `case_when()`, `summarize()`, `across()`, `factor()`, more `ggplot2`"
+pagetitle: "4: `mutate()` & `summarize()`"
+subtitle: "BSTA 526: R Programming for Health Data Science"
+author: "Meike Niederhausen, PhD & Jessica Minnier, PhD"
+institute: "OHSU-PSU School of Public Health"
+date: "1/29/2026"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    theme: minty
+    embed-resources: true
+    html-math-method: mathjax
+  # revealjs:
+  #     incremental: false
+  #     scrollable: true
+  #     chalkboard: true
+  #     theme: [../sky_modified_smaller_font_B526_W26.scss]
+  #     width:  1100 #1200 # 1050 #default 1050; ipad 3:4, 1600
+  #     # height: 825 #900 #800 #default 700; 788 for 3:4, 1200
+  #     slide-number: true
+  #     number-sections: true
+  #     number-depth: 4
+  #     link-external-newwindow: true
+  #     html-math-method: mathjax
+  #     auto-stretch: false  # stop autosizing figures
+execute:
+  echo: true
+  message: false
+  warning: false
+  fig.align: "center"
+  fig-width: 5
+  fig-height: 3
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The first chunk is special 
+# because if you try to run a chunk below without running anything else first, 
+# R will automatically run this first
+
+knitr::opts_chunk$set(echo = TRUE, fig.path = "part4/output_figs/")
+
+# Here I am loading libraries/packages and installing packages you don't have yet. Add the argument `update=TRUE` if you want to update your packages.
+pacman::p_load(
+  vembedr,      # youtube embedder
+  skimr,        # get overview of data
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import excel data
+  gtsummary,    # summary statistics and tests
+  ggthemes,     # lots of themes
+  here,         # helps with file management
+  janitor,      # for data cleaning, making tables
+  palmerpenguins, # penguin data
+  ghibli,       # studio ghibli palettes
+  paletteer,    # additional ggplot2 palettes
+  gt,           # beautiful tables
+  rstatix       # summary stats for numeric vars
+  )
+
+# set ggplot theme for slides 
+# theme_set(theme_bw(base_size = 22))
+# theme_update(text = element_text(size=22))  # set global text size for ggplots
+
+# load the first tab smoke_complete
+smoke_complete <- read_excel(
+  here("part4", "data", "smoke_complete.xlsx"),
+  sheet = 1, 
+  na = "NA"
+  )
+
+```
+
+
+
+
+# Welcome to R Programming: Part 4!
+
+Today we will cover creating new variables and summarizing existing variables. 
+
+<br>
+
+Before you get started:
+
+>Remember to save this notebook under a new name, such as `part_04_b526_YOURNAME.qmd`.
+
+<br>
+
+-   Load the packages & `smoke_complete.xlsx` data in the setup code chunk
+
+## Learning Objectives
+
+-   **Learn** and apply `mutate()` to change the data type of a variable
+-   **Apply** `mutate()` to calculate a new variable based on other variables in a `data.frame`.
+-   **Apply** `case_when` in a `mutate()` statement to make a continuous variable categorical
+-   **Learn** how to `mutate()` `across()` multiple columns at once.
+-   **Learn** how to `summarize()` data with `group_by()` to summarize within categories
+-   **Learn** how to `summarize()` data with multiple columns and functions at once, also with `across()`.
+-   **Learn** about the factor variable type and how they differ from character vectors
+-   **Learn** to change scales and palettes of ggplots.
+
+
+
+# Working with columns (variables)
+
+![[Image from Allison Horst](https://allisonhorst.com/r-packages-functions)](image/dplyr_mutate.png){width="65%" fig-align="center"} 
+
+## `rename()` columns
+
+-   A simple handy operation which does exactly what it sounds like. 
+-   The main thing you need to remember is:
+
+> `rename(NEWNAME = OLDNAME)`
+
+```{r}
+names(smoke_complete)
+
+smoke_complete %>% 
+  rename(STAGE = tumor_stage) %>%
+  names()
+```
+
+
+## `mutate()` adds columns to a dataset
+
+-   `mutate()` creates new columns (variables), which are usually based on existing columns or are entirely new data
+-   It does not change the data within the existing columns 
+    -   (unless you overwrite them with `mutate()`) 
+
+<br>
+
+-   `mutate()` is similar to adding a formula in Excel to calculate the value of a new column based on previous columns. 
+-   You can do lots of things such as:
+    -   subtract one column from another
+    -   convert the units of one column to new units (such as days to years)
+    -   change the capitalization of categories in a variable
+    -   recode a continuous variable to be a categorical one
+
+
+## `mutate()` to calculate a new variable based on others
+
+-   Note that we use `=` inside mutate, not `==` or `<-`:
+    -   we are not creating a logical operation, 
+    -   nor are we assigning something to an object name.
+
+### Example 1: calculate the sum of `age_at_diagnoses` and `days_to_death` to get the `age_at_death`.
+
+
+```{r}
+smoke_complete %>% 
+    mutate(age_at_death = age_at_diagnosis + days_to_death) %>%
+  # check:  
+  select(age_at_death, age_at_diagnosis, days_to_death) %>% head(5)
+```
+
+<br>
+
+### Example 2: convert `age_at_diagnosis` from age in *days* to age in *years*.**
+
+```{r}
+smoke_complete %>% 
+    mutate(age_at_diagnosis_yr = age_at_diagnosis/365) %>%
+  # check:  
+  select(age_at_diagnosis, age_at_diagnosis_yr) %>% head(5)
+```
+
+
+
+## Multiple `mutate()` & save the new variables
+
+-   Remember, since we haven't assigned this new "mutated" data frame to an object name, our work hasn't been saved. 
+    -   Below we save the new dataset as `smoke_new`. Look for it in the environment tab.
+
+-   Notice also how we can mutate multiple variables at one time by separating the new variables with a `,`.
+
+```{r}
+smoke_new <- smoke_complete %>% 
+    mutate(
+      age_at_death = age_at_diagnosis + days_to_death,  #1st new var
+      age_at_diagnosis_yr = age_at_diagnosis/365        #2nd new var
+      )
+
+glimpse(smoke_new)
+```
+
+
+### Check
+
+-   We can check the new variable `age_at_diagnosis_yr` by plotting it with age_at_diagnosis in a scatterplot, 
+    -   seeing that they are indeed a simple linear transformation of each other:
+
+```{r}
+ggplot(smoke_new) +
+  aes(x = age_at_diagnosis, 
+      y = age_at_diagnosis_yr) +
+  geom_point()
+```
+
+## Challenge 1 (~10 mins)
+
+1.  Discuss: Suppose we wanted to convert `vital_status` to a binary 0/1 variable. What is the difference between the two variables created in the code below, and why do each of the versions work? Interpret the results from the `tabyl()` function (from the `janitor` package).
+
+2.  Create a variable called `cigarettes_total` by multiplying `cigarettes_per_day` by `-days_to_birth` below.
+
+3.  Create a binary variable `cigarettes_high` that denotes whether total number of cigarettes is greater than the mean of `cigarettes_total`.
+
+```{r}
+#| eval: false
+# change eval = true
+
+# 1. Discuss the code below:
+smoke_new <- smoke_complete %>%
+  mutate(
+    alive = (vital_status == "alive"),
+    alive2 = 1*(vital_status == "alive")
+  )
+
+smoke_new %>% glimpse()
+
+
+# What does this code tell us?
+smoke_new %>% 
+  tabyl(alive, alive2)
+
+# What does this code tell us?
+smoke_new %>% 
+  tabyl(vital_status, alive2)
+
+#-----------------------------------------------
+# 2. Calculate total number of cigarettes so far
+smoke_new <- smoke_new %>%
+  mutate(cigarettes_total = )
+
+
+#-----------------------------------------------
+# 3. Create a binary variable that denotes whether total # cigs is greater than the mean cigarettes_total
+smoke_new <- smoke_new %>%
+  mutate(cigarettes_high = )
+
+# check this makes sense
+smoke_new %>% tabyl(cigarettes_high)
+```
+
+# `factor` variables 
+
+## `factor` variables
+
+-   `factor`s are how R represents *categorical data*.
+-   For the most part, you can use `character` and `factor` variables interchangeably for categorical data.
+-   The main differences are that `factor`s
+    -   define the permissible values (categories) for a variable with the `levels` argument 
+    -   they also define the order in which these values are displayed.
+
+```{r}
+character_vector <- c("Dog", "Dog", "Cat", "Mouse")
+table(character_vector)
+```
+
+-   Use the `factor()` function to convert a character vector into a factor vector
+    -   Make sure to include the argument called `levels` to define the permissible values
+    
+    
+*Note: highly recommend this [short video on factors by Prof Kelly Bodwin](https://www.youtube.com/watch?v=bBfZFasd61c).*
+
+## `levels` of a `factor`
+
+-   The `levels` of a factor are the permissible values in a `factor`. 
+-   The order of the `levels` control the order in which the values appear in tables and on the axes in a plot.
+-   You can find out the levels of a factor variable with the function `levels()` or `table()` also gives you a clue. The `tabyl()` function in the `janitor` package also shows factors in their order.
+
+```{r}
+factor_vector <- factor(character_vector)
+
+# what are the levels of this vector?
+levels(factor_vector)
+
+# specify our own ordering of levels
+factor_vector2 <- factor(character_vector, 
+                        levels = c("Dog", "Cat", "Mouse"))
+
+levels(factor_vector2)
+
+table(factor_vector)
+table(factor_vector2)
+```
+
+**Being able to order `levels` is the main reason to use `factors`, at least in plotting and doing counts.**
+
+
+
+## Mini-challenge 1
+
+1.  Change the order of `factor_vector` to be "Mouse", "Cat", "Dog".
+2.  Verify that you did it correctly by calling `tabyl()`.
+
+```{r}
+factor_vector <- factor(character_vector, 
+                        levels = c("Dog", "Cat", "Mouse"))
+
+```
+
+
+
+## Create `factor` variables using `mutate`
+
+-   We can also use use `mutate()` to make a `character` variable a `factor`.
+
+::: {.panel-tabset}
+
+### Ex 1: Create a `factor` variable within `mutate`
+
+-   Let's convert `gender` from `character` into `factor`. 
+-   Then pipe the output into `glimpse()` so we can see the variable types.
+
+*Note `factor()` is the same as `as.factor()`*
+
+```{r}
+smoke_complete %>% 
+    #reassign the gender variable to be a factor
+    mutate(gender = factor(gender)) %>%
+    glimpse()
+```
+
+-   One thing to notice: we are doing something called ***reassignment*** here. 
+    -   We're taking the previous values of our variable (`gender`), 
+    -   doing something to it (making it a `factor`), and 
+    -   then reassigning the variable `gender` to our fixed set of values.
+
+
+### Ex 2: Order the levels as well
+
+*Change the order of the levels to first female and then male. *
+
+-   Assign the levels order using the `levels` argument in `factor()`. 
+-   Show the order of the levels by piping the output into `tabyl()`
+
+```{r}
+smoke_complete %>% 
+    #reassign the gender variable to be a factor
+    mutate(gender = factor(gender, levels = c("female", "male"))) %>%
+    tabyl(gender)
+```
+
+Notice that the `female` value is before the `male`, which is what we wanted.
+
+:::
+
+
+## `ggplot2` & `factor` variables
+
+-   Remember, `vital_status` is a `character` vector
+-   If we do not care about the order of the categories, we can use it as is when creating figures.
+
+```{r}
+# create our data, save as a new df smoke_new
+smoke_new <- smoke_complete %>%
+  mutate(
+    alive = (vital_status == "alive"),
+    alive2 = 1*(vital_status == "alive"),
+    cigarettes_total = -days_to_birth*cigarettes_per_day,
+    cigarettes_high = 1*(cigarettes_total > mean(cigarettes_total, na.rm = TRUE)),
+    gender = factor(gender, levels = c("female", "male"))
+  )
+```
+
+-   Create boxplot of `cigarettes_total` stratified by `vital_status` (character variable): 
+
+```{r}
+#| label: box
+
+ggplot(smoke_new) +
+  aes(x = vital_status, 
+      y = cigarettes_total,
+      fill = vital_status) +
+  geom_boxplot()
+```
+
+
+## Add `factor` levels before plotting
+
+::: {.panel-tabset}
+### Ex: 2 levels
+
+-   Perhaps we want to change the order of the `vital_status` values in our plot. 
+-   This is where `factor` levels are useful.
+
+```{r}
+smoke_new <- smoke_new %>% 
+  mutate(
+    vital_status = factor(vital_status, 
+                          levels = c("dead", "alive")))
+
+ggplot(smoke_new) +
+  aes(x = vital_status, 
+      y = cigarettes_total, 
+      fill = vital_status) +
+  geom_boxplot()
+```
+
+### Ex: >2 levels
+
+Let's look at a variable with more than 2 categories:
+
+```{r}
+smoke_new <- smoke_new %>% 
+  mutate(
+    disease_fac = factor(disease, 
+                         levels = c("LUSC", "BLCA", "CESC")))
+
+# original disease categories, a character vector
+ggplot(smoke_new) +
+  aes(x = disease, 
+      y = cigarettes_total, 
+      fill = disease) +
+  geom_boxplot()
+
+
+# with factor levels changed
+ggplot(smoke_new) +
+  aes(x = disease_fac, 
+      y = cigarettes_total, 
+      fill = disease_fac) +
+  geom_boxplot()
+```
+
+:::
+
+# `replace_na`
+
+-   Replace missing values: use `mutate` with `replace_na`
+
+## Replace missing values: use `mutate` with `replace_na`
+
+-   Sometimes we want to fill in missing values with a certain value. 
+-   Use the `replace_na()` function inside of `mutate()` to specify this. 
+
+<br>
+
+### Example
+
+-   For example, if the days to last follow up is missing, we want to set their days to follow up to 0. 
+    -   The first two observations in these data have missing follow up, but when we replace them we note they are now equal to 0:
+
+```{r}
+summary(smoke_new$days_to_last_follow_up)
+smoke_new %>% select(days_to_last_follow_up) %>% head()
+
+smoke_new <- smoke_new %>%
+    mutate(
+      days_to_last_follow_up2 = replace_na(days_to_last_follow_up, 0)
+      )
+
+# only select these columns for printing, work has not been saved
+smoke_new %>% 
+  select(contains("follow_up")) %>% 
+  head()
+```
+
+
+# `case_when()`
+
+Create new variables based on multiple conditions 
+
+![[Image from Allison Horst](https://allisonhorst.com/r-packages-functions)](image/dplyr_case_when.png){width="75%" fig-align="center"} 
+
+## Use `case_when()` within `mutate` to make a continuous variable categorical
+
+-   Say we want to make the `cigarettes_per_day` into a categorical variable with the values:
+    -   0-5 cigarettes/day
+    -   6+ cigarettes/day
+
+-   How would we do that? 
+    -   We saw one way to create a binary variable, 
+        -   i.e. `1*(cigarettes_per_day >= 6)`,
+    -   but here we want to use `case_when()`, 
+        -   which, as you will see, is much more flexible.
+
+<br>
+
+With `case_when()`, we need to follow this basic pattern for each of our categories:
+
+>condition ~ category name
+
+-   The *left* side of the `~` is where we define the *category* based on our column variable names.
+-   The *right* side of the `~` is where we specify the *category name* (as a character).
+
+<br>
+
+-   In the example below, 
+    -   `cigarettes_per_day < 6` is our left side, and 
+    -   `0-5` is our right side (our category name).
+-   We need to do this for each level in our category.
+
+```{r}
+
+# note this work is not saved, no assignment operator!
+smoke_new %>%
+  # case_when() is used *inside* mutate()
+  mutate(
+    cigarettes_category = case_when(        # new column name to left of =
+      # TRUE/FALSE statement to left of ~
+      cigarettes_per_day < 6 ~ "0-5",       # don't forget a comma between cases
+      cigarettes_per_day >= 6 ~ "6+"
+    )
+  ) %>%
+  mutate(cigarettes_category = factor(cigarettes_category)) %>%
+  tabyl(cigarettes_category)
+    
+```
+
+
+## Mini-challenge 2 (~5 minutes)
+
+-   Modify the code below to recode `cigarettes_category` to have 3 levels:
+    -   `0-2`
+    -   `3-5` (everything bigger than 2 and less than 6)
+    -   `6+`
+
+*Hint: you'll have to chain conditions with an `&` to get the `3-5` category.*
+
+```{r}
+#| eval: false
+smoke_new %>%
+  mutate(
+    cigarettes_category = case_when(
+      cigarettes_per_day <= 2 ~ "0-2",
+      
+      ------ ~ ------, # fill this in
+      
+      cigarettes_per_day >= 6 ~ "6+"
+    )
+  ) %>%
+  mutate(cigarettes_category = factor(cigarettes_category)) %>%
+  tabyl(cigarettes_category)
+    
+```
+
+## `case_when` with character vectors
+
+Goal: collapse the tumor stages stages into three categories: stage i, stage ii, and everything else.
+
+```{r}
+smoke_new %>% tabyl(tumor_stage)
+```
+
+::: {.panel-tabset}
+
+### Comments
+
+Some important points in this example:
+
+-   We could use many "\|" statements ("or" statements), 
+    -   or we could define multiple cases for the same category. 
+-   This works because of how `case_when` works: 
+    -   if THIS, then category. 
+    -   else if THIS, then category. 
+    -   else if THIS, then category...
+    -   and on and on
+-   The `.default` at the end is the value assigned when all other conditions return `FALSE` or `NA`, 
+    -   i.e. "else default to this". 
+    -   If left blank or not specified then a missing value will be used.
+
+
+### Version 1
+
+```{r}
+smoke_new <- smoke_new %>%
+  mutate(
+    # new column name = case_when()
+    stage_category = case_when(
+      # group these tumor stages together as "i"
+      tumor_stage == "stage i" ~ "i",
+      tumor_stage == "stage ia" ~ "i",
+      tumor_stage == "stage ib" ~ "i",
+      # group these together as "ii"
+      tumor_stage == "stage ii" ~ "ii",
+      tumor_stage == "stage iia" ~ "ii",
+      tumor_stage == "stage iib" ~ "ii",
+      # else if, then categorize as "other"
+      .default = "other"
+    )
+    )
+
+smoke_new %>% tabyl(tumor_stage, stage_category)
+```
+
+
+### Version 2
+
+Using `|`
+
+```{r}
+smoke_new <- smoke_new %>%
+  mutate(
+    # new column name = case_when()
+    stage_category = case_when(
+      # group these tumor stages together as "i"
+      tumor_stage == "stage i" | 
+        tumor_stage == "stage ia" | 
+        tumor_stage == "stage ib" ~ "i",
+      # group these together as "ii"
+      tumor_stage == "stage ii" |
+        tumor_stage == "stage iia" |
+        tumor_stage == "stage iib" ~ "ii",
+      # else if, then categorize as "other"
+      .default = "other"
+    )
+    )
+
+smoke_new %>% tabyl(tumor_stage, stage_category)
+```
+
+
+### Version 3
+
+Using `%in%`
+
+```{r}
+smoke_new <- smoke_new %>%
+  mutate(
+    # new column name = case_when()
+    stage_category = case_when(
+      # group these tumor stages together as "i"
+      tumor_stage %in% c("stage i", "stage ia", "stage ib") ~ "i",
+      # group these together as "ii"
+      tumor_stage %in% c("stage ii", "stage iia", "stage iib") ~ "ii",
+      # else if, then categorize as "other"
+      .default = "other"
+    )
+    )
+
+smoke_new %>% tabyl(tumor_stage, stage_category)
+```
+
+:::
+
+
+# `mutate()` across multiple columns with `across()`
+
+![[Image from Allison Horst](https://allisonhorst.com/r-packages-functions)](image/dplyr_across.png){width="65%" fig-align="center"} 
+
+
+## `mutate()` across multiple columns with `across()`
+
+-   Often we may want to mutate multiple variables in the same way. 
+-   One option is to follow the examples above and specify each operation individually. 
+
+<br>
+
+-   For example, suppose we want to convert the values of come character columns into "title case". 
+    -   There's a function in the `stringr` package that does this:
+
+```{r}
+myvec <- c("people", "thing")
+stringr::str_to_title(myvec)
+```
+
+-   We can apply this to multiple columns one at a time:
+
+```{r}
+smoke_complete %>%
+    mutate(tumor_stage = str_to_title(tumor_stage),
+           vital_status = str_to_title(vital_status),
+           gender = str_to_title(gender),
+           race = str_to_title(race)) %>%
+  glimpse()
+```
+
+-   Phew, that's a lot of typing! But we can use `across()` to automate this.
+
+```{r}
+smoke_complete %>%
+    mutate(
+      across(.cols = c(tumor_stage, vital_status, gender, race),
+             .fns = str_to_title)
+      ) %>%
+  glimpse()
+```
+
+## How do we use `across()`?
+
+-   The above example uses the `across()` function *inside* `mutate()` function. 
+    -   Note that `mutate()` wraps fully around `across()` so it's a nested function call on the data:
+
+>data %>% mutate(across(____))
+
+-   This is an advanced way of using `mutate()` and also `summarize()`, as we will see later today. 
+
+<br>
+
+-   `across()` has two important arguments 
+    - `.cols` selects the columns you want to operate on. 
+        -   It uses tidyselect (like `select()`), so you can pick variables by position, name, and type
+    - `.fns` is the function or *list* of functions to apply to each column. 
+        -   This can also be a purrr style formula (or list of formulas) like `~ .x/2`. 
+            -   This will take some practice. We will see this again when we go over `purrr` in later classes.
+
+<br>
+
+-   Some useful readings on this topic are:
+    - [across help page](https://dplyr.tidyverse.org/reference/across.html)
+    - [column-wise operations vignette](https://dplyr.tidyverse.org/articles/colwise.html) (from which the above was taken from)
+    - [why I love across](https://willhipson.netlify.app/post/dplyr_across/dplyr_across/) - Will Hipson, PhD
+
+## `across()` examples
+
+-   Suppose we want to convert all the days variables to years. 
+
+::: {.panel-tabset}
+### Brute force
+
+-   One column at a time looks like this:
+
+```{r}
+smoke_complete %>%
+    mutate(
+      years_to_death = days_to_death/365,
+      years_to_birth = days_to_birth/365,
+      years_to_last_follow_up = days_to_last_follow_up/365
+    ) %>% 
+  # check
+  select(contains("_to_"))
+```
+
+### `across()` take 1
+
+-   Below is the `across()` automated way, 
+    -   using our own math/operation a.k.a "function". 
+-   `across()` 
+    -   first asks which variables to use (`.cols =`)
+    -   then asks which operation(s) (`.fns =`). 
+
+-   Below we create our own function `~ .x/365`
+    -   We need the `~` when we define our own operation or function. 
+        -   This tells R, *function starts here!*
+    -   The `.x` is a placeholder for the column(s) input, 
+        -   think of it as algebra with the math operation: `column/365`. 
+
+
+```{r}
+smoke_complete %>%
+    mutate(
+        across(.cols = c(days_to_death, 
+                         days_to_birth, 
+                         days_to_last_follow_up), 
+               .fns = ~ .x/365)) %>% 
+  # check
+  select(contains("_to_"))
+```
+
+
+### take 2
+
+- In take 1, we mutated the variables "in place", 
+    -   that is, we rewrote our data with the mutated data in "years" 
+    -   but did not change the names! 
+-   This can be confusing. 
+-   There are different ways to fix this. 
+-   Right now, we will use a simple method, 
+    -   with the `rename` function, 
+    -   which renames our columns (essentially a wrapper of `mutate()`).
+
+
+```{r}
+smoke_days <- smoke_complete %>%
+    mutate(
+        across(.cols = c(days_to_death, days_to_birth, days_to_last_follow_up), 
+               .fns = ~ .x/365)) %>%
+  rename(
+    years_to_death = days_to_death,
+    years_to_birth = days_to_birth,
+    years_to_last_follow_up = days_to_last_follow_up
+  ) 
+# check
+smoke_days %>% select(contains("_to_"))
+```
+
+### take 3
+
+-   As an advanced preview, once we learn about 
+    -   `glue` to manipulate strings, and 
+    -   `stringr` package functions such as `str_replace` 
+-   we can change the names using the `.names=` argument inside `across()` with these methods:
+
+```{r}
+smoke_days <- smoke_complete %>%
+    mutate(
+        across(.cols = c(days_to_death, days_to_birth, days_to_last_follow_up), 
+               .fns = ~ .x/365,
+               .names = "{str_replace(.col, 'years','days')}")) 
+
+smoke_days %>% select(contains("_to_"))
+```
+
+### take 4
+
+-   What if we had many, many "days_to" columns? 
+    -   That still is a lot of typing... 
+-   We can actually use `across()` in a more powerful with `tidyselect`.
+
+First, remember how we can use `select()` with the `tidyselect` syntax, such as:
+
+```{r}
+smoke_complete %>% select(starts_with("days"))
+```
+
+*See more examples [here](https://dplyr.tidyverse.org/reference/select.html).*
+
+-   We can use `tidyselect` to choose our variables within `across()`, 
+    -   for instance, we could call the same variables by using `starts_with("days")`. 
+
+```{r}
+smoke_days <- smoke_complete %>%
+    mutate(
+        across(.cols = starts_with("days"), # now we are using tidyselect here
+               .fns = ~ .x/365)) %>%
+  rename(
+    years_to_death = days_to_death,
+    years_to_birth = days_to_birth,
+    years_to_last_follow_up = days_to_last_follow_up
+  ) 
+
+smoke_days %>% select(contains("_to_"))
+```
+
+:::
+
+## Using `across()` takes some getting used
+
+-   Using `across()` takes some getting used to, 
+    -   but seeing more examples will help you see how it works. 
+-   There are also more complex ways to use your own functions and naming conventions.  
+
+<br>
+
+-   Look at this vignette for many examples: [dplyr colwise vignette](https://dplyr.tidyverse.org/articles/colwise.html).
+
+
+## Using built-in function with `across()`
+
+-   We can also use built in function names (instead of `~.x/365` for example)
+
+::: {.panel-tabset}
+
+### `replace_na()`
+
+Replace all missing numeric values with 0
+
+-   Below we 
+    -   select the numeric columns using `where(is.numeric)` 
+        -   (`where()` is a tidyselect function that selects those for which the function returns `TRUE`), and 
+    -   replace missing values with 0 
+        -   (`replace =` is an argument of `replace_na()`).
+
+```{r}
+smoke_complete %>%
+  mutate(
+    # replace is an argument of replace_na
+    across(.cols = where(is.numeric), 
+           .fns = ~ replace_na(.x, replace = 0))) %>%
+  # check
+  select(where(is.numeric)) %>% 
+  summary()   # note no NAs!
+```
+
+
+### `str_to_title()`
+
+Convert all character columns to title case
+
+-   Use the `where()` function to select all columns that are a character type  
+-   `is.character()` returns 
+    -   `TRUE` if the column is a character type, and 
+    -   `FALSE` otherwise
+
+```{r}
+smoke_complete %>%
+    mutate(
+      across(.cols = where(is.character),
+             .fns = str_to_title)  # note no ~ and .x
+      ) %>%
+  # check
+  select(where(is.character)) %>% 
+  glimpse()
+```
+
+-   In the above example, I didn't need to specify any arguments for the `str_to_title()` function.
+-   Thus I was able to simplify the `.fns` part of the code with just `.fns = str_to_title`
+-   The long (`purrr`) way works as well
+    -   **If you use the `~`, you have to add the `(.x)`**
+
+```{r}
+smoke_complete %>%
+    mutate(
+      across(.cols = where(is.character),
+             .fns = ~ str_to_title(.x))  # with ~ and .x
+      ) %>%
+  # check
+  select(where(is.character)) %>% 
+  glimpse()
+```
+
+### `as.factor()`
+
+Convert all character columns to factors
+
+```{r}
+smoke_complete %>%
+    mutate(
+      across(.cols = where(is.character), 
+             .fns = as.factor)) %>%   # factor works as well
+  # check  
+  glimpse()
+```
+
+:::
+
+## Challenge 2 (~10 minutes)
+
+```{r}
+data(penguins) # from the palmerpenguins package
+glimpse(penguins)
+```
+
+1.  Convert all variables in the `palmerpenguins` data set that end with `mm` to `cm` by dividing by 10
+
+```{r}
+#| eval: false
+penguins %>%
+    mutate(
+        across(.cols = ----, 
+               .fns = ~ -----)) %>%
+    glimpse()
+```
+
+2.  Convert all factor variables to numeric:
+
+```{r}
+#| eval: false
+penguins %>%
+  mutate(
+    across(.cols = ----, 
+           .fns = ~ -----)) %>%
+  ) %>%
+  glimpse()
+```
+
+3.  Convert all factor vectors to character, then convert their values to all caps:
+
+```{r}
+#| eval: false
+penguins %>%
+  mutate(
+    
+  )
+```
+
+
+
+# `summarize()` data 
+
+The `summarize()` verb produces (surprise!) summaries of your data, and outputs a tibble with this information.
+
+![[Image source: Data Science Book](https://datasciencebook.ca/wrangling.html#aggregating-data-with-summarize-and-map)](image/summarize-1.png){width="100%" fig-align="center"} 
+
+## Basic `summarize()` example
+
+-   Find the average (mean) `days_to_last_follow_up`:
+
+```{r}
+smoke_new %>%
+  summarize(days_to_last_follow_up = mean(days_to_last_follow_up))
+```
+
+-   I forgot an important argument to my mean function!
+
+```{r}
+smoke_new %>%
+    summarize(days_to_last_follow_up = 
+                mean(days_to_last_follow_up, na.rm = TRUE)) 
+```
+
+-   Compare to the base R way:
+
+```{r}
+mean(smoke_new$days_to_last_follow_up, na.rm = TRUE)
+```
+
+## What are the kinds of things that summarize is useful for?
+
+Useful functions (from <https://dplyr.tidyverse.org/reference/summarise.html>)
+
+-   Center: `mean()`, `median()`
+-   Spread: `sd()` (standard deviation)
+-   Range: `min()`, `max()`
+-   Position: `first()`, `last()`, `nth()`
+-   Count: `n()`, `n_distinct()`
+-   Percentiles: `quantile()`
+
+By itself, `summarize()` is nice. But it's really when combined with `group_by()` that it becomes extremely powerful.
+
+## `group_by()` and `summarize()`
+
+-   These two verbs must go together. 
+    -  `group_by()` doesn't do anything by itself, output wise. 
+-   What `group_by()` does is split our dataset 
+    -   into a number of smaller datasets split out by category
+    -   (shown as different colors in figure below)
+-   Then we use `summarize` to do a summary calculation (such as counting or calculating the mean) on the smaller datasets
+
+![[Image source: Data Science Book](https://datasciencebook.ca/wrangling.html#calculating-summary-statistics-for-groups-of-rows)](image/summarize-groupby-1.png){fig-align="center" width="100%"}
+
+## Example: `group_by()` and `summarize()`
+
+-   For example, if we want to compare the mean `age_at_diagnosis` for each disease type, we'd do the following:
+
+```{r}
+smoke_new %>%
+  group_by(disease) %>%
+  summarize(average_age = mean(age_at_diagnosis, na.rm = TRUE))
+```
+
+-   When we `group_by()` a variable, it changes an attribute/property of our data, which we can see in `glimpse()`:
+
+```{r}
+smoke_new %>%
+  group_by(disease) %>%
+  glimpse()
+```
+
+## Example: calculate means and standard deviations with `group_by()` and `summarize()`
+
+-   We can have multiple summaries within one `summarize()` function.
+-   Calculate both the mean age at diagnosis and the standard deviation, for each disease type.
+
+```{r}
+smoke_new %>%
+  group_by(disease) %>%
+  summarize(mean_age = mean(age_at_diagnosis, na.rm = TRUE),
+            sd_age = sd(age_at_diagnosis, na.rm = TRUE))
+```
+
+
+##  `group_by` multiple variables and `summarize()`
+
+-   Calculate 
+    -   both the mean age at diagnosis and the standard deviation, 
+    -   for each disease type and gender
+
+-   Add `gender` as a grouping variable:
+
+```{r}
+smoke_new %>%
+  group_by(disease, gender) %>%
+  summarize(mean_age = mean(age_at_diagnosis, na.rm = TRUE),
+            sd_age = sd(age_at_diagnosis, na.rm = TRUE))
+```
+
+
+## `count()` frequencies with `group_by()`
+
+-   What if we want to know the number of people in our dataset within each `disease` and `gender` combination? 
+-   We can use the `n()` function.
+
+```{r}
+smoke_new %>%
+  group_by(disease, gender) %>%
+    summarize(count = n())
+```
+
+-   We can also use the `count()` function directly. 
+-   However, knowing `n()` is a useful summarization to add to a bunch of summarizing functions in one `summarize()` statement.
+
+```{r}
+smoke_new %>%
+    count(disease, gender)
+```
+
+-   Note: we can also create a two-way table to get these frequenices. 
+    -   However, it's sometimes handy to have the counts in a tibble to use for something else (such as creating figures).
+
+```{r}
+smoke_new %>%
+    tabyl(disease, gender)
+```
+
+
+## `summarize()` with `across()`
+
+-   In the same way that we used `across()` to `mutate()` several columns, 
+    -   we can use `across()` to summarize several columns. 
+
+-   Calculate the mean of all the numeric variables. 
+-   Remember that when we use a named function like `mean()` in `across()`, 
+    -   we have to use the `~function(.x, arguments)` syntax
+    -   like this example with `na.rm = TRUE`:
+
+```{r}
+smoke_new %>%
+  group_by(disease) %>%
+  summarize(across(.cols = where(is.numeric), 
+                   .fns = ~ mean(.x, na.rm = TRUE)  
+                   ))
+```
+
+-   Count the number of distinct values for each character vector:
+
+```{r}
+smoke_new %>%
+  group_by(disease) %>%
+  summarise(across(where(is.character), 
+                   n_distinct))   # no function arguments needed, so can use simple way
+```
+
+-   Note that ".cols =" and ".fns =" can be omitted
+
+
+## Side note about `gt::gt()`
+
+-   The `gt` package can make our tables look much nicer in html output. 
+-   We will talk about customizing the `gt()` output later in the quarter, 
+    -   but for now, the default output is pretty nice
+
+```{r}
+# before gt
+smoke_new %>%
+  group_by(disease) %>%
+  summarize(across(.cols = starts_with("day"), 
+                   .fns = ~ mean(.x, na.rm = TRUE)
+                   ))
+
+# after gt
+smoke_new %>%
+  group_by(disease) %>%
+  summarize(across(.cols = starts_with("day"), 
+                   .fns = ~ mean(.x, na.rm = TRUE)
+                   )) %>%
+  gt()               # makes the table look nice in html
+
+# note that the gt package got installed & loaded in the setup code chunk
+```
+
+
+
+## `summarize()` multiple functions at one time
+
+-   We can summarize the same function across multiple columns, 
+    -   but we can also summarize with multiple functions using `across`! 
+
+-   Note that we specify a `list` of functions. 
+    -   We will talk a lot more about `list`s in a couple weeks.
+
+```{r}
+smoke_new %>%
+  group_by(disease) %>%
+  summarize(across(c(age_at_diagnosis, days_to_death),
+                   .fns = list(
+                     min = ~ min(.x, na.rm = TRUE),
+                     mean = ~ mean(.x, na.rm = TRUE),
+                     max = ~ max(.x, na.rm = TRUE))
+                   )) %>%
+  gt()
+```
+
+-   Remember, you can always filter out missing values. 
+    -   Think about this, what population are you summarizing now?
+
+```{r}
+smoke_new %>%
+  filter(!is.na(days_to_death)) %>%
+  group_by(disease) %>%
+  summarize(across(c(age_at_diagnosis, days_to_death),
+                   .fns = list(
+                     min = ~ min(.x, na.rm = TRUE),
+                     mean = ~ mean(.x, na.rm = TRUE),
+                     max = ~ max(.x, na.rm = TRUE))
+                   )) %>%
+  gt()
+```
+
+
+
+## Challenge 3 (10 minutes)
+
+1.  Use `group_by()` with `summarize()` to calculate the minimum, maximum, and mean cigarettes_per_day by disease and vital status. Try doing this with and without `across()`.
+
+2.  Use `across()` with `summarize()` to calculate the number of distinct values of all columns that contain the word "days", within each group defined by `alive.`
+
+3.  Create a boxplot of days to death with disease on the x axis, and both the y axis and fill mapped to `cigarettes_high`. (Careful: You may need to change cigarettes_high somehow for this to work!)
+
+
+# More `ggplot2` fun (Optional, if time)
+
+## `geom`s are layers on your plot
+
+-   The really neat thing about `geom`s are that they can be layered onto your plot.
+    -   Below we're layering another geom, `geom_violin()` on `geom_boxplot()`.
+
+-   We're providing a couple of values to `geom_violin()`:
+    -   `alpha`, which controls the transparency of the geom
+    -   `width`, which controls the overall width of the violins.
+
+```{r}
+our_boxplot <- ggplot(smoke_new) +
+  aes(y = cigarettes_per_day, 
+      x = disease, 
+      fill = disease) +
+  geom_boxplot() +
+  geom_violin(alpha = 0.2, width = 0.5) +
+  ylim(0, 20)      # change the y limits here to make it easier to see
+
+our_boxplot
+```
+
+## Scales
+
+-   In part 3 we learned how to change color and fill "scales" or palettes in ggplots. 
+-   There are many other types of scales. 
+-   Think of a scale as a layer added to a ggplot.
+
+Scales are added to a ggplot for multiple reasons:
+
+-   Change color palettes of continuous or discrete values
+-   Map discrete values to particular colors (make "LUSC" = "blue")
+-   Transform numerical axes (such as change a plot to a log scale)
+-   Change the breaks (tick values) in a plot
+-   Format values in a scale (such as dollars: "\$500", "600")
+
+All scale functions begin with `scale_` and are followed by the `aesthetic` it's working on, and the `transformation` of the data.
+
+
+
+## Changing axis ticks and values using `scale_x_continuous()`
+
+One use for `scale_` functions is to modify the *breaks* (the tick values along an axis).
+
+-   Below we're including the `scale_x_continuous()` argument called `breaks`, 
+    -   which is a numeric vector that specifies the values we want each tick to be at:
+
+```{r}
+# original figure
+our_plot <- ggplot(smoke_complete) +
+  aes(x = age_at_diagnosis, 
+      y = cigarettes_per_day, 
+      color = disease) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Cigarettes per Day versus Age at Diagnosis",
+       x = "Age at Diagnosis",
+       y = "Cigarettes Smoked per Day")
+
+our_plot
+
+# modify tick values on x-axis
+our_plot <- our_plot + 
+  scale_x_continuous(breaks = c(10000, 20000, 30000))
+
+our_plot
+```
+
+## Mini-challenge 3
+
+- How would you modify the `y`-axis to have the following breaks?
+
+>c(2, 4, 6, 8, 10)
+
+Hint: it's not `scale_x_continuous`
+
+```{r}
+#| eval: false
+our_plot +
+    
+
+```
+
+## Better Labels
+
+Another use for `scale_` functions is to improve the formatting on the axis tick labels.
+
+-   Suppose our `y`-axis was dollars instead of number of cigarettes. 
+-   We can supply `label_currency()` (from the `scales` package) as an argument to our `labels` argument in scale_y_continuous:
+
+```{r}
+our_plot +
+    scale_y_continuous(labels = scales::label_currency())
+```
+
+Other useful label\_ functions for formatting labels:
+
+-   `label_date()` - Lets you control the way dates are formatted on the axis
+-   `label_scientific()` - lets you format the labels with scientific notation
+-   `label_pvalue()` - formatting specific to p-values
+-   `label_percent()` - percent formatting
+
+
+## scale_color_manual() - mapping discrete colors to categories
+
+-   Last class we used `scale_*` functions for fill and color to change color palettes.
+-   The `scale_color_manual()` function can be used to explicitly set colors by name, or using a built in palette.
+
+-   If you want to explicitly name the colors values in your data set are mapped to, you can use the `values` argument of `scale_color_manual()` 
+    -   See  [Colors in R](https://r-charts.com/colors/) for other named colors in R, 
+    -   or this [longer list of named colors](https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/)):
+
+```{r}
+our_plot +
+  scale_color_manual(
+    values = c(
+      "LUSC" = "limegreen",
+      "BLCA" = "orange",
+      "CESC" = "pink"
+    ),
+    name = "Disease Category" # optional argument, a way to name the legend
+  )
+```
+
+## Color Palettes
+
+-   If you don't want to meticulously control every color, you can use palettes from various packages. 
+-   A list of lots of palettes are listed on this github by [Emil Hvitfeldt](https://github.com/EmilHvitfeldt/r-color-palettes). 
+
+Here's one fun one: {ghibli} <https://ewenme.github.io/ghibli/>
+
+```{r}
+# library(ghibli)
+
+names(ghibli_palettes)
+
+ghibli_palettes[1:3] # first three palettes
+
+```
+
+```{r}
+ghibli_palette("PonyoMedium")
+```
+
+```{r}
+our_plot +
+    scale_color_manual(
+      values = ghibli_palette("PonyoMedium"))
+
+```
+
+-   Remember, if we want to do this with `our_boxplot`, 
+    -   the scale we want to manipulate is not `color`, but `fill`, 
+    -   so we need to use `scale_fill_manual()`
+
+```{r}
+our_boxplot +
+    scale_fill_manual(values = ghibli_palette("MononokeMedium"))
+
+```
+
+## Mini-challenge 4
+
+Pick one of the palettes from `ghibli` and use it to modify `our_plot` (hint: use `?ghibli_palette`):
+
+```{r}
+#| eval: false
+
+our_plot +
+    
+```
+
+## `scale_color_gradient()`
+
+We've talked about variables with discrete values, but what about variables with continuous values?
+
+```{r}
+ggplot(smoke_complete) +
+  aes(x = age_at_diagnosis, 
+      y = cigarettes_per_day, 
+      color = year_of_birth) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Cigarettes per Day versus Age at Diagnosis",
+       x = "Age at Diagnosis",
+       y = "Cigarettes Smoked per Day",
+       color = "Year of Birth") +
+  scale_color_gradient(low = "pink", high="blue")
+
+
+```
+
+## Color Palettes: Viridis
+
+A built in palette in `ggplot2` is based on the colorblind friendly palettes in the [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) package (we don't need the package to use these scales as newer versions of `ggplot2` import them).
+
+We have built in functions that use these:
+
+-   For discrete values:
+    -   `scale_color_viridis_d()`
+    -   `scale_fill_viridis_d()`
+-   For continuous values:
+    -   `scale_color_viridis_c()`
+    -   `scale_fill_viridis_c()`
+
+```{r}
+our_plot +
+  theme_minimal() +
+  scale_color_viridis_d()
+```
+
+-   Four options are available: "magma" (or "A"), "inferno" (or "B"), "plasma" (or "C"), "viridis" (or "D", the default option) and "cividis" (or "E").
+
+```{r}
+our_plot +
+  theme_minimal() +
+  scale_color_viridis_d(option = "A")
+```
+
+
+## More Palettes
+
+-   The [`{paletteer}`](https://emilhvitfeldt.github.io/paletteer/) package has a lot of other palettes from many packages included all in one:
+
+```{r}
+our_plot + 
+  theme_minimal() +
+  paletteer::scale_color_paletteer_d(palette = "impressionist.colors::irissen")
+
+our_plot + 
+  theme_minimal() +
+  paletteer::scale_color_paletteer_d("ggthemes::Tableau_10")
+
+# View(palettes_d_names) for all palettes
+```
+
+-   Remember we can save this (by default, the last plot created):
+
+```{r}
+ggsave("part4/output_figs/gg_myplot.jpg")
+```
+
+
+
+# Practice
+
+Try out chapters [2](https://r-bootcamp.netlify.app/chapter2){target="_blank"} and [3](https://r-bootcamp.netlify.app/chapter3){target="_blank"} in the R-Bootcamp:
+
+<br>
+
+If you are interested in learning more about `ggplot`:
+
+-   Documentation for all `ggplot` features is available [here](https://ggplot2.tidyverse.org){target="_blank"}.
+-   [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/){target="_blank"}
+-   Posit's [ggplot cheat sheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf){target="_blank"} that is really handy!
+-   [Beautiful plotting in R: A ggplot2 cheatsheet](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/){target="_blank"} is also handy, because it organizes ggplot2 commands by task.
+-   [ggplot2 extensions gallery](https://exts.ggplot2.tidyverse.org/gallery/){target="_blank"} is a visual list of add on packages for ggplot
+
+
+
+# Post Class Survey
+
+Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo). 
+
+Your responses are anonymous in that I separate your names from the survey answers before compiling/reading. 
+
+You may want to review previous years' feedback [here](https://niederhausen.github.io/BSTA_526_W26/survey_feedback_previous_years).
+
+
+
+# Acknowledgements
+
+
+-   Part 4 is based on the BSTA 504 Winter 2023 course, taught by Jessica Minnier.
+    -   I made modifications to update the material from RMarkdown to Quarto, and streamlined/edited content for slides.
+    -   Also made updates for new R functions/ specifications 
+-   Minnier's Acknowledgements:
+    -   Written by Aaron Coyner and Ted Laderas and Jessica Minnier.
+    -   Based on the Intro to R materials from fredhutch.io and the R-Bootcamp
+
+
