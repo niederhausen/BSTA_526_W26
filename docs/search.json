@@ -2783,14 +2783,14 @@
     "href": "weeks/week_04.html",
     "title": "Week 4",
     "section": "",
-    "text": "Part 4:\n\nLearn and apply mutate() to change the data type of a variable\nApply mutate() to calculate a new variable based on other variables in a data.frame\nApply case_when in a mutate() statement to make a continuous variable categorical\nLearn how to mutate() across() multiple variables at once\nLearn how to summarize() data with group_by() to summarize within categories\nLearn how to summarize() data across() multiple variables at once.\nLearn to change scales and palettes of ggplots."
+    "text": "Part 4:\n\nLearn and apply mutate() to change the data type of a variable\nApply mutate() to calculate a new variable based on other variables in a data.frame.\nApply case_when in a mutate() statement to make a continuous variable categorical\nLearn how to mutate() across() multiple columns at once.\nLearn how to summarize() data with group_by() to summarize within categories\nLearn how to summarize() data with multiple columns and functions at once, also with across().\nLearn about the factor variable type and how they differ from character vectors\nLearn to change scales and palettes of ggplots."
   },
   {
     "objectID": "weeks/week_04.html#topics",
     "href": "weeks/week_04.html#topics",
     "title": "Week 4",
     "section": "",
-    "text": "Part 4:\n\nLearn and apply mutate() to change the data type of a variable\nApply mutate() to calculate a new variable based on other variables in a data.frame\nApply case_when in a mutate() statement to make a continuous variable categorical\nLearn how to mutate() across() multiple variables at once\nLearn how to summarize() data with group_by() to summarize within categories\nLearn how to summarize() data across() multiple variables at once.\nLearn to change scales and palettes of ggplots."
+    "text": "Part 4:\n\nLearn and apply mutate() to change the data type of a variable\nApply mutate() to calculate a new variable based on other variables in a data.frame.\nApply case_when in a mutate() statement to make a continuous variable categorical\nLearn how to mutate() across() multiple columns at once.\nLearn how to summarize() data with group_by() to summarize within categories\nLearn how to summarize() data with multiple columns and functions at once, also with across().\nLearn about the factor variable type and how they differ from character vectors\nLearn to change scales and palettes of ggplots."
   },
   {
     "objectID": "weeks/week_04.html#announcements",

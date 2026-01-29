@@ -23,11 +23,12 @@ source(here::here("schedule_class_dates.R"))
 Part 4: 
 
 -   **Learn** and apply `mutate()` to change the data type of a variable
--   **Apply** `mutate()` to calculate a new variable based on other variables in a `data.frame`
+-   **Apply** `mutate()` to calculate a new variable based on other variables in a `data.frame`.
 -   **Apply** `case_when` in a `mutate()` statement to make a continuous variable categorical
--   **Learn** how to `mutate()` `across()` multiple variables at once
+-   **Learn** how to `mutate()` `across()` multiple columns at once.
 -   **Learn** how to `summarize()` data with `group_by()` to summarize within categories
--   **Learn** how to `summarize()` data `across()` multiple variables at once.
+-   **Learn** how to `summarize()` data with multiple columns and functions at once, also with `across()`.
+-   **Learn** about the factor variable type and how they differ from character vectors
 -   **Learn** to change scales and palettes of ggplots.
 
 
