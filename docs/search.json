@@ -2777,5 +2777,61 @@
     "title": "3: Data Visualization and Data Manipulation",
     "section": "8.13 Further ggplot learning",
     "text": "8.13 Further ggplot learning\nIf you are interested in learning more about ggplot:\n\nDocumentation for all ggplot features is available here.\nRStudio also publishes a ggplot cheat sheet that is really handy!\n\nNote: this is for version 3 of ggplot\n\nCustomizing ggplot2 Cheatsheet is also handy, because it organizes ggplot2 commands by task.\n\nNote: this is for version 2 of ggplot\n\nNew ggplot options with the latest version 4 released in September 2025"
+  },
+  {
+    "objectID": "weeks/week_04.html",
+    "href": "weeks/week_04.html",
+    "title": "Week 4",
+    "section": "",
+    "text": "Part 4:\n\nLearn and apply mutate() to change the data type of a variable\nApply mutate() to calculate a new variable based on other variables in a data.frame\nApply case_when in a mutate() statement to make a continuous variable categorical\nLearn how to mutate() across() multiple variables at once\nLearn how to summarize() data with group_by() to summarize within categories\nLearn how to summarize() data across() multiple variables at once.\nLearn to change scales and palettes of ggplots."
+  },
+  {
+    "objectID": "weeks/week_04.html#topics",
+    "href": "weeks/week_04.html#topics",
+    "title": "Week 4",
+    "section": "",
+    "text": "Part 4:\n\nLearn and apply mutate() to change the data type of a variable\nApply mutate() to calculate a new variable based on other variables in a data.frame\nApply case_when in a mutate() statement to make a continuous variable categorical\nLearn how to mutate() across() multiple variables at once\nLearn how to summarize() data with group_by() to summarize within categories\nLearn how to summarize() data across() multiple variables at once.\nLearn to change scales and palettes of ggplots."
+  },
+  {
+    "objectID": "weeks/week_04.html#announcements",
+    "href": "weeks/week_04.html#announcements",
+    "title": "Week 4",
+    "section": "Announcements",
+    "text": "Announcements\n\n\n\nFunctions of the Week\n\nSignup sheet for your functions of the week presentations. The file is in OneDrive in the functions_of_the_week folder.\nPresentations will be during weeks 5-10. Please no more than 4 presentations per week.\nIf there is a function you are interested in presenting that is not on the signup sheet, please check with me. If it hasn’t been covered before and isn’t covered in the class, then most likely I will approve it.\n\nTA’s office hours are Mondays 3:00-4:00 pm (Michael Daily) via Webex. Webex link is on main course page of Sakai.\n\nCascadia R Conf in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on."
+  },
+  {
+    "objectID": "weeks/week_04.html#class-materials",
+    "href": "weeks/week_04.html#class-materials",
+    "title": "Week 4",
+    "section": "Class materials",
+    "text": "Class materials\n\nClass materials in OneDrive folder BSTA_526_W26_class_materials_public.\nFor today’s class, make sure to download to your computer the folder called part4.\nOpen RStudio by double-clicking on the project file called BSTA_526_W26_class_materials_public.Rproj in the main OneDrive folder."
+  },
+  {
+    "objectID": "weeks/week_04.html#readings",
+    "href": "weeks/week_04.html#readings",
+    "title": "Week 4",
+    "section": "Readings",
+    "text": "Readings\nR4DS = R for Data Science (2e)\n\nRequired\n\nR4DS book sections:\n\nmutate(): Section 3.3.1\nrename()`: Section 3.3.3\ngroup_by() and summarize(): Section 3.5 - The 1st edition’s Section 5.6 on Grouped summaries with summarise() is more detailed (wordier) and worth looking at as well.\nMore group_by() and counts with n(): Section 3.6\ncase_when() within mutate(): Section 12.5.2\nacross() with summarize() or mutate(): Section 26.2 (26.2.1 - 26.2.4)\nfactor(): Sections 16.1 & 16.2 - Later in the quarter we will continue to work more with factors, covered in the other Chapter 16 sections.\n\n\n\n\nOptional\n\nColumn-wise operations vignette - more summarize() with across() examples\nData Science: A First Introduction\n\nsummarize() and across(): Section 3.9 (skip part on using map() in section 3.9.4)\nmutate() with across(): Section 3.10\n\nggplot2: Elegant Graphics for Data Analysis\n\nScales & guides: Chapter 14\n\nCoding style guides\n\nTidyverse style guide\n\n“Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread”\n\nAdvanced R: style guide"
+  },
+  {
+    "objectID": "weeks/week_04.html#post-class-survey",
+    "href": "weeks/week_04.html#post-class-survey",
+    "title": "Week 4",
+    "section": "Post-class survey",
+    "text": "Post-class survey\n\nPlease fill out the post-class survey to provide feedback. Thank you!\nPrevious muddiest points and clearest points with responses are collected here."
+  },
+  {
+    "objectID": "weeks/week_04.html#homework",
+    "href": "weeks/week_04.html#homework",
+    "title": "Week 4",
+    "section": "Homework",
+    "text": "Homework\n\nSee OneDrive folder for homework assignment.\nHW 4 due on 02/05."
+  },
+  {
+    "objectID": "weeks/week_04.html#recording",
+    "href": "weeks/week_04.html#recording",
+    "title": "Week 4",
+    "section": "Recording",
+    "text": "Recording\n\nIn-class recording links are on Sakai. Navigate to Course Materials -&gt; Schedule with links to in-class recordings."
   }
 ]

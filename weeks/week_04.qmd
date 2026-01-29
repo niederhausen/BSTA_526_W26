@@ -1,0 +1,121 @@
+---
+title: "Week 4"
+pagetitle: "Week 4 BSTA 526"
+description: "Errors, data manipulation with `dplyr`, `ggplot`: themes, colors, facets"
+date: "`r library(here); source(here('schedule_class_dates.R')); w4d1`"
+date-modified: "today"
+categories: [""]
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+source(here::here("schedule_class_dates.R"))
+```
+
+
+## Topics
+
+Part 4: 
+
+-   **Learn** and apply `mutate()` to change the data type of a variable
+-   **Apply** `mutate()` to calculate a new variable based on other variables in a `data.frame`
+-   **Apply** `case_when` in a `mutate()` statement to make a continuous variable categorical
+-   **Learn** how to `mutate()` `across()` multiple variables at once
+-   **Learn** how to `summarize()` data with `group_by()` to summarize within categories
+-   **Learn** how to `summarize()` data `across()` multiple variables at once.
+-   **Learn** to change scales and palettes of ggplots.
+
+
+## Announcements
+
+::: {.columns}
+                                        
+::: {.column width="70%"}
+-   **Functions of the Week**
+    -   [Signup sheet](https://ohsuitg-my.sharepoint.com/:x:/r/personal/niederha_ohsu_edu/_layouts/15/Doc.aspx?sourcedoc=%7BBAE3FF1C-3623-437E-B2DB-C057EC36BF7B%7D&file=signup_functions_of_the_week_2026.xlsx&action=default&mobileredirect=true) for your functions of the week presentations. The file is in OneDrive in the [functions_of_the_week folder](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Ffunctions%5Fof%5Fthe%5Fweek&viewid=f39696a4%2D6b6c%2D4d5a%2Db1d1%2D6b17a205bb96). 
+    -   Presentations will be during weeks 5-10. *Please no more than 4 presentations per week.* 
+    -   If there is a function you are interested in presenting that is not on the signup sheet, please check with me. If it hasn't been covered before and isn't covered in the class, then most likely I will approve it. 
+-   **TA's office hours** are Mondays 3:00-4:00 pm (Michael Daily) via Webex. Webex link is on main course page of [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/page/44279282-bb72-45fb-af28-327f751eef44).   
+-   [**Cascadia R Conf**](https://cascadiarconf.com/) in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on. 
+:::
+                                          
+::: {.column width="30%"}
+![](../images/CascadiaR_logo_2026.png){fig-align="center" width="60%"}
+:::
+                                          
+:::
+
+## Class materials
+
+
+
+-   Class materials in OneDrive folder [BSTA_526_W26_class_materials_public](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic).
+-   For today's class, make sure to download to your computer the folder called `part4`. 
+-   *Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.*
+
+
+
+<!-- | Part | OneDrive folder | Slides | Webpage | -->
+<!-- |--------------|--------------|--------------|--------------------------------| -->
+<!-- | 4 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart4) | [{{< iconify simple-icons:quarto >}}](../part4/part_04_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part4/part_04_b526.qmd) | -->
+
+<!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
+
+
+## Readings
+
+R4DS = R for Data Science (2e)
+
+### Required
+
+
+-   *R4DS* book sections:
+    -   `mutate()`: Section [3.3.1](https://r4ds.hadley.nz/data-transform#sec-mutate)
+    -   `rename`()`: Section [3.3.3](https://r4ds.hadley.nz/data-transform#rename)
+    -   `group_by()` and `summarize()`: Section [3.5](https://r4ds.hadley.nz/data-transform.html#groups) 
+            - The 1st edition's [Section 5.6 on Grouped summaries with `summarise()`](https://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarise) is more detailed (wordier) and worth looking at as well.
+    -   More  `group_by()` and counts with `n()`: Section [3.6](https://r4ds.hadley.nz/data-transform.html#sec-sample-size)
+    -   `case_when()` within `mutate()`: Section [12.5.2](https://r4ds.hadley.nz/logicals.html#case_when) 
+    -   `across()` with `summarize()` or `mutate()`: Section [26.2](https://r4ds.hadley.nz/iteration.html#sec-across) (26.2.1 - 26.2.4)
+    -   `factor()`: Sections [16.1 & 16.2](https://r4ds.hadley.nz/factors.html#introduction)         -   Later in the quarter we will continue to work more with factors, covered in the other Chapter 16 sections.
+
+
+### Optional
+
+-   [Column-wise operations vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/colwise.html) - more `summarize()` with `across()` examples
+-   *Data Science: A First Introduction*
+    -   `summarize()` and `across()`: Section [3.9](https://datasciencebook.ca/wrangling.html#aggregating-data-with-summarize-and-map)  (skip part on using map() in section 3.9.4)
+    -   `mutate()` with `across()`: Section [3.10](https://datasciencebook.ca/wrangling.html#apply-functions-across-many-columns-with-mutate-and-across)
+-   *ggplot2: Elegant Graphics for Data Analysis*
+    -   Scales & guides: Chapter [14](https://ggplot2-book.org/scales-guides.html)
+- Coding style guides
+    -   [Tidyverse style guide](https://style.tidyverse.org/index.html)
+        -   "Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread" 
+    -   [Advanced R: style guide](http://adv-r.had.co.nz/Style.html)
+
+
+
+
+## Post-class survey
+
+* Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) to provide feedback. Thank you!
+* Previous muddiest points and clearest points with responses are collected  [here](../survey_feedback_previous_years.qmd).
+
+## Homework
+
+* See OneDrive folder for homework assignment.
+* HW 4 due on `r format(w5d1, "%m/%d")`.
+
+## Recording
+
+* __In-class__ recording links are on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&studentItemId=0&backPath=&bltiAppStores=false&errorMessage=&clearAttr=&messageId=&source=&title=&newTopLevel=false&sendingPage=232002&postedComment=false&addBefore=&itemId=5509813&path=push&reviewAssessment=false&topicId=&addTool=-1&recheck=&id=&forumId=). Navigate to _Course Materials_ -> _Schedule with links to in-class recordings_. 
+
+
+
+
+

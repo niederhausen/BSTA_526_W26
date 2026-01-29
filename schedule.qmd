@@ -29,7 +29,7 @@ source(here::here("schedule_class_dates.R"))
 |[3](weeks/week_03.qmd) | Th `r format(w3d1, "%m/%d")` | dplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets |
 |  | | HW 2 due |
 |  |  |  |  |
-| 4 | Th `r format(w4d1, "%m/%d")` | dplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales |
+|[4](weeks/week_04.qmd) | Th `r format(w4d1, "%m/%d")` | dplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales |
 |  | | HW 3 due |
 |  |  |  |  |
 | 5 | Th `r format(w5d1, "%m/%d")` |  data wrangling practice: forcats, stringr, separate(); combining multiple tables (left_join() etc); reshaping data (i.e. pivot_longer()) |

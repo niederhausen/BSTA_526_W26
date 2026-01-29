@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-01-05">
+<meta name="dcterms.date" content="2026-01-29">
+<meta name="description" content="Errors, data manipulation with dplyr, ggplot: themes, colors, facets">
 
-<title>Schedule BSTA 526</title>
+<title>Week 4 BSTA 526</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,22 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -62,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -72,10 +74,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-sm navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/IMG_6759_med.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/IMG_6759_med.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BSTA 526 Winter 2026</span>
     </a>
   </div>
@@ -86,23 +88,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html" rel="" target="">
+    <a class="nav-link" href="../schedule.html" rel="" target="">
  <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./survey_feedback_previous_years.html" rel="" target="">
+    <a class="nav-link" href="../survey_feedback_previous_years.html" rel="" target="">
  <span class="menu-text">Survey</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./function_week.html" rel="" target="">
+    <a class="nav-link" href="../function_week.html" rel="" target="">
  <span class="menu-text">FotW</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -116,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./schedule.html">Schedule</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week_01.html">Weekly pages</a></li><li class="breadcrumb-item"><a href="../weeks/week_04.html">Week 4</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -138,19 +140,19 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link active">
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
@@ -165,25 +167,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_01.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_02.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_03.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_04.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_04.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 4</span></a>
   </div>
 </li>
@@ -191,13 +193,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./survey_feedback_previous_years.html" class="sidebar-item-text sidebar-link">
+  <a href="../survey_feedback_previous_years.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Survey Feedback</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./function_week.html" class="sidebar-item-text sidebar-link">
+  <a href="../function_week.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions of the Week</span></a>
   </div>
 </li>
@@ -207,16 +209,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#topics" id="toc-topics" class="nav-link active" data-scroll-target="#topics">Topics</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  <li><a href="#class-materials" id="toc-class-materials" class="nav-link" data-scroll-target="#class-materials">Class materials</a></li>
+  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings">Readings</a>
+  <ul class="collapse">
+  <li><a href="#required" id="toc-required" class="nav-link" data-scroll-target="#required">Required</a></li>
+  <li><a href="#optional" id="toc-optional" class="nav-link" data-scroll-target="#optional">Optional</a></li>
+  </ul></li>
+  <li><a href="#post-class-survey" id="toc-post-class-survey" class="nav-link" data-scroll-target="#post-class-survey">Post-class survey</a></li>
+  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
+  <li><a href="#recording" id="toc-recording" class="nav-link" data-scroll-target="#recording">Recording</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Schedule</h1>
+<h1 class="title">Week 4</h1>
 </div>
 
+<div>
+  <div class="description">
+    Errors, data manipulation with <code>dplyr</code>, <code>ggplot</code>: themes, colors, facets
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -225,7 +248,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 5, 2026</p>
+      <p class="date">January 29, 2026</p>
     </div>
   </div>
   
@@ -241,204 +264,119 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="topics" class="level2">
+<h2 class="anchored" data-anchor-id="topics">Topics</h2>
+<p>Part 4:</p>
 <ul>
-<li><em>Schedule is subject to change.</em></li>
-<li>Links have been added to all weeks, but weeks we have not covered yet will have broken links.</li>
+<li><strong>Learn</strong> and apply <code>mutate()</code> to change the data type of a variable</li>
+<li><strong>Apply</strong> <code>mutate()</code> to calculate a new variable based on other variables in a <code>data.frame</code></li>
+<li><strong>Apply</strong> <code>case_when</code> in a <code>mutate()</code> statement to make a continuous variable categorical</li>
+<li><strong>Learn</strong> how to <code>mutate()</code> <code>across()</code> multiple variables at once</li>
+<li><strong>Learn</strong> how to <code>summarize()</code> data with <code>group_by()</code> to summarize within categories</li>
+<li><strong>Learn</strong> how to <code>summarize()</code> data <code>across()</code> multiple variables at once.</li>
+<li><strong>Learn</strong> to change scales and palettes of ggplots.</li>
 </ul>
-<table class="table-hover rowlines table">
-<caption></caption>
-<colgroup>
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 40%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Week</th>
-<th style="text-align: center;">Date</th>
-<th style="text-align: left;">Topics</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><a href="./weeks/week_01.html">1</a></td>
-<td style="text-align: center;">Th 01/08</td>
-<td style="text-align: left;">Introduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><a href="./weeks/week_02.html">2</a></td>
-<td style="text-align: center;">Th 01/15</td>
-<td style="text-align: left;">Loading Data, data.frames, and ggplot2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 1 due</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><a href="./weeks/week_03.html">3</a></td>
-<td style="text-align: center;">Th 01/22</td>
-<td style="text-align: left;">dplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 2 due</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><a href="./weeks/week_04.html">4</a></td>
-<td style="text-align: center;">Th 01/29</td>
-<td style="text-align: left;">dplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 3 due</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">Th 02/05</td>
-<td style="text-align: left;">data wrangling practice: forcats, stringr, separate(); combining multiple tables (left_join() etc); reshaping data (i.e.&nbsp;pivot_longer())</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 4 due</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Th 02/05</td>
-<td style="text-align: left;"><strong><span style="color:#046b94;">Take Home Midterm Assigned</span></strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">Th 02/12</td>
-<td style="text-align: left;">More data wrangling practice</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 5 due</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">Th 02/19</td>
-<td style="text-align: left;">More data wrangling practice ctd.</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 6 due</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Su 02/22</td>
-<td style="text-align: left;"><strong><span style="color:#046b94;">Take home Midterm due (Sunday)</span></strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">Th 02/26</td>
-<td style="text-align: left;">Intro to functions, working with lists</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 7 due</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">Th 03/05</td>
-<td style="text-align: left;">Iteration</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 8 due</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">Tu 03/10</td>
-<td style="text-align: left;"><strong><span style="color:#046b94;">Final Exam Assigned (Tuesday)</span></strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Th 03/12</td>
-<td style="text-align: left;">More Stats/Purrr</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 9 due</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">11</td>
-<td style="text-align: center;">Th 03/19</td>
-<td style="text-align: left;">No Class, Office Hour</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">HW 10 due</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Fri 03/20</td>
-<td style="text-align: left;"><strong><span style="color:#046b94;">Final Exam Due (Friday 5pm end of term)</span></strong></td>
-</tr>
-</tbody>
-</table>
+</section>
+<section id="announcements" class="level2">
+<h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li><strong>Functions of the Week</strong>
+<ul>
+<li><a href="https://ohsuitg-my.sharepoint.com/:x:/r/personal/niederha_ohsu_edu/_layouts/15/Doc.aspx?sourcedoc=%7BBAE3FF1C-3623-437E-B2DB-C057EC36BF7B%7D&amp;file=signup_functions_of_the_week_2026.xlsx&amp;action=default&amp;mobileredirect=true">Signup sheet</a> for your functions of the week presentations. The file is in OneDrive in the <a href="https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Ffunctions%5Fof%5Fthe%5Fweek&amp;viewid=f39696a4%2D6b6c%2D4d5a%2Db1d1%2D6b17a205bb96">functions_of_the_week folder</a>.</li>
+<li>Presentations will be during weeks 5-10. <em>Please no more than 4 presentations per week.</em></li>
+<li>If there is a function you are interested in presenting that is not on the signup sheet, please check with me. If it hasn’t been covered before and isn’t covered in the class, then most likely I will approve it.</li>
+</ul></li>
+<li><strong>TA’s office hours</strong> are Mondays 3:00-4:00 pm (Michael Daily) via Webex. Webex link is on main course page of <a href="https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/page/44279282-bb72-45fb-af28-327f751eef44">Sakai</a>.<br>
+</li>
+<li><a href="https://cascadiarconf.com/"><strong>Cascadia R Conf</strong></a> in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on.</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/CascadiaR_logo_2026.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="class-materials" class="level2">
+<h2 class="anchored" data-anchor-id="class-materials">Class materials</h2>
+<ul>
+<li>Class materials in OneDrive folder <a href="https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic">BSTA_526_W26_class_materials_public</a>.</li>
+<li>For today’s class, make sure to download to your computer the folder called <code>part4</code>.</li>
+<li><em>Open RStudio by double-clicking on the project file called <code>BSTA_526_W26_class_materials_public.Rproj</code> in the main OneDrive folder.</em></li>
+</ul>
+<!-- | Part | OneDrive folder | Slides | Webpage | -->
+<!-- |--------------|--------------|--------------|--------------------------------| -->
+<!-- | 4 | [](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart4) | [](../part4/part_04_b526_slides.qmd) | [](../part4/part_04_b526.qmd) | -->
+<!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
+</section>
+<section id="readings" class="level2">
+<h2 class="anchored" data-anchor-id="readings">Readings</h2>
+<p>R4DS = R for Data Science (2e)</p>
+<section id="required" class="level3">
+<h3 class="anchored" data-anchor-id="required">Required</h3>
+<ul>
+<li><em>R4DS</em> book sections:
+<ul>
+<li><code>mutate()</code>: Section <a href="https://r4ds.hadley.nz/data-transform#sec-mutate">3.3.1</a></li>
+<li><code>rename</code>()`: Section <a href="https://r4ds.hadley.nz/data-transform#rename">3.3.3</a></li>
+<li><code>group_by()</code> and <code>summarize()</code>: Section <a href="https://r4ds.hadley.nz/data-transform.html#groups">3.5</a> - The 1st edition’s <a href="https://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarise">Section 5.6 on Grouped summaries with <code>summarise()</code></a> is more detailed (wordier) and worth looking at as well.</li>
+<li>More <code>group_by()</code> and counts with <code>n()</code>: Section <a href="https://r4ds.hadley.nz/data-transform.html#sec-sample-size">3.6</a></li>
+<li><code>case_when()</code> within <code>mutate()</code>: Section <a href="https://r4ds.hadley.nz/logicals.html#case_when">12.5.2</a></li>
+<li><code>across()</code> with <code>summarize()</code> or <code>mutate()</code>: Section <a href="https://r4ds.hadley.nz/iteration.html#sec-across">26.2</a> (26.2.1 - 26.2.4)</li>
+<li><code>factor()</code>: Sections <a href="https://r4ds.hadley.nz/factors.html#introduction">16.1 &amp; 16.2</a> - Later in the quarter we will continue to work more with factors, covered in the other Chapter 16 sections.</li>
+</ul></li>
+</ul>
+</section>
+<section id="optional" class="level3">
+<h3 class="anchored" data-anchor-id="optional">Optional</h3>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/colwise.html">Column-wise operations vignette</a> - more <code>summarize()</code> with <code>across()</code> examples</li>
+<li><em>Data Science: A First Introduction</em>
+<ul>
+<li><code>summarize()</code> and <code>across()</code>: Section <a href="https://datasciencebook.ca/wrangling.html#aggregating-data-with-summarize-and-map">3.9</a> (skip part on using map() in section 3.9.4)</li>
+<li><code>mutate()</code> with <code>across()</code>: Section <a href="https://datasciencebook.ca/wrangling.html#apply-functions-across-many-columns-with-mutate-and-across">3.10</a></li>
+</ul></li>
+<li><em>ggplot2: Elegant Graphics for Data Analysis</em>
+<ul>
+<li>Scales &amp; guides: Chapter <a href="https://ggplot2-book.org/scales-guides.html">14</a></li>
+</ul></li>
+<li>Coding style guides
+<ul>
+<li><a href="https://style.tidyverse.org/index.html">Tidyverse style guide</a>
+<ul>
+<li>“Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread”</li>
+</ul></li>
+<li><a href="http://adv-r.had.co.nz/Style.html">Advanced R: style guide</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="post-class-survey" class="level2">
+<h2 class="anchored" data-anchor-id="post-class-survey">Post-class survey</h2>
+<ul>
+<li>Please fill out the <a href="https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo">post-class survey</a> to provide feedback. Thank you!</li>
+<li>Previous muddiest points and clearest points with responses are collected <a href="../survey_feedback_previous_years.html">here</a>.</li>
+</ul>
+</section>
+<section id="homework" class="level2">
+<h2 class="anchored" data-anchor-id="homework">Homework</h2>
+<ul>
+<li>See OneDrive folder for homework assignment.</li>
+<li>HW 4 due on 02/05.</li>
+</ul>
+</section>
+<section id="recording" class="level2">
+<h2 class="anchored" data-anchor-id="recording">Recording</h2>
+<ul>
+<li><strong>In-class</strong> recording links are on <a href="https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&amp;studentItemId=0&amp;backPath=&amp;bltiAppStores=false&amp;errorMessage=&amp;clearAttr=&amp;messageId=&amp;source=&amp;title=&amp;newTopLevel=false&amp;sendingPage=232002&amp;postedComment=false&amp;addBefore=&amp;itemId=5509813&amp;path=push&amp;reviewAssessment=false&amp;topicId=&amp;addTool=-1&amp;recheck=&amp;id=&amp;forumId=">Sakai</a>. Navigate to <em>Course Materials</em> -&gt; <em>Schedule with links to in-class recordings</em>.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
