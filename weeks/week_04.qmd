@@ -88,7 +88,7 @@ R4DS = R for Data Science (2e)
 
 ### Optional
 
--   [Column-wise operations vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/colwise.html) - more `summarize()` with `across()` examples
+-   [Column-wise operations vignette](https://dplyr.tidyverse.org/articles/colwise.html) - more `summarize()` with `across()` examples
 -   *Data Science: A First Introduction*
     -   `summarize()` and `across()`: Section [3.9](https://datasciencebook.ca/wrangling.html#aggregating-data-with-summarize-and-map)  (skip part on using map() in section 3.9.4)
     -   `mutate()` with `across()`: Section [3.10](https://datasciencebook.ca/wrangling.html#apply-functions-across-many-columns-with-mutate-and-across)
