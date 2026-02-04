@@ -200,7 +200,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Schedule is subject to change.\nLinks have been added to all weeks, but weeks we have not covered yet will have broken links.\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopics\n\n\n\n\n1\nTh 01/08\nIntroduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types\n\n\n\n\n\n\n\n2\nTh 01/15\nLoading Data, data.frames, and ggplot2\n\n\n\n\nHW 1 due\n\n\n\n\n\n\n\n3\nTh 01/22\ndplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets\n\n\n\n\nHW 2 due\n\n\n\n\n\n\n\n4\nTh 01/29\ndplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales\n\n\n\n\nHW 3 due\n\n\n\n\n\n\n\n5\nTh 02/05\ndata wrangling practice: forcats, stringr, separate(); combining multiple tables (left_join() etc); reshaping data (i.e. pivot_longer())\n\n\n\n\nHW 4 due\n\n\n\nTh 02/05\nTake Home Midterm Assigned\n\n\n\n\n\n\n\n6\nTh 02/12\nMore data wrangling practice\n\n\n\n\nHW 5 due\n\n\n\n\n\n\n\n7\nTh 02/19\nMore data wrangling practice ctd.\n\n\n\n\nHW 6 due\n\n\n\nSu 02/22\nTake home Midterm due (Sunday)\n\n\n\n\n\n\n\n8\nTh 02/26\nIntro to functions, working with lists\n\n\n\n\nHW 7 due\n\n\n\n\n\n\n\n9\nTh 03/05\nIteration\n\n\n\n\nHW 8 due\n\n\n\n\n\n\n\n10\nTu 03/10\nFinal Exam Assigned (Tuesday)\n\n\n\nTh 03/12\nMore Stats/Purrr\n\n\n\n\nHW 9 due\n\n\n\n\n\n\n\n11\nTh 03/19\nNo Class, Office Hour\n\n\n\n\nHW 10 due\n\n\n\nFri 03/20\nFinal Exam Due (Friday 5pm end of term)"
+    "text": "Schedule is subject to change.\nLinks have been added to all weeks, but weeks we have not covered yet will have broken links.\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopics\n\n\n\n\n1\nTh 01/08\nIntroduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types\n\n\n\n\n\n\n\n2\nTh 01/15\nLoading Data, data.frames, and ggplot2\n\n\n\n\nHW 1 due\n\n\n\n\n\n\n\n3\nTh 01/22\ndplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets\n\n\n\n\nHW 2 due\n\n\n\n\n\n\n\n4\nTh 01/29\ndplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales\n\n\n\n\nHW 3 due\n\n\n\n\n\n\n\n5\nTh 02/05\nMerging multiple datasets; cleaning & reshaping data\n\n\n\n\nHW 4 due\n\n\n\nTh 02/05\nTake Home Midterm Assigned\n\n\n\n\n\n\n\n6\nTh 02/12\nMore data wrangling practice\n\n\n\n\nHW 5 due\n\n\n\n\n\n\n\n7\nTh 02/19\nMore data wrangling practice ctd.\n\n\n\n\nHW 6 due\n\n\n\nSu 02/22\nTake home Midterm due (Sunday)\n\n\n\n\n\n\n\n8\nTh 02/26\nIntro to functions, working with lists\n\n\n\n\nHW 7 due\n\n\n\n\n\n\n\n9\nTh 03/05\nIteration\n\n\n\n\nHW 8 due\n\n\n\n\n\n\n\n10\nTu 03/10\nFinal Exam Assigned (Tuesday)\n\n\n\nTh 03/12\nMore Stats/Purrr\n\n\n\n\nHW 9 due\n\n\n\n\n\n\n\n11\nTh 03/19\nNo Class, Office Hour\n\n\n\n\nHW 10 due\n\n\n\nFri 03/20\nFinal Exam Due (Friday 5pm end of term)"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#rrstudio",
@@ -3456,5 +3456,61 @@
     "title": "4: mutate(), case_when(), summarize(), across(), factor(), more ggplot2",
     "section": "8.11 More Palettes",
     "text": "8.11 More Palettes\n\nThe {paletteer} package has a lot of other palettes from many packages included all in one:\n\n\nour_plot + \n  theme_minimal() +\n  paletteer::scale_color_paletteer_d(palette = \"impressionist.colors::irissen\")\n\n\n\nour_plot + \n  theme_minimal() +\n  paletteer::scale_color_paletteer_d(\"ggthemes::Tableau_10\")\n\n\n\n# View(palettes_d_names) for all palettes\n\n\nRemember we can save this (by default, the last plot created):\n\n\nggsave(\"part4/output_figs/gg_myplot.jpg\")"
+  },
+  {
+    "objectID": "weeks/week_05.html",
+    "href": "weeks/week_05.html",
+    "title": "Week 5",
+    "section": "",
+    "text": "Part 5:\n\nLearn and apply loading comma separated and tab separated datasets using the readr package\nLearn different techniques for cleaning data using functions from the tidyr, forcats, and stringrpackages\n\nPractice cleaning data with a real dataset\n\nLearn and apply bind_rows() to combine rows from two or more datasets\nLearn about ways to merge columns from different datasets\n\nApply inner_join() and left_join() to merge columns from different datasets\n\nLearn about wide vs long data and how to reshape data\n\napply pivot_longer() to make a wide dataset long"
+  },
+  {
+    "objectID": "weeks/week_05.html#topics",
+    "href": "weeks/week_05.html#topics",
+    "title": "Week 5",
+    "section": "",
+    "text": "Part 5:\n\nLearn and apply loading comma separated and tab separated datasets using the readr package\nLearn different techniques for cleaning data using functions from the tidyr, forcats, and stringrpackages\n\nPractice cleaning data with a real dataset\n\nLearn and apply bind_rows() to combine rows from two or more datasets\nLearn about ways to merge columns from different datasets\n\nApply inner_join() and left_join() to merge columns from different datasets\n\nLearn about wide vs long data and how to reshape data\n\napply pivot_longer() to make a wide dataset long"
+  },
+  {
+    "objectID": "weeks/week_05.html#announcements",
+    "href": "weeks/week_05.html#announcements",
+    "title": "Week 5",
+    "section": "Announcements",
+    "text": "Announcements\n\n\n\nFunctions of the Week\n\nSignup sheet for your functions of the week presentations. The file is in OneDrive in the functions_of_the_week folder.\nPresentations will be during weeks 5-10. Please no more than 4 presentations per week.\nIf there is a function you are interested in presenting that is not on the signup sheet, please check with me. If it hasn’t been covered before and isn’t covered in the class, then most likely I will approve it.\n\nThe Midterm is posted on OneDrive. It is due Sunday 2/22/25.\n\nPlease start early on this since finding a suitable dataset might take some time.\nI encourage you to meet with me to discuss your research question and data, to make sure you are on the right track.\n\nCascadia R Conf in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on."
+  },
+  {
+    "objectID": "weeks/week_05.html#class-materials",
+    "href": "weeks/week_05.html#class-materials",
+    "title": "Week 5",
+    "section": "Class materials",
+    "text": "Class materials\n\nClass materials in OneDrive folder BSTA_526_W26_class_materials_public.\nFor today’s class, make sure to download to your computer the folder called part5.\nOpen RStudio by double-clicking on the project file called BSTA_526_W26_class_materials_public.Rproj in the main OneDrive folder.\n\n\nSLIDES COMING SOON"
+  },
+  {
+    "objectID": "weeks/week_05.html#readings",
+    "href": "weeks/week_05.html#readings",
+    "title": "Week 5",
+    "section": "Readings",
+    "text": "Readings\nR4DS = R for Data Science (2e)\n\nRequired\n\nR4DS book:\n\nModifying factor levels: Section 16.5\n\nIn particular fct_collapse(). In part 6 we will cover fct_recode()\n\nSeparating into columns (separate_wider_delim()): Section 14.4.2\nMaking numbers (parse_number()): Section 13.2\nJoins: Chapter 19\nLengthening and widening data (pivot_longer() and pivot_wider()): Sections 5.3 and 5.4\n\n\n\n\nOptional\n\nFeel like the cat that got the cream with {forcats} - a great read on the forcats package\n\nSome of this is a review.New functions in part 5:\n\nfct_collapse and\nfct_other and\n\nThere are many other great forcats functions covered here, some of which will be presented in part 6\n\nPivoting vignette\n\nThis is a great supplement to the R4DS chapter 5 sections linked to in the required readings above. It has some advanced examples that we will not be covering in class but we frequently encounter in practice.\n\nRegular expressions: R4DS book Section 15\n\nThis goes into much more detail than we will be covering in BSTA 526. However, it’s a great resource for learning more about regular expressions and using them in R if you are interested.\nIn part 5, we will be covering just str_remove_all()\nFor now, I recommend at least a quick skim of this section so that you are aware of what we mean by “regular expressions” and how they can be used in data cleaning. Figuring out the details on how to use the more advanced examples can be postponed until you have need for them.\n\nAre you ready to learn more about Quarto?\n\nThe following resources are optional readings and will not be covered in the class materials.\nThey are quite helpful if you are ready to explore Quarto’s many possibilities\nR4DS Chapter 28: Quarto\nQuarto Cheatsheet\nQuarto Guide\nQuarto Reference"
+  },
+  {
+    "objectID": "weeks/week_05.html#post-class-survey",
+    "href": "weeks/week_05.html#post-class-survey",
+    "title": "Week 5",
+    "section": "Post-class survey",
+    "text": "Post-class survey\n\nPlease fill out the post-class survey to provide feedback. Thank you!\nPrevious muddiest points and clearest points with responses are collected here."
+  },
+  {
+    "objectID": "weeks/week_05.html#homework",
+    "href": "weeks/week_05.html#homework",
+    "title": "Week 5",
+    "section": "Homework",
+    "text": "Homework\n\nSee OneDrive folder for homework assignment.\nHW 5 due on 02/05."
+  },
+  {
+    "objectID": "weeks/week_05.html#recording",
+    "href": "weeks/week_05.html#recording",
+    "title": "Week 5",
+    "section": "Recording",
+    "text": "Recording\n\nIn-class recording links are on Sakai. Navigate to Course Materials -&gt; Schedule with links to in-class recordings."
   }
 ]
