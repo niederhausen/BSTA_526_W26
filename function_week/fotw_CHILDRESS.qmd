@@ -1,0 +1,284 @@
+---
+title: "`patchwork::patchwork`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "A package for arranging/aligning plots"
+author: "Charles Childress"
+date: "2/5/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+pacman::p_load(
+  patchwork,
+  skimr,        # get overview of data
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import excel data
+  gtsummary,    # summary statistics and tests
+  ggplot2,      # ggplot2
+  ggthemes,     # lots of themes
+  here,         # helps with file management
+  janitor,      # for data cleaning, making tables
+  palmerpenguins, # penguin data
+  ghibli,       # studio ghibli palettes
+  paletteer,    # additional ggplot2 palettes
+  gt,           # beautiful tables
+  rstatix       # summary stats for numeric vars
+  )
+
+data("penguins")
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# `Function(s) Name(s)`
+
+The function we are showing off today is the `patchwork()` function from the `patchwork` package.  
+
+# What is it for?
+
+The `patchwork()` function lets the user stitch together sets of plots in various configurations using simple operators (`+`, `/`, and `|`).  This is accomplished by combining various plot objects into a single "patchwork" object.  The user can also create more advanced customized displays with the `plot_layout` and the `plot_annotation` options.  
+
+Patchwork is designed to work well with `ggplot()`, whereas base R can struggle if a user is trying to do complicated things to plots not created with base R.  
+
+A function with similar utility (though less flexibility) is `grid.arrange()` from the `gridExtra` package.
+
+# Examples
+
+```{r}
+# Setup chunk
+penguins <- drop_na(penguins)
+
+# Plot 1
+p1 <- ggplot(penguins, 
+             aes(x = flipper_length_mm,
+                 y = body_mass_g, 
+                 color = species)) +
+  geom_point(alpha = 0.7) +
+  labs(title = "Body mass vs Flipper length", 
+       x = "Flipper length (mm)", 
+       y = "Body mass (g)") +
+  theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10))
+
+# Plot 2
+p2 <- ggplot(penguins, 
+             aes(x = bill_length_mm,
+                 y = body_mass_g, 
+                 color = species)) +
+  geom_point(alpha = 0.7) +
+  labs(title = "Body mass vs Bill length", 
+       x = "Bill length (mm)", 
+       y = "Body mass (g)") +
+  theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10))
+
+# Plot 3
+p3 <- ggplot(penguins, 
+             aes(x = bill_depth_mm,
+                 y = body_mass_g, 
+                 color = species)) +
+  geom_point(alpha = 0.7) +
+  labs(title = "Body mass vs Bill depth", 
+       x = "Bill depth (mm)", 
+       y = "Body mass (g)") +
+  theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10))
+
+# Plot 4
+p4 <- ggplot(penguins, 
+             aes(x = species, 
+                 y = body_mass_g, 
+                 fill = sex)) +
+  geom_boxplot() +
+  labs(title = "Body mass by Sex & Species", 
+       x = "Species", 
+       y = "Body mass (g)") +
+  theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10))
+
+# Plot 5
+p5 <- ggplot(penguins, 
+             aes(x = island, 
+                 y = body_mass_g, 
+                 fill = species)) +
+  geom_violin(trim = FALSE) +
+  labs(title = "Body mass by Island & Species",
+       x = "Island", 
+       y = "Body mass (g)") +
+  theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10))
+
+```
+
+**Example 0:**
+
+Below we combine four base R plots without using `patchwork()` or `ggplot()`.  This example is included as a reference point.  
+
+```{r}
+# 2 x 2 layout
+par(mfrow = c(2, 2))
+
+# Four base R plots to illustrate the 2 x 2 figure
+plot(penguins$body_mass_g, penguins$flipper_length_mm,
+     main = "Plot 1: Scatter",
+     xlab = "Body mass (g)", ylab = "Flipper length (mm)")
+
+boxplot(body_mass_g ~ species, data = penguins,
+        main = "Plot 2: Boxplot",
+        xlab = "Species", ylab = "Body mass (g)")
+
+boxplot(body_mass_g ~ sex, data = penguins,
+        main = "Plot 3: Boxplot by sex",
+        xlab = "Sex", ylab = "Body mass (g)")
+
+plot(density(na.omit(penguins$body_mass_g)),
+     main = "Plot 4: Density",
+     xlab = "Body mass (g)")
+```
+
+We used base R because the `par()` method is really finicky with `ggplot()`, and we couldn't get it to work with the plots we outlined in the setup code chunk. We could accomplish something nicer than this with the `grid.arrange()` function from the `gridExtra` package, but we are not comparing `patchwork()` to `grid.arrange()` in this demo.
+
+**Example 1 (very basic):**
+
+The rest of the examples are created using `patchwork()`.  Here are four of our `ggplot()` plots stitched together in a basic configuration
+
+```{r}
+# Basic
+p1 + p2 + p3 + p4 +
+  plot_layout(guides = "collect", axes = "collect") +
+  plot_annotation(title = 'Penguin Morphology')
+```
+
+Notice:
+
+* There is now a title
+* The plot keys are combined
+* The y-axes are carried across
+
+**Example (Sets built with `+` and `/`):**
+
+```{r}
+# Slightly more advanced
+((p1 + p2 + p3 + guide_area() + 
+    plot_layout(guides = "collect", axes = "collect")) / 
+   (p4 + guide_area() + plot_layout(guides = "collect", axes = "collect"))) + 
+  plot_layout(heights = c(2,1)) +
+  plot_annotation(title = 'Penguin Morphology')
+```
+
+In this example: 
+
+* There are two sets of plots - an upper set (first two rows) and lower set (final row)
+* The upper set takes up 2/3rds of the vertical space 
+  * It contains the first three plots and a designated final spot for the key
+* The lower set takes up the bottom third of the vertical space
+  * It contains the fourth plot with a designated spot for the key
+
+**Example 3 (Inset plots):**
+
+```{r}
+# Inset one plot inside another
+p1 + inset_element(p4, left = 0.0, bottom = 0.6, right = 0.5, top = 1) + 
+  plot_layout(guides = "collect", axes = "collect") +
+  plot_annotation(title = 'Penguin Morphology')
+```
+
+Here we have inset our fourth plot into the corner of our first plot.  This isn't a particularly compelling example, but it may be useful at some point to have a reference shape/distribution/variable/something that can be pinned into a corner.  
+
+**Example 4 (Manual customization):**
+
+We can also customize the layout manually by giving specific input.  Let's get all 5 of our plots involved for these examples.
+
+**Sub-example 4a:**
+
+```{r}
+# Customize 1
+layout1 <- "
+#AAACCC#
+#AAACCC#
+########
+DDBBBFFF
+DDBBBFFF
+DDEEEFFF
+DDEEEFFF
+DDEEEFFF
+"
+
+# Easy notation again
+p1 + p2 + p3 + p4 + p5 + guide_area() +
+  plot_layout(design = layout1, guides = "collect", axes = "collect") +
+  plot_annotation(title = 'Morphology of Penguins All 5')
+```
+
+**Sub-example 4b:**
+
+```{r}
+# Customize 2
+layout2 <- "
+AAAAEEF
+AAAAEEF
+BBBBDDF
+BBBBDDF
+CCCCDDF
+CCCCDDF
+"
+
+# Easy notation again
+p1 + p2 + p3 + p4 + p5 + guide_area() +
+  plot_layout(design = layout2, guides = "collect", axes = "collect") +
+  plot_annotation(title = 'Morphology of Penguins All 5')
+```
+
+**Sub-example 4c:**
+
+```{r}
+# Customize 3
+layout3 <- "
+DDEEEF
+DDEEEF
+DDEEEF
+DDEEEF
+DDEEEF
+DDEEEF
+######
+AABBCC
+AABBCC
+AABBCC
+"
+
+# Easy notation again
+p1 + p2 + p3 + p4 + p5 + guide_area() +
+  plot_layout(design = layout3, guides = "collect", axes = "collect") +
+  plot_annotation(title = 'Morphology of Penguins All 5')
+```
+
+The `patchwork()` function will always default to trying to make a roughly square output, and it isn't afraid to stretch or compress the user's plots as needed.  As long as the both the layout and the individual plots inside the layout are rectangles, the customization should go through without errors.   
+
+# Is it helpful?
+
+The `patchwork()` function makes organizing plots a bit easier even than `grid.arrange()`.  It is more customizable than most other options, and works well with `ggplot()`.  It's probably not the best thing since sliced bread, but it is a great tool generally for visualizing data; we think it is worth having in your toolkit.  
