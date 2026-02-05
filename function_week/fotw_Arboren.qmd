@@ -1,0 +1,187 @@
+---
+title: "`stringr::str_to_camel()|str_to_snake()|str_to_kebab()`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "changes chosen string via capitalization, '_' and '-' "
+author: "Meara Arboren"
+date: "2/5/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    theme: minty
+    embed-resources: true
+    html-math-method: mathjax
+---
+
+
+```{r}
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE,  fig.width = 5,fig.height = 3, dpi = 300)
+
+pacman::p_load(tidyverse, stringr,readxl,here,dplyr)
+```
+# The Data:
+
+I chose to find a dataset to use for this project. I found this dataset on the Royal Veterinary College open access data page. 
+
+::: {.panel-tabset}
+
+### Summary
+
+This data was collected to an answer the research question: *"Does antimicrobial prescription compared to no antimicrobial prescription and (separately) gastrointestinal nutraceutical prescription compared to no gastrointestinal nutraceutical prescription for acute diarrhoea in dogs cause a difference in clinical resolution and time to treatment escalation?"*. 
+
+This study was done as part of a larger PHD thesis, more information can be found at the authors data site: "https://github.com/cpegram92/causal-inference-phd". 
+
+
+### Loading the Data
+
+```{r}
+Diarrhea.trials <-readr::read_csv(here::here("function_week", "data", "Diarrhoea_Target_Trial_Arboren.csv"))
+
+names(Diarrhea.trials) #quick visual of variable names
+```
+
+:::
+
+# The Functions
+
+These three functions are found in the `stringr` package and are string manipulators that change how values or variable names with mutliple words are visualized. 
+
+1. str_to_snake()
+2. str_to_camel()
+3. str_to_kebab()
+
+
+## str_to_snake()
+
+::: {.panel-tabset}
+
+### What is it for?
+
+ This function converts chosen a string by inserting a underscore '_' between words.   
+
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExY204cXhzaW9xanhiMDUyNmJ5YmNlcnltNDZ5eG12aDcyandld2pmNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dEfPULgo1DYfm/giphy.gif)
+
+### Ex.1: 
+
+In this example I show how this function can change the layout of the character values in an individual variable's column.
+
+```{r}
+D.Snake.1 <- 
+  str_to_snake(Diarrhea.trials$VetCompassBreed)
+head(D.Snake.1,10)
+```
+  
+  
+### Ex.2: 
+
+In this example I demonstrated how this function can be used on the dataset to change the layout of variable names.
+
+```{r}
+D.Snake.2 <-  Diarrhea.trials |> 
+  rename_with( str_to_snake) 
+D.Snake.2 |> 
+select(1:10) |> 
+names()
+```
+
+:::
+
+
+## str_to_camel()
+
+::: {.panel-tabset}
+
+### What is it for?
+
+ This function converts chosen string by capitalizing the first letter of each word within the string. The default setting will not capitalize the first letter(`first_upper = FALSE`).
+
+To capitalize the first letter of every word use: `first_upper = TRUE`.
+ 
+This function is also called "camel case".
+
+
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExajhuN3h1MjN5bG42ZWR5OW51ZW1vdnBtbTExams3ZHc4MTdjNHk3MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TTTYTPXoZtrbPC1ury/giphy.gif)
+
+### Ex. 1
+  
+In this example I changed all the variable names to the default camel case, using the recently made dataset, `D.Snake.2`. 
+
+```{r}
+#default camel case
+D.Camel.1 <- D.Snake.2 |> 
+  select(1:10) |> 
+  rename_with(
+str_to_camel
+)
+
+names(D.Camel.1)
+```
+
+### Ex.2
+
+In this example I showed how this function can be used to change a dataset's variable names to the camel case using the `first_upper = TRUE` on the dataset `D.Snake.2`.
+
+```{r}
+# first letter of every word capitalized 
+D.Camel.2 <- D.Camel.1 |> 
+  select(1:10) |> 
+  rename_with(
+str_to_camel, first_upper = TRUE
+)
+names(D.Camel.2)
+
+```
+
+:::
+
+
+## str_to_kebab()
+
+::: {.panel-tabset}
+
+
+### What is it for?
+
+ This function converts chosen string by placing a dash or '-' between each word. 
+ 
+![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWV3cWNvcXNxbzBwcHFxY211czhieWJ5dzVsNDZ5MXlxNjBtNzF4aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l4FGjvhbEaxawfER2/giphy.gif)
+
+
+### Ex.1: 
+
+In this example I demonstrated how this function is used in an individual variable's column to manipulate the layout of the character values.
+
+```{r}
+D.Kebab.1 <- 
+  str_to_kebab(Diarrhea.trials$SexNeuterStatus) # manipulating single column's values
+head(D.Kebab.1,10)
+```
+  
+### Ex.2: 
+
+In this example I demonstrated how this function can also be used on the dataset as a whole.
+
+```{r}
+D.Kebab.2 <-  D.Camel.2 |> #using previously created camel case dataset 
+  rename_with( str_to_kebab) 
+
+names(D.Kebab.2)
+```
+
+:::
+
+# Is it helpful?
+
+These functions can be useful tools in data cleaning as they can easily and quickly change how variable names and character values are shown. Of the three, I liked the `str_to_snake` the best as this one aligns more with our naming conventions and is the easiest to read quickly.
+
+The dataset used here, utilized `str_to_camel` without the default setting so it was nice to see one of these options being used in real world studies. 
+
+

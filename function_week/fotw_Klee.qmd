@@ -1,0 +1,331 @@
+---
+title: "`ggrain::geom_rain()`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Create rain plots with ggplot"
+author: "Daniel Klee"
+date: "2/5/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(ggrain)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `ggrain::geom_rain()`
+
+`geom_rain()` is from the `ggrain` package. This function allows for the creation of so-called "rain" plots with `ggplot`.
+
+Additional information can be found on the [CRAN website](https://cran.r-project.org/web/packages/ggrain/vignettes/ggrain.html), or by typing `?geom_rain` in the console.
+
+# What is it for?
+
+In conjunction with `ggplot`, `geom_rain()` will take numeric (y-axis) and categorical (x-axis) data to generate a rain plot, which is a compound plot with density (i.e., half-violin), dot plot, and boxplot representations of the data. These plots get their name from the fact that they look a little like raindrops coming out of a cloud. (*Amusingly, the boxplot element is sometimes referred to as the "train in the rain."*)
+
+# Examples
+
+For the following examples, we'll primarily be using the [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) package. The data in `penguins` represent various measurements of different penguin species recorded near Palmer Station in Antarctica.
+
+```{r}
+#| message: false
+
+library(palmerpenguins)
+data("penguins")
+```
+
+(*Note*: In an effort to minimize code and simplify the examples, plot titles are omitted and variable names are left mostly unchanged.)
+
+## Simple Rain Plots
+
+Through simple implementations of `geom_rain()`, we can get a sense of the default settings before exploring the various other argument options for plot customization. Plots can be created using a single numeric variable as an input, or by combining a numeric variable with a categorical variable.
+
+### One numeric variable
+
+Let's begin by simply plotting the variable `bill_length_mm`, which represents penguin bill length (mm):
+
+```{r}
+#| warning: false
+
+# Pipe the data
+penguins |>
+  
+  # Create a ggplot
+  ggplot(aes(
+    
+    # Select our variable(s)
+    x = 1,
+    y = bill_length_mm
+  )) +
+  
+  # Add the rain plot layer
+  geom_rain() +
+  
+  # Add a theme
+  theme_classic(base_size = 15) +
+  
+  # Remove the x-axis labels
+  theme(axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.x = element_blank())
+```
+
+Notice that we needed to provide information about the x-axis (i.e., x = 1), which meant that we also had to use `theme()` to remove the extraneous information from x-axis.
+
+### Rotated plots
+
+By design, `geom_rain()` only accepts the measurement variable along the y-axis. However, if we want to rotate the plot 90-degrees, we can do so using `coord_flip()`:
+
+```{r}
+#| warning: false
+
+penguins |>
+  ggplot(aes(
+    x = 1,
+    y = bill_length_mm
+  )) +
+  geom_rain() +
+  theme_classic(base_size = 15) +
+  theme(axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  
+  # Swap the x- and y-axes
+  coord_flip()
+```
+
+### Combining numeric and categorical data
+
+If we wish to separate our measurement according to a particular categorical variable, we can do so easily by adjusting `aes()` in `ggplot`, much like for any other geom layer. Continuing to use `bill_length_mm` as our numeric measurement, let's now add the categorical variable `island` to our graphic, which represents penguin island of origin:
+
+```{r}
+#| warning: false
+
+penguins |>
+  ggplot(aes(
+    x = 1,
+    y = bill_length_mm,
+    
+    # Fill in color by `island` and increase transparency
+    fill = island,
+    alpha = 0.5)) +
+  
+  geom_rain() +
+  theme_classic(base_size = 15) +
+  theme(axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.x = element_blank()) +
+  
+  # Remove the extra legend element for `alpha`
+  guides(alpha = "none")
+```
+
+(*Notice that the dots do not automatically inherit the colors from* `fill`.)
+
+It can be difficult to discern characteristics of the distribution when all groups are aligned in a single column. To clean things up a bit, we can assign our categorical variable to the x-axis:
+
+```{r}
+#| warning: false
+
+penguins |>
+  ggplot(aes(
+    
+    # Assign `island` to the x-axis
+    x = island,
+    
+    y = bill_length_mm,
+    fill = island,
+    alpha = 0.5)) +
+  geom_rain() +
+  theme_classic(base_size = 15) +
+  guides(alpha = "none")
+```
+
+## Exploring Additional Arguments
+
+Now that we have a basic understanding of `geom_rain()`, we can touch on a few other useful arguments for customizing our rain plots.
+
+### Adding a covariate
+
+If we're interested in exploring a third variable as a covariate, we can use the `cov` argument in `geom_rain()` to add color shading to the dot plot. We can specify a numeric covariate, such as `flipper_length_mm`:
+
+```{r}
+#| warning: false
+
+penguins |>
+  ggplot(aes(
+    x = island,
+    y = bill_length_mm,
+    fill = island,
+    alpha = 0.5)) +
+  geom_rain(
+    
+    # Add `flipper_length_mm` as a covariate
+    cov = "flipper_length_mm"
+    
+  ) +
+  theme_classic(base_size = 15) +
+  guides(alpha = "none")
+```
+
+We can also specify a categorical covariate, such as `species`:
+
+```{r}
+#| warning: false
+
+penguins |>
+  ggplot(aes(
+    x = island,
+    y = bill_length_mm,
+    fill = island,
+    alpha = 0.5)) +
+  geom_rain(
+    
+    # Add `species` as a covariate
+    cov = "species"
+    
+  ) +
+  theme_classic(base_size = 15) +
+  guides(alpha = "none")
+```
+
+### Plot orientation
+
+The orientation of rain plots can be mirrored along the y-axis in a number of ways using the argument `rain.side`. Accepted values tell the plot to orient "right," "left," or "flanking," using shorthand like `r`, `l`, `f1x1`, etc. To demonstrate, let's select `sex` as our categorical variable, since it only has two levels. We can adjust the two resulting rain plots to face away/toward each other:
+
+```{r}
+#| warning: false
+
+penguins |>
+  
+  # Select `sex` and `bill_length_mm`
+  select(sex, bill_length_mm) |> 
+  
+  # Omit missing values
+  na.omit() |> 
+  
+  ggplot(aes(
+    x = sex,
+    y = bill_length_mm,
+    fill = sex,
+    alpha = 0.5)) +
+  geom_rain(
+    
+    # Tell the plot to adopt a "flanking" orientation
+    rain.side = "f1x1"
+    
+  ) +
+  theme_classic(base_size = 15) +
+  guides(alpha = "none")
+```
+
+### Modifying isolated plot elements
+
+On a more granular level, aspects of the density, boxplot, and dot plot elements can be adjusted using `violin.args`, `violin.args.pos`, `boxplot.args`, `boxplot.args.pos`, `point.args`, and `point.args.pos`. To illustrate a few examples, let's plot `body_mass_g` and `species`:
+
+```{r}
+#| warning: false
+
+penguins |>
+  ggplot(aes(
+    x = species,
+    y = body_mass_g,
+    fill = species)) +
+  geom_rain(
+    
+    # Label boxplot outliers as asterisks (*) and make them red
+    boxplot.args = list(
+      outlier.shape = 8,
+      outlier.color = "red"),
+    
+    # Change the transparency of the density plots
+    violin.args = list(alpha = 0.1),
+    
+    # Remove jitter and nudge the position of the dot plots
+    point.args.pos = list(
+      position = position_nudge(
+        x = -0.05))
+    ) +
+  theme_classic(base_size = 15)
+```
+
+Note that we need to use `list()` to input adjustments to these various arguments. Unfortunately, using `list()` here can reset certain defaults (e.g., removing jitter of the dots), so some settings may need to be reset!
+
+### Paired Data
+
+As a final example, we can draw lines between categories to represent paired/longitudinal data. Unfortunately, `penguins` will not be a suitable dataset for this example, since we need long-format data with multiple observations for each individual. Instead, we can load the `sleep` dataset, which shows the effects of two soporific drugs on changes in sleep (`extra`) at two time points (`group`) for 10 patients (`ID`). The data are included as a pre-loaded dataset in R, so there is no need to download an additional package.
+
+To show paired/longitudinal data, use the `id.long.var` argument:
+
+```{r}
+#| warning: false
+
+# Load `sleep` dataset
+data("sleep")
+
+sleep |>
+  ggplot(aes(
+    x = group,
+    y = extra,
+    fill = group,
+    alpha = 0.5)) +
+  geom_rain(
+    rain.side = "f1x1",
+    
+    # Specify `ID` as the pairing variable
+    id.long.var = "ID"
+    
+  ) +
+  theme_classic(base_size = 15) +
+  
+  # Fix confusing labels on the axes
+  labs(
+    x = "Time",
+    y = "Change in sleep duration (hrs)"
+  ) +
+  
+  # Remove the legend
+  theme(legend.position = "none") +
+  
+  guides(alpha = "none")
+```
+
+As a final note, the lines in this plot can be adjusted using the `line.args` and `line.args.pos` arguments.
+
+# Is it helpful?
+
+## Pros
+
+* Rain plots immediately provide information about sample size, shape, center, and spread of distributions without having to create or query multiple other metrics or plots.
+* Argument options offer a fair range of customizability for different plotting scenarios.
+
+## Cons
+
+* Rain plots have a tendency to look cluttered, since they present a lot of (sometimes redundant) information in a very compact space.
+* Modifying specific plot elements can be somewhat clunky and unintuitive.
+* There is ostensibly no method of re-ordering the dot plot, boxplot, and density graphics (e.g., having the dot plot appear in the middle, between the boxplot and density plot).
+
+## Verdict: Is it helpful?
+
+In short, **it depends**... These plots can be very informative and aesthetically-pleasing representations of data if we're working with two or maybe three groups along a common numeric variable. In particular, rain plots seem to be useful for data exploration, since they give us a lot of information very quickly. However, as mentioned above, some of this information (e.g., center; spread) is redundant between plot elements, so it's not necessarily a *concise* illustration of the data. In fact, there can sometimes be **too much** information in these plots.
+
+Ultimately, `geom_rain()` seems like a good tool have on-hand for data exploration, but I personally don't plan to use it regularly for finalized reports.
