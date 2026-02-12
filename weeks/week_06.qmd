@@ -70,6 +70,8 @@ Part 6:
 -   We will first finish the Week 5 slides, starting with [Section 10 on Reshaping data](https://niederhausen.github.io/BSTA_526_W26/part5/part_05_b526.html#reshaping-data).
 
 
+-   [Link to Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?sakai.tool.placement.id=0a1dc228-11f3-4ae0-a5d1-1d4597c01180) for link to Week 6 group work files
+
 
 | Part | OneDrive folder | Slides | Webpage |
 |--------------|--------------|--------------|--------------------------------|
