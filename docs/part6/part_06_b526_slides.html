@@ -1,0 +1,2774 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.3.361">
+
+  <meta name="author" content="Meike Niederhausen, PhD &amp; Jessica Minnier, PhD">
+  <meta name="dcterms.date" content="2026-02-12">
+  <title>6: Start with your goal: more data wrangling</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">6: Start with your goal: more data wrangling</h1>
+  <p class="subtitle">BSTA 526: R Programming for Health Data Science</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Meike Niederhausen, PhD &amp; Jessica Minnier, PhD 
+</div>
+        <p class="quarto-title-affiliation">
+            OHSU-PSU School of Public Health
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-02-12</p>
+</section>
+<section>
+<section id="welcome-to-r-programming-part-6" class="title-slide slide level1 center" data-number="1">
+<h1><span class="header-section-number">1</span> Welcome to R Programming: Part 6!</h1>
+<p>Today we will practice wrangling messy data to prepare them for analysis.</p>
+<p><br></p>
+<p>Before you get started:</p>
+<blockquote>
+<p>Remember to save this notebook under a new name, such as <code>part_06_b526_YOURNAME.qmd</code>.</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li>Load the packages in the setup code chunk</li>
+</ul>
+</section>
+<section id="learning-objectives" class="slide level2" data-number="1.1">
+<h2><span class="header-section-number">1.1</span> Learning Objectives</h2>
+<ul>
+<li><strong>Practice</strong> thinking through and planning ahead data wrangling steps to prepare a dataset ready for analysis</li>
+<li><strong>Practice</strong> working with real data</li>
+<li><strong>Practice</strong> cleaning variables</li>
+<li><strong>Practice</strong> merging datasets with <code>bind_rows</code> and <code>join</code>ing</li>
+<li><strong>Practice</strong> making data long by <code>pivot</code>ing</li>
+<li><strong>Practice</strong> making complex visualizations with ggplot</li>
+</ul>
+</section></section>
+<section>
+<section id="real-data" class="title-slide slide level1 center" data-number="2">
+<h1><span class="header-section-number">2</span> “Real data”</h1>
+<blockquote>
+<p>Today’s goal: wrangle messy data into something we can work with.</p>
+</blockquote>
+</section>
+<section id="mouse-data" class="slide level2" data-number="2.1">
+<h2><span class="header-section-number">2.1</span> Mouse data</h2>
+<ul>
+<li>Today we are going to be working with a subset of real data that Dr.&nbsp;Minnier has analyzed.
+<ul>
+<li>The actual dataset had hundreds of columns (dozens of outcome variables, a few <a href="https://www.niehs.nih.gov/health/topics/science/biomarkers">biomarker</a> values, hundreds of miRNA expression data, and lipidomics on a number of lipids).</li>
+<li>The data we are using are a subset of the actual data with some random noise added to the values to protect the data privacy of the lab.</li>
+</ul></li>
+<li>Mouse data variables:
+<ul>
+<li>treatment (yes, no)</li>
+<li>sex (male, female)</li>
+<li>strain (genetic strain of mouse: <a href="https://en.wikipedia.org/wiki/BALB/c">Balb/C</a>, <a href="https://www.criver.com/products-services/find-model/c3h-mouse?region=3611">C3H</a>)</li>
+<li>time point (1 month, 6 month, 12 month = age of mice)</li>
+<li>two <a href="https://en.wikipedia.org/wiki/MicroRNA">miRNA</a> expression values (micro ribonucleic acid, or microRNA)</li>
+<li>biomarker values from three different brain tissues</li>
+<li>outcomes of interest
+<ul>
+<li>learning outcome (higher values are better)</li>
+<li>preference for object 1 and object 2 (from behavioral and cognitive tests on mice) which is measured in % time spent with that object.</li>
+</ul></li>
+</ul></li>
+<li>The format of the Excel sheet is pretty similar to what was originally given, other than removing some columns.
+<ul>
+<li>One big change is that in the original data, each time point was a different cohort of mice, but we are pretending that it is the same cohort of mice and we have longitudinal data (actually impossible due to the way the biomarkers are measured, but let’s just ignore that). This will allow you to practice more complex joins.</li>
+</ul></li>
+</ul>
+</section>
+<section id="challenge-1---group-work" class="slide level2" data-number="2.2">
+<h2><span class="header-section-number">2.2</span> Challenge 1 - group work!</h2>
+<p>The data are in <code>mouse_biomarker.xlsx</code> (4 different sheets (tabs) with data), which is in the data folder. <strong>Open the data and look at the different sheets.</strong></p>
+<ol type="1">
+<li>Talk about what challenges to importing the data you anticipate, just by looking at them in Excel. <em>You are not yet loading the data in this step.</em></li>
+<li>Look at the plot below. Based on the data in the Excel file, discuss what kind of data wrangling steps you would need to take to make this plot. <em>These can be somewhat vague ideas about what kind of columns you’d need in your wrangled dataset, not necessarily specific steps.</em> It might help to write out pseudo ggplot code, with elements (i.e.&nbsp;x axis, y axis, fill, facet) mapped to column names. <em>You still haven’t loaded the data in this step!</em></li>
+<li>Try to read in the four sheets into R, saving them as data frames called <code>mouse_demo</code>, <code>mouse_tp1</code>, <code>mouse_tp2</code>, and <code>mouse_tp3</code>, respectively. Use <code>glimpse()</code> to look at how the data were read in and determine whether you were successful in reading in the data how you intended to.</li>
+<li>How would you combine all these data into one dataset? Write out the steps, including any data cleaning/wrangling steps you need to do.</li>
+</ol>
+<p><img data-src="image/biomarker_boxplot-1.png" style="width:100.0%"></p>
+</section></section>
+<section>
+<section id="read-in-the-data" class="title-slide slide level1 center" data-number="3">
+<h1><span class="header-section-number">3</span> Read in the data</h1>
+
+</section>
+<section id="read-in-data-files" class="slide level2" data-number="3.1">
+<h2><span class="header-section-number">3.1</span> Read in data files</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Key points</a></li><li><a href="#tabset-1-2">Code</a></li><li><a href="#tabset-1-3">Inspection</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<ul>
+<li>Read in each Excel sheet separately</li>
+<li>Use <code>.name_repair</code> argument to clean the names somewhat and standardize the format</li>
+<li>Include “/” as a missing value</li>
+<li>Remove empty rows and columns (<code>janitor::remove_empty</code>)</li>
+<li>Check column types and names</li>
+</ul>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># .name_repair = make_clean_names is the same as applying clean_names() after reading in the data</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># Note this is the same code for each, just the sheet number is changing</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># sheet 1</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>mouse_demo <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"part6"</span>, <span class="st">"data"</span>,<span class="st">"mouse_biomarker.xlsx"</span>), </span>
+<span id="cb1-6"><a href="#cb1-6"></a>                         <span class="at">sheet =</span> <span class="dv">1</span>,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>                         <span class="at">.name_repair =</span> janitor<span class="sc">::</span>make_clean_names) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">remove_empty</span>(<span class="at">which =</span> <span class="fu">c</span>(<span class="st">"rows"</span>,<span class="st">"cols"</span>))</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># sheet 2</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>mouse_tp1 <span class="ot">&lt;-</span>  <span class="fu">read_excel</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"part6"</span>, <span class="st">"data"</span>,<span class="st">"mouse_biomarker.xlsx"</span>), </span>
+<span id="cb1-12"><a href="#cb1-12"></a>                         <span class="at">sheet =</span> <span class="dv">2</span>, </span>
+<span id="cb1-13"><a href="#cb1-13"></a>                         <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"/"</span>),</span>
+<span id="cb1-14"><a href="#cb1-14"></a>                         <span class="at">n_max =</span> <span class="dv">34</span>,</span>
+<span id="cb1-15"><a href="#cb1-15"></a>                         <span class="at">.name_repair =</span> janitor<span class="sc">::</span>make_clean_names) <span class="sc">%&gt;%</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">remove_empty</span>(<span class="at">which =</span> <span class="fu">c</span>(<span class="st">"rows"</span>,<span class="st">"cols"</span>))</span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># sheet 3</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>mouse_tp2 <span class="ot">&lt;-</span>  <span class="fu">read_excel</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"part6"</span>, <span class="st">"data"</span>,<span class="st">"mouse_biomarker.xlsx"</span>), </span>
+<span id="cb1-20"><a href="#cb1-20"></a>                         <span class="at">sheet =</span> <span class="dv">3</span>, </span>
+<span id="cb1-21"><a href="#cb1-21"></a>                         <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"/"</span>),</span>
+<span id="cb1-22"><a href="#cb1-22"></a>                         <span class="at">.name_repair =</span> janitor<span class="sc">::</span>make_clean_names) <span class="sc">%&gt;%</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="fu">remove_empty</span>(<span class="at">which =</span> <span class="fu">c</span>(<span class="st">"rows"</span>,<span class="st">"cols"</span>))</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co"># sheet 4</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>mouse_tp3 <span class="ot">&lt;-</span>  <span class="fu">read_excel</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"part6"</span>, <span class="st">"data"</span>,<span class="st">"mouse_biomarker.xlsx"</span>), </span>
+<span id="cb1-27"><a href="#cb1-27"></a>                         <span class="at">sheet =</span> <span class="dv">4</span>, </span>
+<span id="cb1-28"><a href="#cb1-28"></a>                         <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"/"</span>),</span>
+<span id="cb1-29"><a href="#cb1-29"></a>                         <span class="at">.name_repair =</span> janitor<span class="sc">::</span>make_clean_names) <span class="sc">%&gt;%</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>  <span class="fu">remove_empty</span>(<span class="at">which =</span> <span class="fu">c</span>(<span class="st">"rows"</span>,<span class="st">"cols"</span>))</span>
+<span id="cb1-31"><a href="#cb1-31"></a></span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="fu">glimpse</span>(mouse_demo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 32
+Columns: 4
+$ sid    &lt;dbl&gt; 137, 138, 139, 140, 33, 34, 35, 36, 180, 181, 182, 183, 192, 19…
+$ strain &lt;chr&gt; "C3H", "C3H", "C3H", "C3H", "C3H", "C3H", "C3H", "C3H", "Balb/C…
+$ trt    &lt;chr&gt; "-", "-", "-", "-", "+", "+", "+", "+", "-", "-", "-", "-", "+"…
+$ sex    &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M"…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">glimpse</span>(mouse_tp1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 33
+Columns: 13
+$ sid                                &lt;dbl&gt; NA, 137, 138, 139, 140, 33, 34, 35,…
+$ normalized_bdnf_amygdala_pg_mg     &lt;dbl&gt; NA, 492.4831, 453.6635, 971.8741, 5…
+$ normalized_bdnf_cortex_pg_mg       &lt;dbl&gt; NA, 720.0173, 884.5668, 1148.2862, …
+$ normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 1215.8147, 638.2747, 979.14…
+$ normalized_cd68_amygdala_pg_mg     &lt;dbl&gt; NA, 988.9628, 775.5970, 2045.3141, …
+$ normalized_cd68_cortex_pg_mg       &lt;dbl&gt; NA, 8.393707, 7.901366, 12.779926, …
+$ normalized_cd68_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 4373.811, 2951.599, 3267.76…
+$ normalized_map2_cortex_pg_mg       &lt;dbl&gt; NA, 352.9653, 1007.4147, 1739.4782,…
+$ mirna_1                            &lt;dbl&gt; NA, 5.26302, 6.78336, 7.88867, 7.28…
+$ mi_rna_2                           &lt;dbl&gt; NA, 1.6536200, -0.2794240, -0.63788…
+$ learning_outcome                   &lt;dbl&gt; NA, 3.52, 1.56, 0.00, 7.33, 26.37, …
+$ preference                         &lt;chr&gt; "Obj 1", "41.722049918771226", "74.…
+$ x_4                                &lt;chr&gt; "Obj 2", "58.277950081228767", "25.…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">glimpse</span>(mouse_tp2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 33
+Columns: 10
+$ sid                                &lt;dbl&gt; NA, 137, 138, 139, 140, 33, 34, 35,…
+$ normalized_bdnf_amygdala_pg_mg     &lt;dbl&gt; NA, 275.1623, 491.7336, 365.0235, 4…
+$ normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt; NA, 1169.285, 1078.640, 1001.431, 1…
+$ normalized_cd68_amygdala_ng_mg     &lt;dbl&gt; NA, 574.0655, 407.5826, 504.6470, 4…
+$ normalized_cd68_hypothalamus_ng_mg &lt;dbl&gt; NA, 6800.870, 4461.628, 4837.662, 3…
+$ mirna_1                            &lt;dbl&gt; NA, -0.0491371, -1.5248200, -1.0322…
+$ mi_rna_2                           &lt;dbl&gt; NA, -0.0773419, 0.8424480, -0.55900…
+$ learning_outcome                   &lt;dbl&gt; NA, 19.810, 14.480, 0.000, 0.000, 1…
+$ preference                         &lt;chr&gt; "Obj 1", "37.513873473917869", "65.…
+$ x_4                                &lt;chr&gt; "Obj 2", "62.486126526082131", "34.…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">glimpse</span>(mouse_tp3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 33
+Columns: 9
+$ sid                          &lt;dbl&gt; NA, 137, 138, 139, 140, 33, 34, 35, 36, 1…
+$ normalized_bdnf_cortex_pg_mg &lt;dbl&gt; NA, 871.8286, 793.4333, 712.3803, 1485.81…
+$ normalized_cd68_cortex_pg_mg &lt;dbl&gt; NA, NA, 8.873104, 10.826861, 6.832956, 20…
+$ normalized_map2_cortex_pg_mg &lt;dbl&gt; NA, 2693.9386, 644.9745, 1677.7607, 7735.…
+$ mirna_1                      &lt;dbl&gt; NA, -0.7367310, -0.2596560, 1.2156400, 0.…
+$ mi_rna_2                     &lt;dbl&gt; NA, 0.147994, -0.225338, 1.391810, 0.9031…
+$ learning_outcome             &lt;dbl&gt; NA, 2.44, 1.11, 73.22, 0.00, 7.70, 3.67, …
+$ preference                   &lt;chr&gt; "Obj 1", "55.967682702901214", "69.006659…
+$ x_4                          &lt;chr&gt; "Obj 2", "44.032317297098793", "30.993340…</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<p>Things I notice:</p>
+<ul>
+<li>Column names “preference” and “x_4” aren’t good/accurate names</li>
+<li>They are read in as characters because of the second header row “Obj 1” and “Obj 2”</li>
+<li>We need to remove that row, rename the columns, make those columns numeric</li>
+<li>We could do this to each individual dataset, or after combining them.</li>
+<li>Let’s <em>combine</em> first</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="challenge-2---group-work" class="slide level2" data-number="3.2">
+<h2><span class="header-section-number">3.2</span> Challenge 2 - group work!</h2>
+<ol type="1">
+<li><strong><em>First, discuss the steps</em></strong> needed to combine the time point data.
+<ul>
+<li>Which datasets will you combine first, and how (which R function(s))?</li>
+</ul></li>
+<li><strong><em>Combine the data</em></strong>
+<ul>
+<li>Combine the 3 time point datasets into one data frame (ignore demographic data for now) called <code>mouse_tp</code>.</li>
+<li>Inspect the resulting data.</li>
+</ul></li>
+<li>How would you create a table of the mouse id (<code>sid</code>) and time (i.e count how many data points we have for each mouse)?</li>
+</ol>
+</section></section>
+<section>
+<section id="combining-time-point-data" class="title-slide slide level1 center" data-number="4">
+<h1><span class="header-section-number">4</span> Combining time point data</h1>
+
+</section>
+<section id="stacking-time-point-data-with-bind_rows" class="slide level2" data-number="4.1">
+<h2><span class="header-section-number">4.1</span> Stacking time point data with <code>bind_rows</code></h2>
+<ul>
+<li>We can <strong>bind</strong> the three time points together
+<ul>
+<li>because while we have the same mice ids, we want to make this long format where the time point observations are in rows.</li>
+</ul></li>
+<li>Therefore, just stacking them on top of each other gives us the full set of time point data that we want to study.</li>
+</ul>
+</section>
+<section id="try-1" class="slide level2" data-number="4.2">
+<h2><span class="header-section-number">4.2</span> try 1:</h2>
+<ul>
+<li>We learned to bind two datasets at a time, but we can bind as many as we want:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>mouse_tp <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(mouse_tp1, mouse_tp2, mouse_tp3)</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">glimpse</span>(mouse_tp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 99
+Columns: 15
+$ sid                                &lt;dbl&gt; NA, 137, 138, 139, 140, 33, 34, 35,…
+$ normalized_bdnf_amygdala_pg_mg     &lt;dbl&gt; NA, 492.4831, 453.6635, 971.8741, 5…
+$ normalized_bdnf_cortex_pg_mg       &lt;dbl&gt; NA, 720.0173, 884.5668, 1148.2862, …
+$ normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 1215.8147, 638.2747, 979.14…
+$ normalized_cd68_amygdala_pg_mg     &lt;dbl&gt; NA, 988.9628, 775.5970, 2045.3141, …
+$ normalized_cd68_cortex_pg_mg       &lt;dbl&gt; NA, 8.393707, 7.901366, 12.779926, …
+$ normalized_cd68_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 4373.811, 2951.599, 3267.76…
+$ normalized_map2_cortex_pg_mg       &lt;dbl&gt; NA, 352.9653, 1007.4147, 1739.4782,…
+$ mirna_1                            &lt;dbl&gt; NA, 5.26302, 6.78336, 7.88867, 7.28…
+$ mi_rna_2                           &lt;dbl&gt; NA, 1.6536200, -0.2794240, -0.63788…
+$ learning_outcome                   &lt;dbl&gt; NA, 3.52, 1.56, 0.00, 7.33, 26.37, …
+$ preference                         &lt;chr&gt; "Obj 1", "41.722049918771226", "74.…
+$ x_4                                &lt;chr&gt; "Obj 2", "58.277950081228767", "25.…
+$ normalized_cd68_amygdala_ng_mg     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ normalized_cd68_hypothalamus_ng_mg &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,…</code></pre>
+</div>
+</div>
+</section>
+<section id="try-2-binding-difficulties" class="slide level2" data-number="4.3">
+<h2><span class="header-section-number">4.3</span> try 2: Binding difficulties</h2>
+<ul>
+<li>Try 1 problem: we don’t know which dataset came from which time point.
+<ul>
+<li>We need a time variable!</li>
+</ul></li>
+<li><code>bind_rows</code> has the option to give each dataset a “name”
+<ul>
+<li>and then tell bind rows to use that information to create a column with that name/label in it.</li>
+</ul></li>
+<li>In this case, we want the time points to be in a column called <code>time</code> (put this in the argument <code>.id =</code>).</li>
+</ul>
+<p>The syntax is like this:</p>
+<pre><code>df_all &lt;- bind_rows("name1" = df1,
+                    "name2" = df2,
+                    "name3" = df3,
+                    .id = "columnname")</code></pre>
+<p>So for our data, we use the time point to distinguish where each dataset came from:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># use the name of the dataset to create an id variable time</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>mouse_tp <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="st">"tp1"</span> <span class="ot">=</span> mouse_tp1, </span>
+<span id="cb12-3"><a href="#cb12-3"></a>                      <span class="st">"tp2"</span> <span class="ot">=</span> mouse_tp2,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                      <span class="st">"tp3"</span> <span class="ot">=</span> mouse_tp3,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>                      <span class="at">.id =</span> <span class="st">"time"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>mouse_tp <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 99
+Columns: 16
+$ time                               &lt;chr&gt; "tp1", "tp1", "tp1", "tp1", "tp1", …
+$ sid                                &lt;dbl&gt; NA, 137, 138, 139, 140, 33, 34, 35,…
+$ normalized_bdnf_amygdala_pg_mg     &lt;dbl&gt; NA, 492.4831, 453.6635, 971.8741, 5…
+$ normalized_bdnf_cortex_pg_mg       &lt;dbl&gt; NA, 720.0173, 884.5668, 1148.2862, …
+$ normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 1215.8147, 638.2747, 979.14…
+$ normalized_cd68_amygdala_pg_mg     &lt;dbl&gt; NA, 988.9628, 775.5970, 2045.3141, …
+$ normalized_cd68_cortex_pg_mg       &lt;dbl&gt; NA, 8.393707, 7.901366, 12.779926, …
+$ normalized_cd68_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 4373.811, 2951.599, 3267.76…
+$ normalized_map2_cortex_pg_mg       &lt;dbl&gt; NA, 352.9653, 1007.4147, 1739.4782,…
+$ mirna_1                            &lt;dbl&gt; NA, 5.26302, 6.78336, 7.88867, 7.28…
+$ mi_rna_2                           &lt;dbl&gt; NA, 1.6536200, -0.2794240, -0.63788…
+$ learning_outcome                   &lt;dbl&gt; NA, 3.52, 1.56, 0.00, 7.33, 26.37, …
+$ preference                         &lt;chr&gt; "Obj 1", "41.722049918771226", "74.…
+$ x_4                                &lt;chr&gt; "Obj 2", "58.277950081228767", "25.…
+$ normalized_cd68_amygdala_ng_mg     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ normalized_cd68_hypothalamus_ng_mg &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># what is this telling us?</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>mouse_tp <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">tabyl</span>(sid, time) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">adorn_title</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      time        
+  sid  tp1 tp2 tp3
+   33    1   1   1
+   34    1   1   1
+   35    1   1   1
+   36    1   1   1
+  137    1   1   1
+  138    1   1   1
+  139    1   1   1
+  140    1   1   1
+  156    1   1   1
+  157    1   1   1
+  158    1   1   1
+  159    1   1   1
+  168    1   1   1
+  169    1   1   1
+  170    1   1   1
+  171    1   1   1
+  180    1   1   1
+  181    1   1   1
+  182    1   1   1
+  183    1   1   1
+  192    1   1   1
+  193    1   1   1
+  194    1   1   1
+  195    1   1   1
+  204    1   1   1
+  205    1   1   1
+  206    1   1   1
+  207    1   1   1
+  216    1   1   1
+  217    1   1   1
+  218    1   1   1
+  219    1   1   1
+ &lt;NA&gt;    1   1   1</code></pre>
+</div>
+</div>
+</section>
+<section id="try-3-ng-vs-pg" class="slide level2" data-number="4.4">
+<h2><span class="header-section-number">4.4</span> try 3: ng vs pg</h2>
+<ul>
+<li>The next issue is that binding these three together doesn’t work as expected since we can see tp2 has ng/mg instead of pg/mg.
+<ul>
+<li>However, it looks like this is a typo because they are on the same scale, not off by a factor of 1000 as we might expect based on the names.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>mouse_tp <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"cd68_amygdala"</span>), <span class="fu">contains</span>(<span class="st">"cd68_hypo"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">get_summary_stats</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="xkyhigrmkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xkyhigrmkz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xkyhigrmkz thead, #xkyhigrmkz tbody, #xkyhigrmkz tfoot, #xkyhigrmkz tr, #xkyhigrmkz td, #xkyhigrmkz th {
+  border-style: none;
+}
+
+#xkyhigrmkz p {
+  margin: 0;
+  padding: 0;
+}
+
+#xkyhigrmkz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xkyhigrmkz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xkyhigrmkz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xkyhigrmkz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xkyhigrmkz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xkyhigrmkz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xkyhigrmkz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xkyhigrmkz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xkyhigrmkz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xkyhigrmkz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xkyhigrmkz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xkyhigrmkz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xkyhigrmkz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xkyhigrmkz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xkyhigrmkz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xkyhigrmkz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xkyhigrmkz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xkyhigrmkz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xkyhigrmkz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xkyhigrmkz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xkyhigrmkz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xkyhigrmkz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xkyhigrmkz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xkyhigrmkz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xkyhigrmkz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xkyhigrmkz .gt_left {
+  text-align: left;
+}
+
+#xkyhigrmkz .gt_center {
+  text-align: center;
+}
+
+#xkyhigrmkz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xkyhigrmkz .gt_font_normal {
+  font-weight: normal;
+}
+
+#xkyhigrmkz .gt_font_bold {
+  font-weight: bold;
+}
+
+#xkyhigrmkz .gt_font_italic {
+  font-style: italic;
+}
+
+#xkyhigrmkz .gt_super {
+  font-size: 65%;
+}
+
+#xkyhigrmkz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xkyhigrmkz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xkyhigrmkz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xkyhigrmkz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xkyhigrmkz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xkyhigrmkz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xkyhigrmkz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xkyhigrmkz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xkyhigrmkz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="min">min</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="max">max</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="median">median</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="q1">q1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="q3">q3</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="iqr">iqr</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mad">mad</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean">mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd">sd</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="se">se</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="ci">ci</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="variable" class="gt_row gt_center">normalized_cd68_amygdala_pg_mg</td>
+<td headers="n" class="gt_row gt_right">31</td>
+<td headers="min" class="gt_row gt_right">420.775</td>
+<td headers="max" class="gt_row gt_right">2045.314</td>
+<td headers="median" class="gt_row gt_right">692.514</td>
+<td headers="q1" class="gt_row gt_right">561.204</td>
+<td headers="q3" class="gt_row gt_right">795.540</td>
+<td headers="iqr" class="gt_row gt_right">234.335</td>
+<td headers="mad" class="gt_row gt_right">189.923</td>
+<td headers="mean" class="gt_row gt_right">726.866</td>
+<td headers="sd" class="gt_row gt_right">288.833</td>
+<td headers="se" class="gt_row gt_right">51.876</td>
+<td headers="ci" class="gt_row gt_right">105.945</td></tr>
+    <tr><td headers="variable" class="gt_row gt_center">normalized_cd68_amygdala_ng_mg</td>
+<td headers="n" class="gt_row gt_right">31</td>
+<td headers="min" class="gt_row gt_right">346.568</td>
+<td headers="max" class="gt_row gt_right">1087.435</td>
+<td headers="median" class="gt_row gt_right">539.723</td>
+<td headers="q1" class="gt_row gt_right">463.168</td>
+<td headers="q3" class="gt_row gt_right">623.713</td>
+<td headers="iqr" class="gt_row gt_right">160.545</td>
+<td headers="mad" class="gt_row gt_right">115.474</td>
+<td headers="mean" class="gt_row gt_right">566.973</td>
+<td headers="sd" class="gt_row gt_right">152.604</td>
+<td headers="se" class="gt_row gt_right">27.408</td>
+<td headers="ci" class="gt_row gt_right">55.976</td></tr>
+    <tr><td headers="variable" class="gt_row gt_center">normalized_cd68_hypothalamus_pg_mg</td>
+<td headers="n" class="gt_row gt_right">28</td>
+<td headers="min" class="gt_row gt_right">2317.989</td>
+<td headers="max" class="gt_row gt_right">6898.278</td>
+<td headers="median" class="gt_row gt_right">3872.875</td>
+<td headers="q1" class="gt_row gt_right">3245.352</td>
+<td headers="q3" class="gt_row gt_right">4867.972</td>
+<td headers="iqr" class="gt_row gt_right">1622.620</td>
+<td headers="mad" class="gt_row gt_right">1155.090</td>
+<td headers="mean" class="gt_row gt_right">4108.298</td>
+<td headers="sd" class="gt_row gt_right">1201.756</td>
+<td headers="se" class="gt_row gt_right">227.110</td>
+<td headers="ci" class="gt_row gt_right">465.992</td></tr>
+    <tr><td headers="variable" class="gt_row gt_center">normalized_cd68_hypothalamus_ng_mg</td>
+<td headers="n" class="gt_row gt_right">32</td>
+<td headers="min" class="gt_row gt_right">3124.769</td>
+<td headers="max" class="gt_row gt_right">11867.444</td>
+<td headers="median" class="gt_row gt_right">5147.672</td>
+<td headers="q1" class="gt_row gt_right">4353.650</td>
+<td headers="q3" class="gt_row gt_right">6581.292</td>
+<td headers="iqr" class="gt_row gt_right">2227.642</td>
+<td headers="mad" class="gt_row gt_right">1505.664</td>
+<td headers="mean" class="gt_row gt_right">5599.085</td>
+<td headers="sd" class="gt_row gt_right">1805.305</td>
+<td headers="se" class="gt_row gt_right">319.136</td>
+<td headers="ci" class="gt_row gt_right">650.882</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<ul>
+<li>Therefore, we should rename the columns of the <code>tp2</code> data before we bind.</li>
+<li>We can use <code>rename()</code> as we have learned to rename those two columns individually,
+<ul>
+<li>but there is also a function <code>rename_with()</code> that can take a function to apply, similar to the way we use functions in <code>across()</code>:</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">colnames</span>(mouse_tp2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "sid"                                "normalized_bdnf_amygdala_pg_mg"    
+ [3] "normalized_bdnf_hypothalamus_pg_mg" "normalized_cd68_amygdala_ng_mg"    
+ [5] "normalized_cd68_hypothalamus_ng_mg" "mirna_1"                           
+ [7] "mi_rna_2"                           "learning_outcome"                  
+ [9] "preference"                         "x_4"                               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># repalce _ng with _pg in the column names</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="co"># note I tried replacing just "ng" with "pg", but then learning became learnipg!</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a>mouse_tp2 <span class="ot">&lt;-</span> mouse_tp2 <span class="sc">%&gt;%</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">rename_with</span>(<span class="at">.fn =</span> <span class="sc">~</span><span class="fu">str_replace</span>(.x, <span class="st">"_ng"</span>, <span class="st">"_pg"</span>))</span>
+<span id="cb19-6"><a href="#cb19-6"></a></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="fu">colnames</span>(mouse_tp2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "sid"                                "normalized_bdnf_amygdala_pg_mg"    
+ [3] "normalized_bdnf_hypothalamus_pg_mg" "normalized_cd68_amygdala_pg_mg"    
+ [5] "normalized_cd68_hypothalamus_pg_mg" "mirna_1"                           
+ [7] "mi_rna_2"                           "learning_outcome"                  
+ [9] "preference"                         "x_4"                               </code></pre>
+</div>
+</div>
+<ul>
+<li>Now we should be able to bind the three datasets together:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>mouse_tp <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="st">"tp1"</span> <span class="ot">=</span> mouse_tp1, </span>
+<span id="cb21-2"><a href="#cb21-2"></a>                      <span class="st">"tp2"</span> <span class="ot">=</span> mouse_tp2,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>                      <span class="st">"tp3"</span> <span class="ot">=</span> mouse_tp3,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>                      <span class="at">.id =</span> <span class="st">"time"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="co"># also rename the mirna columns for consistency</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">rename</span>(<span class="at">mirna1 =</span> mirna_1,</span>
+<span id="cb21-7"><a href="#cb21-7"></a>         <span class="at">mirna2 =</span> mi_rna_2)</span>
+<span id="cb21-8"><a href="#cb21-8"></a></span>
+<span id="cb21-9"><a href="#cb21-9"></a>mouse_tp <span class="sc">%&gt;%</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 99
+Columns: 14
+$ time                               &lt;chr&gt; "tp1", "tp1", "tp1", "tp1", "tp1", …
+$ sid                                &lt;dbl&gt; NA, 137, 138, 139, 140, 33, 34, 35,…
+$ normalized_bdnf_amygdala_pg_mg     &lt;dbl&gt; NA, 492.4831, 453.6635, 971.8741, 5…
+$ normalized_bdnf_cortex_pg_mg       &lt;dbl&gt; NA, 720.0173, 884.5668, 1148.2862, …
+$ normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 1215.8147, 638.2747, 979.14…
+$ normalized_cd68_amygdala_pg_mg     &lt;dbl&gt; NA, 988.9628, 775.5970, 2045.3141, …
+$ normalized_cd68_cortex_pg_mg       &lt;dbl&gt; NA, 8.393707, 7.901366, 12.779926, …
+$ normalized_cd68_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 4373.811, 2951.599, 3267.76…
+$ normalized_map2_cortex_pg_mg       &lt;dbl&gt; NA, 352.9653, 1007.4147, 1739.4782,…
+$ mirna1                             &lt;dbl&gt; NA, 5.26302, 6.78336, 7.88867, 7.28…
+$ mirna2                             &lt;dbl&gt; NA, 1.6536200, -0.2794240, -0.63788…
+$ learning_outcome                   &lt;dbl&gt; NA, 3.52, 1.56, 0.00, 7.33, 26.37, …
+$ preference                         &lt;chr&gt; "Obj 1", "41.722049918771226", "74.…
+$ x_4                                &lt;chr&gt; "Obj 2", "58.277950081228767", "25.…</code></pre>
+</div>
+</div>
+</section>
+<section id="remove-second-preference-header-row" class="slide level2" data-number="4.5">
+<h2><span class="header-section-number">4.5</span> Remove second preference header row</h2>
+<p>Now let’s deal with the preference column issues</p>
+<ul>
+<li>Data wrangling steps:
+<ul>
+<li>Rename the two columns <code>preference</code> and <code>x_4</code></li>
+<li>Set “Obj 1” and “Obj 2” to NA (use <code>na_if()</code>)</li>
+<li>Convert those columns to numeric</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>mouse_tp <span class="ot">&lt;-</span> mouse_tp <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="co"># rename these two columns to make sense</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">rename</span>(<span class="at">preference_obj1 =</span> preference,</span>
+<span id="cb23-4"><a href="#cb23-4"></a>         <span class="at">preference_obj2 =</span> x_4)</span>
+<span id="cb23-5"><a href="#cb23-5"></a></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="fu">colnames</span>(mouse_tp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "time"                               "sid"                               
+ [3] "normalized_bdnf_amygdala_pg_mg"     "normalized_bdnf_cortex_pg_mg"      
+ [5] "normalized_bdnf_hypothalamus_pg_mg" "normalized_cd68_amygdala_pg_mg"    
+ [7] "normalized_cd68_cortex_pg_mg"       "normalized_cd68_hypothalamus_pg_mg"
+ [9] "normalized_map2_cortex_pg_mg"       "mirna1"                            
+[11] "mirna2"                             "learning_outcome"                  
+[13] "preference_obj1"                    "preference_obj2"                   </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>mouse_tp <span class="ot">&lt;-</span> mouse_tp <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-3"><a href="#cb25-3"></a>    <span class="co"># set Obj 1 and 2 to NA, </span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>    <span class="at">preference_obj1 =</span> <span class="fu">na_if</span>(preference_obj1, <span class="st">"Obj 1"</span>),</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="at">preference_obj2 =</span> <span class="fu">na_if</span>(preference_obj2, <span class="st">"Obj 2"</span>),</span>
+<span id="cb25-6"><a href="#cb25-6"></a>    <span class="co"># then convert to numeric</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="at">preference_obj1 =</span> <span class="fu">as.numeric</span>(preference_obj1),</span>
+<span id="cb25-8"><a href="#cb25-8"></a>    <span class="at">preference_obj2 =</span> <span class="fu">as.numeric</span>(preference_obj2)</span>
+<span id="cb25-9"><a href="#cb25-9"></a>  )</span>
+<span id="cb25-10"><a href="#cb25-10"></a></span>
+<span id="cb25-11"><a href="#cb25-11"></a><span class="fu">glimpse</span>(mouse_tp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 99
+Columns: 14
+$ time                               &lt;chr&gt; "tp1", "tp1", "tp1", "tp1", "tp1", …
+$ sid                                &lt;dbl&gt; NA, 137, 138, 139, 140, 33, 34, 35,…
+$ normalized_bdnf_amygdala_pg_mg     &lt;dbl&gt; NA, 492.4831, 453.6635, 971.8741, 5…
+$ normalized_bdnf_cortex_pg_mg       &lt;dbl&gt; NA, 720.0173, 884.5668, 1148.2862, …
+$ normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 1215.8147, 638.2747, 979.14…
+$ normalized_cd68_amygdala_pg_mg     &lt;dbl&gt; NA, 988.9628, 775.5970, 2045.3141, …
+$ normalized_cd68_cortex_pg_mg       &lt;dbl&gt; NA, 8.393707, 7.901366, 12.779926, …
+$ normalized_cd68_hypothalamus_pg_mg &lt;dbl&gt; NA, NA, 4373.811, 2951.599, 3267.76…
+$ normalized_map2_cortex_pg_mg       &lt;dbl&gt; NA, 352.9653, 1007.4147, 1739.4782,…
+$ mirna1                             &lt;dbl&gt; NA, 5.26302, 6.78336, 7.88867, 7.28…
+$ mirna2                             &lt;dbl&gt; NA, 1.6536200, -0.2794240, -0.63788…
+$ learning_outcome                   &lt;dbl&gt; NA, 3.52, 1.56, 0.00, 7.33, 26.37, …
+$ preference_obj1                    &lt;dbl&gt; NA, 41.72205, 74.11972, 52.90954, 6…
+$ preference_obj2                    &lt;dbl&gt; NA, 58.2779501, 25.8802817, 47.0904…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Note the NA row at the bottom!</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>mouse_tp <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(sid, time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> sid tp1 tp2 tp3
+  33   1   1   1
+  34   1   1   1
+  35   1   1   1
+  36   1   1   1
+ 137   1   1   1
+ 138   1   1   1
+ 139   1   1   1
+ 140   1   1   1
+ 156   1   1   1
+ 157   1   1   1
+ 158   1   1   1
+ 159   1   1   1
+ 168   1   1   1
+ 169   1   1   1
+ 170   1   1   1
+ 171   1   1   1
+ 180   1   1   1
+ 181   1   1   1
+ 182   1   1   1
+ 183   1   1   1
+ 192   1   1   1
+ 193   1   1   1
+ 194   1   1   1
+ 195   1   1   1
+ 204   1   1   1
+ 205   1   1   1
+ 206   1   1   1
+ 207   1   1   1
+ 216   1   1   1
+ 217   1   1   1
+ 218   1   1   1
+ 219   1   1   1
+  NA   1   1   1</code></pre>
+</div>
+</div>
+<ul>
+<li>Those rows that used to contain “Obj 1” and “Obj 2” are now almost empty:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># when sid is NA,  the rest of the data is NA</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="co"># look at those rows:</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>mouse_tp <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(sid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 14
+  time    sid normalized_bdnf_amygdala_pg_mg normalized_bdnf_cortex_pg_mg
+  &lt;chr&gt; &lt;dbl&gt;                          &lt;dbl&gt;                        &lt;dbl&gt;
+1 tp1      NA                             NA                           NA
+2 tp2      NA                             NA                           NA
+3 tp3      NA                             NA                           NA
+# ℹ 10 more variables: normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt;,
+#   normalized_cd68_amygdala_pg_mg &lt;dbl&gt;, normalized_cd68_cortex_pg_mg &lt;dbl&gt;,
+#   normalized_cd68_hypothalamus_pg_mg &lt;dbl&gt;,
+#   normalized_map2_cortex_pg_mg &lt;dbl&gt;, mirna1 &lt;dbl&gt;, mirna2 &lt;dbl&gt;,
+#   learning_outcome &lt;dbl&gt;, preference_obj1 &lt;dbl&gt;, preference_obj2 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="drop_na" class="slide level2" data-number="4.6">
+<h2><span class="header-section-number">4.6</span> <code>drop_na()</code></h2>
+<ul>
+<li>We want to remove the three rows that have missing data in almost all columns,
+<ul>
+<li>which is the same as removing rows with any missing data in <code>sid</code> (rows where <code>sid</code> = <code>NA</code>).</li>
+</ul></li>
+</ul>
+<p>See Part5 notes and the <a href="https://tidyr.tidyverse.org/reference/drop_na.html"><code>drop_na()</code></a> reference for examples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># number of rows in complete data</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>mouse_tp <span class="sc">%&gt;%</span> nrow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 99</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># use tidyr::drop_na() to remove those</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="co"># Note: remove_empty() from the `janitor` package won't remove them </span></span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="co">#  because `time` is not empty</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="co"># this removes rows were there is *any* missing data in *any* column</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a><span class="co"># complete cases only, we do not want this</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a>mouse_tp <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> nrow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># this removes rows where there is missing data in sid</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>mouse_tp <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(sid) <span class="sc">%&gt;%</span> nrow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 96</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># save our work, remove just missing sid values</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>mouse_tp <span class="ot">&lt;-</span> mouse_tp <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">drop_na</span>(sid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we have exactly one time point for each <code>sid</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>mouse_tp <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">tabyl</span>(sid, time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> sid tp1 tp2 tp3
+  33   1   1   1
+  34   1   1   1
+  35   1   1   1
+  36   1   1   1
+ 137   1   1   1
+ 138   1   1   1
+ 139   1   1   1
+ 140   1   1   1
+ 156   1   1   1
+ 157   1   1   1
+ 158   1   1   1
+ 159   1   1   1
+ 168   1   1   1
+ 169   1   1   1
+ 170   1   1   1
+ 171   1   1   1
+ 180   1   1   1
+ 181   1   1   1
+ 182   1   1   1
+ 183   1   1   1
+ 192   1   1   1
+ 193   1   1   1
+ 194   1   1   1
+ 195   1   1   1
+ 204   1   1   1
+ 205   1   1   1
+ 206   1   1   1
+ 207   1   1   1
+ 216   1   1   1
+ 217   1   1   1
+ 218   1   1   1
+ 219   1   1   1</code></pre>
+</div>
+</div>
+</section>
+<section id="challenge-3---group-work" class="slide level2" data-number="4.7">
+<h2><span class="header-section-number">4.7</span> Challenge 3 - group work!</h2>
+<ol type="1">
+<li>Discuss what type of join would you use to combine the demographic data with the time point data and why.
+<ul>
+<li>Discuss how the joining of these two datasets is different than combining the three time point datasets we did above.</li>
+</ul></li>
+<li>After discussing question 1, combine the demographic data with the time point data.</li>
+<li>Create a column <code>time_month</code> that is a factor variable with levels “1 month”, “6 months”, and “12 months”, in this order.</li>
+<li>Revisit the plot below. What data wrangling steps do we still need to do to create this plot?</li>
+</ol>
+<p><img data-src="image/biomarker_boxplot-1.png" style="width:100.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># 2. combine the data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># 3.  create time_month factor variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="join-combine-demographic-data-with-longitudinal-time-point-data" class="title-slide slide level1 center" data-number="5">
+<h1><span class="header-section-number">5</span> <code>join</code>: Combine demographic data with longitudinal time point data</h1>
+
+</section>
+<section id="what-type-of-join" class="slide level2" data-number="5.1">
+<h2><span class="header-section-number">5.1</span> What type of <code>join</code>?</h2>
+<ul>
+<li>The demographic data <code>mouse_demo</code> provides the independent variables and experiment factors that are important for a future analysis.</li>
+<li>Inspect the data to determine what type of join to use</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Do we have “demographic” variables for all the id’s in the time point biomarker data?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>mouse_demo<span class="sc">$</span>sid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 137 138 139 140  33  34  35  36 180 181 182 183 192 193 194 195 156 157 158
+[20] 159 168 169 170 171 204 205 206 207 216 217 218 219</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>mouse_tp<span class="sc">$</span>sid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 137 138 139 140  33  34  35  36 180 181 182 183 192 193 194 195 156 157 158
+[20] 159 168 169 170 171 204 205 206 207 216 217 218 219 137 138 139 140  33  34
+[39]  35  36 180 181 182 183 192 193 194 195 156 157 158 159 168 169 170 171 204
+[58] 205 206 207 216 217 218 219 137 138 139 140  33  34  35  36 180 181 182 183
+[77] 192 193 194 195 156 157 158 159 168 169 170 171 204 205 206 207 216 217 218
+[96] 219</code></pre>
+</div>
+</div>
+<ul>
+<li>How many unique id’s are there in each dataset?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">n_distinct</span>(mouse_demo<span class="sc">$</span>sid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">n_distinct</span>(mouse_tp<span class="sc">$</span>sid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32</code></pre>
+</div>
+</div>
+<ul>
+<li>Both datasets have 32 unique id’s, but are they the same 32 id’s?
+<ul>
+<li>We can check this with code!</li>
+</ul></li>
+</ul>
+<p><em>Do we have all the mouse demographic ids in our mouse biomarker (time point) data?</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># is each mouse_demo id in mouse_tp id?</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>mouse_demo<span class="sc">$</span>sid <span class="sc">%in%</span> mouse_tp<span class="sc">$</span>sid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[31] TRUE TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">sum</span>(mouse_demo<span class="sc">$</span>sid <span class="sc">%in%</span> mouse_tp<span class="sc">$</span>sid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32</code></pre>
+</div>
+</div>
+<p><em>Do we have all the time point ids in our mouse demographic data?</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># is each mouse_tp id in mouse_demo id?</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a>mouse_tp<span class="sc">$</span>sid <span class="sc">%in%</span> mouse_demo<span class="sc">$</span>sid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[46] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[61] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[76] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[91] TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">tabyl</span>(mouse_tp<span class="sc">$</span>sid <span class="sc">%in%</span> mouse_demo<span class="sc">$</span>sid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> mouse_tp$sid %in% mouse_demo$sid  n percent
+                             TRUE 96       1</code></pre>
+</div>
+</div>
+<p>We do, they are just repeated for each time point!</p>
+<blockquote>
+<p>In this case, <code>left_join</code> and <code>full_join</code> and <code>inner_join</code> will all give the same result because we have the <strong>same ids</strong> in both datasets.</p>
+</blockquote>
+</section>
+<section id="do-the-join" class="slide level2" data-number="5.2">
+<h2><span class="header-section-number">5.2</span> Do the <code>join</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">dim</span>(mouse_demo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32  4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">dim</span>(mouse_tp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 96 14</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="co"># joins by sid</span></span>
+<span id="cb62-2"><a href="#cb62-2"></a>mouse_data <span class="ot">&lt;-</span> <span class="fu">full_join</span>(mouse_demo,</span>
+<span id="cb62-3"><a href="#cb62-3"></a>                        mouse_tp)</span>
+<span id="cb62-4"><a href="#cb62-4"></a></span>
+<span id="cb62-5"><a href="#cb62-5"></a><span class="fu">glimpse</span>(mouse_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 96
+Columns: 17
+$ sid                                &lt;dbl&gt; 137, 137, 137, 138, 138, 138, 139, …
+$ strain                             &lt;chr&gt; "C3H", "C3H", "C3H", "C3H", "C3H", …
+$ trt                                &lt;chr&gt; "-", "-", "-", "-", "-", "-", "-", …
+$ sex                                &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", …
+$ time                               &lt;chr&gt; "tp1", "tp2", "tp3", "tp1", "tp2", …
+$ normalized_bdnf_amygdala_pg_mg     &lt;dbl&gt; 492.4831, 275.1623, NA, 453.6635, 4…
+$ normalized_bdnf_cortex_pg_mg       &lt;dbl&gt; 720.0173, NA, 871.8286, 884.5668, N…
+$ normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt; NA, 1169.2845, NA, 1215.8147, 1078.…
+$ normalized_cd68_amygdala_pg_mg     &lt;dbl&gt; 988.9628, 574.0655, NA, 775.5970, 4…
+$ normalized_cd68_cortex_pg_mg       &lt;dbl&gt; 8.393707, NA, NA, 7.901366, NA, 8.8…
+$ normalized_cd68_hypothalamus_pg_mg &lt;dbl&gt; NA, 6800.870, NA, 4373.811, 4461.62…
+$ normalized_map2_cortex_pg_mg       &lt;dbl&gt; 352.9653, NA, 2693.9386, 1007.4147,…
+$ mirna1                             &lt;dbl&gt; 5.2630200, -0.0491371, -0.7367310, …
+$ mirna2                             &lt;dbl&gt; 1.6536200, -0.0773419, 0.1479940, -…
+$ learning_outcome                   &lt;dbl&gt; 3.52, 19.81, 2.44, 1.56, 14.48, 1.1…
+$ preference_obj1                    &lt;dbl&gt; 41.72205, 37.51387, 55.96768, 74.11…
+$ preference_obj2                    &lt;dbl&gt; 58.27795, 62.48613, 44.03232, 25.88…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="co"># View(mouse_data)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="some-more-data-wrangling" class="title-slide slide level1 center" data-number="6">
+<h1><span class="header-section-number">6</span> Some more data wrangling</h1>
+
+</section>
+<section id="create-time-month-factor" class="slide level2" data-number="6.1">
+<h2><span class="header-section-number">6.1</span> Create time month factor</h2>
+<ul>
+<li>Create a <code>time_month</code> variable that has the factor levels we want to recreate the figure:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># create time_month factor</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a>mouse_data <span class="ot">&lt;-</span> mouse_data <span class="sc">%&gt;%</span></span>
+<span id="cb65-3"><a href="#cb65-3"></a>  <span class="fu">mutate</span>(<span class="at">time_month =</span> <span class="fu">case_when</span>(</span>
+<span id="cb65-4"><a href="#cb65-4"></a>    time<span class="sc">==</span><span class="st">"tp1"</span> <span class="sc">~</span> <span class="st">"1 month"</span>,</span>
+<span id="cb65-5"><a href="#cb65-5"></a>    time<span class="sc">==</span><span class="st">"tp2"</span> <span class="sc">~</span> <span class="st">"6 months"</span>,</span>
+<span id="cb65-6"><a href="#cb65-6"></a>    time<span class="sc">==</span><span class="st">"tp3"</span> <span class="sc">~</span> <span class="st">"12 months"</span></span>
+<span id="cb65-7"><a href="#cb65-7"></a>  ),</span>
+<span id="cb65-8"><a href="#cb65-8"></a>  <span class="at">time_month =</span> <span class="fu">factor</span>(</span>
+<span id="cb65-9"><a href="#cb65-9"></a>    time_month,</span>
+<span id="cb65-10"><a href="#cb65-10"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"1 month"</span>, <span class="st">"6 months"</span>, <span class="st">"12 months"</span>)))</span>
+<span id="cb65-11"><a href="#cb65-11"></a></span>
+<span id="cb65-12"><a href="#cb65-12"></a><span class="co"># check!!</span></span>
+<span id="cb65-13"><a href="#cb65-13"></a>mouse_data <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(time_month, time) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-14"><a href="#cb65-14"></a>  <span class="fu">adorn_title</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            time        
+ time_month  tp1 tp2 tp3
+    1 month   32   0   0
+   6 months    0  32   0
+  12 months    0   0  32</code></pre>
+</div>
+</div>
+</section>
+<section id="object-preference-variables-cleaning" class="slide level2" data-number="6.2">
+<h2><span class="header-section-number">6.2</span> Object preference variables cleaning</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Problem?</a></li><li><a href="#tabset-2-2">Solution</a></li><li><a href="#tabset-2-3">Option 1</a></li><li><a href="#tabset-2-4">Option 2</a></li><li><a href="#tabset-2-5">Remove <code>total_pref</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<ul>
+<li>The two columns for object preference should add to 100%.
+<ul>
+<li>However, there are some rows where the sum is 0%,</li>
+<li>that is a red flag— actually both should be missing values.</li>
+</ul></li>
+<li>How would you correct this and set these values to missing?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>mouse_data<span class="sc">$</span>preference_obj1 <span class="sc">+</span> mouse_data<span class="sc">$</span>preference_obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
+[20] 100 100 100 100 100   0 100 100   0 100 100 100 100 100 100 100 100 100 100
+[39] 100 100 100 100 100  NA 100 100  NA 100 100 100 100 100 100 100 100 100 100
+[58] 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
+[77] 100 100 100   0   0 100 100 100 100   0 100 100 100 100 100   0 100 100 100
+[96] 100</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<ul>
+<li>There are of course many ways to do this, but one way is:
+<ul>
+<li>Create a new column that is the sum of the two preference columns</li>
+<li>When that sum is 0, set the two preference columns to <code>NA</code></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="co"># First create the column</span></span>
+<span id="cb69-2"><a href="#cb69-2"></a>mouse_data <span class="ot">&lt;-</span> mouse_data <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="#cb69-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb69-4"><a href="#cb69-4"></a>    <span class="at">total_pref =</span> preference_obj1 <span class="sc">+</span> preference_obj2</span>
+<span id="cb69-5"><a href="#cb69-5"></a>    ) </span>
+<span id="cb69-6"><a href="#cb69-6"></a></span>
+<span id="cb69-7"><a href="#cb69-7"></a><span class="co"># look at the rows where the sum is 0</span></span>
+<span id="cb69-8"><a href="#cb69-8"></a>mouse_data <span class="sc">%&gt;%</span> </span>
+<span id="cb69-9"><a href="#cb69-9"></a>  <span class="fu">filter</span>(total_pref<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb69-10"><a href="#cb69-10"></a>  <span class="fu">select</span>(sid, time, <span class="fu">contains</span>(<span class="st">"pref"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+    sid time  preference_obj1 preference_obj2 total_pref
+  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;      &lt;dbl&gt;
+1   180 tp1                 0               0          0
+2   181 tp1                 0               0          0
+3   206 tp2                 0               0          0
+4   206 tp3                 0               0          0
+5   216 tp2                 0               0          0
+6   218 tp2                 0               0          0</code></pre>
+</div>
+</div>
+<ul>
+<li>Below we use <code>case_when()</code> to mutate both columns, set to <code>NA</code> if <code>total_pref == 0</code> and otherwise (<code>.default</code>) use the value of that column</li>
+<li>We show two ways to do this, either:
+<ul>
+<li>one column at a time</li>
+<li>or, <code>across</code> columns that start with “pref”</li>
+</ul></li>
+</ul>
+</div>
+<div id="tabset-2-3">
+<ul>
+<li>Mutate columns individually</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="co"># we can mutate one column at a time:</span></span>
+<span id="cb71-2"><a href="#cb71-2"></a></span>
+<span id="cb71-3"><a href="#cb71-3"></a>mouse_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb71-4"><a href="#cb71-4"></a>  <span class="at">preference_obj1 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb71-5"><a href="#cb71-5"></a>    total_pref <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb71-6"><a href="#cb71-6"></a>    <span class="at">.default =</span> preference_obj1),</span>
+<span id="cb71-7"><a href="#cb71-7"></a>  </span>
+<span id="cb71-8"><a href="#cb71-8"></a>  <span class="at">preference_obj2 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb71-9"><a href="#cb71-9"></a>    total_pref <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb71-10"><a href="#cb71-10"></a>    <span class="at">.default =</span> preference_obj2),</span>
+<span id="cb71-11"><a href="#cb71-11"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-12"><a href="#cb71-12"></a>  </span>
+<span id="cb71-13"><a href="#cb71-13"></a>  <span class="co"># show a subset to see that it's working</span></span>
+<span id="cb71-14"><a href="#cb71-14"></a>  <span class="fu">filter</span>(sid<span class="sc">%in%</span><span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">181</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb71-15"><a href="#cb71-15"></a>  <span class="fu">select</span>(sid, time, <span class="fu">contains</span>(<span class="st">"pref"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+    sid time  preference_obj1 preference_obj2 total_pref
+  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;      &lt;dbl&gt;
+1   180 tp1              NA              NA            0
+2   180 tp2              59.0            41.0        100
+3   180 tp3              63.2            36.8        100
+4   181 tp1              NA              NA            0
+5   181 tp2              52.5            47.5        100
+6   181 tp3              75.6            24.4        100</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-4">
+<ul>
+<li>Mutate both columns simultaneously (&amp; save our changes)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># or both columns using across</span></span>
+<span id="cb73-2"><a href="#cb73-2"></a></span>
+<span id="cb73-3"><a href="#cb73-3"></a>mouse_data <span class="ot">&lt;-</span> mouse_data <span class="sc">%&gt;%</span></span>
+<span id="cb73-4"><a href="#cb73-4"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
+<span id="cb73-5"><a href="#cb73-5"></a>    <span class="at">.cols =</span> <span class="fu">starts_with</span>(<span class="st">"pref"</span>),</span>
+<span id="cb73-6"><a href="#cb73-6"></a>    <span class="at">.fns =</span>  <span class="sc">~</span> <span class="fu">case_when</span>(</span>
+<span id="cb73-7"><a href="#cb73-7"></a>      total_pref <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb73-8"><a href="#cb73-8"></a>      <span class="at">.default =</span> .)</span>
+<span id="cb73-9"><a href="#cb73-9"></a>    )) </span>
+<span id="cb73-10"><a href="#cb73-10"></a></span>
+<span id="cb73-11"><a href="#cb73-11"></a></span>
+<span id="cb73-12"><a href="#cb73-12"></a>mouse_data <span class="sc">%&gt;%</span></span>
+<span id="cb73-13"><a href="#cb73-13"></a>  <span class="co"># show a subset to see that it's working</span></span>
+<span id="cb73-14"><a href="#cb73-14"></a>  <span class="fu">filter</span>(sid <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">181</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb73-15"><a href="#cb73-15"></a>  <span class="fu">select</span>(sid, time, <span class="fu">contains</span>(<span class="st">"pref"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+    sid time  preference_obj1 preference_obj2 total_pref
+  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;           &lt;dbl&gt;      &lt;dbl&gt;
+1   180 tp1              NA              NA            0
+2   180 tp2              59.0            41.0        100
+3   180 tp3              63.2            36.8        100
+4   181 tp1              NA              NA            0
+5   181 tp2              52.5            47.5        100
+6   181 tp3              75.6            24.4        100</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-5">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="co"># remove total_pref</span></span>
+<span id="cb75-2"><a href="#cb75-2"></a></span>
+<span id="cb75-3"><a href="#cb75-3"></a>mouse_data <span class="ot">&lt;-</span> mouse_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>total_pref)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-the-cleaned-data-as-a-file" class="slide level2" data-number="6.3">
+<h2><span class="header-section-number">6.3</span> Save the cleaned data as a file</h2>
+<ul>
+<li>Now that we have the data cleaned and joined,
+<ul>
+<li>let’s save this as a cleaned data file in case we want to use it later.</li>
+</ul></li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">csv file</a></li><li><a href="#tabset-3-2">Rdata file</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<ul>
+<li>Advantage: can look at the data in Excel</li>
+<li>Disadvantage: we lose special “coding” of variables, such as factor variables (although we don’t have any yet)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="fu">write_excel_csv</span>(</span>
+<span id="cb76-2"><a href="#cb76-2"></a>  mouse_data, </span>
+<span id="cb76-3"><a href="#cb76-3"></a>  <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"part6"</span>, <span class="st">"data"</span>, <span class="st">"mouse_data_longitudinal_clean.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2">
+<ul>
+<li><p>Advantage: we don’t lose special “coding” of variables, such as factor variables (although we don’t have any yet)</p></li>
+<li><p>Disadvantage : can’t look at the data in Excel</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="fu">save</span>(</span>
+<span id="cb77-2"><a href="#cb77-2"></a>  mouse_data, </span>
+<span id="cb77-3"><a href="#cb77-3"></a>  <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"part6"</span>, <span class="st">"data"</span>, <span class="st">"mouse_data_longitudinal_clean.Rdata"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="challenge-4" class="slide level2" data-number="6.4">
+<h2><span class="header-section-number">6.4</span> Challenge 4</h2>
+<blockquote>
+<p><strong>Make that plot</strong>! <em>Or get as close as you can.</em></p>
+</blockquote>
+<p><em>Hint: you need to reshape your data and make some new columns out of old columns…</em></p>
+<p><img data-src="image/biomarker_boxplot-1.png" style="width:100.0%"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># make the data you need</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a></span>
+<span id="cb78-3"><a href="#cb78-3"></a></span>
+<span id="cb78-4"><a href="#cb78-4"></a></span>
+<span id="cb78-5"><a href="#cb78-5"></a></span>
+<span id="cb78-6"><a href="#cb78-6"></a><span class="co"># make your plot!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="create-the-figure" class="title-slide slide level1 center" data-number="7">
+<h1><span class="header-section-number">7</span> Create the figure</h1>
+
+</section>
+<section id="what-do-the-data-need-to-look-like-for-the-figure" class="slide level2" data-number="7.1">
+<h2><span class="header-section-number">7.1</span> What do the data need to “look like” for the figure?</h2>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Our data</a></li><li><a href="#tabset-4-2">Variables needed to create the figure</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<p>Let’s look at what we have again:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="fu">glimpse</span>(mouse_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 96
+Columns: 18
+$ sid                                &lt;dbl&gt; 137, 137, 137, 138, 138, 138, 139, …
+$ strain                             &lt;chr&gt; "C3H", "C3H", "C3H", "C3H", "C3H", …
+$ trt                                &lt;chr&gt; "-", "-", "-", "-", "-", "-", "-", …
+$ sex                                &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", …
+$ time                               &lt;chr&gt; "tp1", "tp2", "tp3", "tp1", "tp2", …
+$ normalized_bdnf_amygdala_pg_mg     &lt;dbl&gt; 492.4831, 275.1623, NA, 453.6635, 4…
+$ normalized_bdnf_cortex_pg_mg       &lt;dbl&gt; 720.0173, NA, 871.8286, 884.5668, N…
+$ normalized_bdnf_hypothalamus_pg_mg &lt;dbl&gt; NA, 1169.2845, NA, 1215.8147, 1078.…
+$ normalized_cd68_amygdala_pg_mg     &lt;dbl&gt; 988.9628, 574.0655, NA, 775.5970, 4…
+$ normalized_cd68_cortex_pg_mg       &lt;dbl&gt; 8.393707, NA, NA, 7.901366, NA, 8.8…
+$ normalized_cd68_hypothalamus_pg_mg &lt;dbl&gt; NA, 6800.870, NA, 4373.811, 4461.62…
+$ normalized_map2_cortex_pg_mg       &lt;dbl&gt; 352.9653, NA, 2693.9386, 1007.4147,…
+$ mirna1                             &lt;dbl&gt; 5.2630200, -0.0491371, -0.7367310, …
+$ mirna2                             &lt;dbl&gt; 1.6536200, -0.0773419, 0.1479940, -…
+$ learning_outcome                   &lt;dbl&gt; 3.52, 19.81, 2.44, 1.56, 14.48, 1.1…
+$ preference_obj1                    &lt;dbl&gt; 41.72205, 37.51387, 55.96768, 74.11…
+$ preference_obj2                    &lt;dbl&gt; 58.27795, 62.48613, 44.03232, 25.88…
+$ time_month                         &lt;fct&gt; 1 month, 6 months, 12 months, 1 mon…</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2">
+<ul>
+<li>Our biomarker variables are in separate columns:
+<ul>
+<li><code>normalized_bdnf_amygdala_pg_mg</code>, <code>normalized_bdnf_cortex_pg_mg</code>, … , <code>normalized_map2_cortex_pg_mg</code>.</li>
+</ul></li>
+<li>The plot has facets that correspond to
+<ul>
+<li>biomarker (bdnf, cd68, map2) and</li>
+<li>tissue type (amygdala, cortex, hypothalamus).</li>
+</ul></li>
+<li>Therefore, we need separate columns that contain this information, such as:
+<ul>
+<li>biomarker_type = bdnf, cd68, map2, etc</li>
+<li>tissue_type = amygdala, cortex, hypothalamus, etc</li>
+<li>biomarker_value = the biomarker numeric value for each of these</li>
+</ul></li>
+<li>Each mouse (<code>sid</code>) will have multiple rows,
+<ul>
+<li>because they have multiple tissue samples and multiple biomarkers measured.</li>
+<li>This means we need “long” data, where each observation is in a separate row.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="make-data-long" class="slide level2" data-number="7.2">
+<h2><span class="header-section-number">7.2</span> Make data long</h2>
+<p>First we will make the data long, and deal with the biomarker_type/tissue_type separation second:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="co"># make a long dataset where we have multiple biomarker data in the same column</span></span>
+<span id="cb81-2"><a href="#cb81-2"></a>mouse_biomarker_long <span class="ot">&lt;-</span> mouse_data <span class="sc">%&gt;%</span></span>
+<span id="cb81-3"><a href="#cb81-3"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"normalized"</span>),</span>
+<span id="cb81-4"><a href="#cb81-4"></a>              <span class="at">names_to =</span> <span class="st">"biomarker_type_temp"</span>,</span>
+<span id="cb81-5"><a href="#cb81-5"></a>              <span class="at">values_to =</span> <span class="st">"biomarker_value"</span>)</span>
+<span id="cb81-6"><a href="#cb81-6"></a></span>
+<span id="cb81-7"><a href="#cb81-7"></a><span class="fu">glimpse</span>(mouse_biomarker_long) <span class="co"># helps to View it too</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 672
+Columns: 13
+$ sid                 &lt;dbl&gt; 137, 137, 137, 137, 137, 137, 137, 137, 137, 137, …
+$ strain              &lt;chr&gt; "C3H", "C3H", "C3H", "C3H", "C3H", "C3H", "C3H", "…
+$ trt                 &lt;chr&gt; "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", …
+$ sex                 &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", …
+$ time                &lt;chr&gt; "tp1", "tp1", "tp1", "tp1", "tp1", "tp1", "tp1", "…
+$ mirna1              &lt;dbl&gt; 5.2630200, 5.2630200, 5.2630200, 5.2630200, 5.2630…
+$ mirna2              &lt;dbl&gt; 1.6536200, 1.6536200, 1.6536200, 1.6536200, 1.6536…
+$ learning_outcome    &lt;dbl&gt; 3.52, 3.52, 3.52, 3.52, 3.52, 3.52, 3.52, 19.81, 1…
+$ preference_obj1     &lt;dbl&gt; 41.72205, 41.72205, 41.72205, 41.72205, 41.72205, …
+$ preference_obj2     &lt;dbl&gt; 58.27795, 58.27795, 58.27795, 58.27795, 58.27795, …
+$ time_month          &lt;fct&gt; 1 month, 1 month, 1 month, 1 month, 1 month, 1 mon…
+$ biomarker_type_temp &lt;chr&gt; "normalized_bdnf_amygdala_pg_mg", "normalized_bdnf…
+$ biomarker_value     &lt;dbl&gt; 492.483106, 720.017330, NA, 988.962849, 8.393707, …</code></pre>
+</div>
+</div>
+<p>We are getting there.</p>
+<ul>
+<li>We now have the multiple observations per mouse (see <code>sid</code> 137 is repeated),
+<ul>
+<li>and we have the <code>biomarker_value</code> column.</li>
+</ul></li>
+<li>However, we need the <code>biomarker_type_temp</code>
+<ul>
+<li>to be separated out into
+<ul>
+<li>the tissue type and</li>
+<li>the name of the biomarker,</li>
+</ul></li>
+<li>for plotting purposes, and also to make it <em>tidy</em>!</li>
+</ul></li>
+</ul>
+</section>
+<section id="tidy-up-biomarker_type_temp-column" class="slide level2" data-number="7.3">
+<h2><span class="header-section-number">7.3</span> Tidy up <code>biomarker_type_temp</code> column</h2>
+<ul>
+<li>Goal: separate <code>biomarker_type_temp</code> into 2 columns:
+<ul>
+<li>the tissue type and</li>
+<li>the name of the biomarker</li>
+</ul></li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1"><code>biomarker_type_temp</code></a></li><li><a href="#tabset-5-2">Remove extra text</a></li><li><a href="#tabset-5-3">Separate type and location</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<ul>
+<li>These are the values in the <code>biomarker_type_temp</code> column:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a>mouse_biomarker_long <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(biomarker_type_temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                biomarker_type_temp  n   percent
+     normalized_bdnf_amygdala_pg_mg 96 0.1428571
+       normalized_bdnf_cortex_pg_mg 96 0.1428571
+ normalized_bdnf_hypothalamus_pg_mg 96 0.1428571
+     normalized_cd68_amygdala_pg_mg 96 0.1428571
+       normalized_cd68_cortex_pg_mg 96 0.1428571
+ normalized_cd68_hypothalamus_pg_mg 96 0.1428571
+       normalized_map2_cortex_pg_mg 96 0.1428571</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2">
+<ul>
+<li>First, we can remove the “normalized” and “pg_mg” parts:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a>mouse_biomarker_long <span class="ot">&lt;-</span> mouse_biomarker_long <span class="sc">%&gt;%</span></span>
+<span id="cb85-2"><a href="#cb85-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb85-3"><a href="#cb85-3"></a>    <span class="at">biomarker_type_temp =</span> <span class="fu">str_remove_all</span>(</span>
+<span id="cb85-4"><a href="#cb85-4"></a>      biomarker_type_temp, <span class="st">"normalized_|_pg_mg"</span>)</span>
+<span id="cb85-5"><a href="#cb85-5"></a>    )</span>
+<span id="cb85-6"><a href="#cb85-6"></a></span>
+<span id="cb85-7"><a href="#cb85-7"></a><span class="co"># check:</span></span>
+<span id="cb85-8"><a href="#cb85-8"></a>mouse_biomarker_long <span class="sc">%&gt;%</span> <span class="fu">tabyl</span>(biomarker_type_temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> biomarker_type_temp  n   percent
+       bdnf_amygdala 96 0.1428571
+         bdnf_cortex 96 0.1428571
+   bdnf_hypothalamus 96 0.1428571
+       cd68_amygdala 96 0.1428571
+         cd68_cortex 96 0.1428571
+   cd68_hypothalamus 96 0.1428571
+         map2_cortex 96 0.1428571</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-3">
+<ul>
+<li>Now we can separate using <code>separate_wider_delim()</code> with <code>_</code> as the separator:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a>mouse_biomarker_long <span class="ot">&lt;-</span> mouse_biomarker_long <span class="sc">%&gt;%</span></span>
+<span id="cb87-2"><a href="#cb87-2"></a>  <span class="fu">separate_wider_delim</span>(</span>
+<span id="cb87-3"><a href="#cb87-3"></a>    <span class="at">cols =</span> biomarker_type_temp,</span>
+<span id="cb87-4"><a href="#cb87-4"></a>    <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"biomarker_type"</span>, <span class="st">"biomarker_location"</span>),</span>
+<span id="cb87-5"><a href="#cb87-5"></a>    <span class="at">delim =</span> <span class="st">"_"</span>,</span>
+<span id="cb87-6"><a href="#cb87-6"></a>    <span class="at">cols_remove =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb87-7"><a href="#cb87-7"></a></span>
+<span id="cb87-8"><a href="#cb87-8"></a><span class="fu">glimpse</span>(mouse_biomarker_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 672
+Columns: 15
+$ sid                 &lt;dbl&gt; 137, 137, 137, 137, 137, 137, 137, 137, 137, 137, …
+$ strain              &lt;chr&gt; "C3H", "C3H", "C3H", "C3H", "C3H", "C3H", "C3H", "…
+$ trt                 &lt;chr&gt; "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", …
+$ sex                 &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", …
+$ time                &lt;chr&gt; "tp1", "tp1", "tp1", "tp1", "tp1", "tp1", "tp1", "…
+$ mirna1              &lt;dbl&gt; 5.2630200, 5.2630200, 5.2630200, 5.2630200, 5.2630…
+$ mirna2              &lt;dbl&gt; 1.6536200, 1.6536200, 1.6536200, 1.6536200, 1.6536…
+$ learning_outcome    &lt;dbl&gt; 3.52, 3.52, 3.52, 3.52, 3.52, 3.52, 3.52, 19.81, 1…
+$ preference_obj1     &lt;dbl&gt; 41.72205, 41.72205, 41.72205, 41.72205, 41.72205, …
+$ preference_obj2     &lt;dbl&gt; 58.27795, 58.27795, 58.27795, 58.27795, 58.27795, …
+$ time_month          &lt;fct&gt; 1 month, 1 month, 1 month, 1 month, 1 month, 1 mon…
+$ biomarker_type      &lt;chr&gt; "bdnf", "bdnf", "bdnf", "cd68", "cd68", "cd68", "m…
+$ biomarker_location  &lt;chr&gt; "amygdala", "cortex", "hypothalamus", "amygdala", …
+$ biomarker_type_temp &lt;chr&gt; "bdnf_amygdala", "bdnf_cortex", "bdnf_hypothalamus…
+$ biomarker_value     &lt;dbl&gt; 492.483106, 720.017330, NA, 988.962849, 8.393707, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a><span class="co"># Check!</span></span>
+<span id="cb89-2"><a href="#cb89-2"></a>mouse_biomarker_long <span class="sc">%&gt;%</span> </span>
+<span id="cb89-3"><a href="#cb89-3"></a>  <span class="fu">tabyl</span>(biomarker_type_temp, biomarker_type) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-4"><a href="#cb89-4"></a>  <span class="fu">adorn_title</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     biomarker_type          
+ biomarker_type_temp           bdnf cd68 map2
+       bdnf_amygdala             96    0    0
+         bdnf_cortex             96    0    0
+   bdnf_hypothalamus             96    0    0
+       cd68_amygdala              0   96    0
+         cd68_cortex              0   96    0
+   cd68_hypothalamus              0   96    0
+         map2_cortex              0    0   96</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a>mouse_biomarker_long <span class="sc">%&gt;%</span> </span>
+<span id="cb91-2"><a href="#cb91-2"></a>  <span class="fu">tabyl</span>(biomarker_type_temp, biomarker_location) <span class="sc">%&gt;%</span> </span>
+<span id="cb91-3"><a href="#cb91-3"></a>  <span class="fu">adorn_title</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     biomarker_location                    
+ biomarker_type_temp           amygdala cortex hypothalamus
+       bdnf_amygdala                 96      0            0
+         bdnf_cortex                  0     96            0
+   bdnf_hypothalamus                  0      0           96
+       cd68_amygdala                 96      0            0
+         cd68_cortex                  0     96            0
+   cd68_hypothalamus                  0      0           96
+         map2_cortex                  0     96            0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="make-the-plot" class="slide level2" data-number="7.4">
+<h2><span class="header-section-number">7.4</span> Make the plot!</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a>biomarker_boxplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb93-2"><a href="#cb93-2"></a>  mouse_biomarker_long,</span>
+<span id="cb93-3"><a href="#cb93-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> biomarker_location,</span>
+<span id="cb93-4"><a href="#cb93-4"></a>      <span class="at">y =</span> biomarker_value,</span>
+<span id="cb93-5"><a href="#cb93-5"></a>      <span class="at">fill =</span> trt)) <span class="sc">+</span></span>
+<span id="cb93-6"><a href="#cb93-6"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb93-7"><a href="#cb93-7"></a>  <span class="fu">facet_grid</span>(</span>
+<span id="cb93-8"><a href="#cb93-8"></a>    <span class="at">cols =</span> <span class="fu">vars</span>(time_month),</span>
+<span id="cb93-9"><a href="#cb93-9"></a>    <span class="at">rows =</span> <span class="fu">vars</span>(biomarker_type),</span>
+<span id="cb93-10"><a href="#cb93-10"></a>    <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb93-11"><a href="#cb93-11"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb93-12"><a href="#cb93-12"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Biomarker Tissue"</span>,</span>
+<span id="cb93-13"><a href="#cb93-13"></a>       <span class="at">y =</span> <span class="st">"Biomarker Value (pg/mg)"</span>,</span>
+<span id="cb93-14"><a href="#cb93-14"></a>       <span class="at">fill =</span> <span class="st">"Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb93-15"><a href="#cb93-15"></a>  ggthemes<span class="sc">::</span><span class="fu">scale_fill_tableau</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="output_figs/unnamed-chunk-37-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section id="save-workspace-as-rdata-file" class="title-slide slide level1 center" data-number="8">
+<h1><span class="header-section-number">8</span> Save workspace as Rdata file</h1>
+<ul>
+<li>We’re going to pick up in Part 7 where we left off here.</li>
+<li>In order to do that seamlessly and make sure we have all the objects in our workspace (environment) to access, we can save all the objects in our workspace in one <code>.Rdata</code> file</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"part6"</span>, <span class="st">"workspace_part6.Rdata"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="package-versions" class="title-slide slide level1 center" data-number="9">
+<h1><span class="header-section-number">9</span> Package versions</h1>
+<ul>
+<li>I recommend adding the code below to the end of your files so that in the future you have a record of what versions of packages were used in your work.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>─ Session info ───────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.2.3 (2023-03-15)
+ os       macOS 14.8.3
+ system   aarch64, darwin20
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       America/Los_Angeles
+ date     2026-02-12
+ pandoc   3.6.3 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/ (via rmarkdown)
+
+─ Packages ───────────────────────────────────────────────────────────────────
+ package        * version  date (UTC) lib source
+ abind            1.4-5    2016-07-21 [1] CRAN (R 4.2.0)
+ backports        1.4.1    2021-12-13 [1] CRAN (R 4.2.0)
+ base64enc        0.1-3    2015-07-28 [1] CRAN (R 4.2.0)
+ bit              4.0.5    2022-11-15 [1] CRAN (R 4.2.0)
+ bit64            4.0.5    2020-08-30 [1] CRAN (R 4.2.0)
+ broom            1.0.7    2024-09-26 [1] CRAN (R 4.2.3)
+ cachem           1.1.0    2024-05-16 [1] CRAN (R 4.2.3)
+ car              3.1-2    2023-03-30 [1] CRAN (R 4.2.3)
+ carData          3.0-5    2022-01-06 [1] CRAN (R 4.2.0)
+ cellranger       1.1.0    2016-07-27 [1] CRAN (R 4.2.0)
+ cli              3.6.3    2024-06-21 [1] CRAN (R 4.2.3)
+ crayon           1.5.3    2024-06-20 [1] CRAN (R 4.2.3)
+ devtools         2.4.5    2022-10-11 [1] CRAN (R 4.2.0)
+ digest           0.6.37   2024-08-19 [1] CRAN (R 4.2.3)
+ dplyr          * 1.1.4    2023-11-17 [1] CRAN (R 4.2.3)
+ ellipsis         0.3.2    2021-04-29 [1] CRAN (R 4.2.0)
+ evaluate         1.0.1    2024-10-10 [1] CRAN (R 4.2.3)
+ farver           2.1.2    2024-05-13 [1] CRAN (R 4.2.3)
+ fastmap          1.2.0    2024-05-15 [1] CRAN (R 4.2.3)
+ forcats        * 1.0.0    2023-01-29 [1] CRAN (R 4.2.0)
+ fs               1.6.5    2024-10-30 [1] CRAN (R 4.2.3)
+ generics         0.1.3    2022-07-05 [1] CRAN (R 4.2.0)
+ ggplot2        * 4.0.2    2026-02-03 [1] CRAN (R 4.2.3)
+ ggthemes       * 4.2.4    2021-01-20 [1] CRAN (R 4.2.0)
+ ghibli         * 0.3.3    2022-08-26 [1] CRAN (R 4.2.0)
+ glue             1.8.0    2024-09-30 [1] CRAN (R 4.2.3)
+ gt             * 1.0.0    2025-04-05 [1] CRAN (R 4.2.3)
+ gtable           0.3.6    2024-10-25 [1] CRAN (R 4.2.3)
+ gtsummary      * 2.0.4    2024-11-30 [1] CRAN (R 4.2.3)
+ here           * 1.0.1    2020-12-13 [1] CRAN (R 4.2.0)
+ hms              1.1.3    2023-03-21 [1] CRAN (R 4.2.0)
+ htmltools        0.5.8.1  2024-04-04 [1] CRAN (R 4.2.3)
+ htmlwidgets      1.6.4    2023-12-06 [1] CRAN (R 4.2.3)
+ httpuv           1.6.15   2024-03-26 [1] CRAN (R 4.2.3)
+ janitor        * 2.2.0    2023-02-02 [1] CRAN (R 4.2.0)
+ jsonlite         1.8.9    2024-09-20 [1] CRAN (R 4.2.3)
+ knitr            1.49     2024-11-08 [1] CRAN (R 4.2.3)
+ labeling         0.4.3    2023-08-29 [1] CRAN (R 4.2.0)
+ later            1.4.1    2024-11-27 [1] CRAN (R 4.2.3)
+ lifecycle        1.0.4    2023-11-07 [1] CRAN (R 4.2.3)
+ lubridate      * 1.9.3    2023-09-27 [1] CRAN (R 4.2.0)
+ magrittr         2.0.3    2022-03-30 [1] CRAN (R 4.2.0)
+ memoise          2.0.1    2021-11-26 [1] CRAN (R 4.2.0)
+ mime             0.12     2021-09-28 [1] CRAN (R 4.2.0)
+ miniUI           0.1.1.1  2018-05-18 [1] CRAN (R 4.2.0)
+ naniar         * 1.1.0    2024-03-05 [1] CRAN (R 4.2.3)
+ pacman           0.5.1    2019-03-11 [1] CRAN (R 4.2.0)
+ paletteer      * 1.6.0    2024-01-21 [1] CRAN (R 4.2.3)
+ palmerpenguins * 0.1.1    2022-08-15 [1] CRAN (R 4.2.0)
+ pillar           1.10.0   2024-12-17 [1] CRAN (R 4.2.3)
+ pkgbuild         1.4.5    2024-10-28 [1] CRAN (R 4.2.3)
+ pkgconfig        2.0.3    2019-09-22 [1] CRAN (R 4.2.0)
+ pkgload          1.4.0    2024-06-28 [1] CRAN (R 4.2.3)
+ prismatic        1.1.1    2022-08-15 [1] CRAN (R 4.2.0)
+ profvis          0.4.0    2024-09-20 [1] CRAN (R 4.2.3)
+ promises         1.3.2    2024-11-28 [1] CRAN (R 4.2.3)
+ purrr          * 1.0.2    2023-08-10 [1] CRAN (R 4.2.0)
+ R6               2.5.1    2021-08-19 [1] CRAN (R 4.2.0)
+ RColorBrewer     1.1-3    2022-04-03 [1] CRAN (R 4.2.0)
+ Rcpp             1.0.13-1 2024-11-02 [1] CRAN (R 4.2.3)
+ readr          * 2.1.5    2024-01-10 [1] CRAN (R 4.2.3)
+ readxl         * 1.4.2    2023-02-09 [1] CRAN (R 4.2.0)
+ rematch2         2.1.2    2020-05-01 [1] CRAN (R 4.2.0)
+ remotes          2.5.0    2024-03-17 [1] CRAN (R 4.2.3)
+ repr             1.1.6    2023-01-26 [1] CRAN (R 4.2.0)
+ rlang            1.1.4    2024-06-04 [1] CRAN (R 4.2.3)
+ rmarkdown        2.29     2024-11-04 [1] CRAN (R 4.2.3)
+ rprojroot        2.0.4    2023-11-05 [1] CRAN (R 4.2.0)
+ rstatix        * 0.7.2    2023-02-01 [1] CRAN (R 4.2.0)
+ rstudioapi       0.17.1   2024-10-22 [1] CRAN (R 4.2.3)
+ S7               0.2.1    2025-11-14 [1] CRAN (R 4.2.3)
+ sass             0.4.9    2024-03-15 [1] CRAN (R 4.2.3)
+ scales           1.4.0    2025-04-24 [1] CRAN (R 4.2.3)
+ sessioninfo      1.2.2    2021-12-06 [1] CRAN (R 4.2.0)
+ shiny            1.10.0   2024-12-14 [1] CRAN (R 4.2.3)
+ skimr          * 2.1.5    2022-12-23 [1] CRAN (R 4.2.0)
+ snakecase        0.11.0   2019-05-25 [1] CRAN (R 4.2.0)
+ stringi          1.8.4    2024-05-06 [1] CRAN (R 4.2.3)
+ stringr        * 1.6.0    2025-11-04 [1] CRAN (R 4.2.3)
+ tibble         * 3.2.1    2023-03-20 [1] CRAN (R 4.2.0)
+ tidyr          * 1.3.1    2024-01-24 [1] CRAN (R 4.2.3)
+ tidyselect       1.2.1    2024-03-11 [1] CRAN (R 4.2.3)
+ tidyverse      * 2.0.0    2023-02-22 [1] CRAN (R 4.2.0)
+ timechange       0.3.0    2024-01-18 [1] CRAN (R 4.2.3)
+ tzdb             0.4.0    2023-05-12 [1] CRAN (R 4.2.0)
+ urlchecker       1.0.1    2021-11-30 [1] CRAN (R 4.2.0)
+ usethis          3.1.0    2024-11-26 [1] CRAN (R 4.2.3)
+ utf8             1.2.4    2023-10-22 [1] CRAN (R 4.2.0)
+ vctrs            0.6.5    2023-12-01 [1] CRAN (R 4.2.3)
+ vembedr        * 0.1.5    2021-12-11 [1] CRAN (R 4.2.0)
+ visdat           0.6.0    2023-02-02 [1] CRAN (R 4.2.0)
+ vroom            1.6.5    2023-12-05 [1] CRAN (R 4.2.3)
+ withr            3.0.2    2024-10-28 [1] CRAN (R 4.2.3)
+ xfun             0.49     2024-10-31 [1] CRAN (R 4.2.3)
+ xml2             1.3.6    2023-12-04 [1] CRAN (R 4.2.3)
+ xtable           1.8-4    2019-04-21 [1] CRAN (R 4.2.0)
+ yaml             2.3.10   2024-07-26 [1] CRAN (R 4.2.3)
+
+ [1] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library
+
+──────────────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+</div>
+</section>
+
+<section id="post-class-survey" class="title-slide slide level1 center" data-number="10">
+<h1><span class="header-section-number">10</span> Post Class Survey</h1>
+<p>Please fill out the <a href="https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo" target="_blank">post-class survey</a>.</p>
+<p>Your responses are anonymous in that I separate your names from the survey answers before compiling/reading.</p>
+<p>You may want to review previous years’ feedback <a href="https://niederhausen.github.io/BSTA_526_W26/survey_feedback_previous_years" target="_blank">here</a>.</p>
+</section>
+
+<section id="acknowledgements" class="title-slide slide level1 center" data-number="11">
+<h1><span class="header-section-number">11</span> Acknowledgements</h1>
+<ul>
+<li>Part 6 is based on the BSTA 505 Winter 2023 course, taught by Jessica Minnier.
+<ul>
+<li>I made modifications to update the material from RMarkdown to Quarto, and streamlined/edited content for slides.</li>
+<li>Also made changes such as using the new<code>separate_wider_delim()</code>, using <code>n_distinct()</code>, and saving <code>.Rdata</code> files.</li>
+</ul></li>
+<li>Minnier’s Acknowledgements:
+<ul>
+<li>Written by Jessica Minnier and inspired by work of Ted Laderas.</li>
+</ul></li>
+</ul>
+
+<div class="footer footer-default">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1100,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+              // target, if specified
+              link.setAttribute("target", "_blank");
+          }
+        }
+    });
+    </script>
+    
+
+</body></html>
