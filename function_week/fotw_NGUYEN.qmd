@@ -1,0 +1,184 @@
+---
+title: "`cowplot::draw_plot`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Draw images onto plots"
+author: "Phi Nguyen"
+date: "2/12/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(modeldata)
+library(cowplot)
+library(magick)
+library(here)
+library(png)
+library(grid)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+For this I will be using the Stack Overflow developer survey dataset from the `modeldata` package; this is an annual survey that Stack Overflow does where they ask users to submit information on their jobs and compiles them into one report
+
+```{r}
+data("stackoverflow")
+
+```
+
+# `Function(s) Name(s)`
+
+> What function(s) is being presented and what package is it from?
+
+I will be presenting on the `draw_plot()` function from the `cowplot` package
+
+# What is it for?
+
+> Discuss what the function(s) does.
+
+The `cowplot` package serves as an add on to `ggplot` and provides various functions to help create high quality figures and provides customization options for figures than what could be accomplished with just `ggplot` or base R
+
+The function `draw_plot()` is used to draw a plot onto the current drawing canvas/figure. the `draw_plot()` function can be used in conjunction with the `ggraw()` and other methods such as `draw_label()` and `draw_image()` to customize plots, such as by adding images or text onto plots
+
+# Examples
+
+> Provide at least two examples that you have created yourself for your dataset of choice that show how to use the function(s).
+
+::: panel-tabset
+## **Example 1: Plots with Images**
+
+`draw_plot()` can be used with the `draw_image()` function to add pictures and graphics to your plots
+
+```{r}
+plot <- ggplot(stackoverflow,aes(x=Country,y=Salary,fill = Remote)) + geom_boxplot()
+
+ggdraw(plot) + draw_image("http://cdn.sstatic.net/stackexchange/img/logos/so/so-logo.png",scale=0.15,x = 0.4,y=0.45)
+
+```
+
+## **Example 1a: Background Images**
+
+You can also set images as a background for your plots
+
+```{r}
+plot_background <- ggplot(stackoverflow,aes(x=Salary,fill=Remote)) + geom_density(alpha=0.5) + theme_half_open() + labs(title= "Salary for Remote vs In Person")
+ggdraw() + 
+  draw_image("https://i.natgeofe.com/k/ad9b542e-c4a0-4d0b-9147-da17121b4c98/MOmeow1_square.png") +
+  draw_plot(plot_background)
+```
+
+# **Example 2: Adding Text to Plots**
+
+`draw_plot()` can also be used to add text to your plots
+
+```{r}
+ggdraw() + draw_plot(plot) + draw_label("THIS IS A PLOT",size = 50,color="purple")
+```
+
+## **Example 3: Multiple plots on one figure**
+
+we are able to use `draw_plot()` to plot multiple graphs on one figure similar to packages like `gridArrange` and `patchwork`
+
+```{r}
+plot <- ggplot(stackoverflow,aes(x=Country,y=Salary,fill = Remote)) + geom_boxplot()
+
+plot2 <- ggplot(stackoverflow,aes(x=Remote,y=Salary)) + geom_boxplot()
+
+##create a new drawing canvas with plot as the background
+ggdraw(plot,xlim=c(0,1),ylim=c(0,2)) + draw_plot(plot2,
+                         height = 1,
+                         width = 0.825,
+                         x=0,
+                         y = 1)
+```
+
+Unlike other packages for plotting multiple graphs on one figure we are not constrained by a grid layout allowing us to do things such as this
+
+```{r}
+plot <- ggplot(stackoverflow,aes(x=Country,y=Salary,fill = Remote)) + geom_boxplot() + labs(title="Salary by Country for Remote and In-Person Workers")
+
+plot2 <- ggplot(stackoverflow,aes(x=Remote,y=Salary)) + geom_boxplot() + labs(title = "Salary for Remote vs In-Person")
+plot3 <- ggplot(stackoverflow,aes(x=YearsCodedJob)) + geom_histogram(bins=20) + labs(title = "Histogram of Years at Job")
+
+##create a new drawing canvas with plot as the background
+ggdraw(plot,xlim=c(0,1),ylim=c(0,2)) + 
+  draw_plot(plot2,height = 1,width = 0.5,x=0,y = 1) +
+  draw_plot(plot3,height = 1,width = 0.36,x=0.5,y=1)
+
+
+ggdraw(plot,xlim=c(0,1),ylim=c(0,2)) + 
+  draw_plot(plot2,height = 1,width = 0.5,x=0,y = 1) +
+  draw_plot(plot3,height = 1,width = 0.75,x=0.2,y=.5)
+
+
+plot4 <- ggplot(stackoverflow,aes(x=YearsCodedJob,y=Salary)) + geom_point() + labs(title = "Years at Job vs Salary")
+
+ggdraw(plot3) + draw_plot(plot4,height = 0.3,width = 0.3,x = 0.55,y=0.5)
+```
+
+## **Putting it all Together**
+
+With `draw_plot()` and the `cowplot` package we are able to create custom visualizations that would not be possible with other tools
+
+```{r}
+bg <- readPNG(here("function_week", "image", "Nguyen_MapChart_Map.png"))
+
+plot_CA <- stackoverflow %>% filter(Country == "Canada") %>% ggplot(aes(y=Salary)) + geom_boxplot()
+plot_US <- stackoverflow %>% filter(Country == "United States") %>% ggplot(aes(y=Salary)) + geom_boxplot()
+plot_ID <- stackoverflow %>% filter(Country == "India") %>% ggplot(aes(y=Salary)) + geom_boxplot()
+
+ggdraw(rasterGrob(bg, interpolate = FALSE)) + 
+  draw_plot(plot_CA,width=0.2,height = 0.2,x = 0.25,y = .7) +
+  draw_plot(plot_US,width=0.2,height = 0.2,x = 0.05,y = .3) +
+  draw_plot(plot_ID,width=0.2,height = 0.2,x = 0.75,y = .3) + 
+  draw_plot_label(c("Canada","USA","India"),c(0.25,0.05,0.75),c(0.7,0.3,0.3)) + 
+  draw_line(
+    x = c(0.25, 0.2),
+    y = c(0.7, 0.65),
+    color = "black",
+    linewidth = 1.2,
+    arrow = arrow(length = unit(0.3, "inches"))
+  ) +
+    draw_line(
+    x = c(0.2, 0.22),
+    y = c(0.5, 0.57),
+    color = "black",
+    linewidth = 1.2,
+    arrow = arrow(length = unit(0.3, "inches"))
+  ) + 
+    draw_line(
+    x = c(0.75, 0.72),
+    y = c(0.5, 0.5),
+    color = "black",
+    linewidth = 1.2,
+    arrow = arrow(length = unit(0.3, "inches"))
+  ) + draw_label("Salary Boxplot of Countries",x=0.139,y=0.98)
+  
+```
+:::
+
+# Is it helpful?
+
+> Discuss whether you think this function(s) is useful for you and your work. Is it the best thing since sliced bread, or is it not really relevant to your work? If not relevant to you, can you think of examples of when it would be useful?
+
+I think that this function is not that useful for a biostatistician, a lot of the functionality I mentioned above can be accomplished by other packages, for example `gridArrange` and `patchwork` can be used to layout multiple plots in one figure. And while adding images to your plots can be nice in certain scenarios it's not all that useful in your day to day.
+
+The scenarios where it would be useful are for public facing dashboards. For example if you have a R shiny dashboard that on live data and you want to make it look more visually appealing and add branding for your organization to the plots or have more control over the layout of plots in a figure

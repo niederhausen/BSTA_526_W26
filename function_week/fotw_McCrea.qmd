@@ -1,0 +1,139 @@
+---
+title: "`dplyr::sample_n()` & `dplyr::sample_frac()`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Randomly selecting a number of rows, or a proportion of rows, from a data set."
+author: "Jaclyn McCrea"
+date: "2/19/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(gt)
+library(dplyr)
+library(palmerpenguins)
+data(penguins)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `dyplr::sample_n() & dplyr::sample_frac()`
+
+> The two functions presented here are the `sample_n()` and `sample_frac()` functions from the `dplyr` package, a package widely used for data wrangling.
+
+# What is it for?
+
+> -   The `sample_n()` function is used to randomly select a specified number of rows within a data set.
+>
+> -   Similarly, the `sample_frac()` function is used to randomly select a specified percentage of rows within a data set.
+
+# Examples
+
+For all examples, I will be using the `penguins` data from the `palmerpenguins` package. Let's take a quick look at it before we begin, paying close attention to the species column and how the penguins are lined up by species, and that there are a total of 344 observations.
+
+```{r}
+# Penguins lined up by species.
+penguins %>%
+  slice(c(1:3, 153:155, 277:279)) %>%
+  gt()
+
+# Number of rows.
+nrow(penguins)
+```
+
+## Functions
+
+::: panel-tabset
+### `sample_n()`
+
+If you wanted 100 randomly selected observations within a data set, then we can use `sample_n()` to do so for us.
+
+```{r}
+penguins %>%
+  sample_n(100) %>%
+  slice(1:8) %>%
+  gt()
+```
+
+-   As seen here, in this new output, there are 100 random observations taken from the original data set. This is confirmed to be random because the species are out of order, when in the original, they were lined up by species. You can select how many observations you want to randomly select with any integer relative to your data set, although this can change when a different argument is specified, which is discussed in the arguments section.
+
+### `sample_frac()`
+
+If you wanted to randomly select half of the observations in the original data set, then we can use `sample_frac()` to do so.
+
+```{r}
+penguins %>%
+  sample_frac(0.5) %>%
+  slice(1:8) %>%
+  gt()
+```
+
+-   Here, we see that this selected 172 observations, which was half of the total observations in the original data set. Again, we can confirm this randomly selected observations because they are not lined up by species like the original data set was. When selecting the fraction of observations you want to randomly sample, this needs to be a value between 0 and 1.
+:::
+
+## Function Arguments
+
+For both of these functions, they each have arguments that can be changed to fit what you want to do. We have already shown that you need to specify the data you want to use, as well as the number or fraction of randomly selected observations you want. However, there are two other arguments you can specify.
+
+::: panel-tabset
+### `replace`
+
+-   For both functions, you can specify the argument `replace` as either TRUE or FALSE. Specifying the argument as TRUE allows a chance for observations to be selected multiple times (selection with replacement). Specifying FALSE, which is the default setting, does not allow the chance for observations to be selected multiple times (selection without replacement). For a fun example, when using the `sample_n()` function, you are usually limited by the maximum number of observations in the original data set when choosing how many random observations you want. However, with `replace = TRUE`, we can exceed that maximum, as seen below with 400 observations.
+
+```{r}
+penguins %>%
+  sample_n(400, replace = TRUE) %>%
+  
+  # New observation number.
+  nrow()
+```
+
+### `weight`
+
+-   Also for both functions, you can specify the argument `weight`. This argument makes it so that certain rows have a higher chance of being selected. `weight = NULL` is the default setting, where there is no weight being applied. To use this argument, you can create a new column in your data set specifying your weight values for what you want weighted, and then use that new column in your `weight` argument. The weight values should be anything between 0-1, and should sum to 1. As seen with the table, a Chinstrap penguin was only chosen once (low weight) while the other species were chosen more often (high weight).
+
+```{r}
+# First, create the weight column.
+
+penguins %>% 
+  mutate(
+  weight = case_when(
+    species == "Chinstrap" ~ 0.1,
+    species == "Adelie" ~ 0.3,
+    species == "Gentoo" ~ 0.6
+  )
+) %>%
+  
+# Use the weight argument.
+  
+  sample_frac(0.5, replace = FALSE, weight = weight) %>%
+  slice(1:10) %>%
+  gt()
+```
+:::
+
+# Is it helpful?
+
+> -   I think these two functions are the most helpful when you want to bootstrap your data, especially when you want bootstrap samples that are a specific sample size. Bootstrapping needs to be paired with the `replace = TRUE` argument, which these two functions are able to provide.
+
+> -   However, these functions have been optimized into a single, different function: `dplyr::slice_sample()`. This function does the exact same things as the two functions above do, and have similar arguments.
+
+> -   You can still use `sample_n()` and `sample_frac()`, but it is recommended to move to using the newer, optimized version as only necessary bug fixes will be patched when pertaining to the old functions.

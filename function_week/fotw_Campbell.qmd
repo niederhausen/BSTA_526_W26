@@ -1,0 +1,100 @@
+---
+title: "`ggalluvial::geom_flow`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "geom_flow is a function within the R package ggalluvial. This function plots the 'flow' between different categories across time points/stages, the thickness of the flow represents the frequency of proportion"
+author: "Sydney Campbell"
+date: "2/12/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `Geom_flow`
+
+> `` `geom_flow` `` is a function from the `` `ggalluvial` `` R package. `` `ggalluvial` `` is an extension of `` `ggplot2` `` which means they share a lot of the same set up. `` `geom_flow` `` function is used to create alluvial style flow diagrams. This function is fairly new and requires the most recent version of R and `` `ggplot` `` to run.
+
+# What is it for?
+
+> > Ultimately this function is meant to visualize changes in data flow across multiple (categorical) stages. Each "flow" represents a group of observations moving from one category to another. The width of the flow represents the frequency of proportion of observations moving to another category. This function does need to be paired with `` `geom_stratum` `` , `` `geom_flow` `` shows flow between categories but `` `geom_stratum` `` shows the categories. Therefore the two must be together when plotting.
+
+# Examples
+
+## Example 1 No 'Ribbons'
+
+This is a basic example of `` `geom_flow()` `` with a pre-built R dataset. The R dataset is "HairEyeColor" and I thought it would be a fun dataset since it is 529 observations of statistics students (male/female) hair and eye color. This first example has no ribbons present. This is because each observation can't appear in multiple categories. Ex: a person with brown eyes can't also have blue eyes (for the sake of the dataset no one has heterochromia).
+
+`` `gg_alluvium` `` has some new arguments that I have not seen before. These arguments include `` `stratum` `` and `` `alluvium` `` , the stratum argument tells R which variable you want to group by while the alluvium argument tells R which variable you want to see across each stratum. Alluvium variables might not be naturally occuring in datasets and might need to be created with an `` `interaction()` `` command. This creates a unique id (factor) out of combination of the variables given to it. These factors are always unordered.
+
+```{r}
+pacman::p_load(ggalluvial, ggplot2, tidyr, dplyr)
+
+stats_stu <- as.data.frame(HairEyeColor)
+
+#needed to create an alluvium variable, it is the argument that sees
+#which traits are shared between categories
+stats_stu_c <- stats_stu %>%
+  mutate(
+    alluvium = interaction(Sex, Eye, Hair, drop = TRUE)
+  )
+
+ggplot(stats_stu_c, 
+       aes(x = Eye,
+           stratum = Hair,
+           alluvium = alluvium,
+           y = Freq,
+           fill = Hair)) +
+  geom_flow() +
+  geom_stratum()+
+  labs( title = "Eye Color and Hair Color of Statistics Students", 
+        x = "Eye Color", y = "Frequency of Hair color")
+
+```
+
+## Example 2 Ribbons
+
+This prebuilt R dataset `` ` majors` `` consists of 74 observations about which art classes students are taking over an 8 semester period. Since the same student can take multple classes ar once we can see that the ribbons are present. This shows us how many students switch curriculum courses as the semesters went on.
+
+```{r}
+ggplot(majors, 
+       aes(x = semester,
+           stratum = curriculum,
+           alluvium = student,,
+           fill = curriculum)) +
+  geom_flow() +
+  geom_stratum()+
+  labs( title = "Students Curriculum Over Multiple Semesters", 
+        x = "Semester", y = "Amount of Students in A Curriculum")
+
+```
+
+# Is it helpful?
+
+> I do think this function is helpful for data visualization, especially when you want to show how data fluctuates across different categories, or if your dataset has datapoints that appear multiple times. The drawback to this function is that the majority of data sets do not have variables that repeat and can appear in multiple categories. Therefore, making use of `` `geom_flow` `` most likely means doing some data manipulation before graphing.
+
+# Sources
+
+> https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html
+>
+> <https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/interaction>
