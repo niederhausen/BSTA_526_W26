@@ -32,11 +32,11 @@ source(here::here("schedule_class_dates.R"))
 |[4](weeks/week_04.qmd) | Th `r format(w4d1, "%m/%d")` | dplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales |
 |  | | HW 3 due |
 |  |  |  |  |
-|[5](weeks/week_04.qmd) | Th `r format(w5d1, "%m/%d")` |  Merging multiple datasets; cleaning & reshaping data |
+|[5](weeks/week_05.qmd) | Th `r format(w5d1, "%m/%d")` |  Merging multiple datasets; cleaning & reshaping data |
 |  | | HW 4 due |
 |  |Th `r format(midterm_open, "%m/%d")` | **[Take Home Midterm Assigned]{style="color:#046b94;"}** |  |
 |  |  |  |  |
-| 6 | Th `r format(w6d1, "%m/%d")` | More data wrangling practice |
+|[6](weeks/week_06.qmd) | Th `r format(w6d1, "%m/%d")` | Start with your goal: more data wrangling |
 |  | | HW 5 due |
 |  |  |  |  |
 | 7 | Th `r format(w7d1, "%m/%d")` | More data wrangling practice ctd.  |
