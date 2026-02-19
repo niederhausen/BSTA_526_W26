@@ -1,0 +1,1411 @@
+---
+title: "7: Customizing tables, adding and reordering `factor`s, and more `ggplot`"
+pagetitle: "7: Customizing tables, adding and reordering `factor`s, and more `ggplot`"
+subtitle: "BSTA 526: R Programming for Health Data Science"
+author: "Meike Niederhausen, PhD & Jessica Minnier, PhD"
+institute: "OHSU-PSU School of Public Health"
+date: "2/19/2026"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 5
+    theme: minty
+    embed-resources: true
+    html-math-method: mathjax
+  # revealjs:
+  #     incremental: false
+  #     scrollable: true
+  #     chalkboard: true
+  #     theme: [../sky_modified_smaller_font_B526_W26_v2.scss]
+  #     width:  1100 #1200 # 1050 #default 1050; ipad 3:5, 1600
+  #     # height: 825 #900 #800 #default 700; 788 for 3:5, 1200
+  #     slide-number: true
+  #     number-sections: true
+  #     number-depth: 5
+  #     link-external-newwindow: true
+  #     html-math-method: mathjax
+  #     auto-stretch: false  # stop autosizing figures
+execute:
+  echo: true
+  message: false
+  warning: false
+  fig.align: "center"
+  fig-width: 5
+  fig-height: 3
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The first chunk is special 
+# because if you try to run a chunk below without running anything else first, 
+# R will automatically run this first
+
+knitr::opts_chunk$set(echo = TRUE, fig.path = "output_figs/")
+
+# Here I am loading libraries/packages and installing packages you don't have yet. Add the argument `update=TRUE` if you want to update your packages.
+pacman::p_load(
+  vembedr,      # youtube embedder
+  skimr,        # get overview of data
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import Excel data
+  gtsummary,    # summary statistics and tests
+  ggthemes,     # lots of themes
+  here,         # helps with file management
+  janitor,      # for data cleaning, making tables
+  palmerpenguins, # penguin data
+  ghibli,       # studio ghibli palettes
+  paletteer,    # additional ggplot2 palettes
+  gt,           # beautiful tables
+  rstatix,      # summary stats for numeric vars
+  naniar        # missing values exploration
+  )
+
+# set ggplot theme for slides 
+# theme_set(theme_bw(base_size = 22))
+# theme_update(text = element_text(size=22))  # set global text size for ggplots
+
+```
+
+
+
+
+# Welcome to R Programming: Part 7!
+
+Today we will learn more about customizing tables, adding and reordering `factor`s, and `ggplot`.
+
+<br>
+
+Before you get started:
+
+>Remember to save this notebook under a new name, such as `part_07_b526_YOURNAME.qmd`.
+
+<br>
+
+-   Load the packages in the setup code chunk
+
+## Learning Objectives
+
+-   **Learn** new options for customizing tables
+-   **Practice** modifying factor levels
+-   **Practice** ggplot and **Learn** more geometries
+
+
+# Data: mouse data form Part 6
+
+## Load Part 6 saved workspace Rdata file
+
+-   At the end of Part 6, we saved all objects in our workspace (environment) using the `save.image()` function. 
+-   Below we load this Rdata file so that all of the objects (such as datasets) that were in our workspace are available to use, and we can start Part 7 where we left off at the end of Part 6. 
+
+
+```{r}
+# Note that the Rdata file is in the part6 folder!
+load(file = here::here("part6", "workspace_part6.Rdata"))
+```
+
+## Mouse data reminder
+
+* Today we are going to be working with a subset of real data that Dr. Minnier has analyzed. 
+    *   The actual dataset had hundreds of columns (dozens of outcome variables, a few [biomarker](https://www.niehs.nih.gov/health/topics/science/biomarkers) values, hundreds of miRNA expression data, and lipidomics on a number of lipids). 
+    *   The data we are using are a subset of the actual data with some random noise added to the values to protect the data privacy of the lab.
+
+* Mouse data variables:
+    - treatment (yes, no)
+    - sex (male, female)
+    - strain (genetic strain of mouse: [Balb/C](https://en.wikipedia.org/wiki/BALB/c), [C3H](https://www.criver.com/products-services/find-model/c3h-mouse?region=3611))
+    - time point (1 month, 6 month, 12 month = age of mice)
+    - two [miRNA](https://en.wikipedia.org/wiki/MicroRNA) expression values (micro ribonucleic acid, or microRNA)
+    - biomarker values from three different brain tissues
+    - outcomes of interest
+        -  learning outcome (higher values are better)
+        -  preference for object 1 and object 2 (from behavioral and cognitive tests on mice) which is measured in % time spent with that object. 
+
+* The format of the Excel sheet is pretty similar to what was originally given, other than removing some columns.
+    - One big change is that in the original data, each time point was a different cohort of mice, but we are pretending that it is the same cohort of mice and we have longitudinal data (actually impossible due to the way the biomarkers are measured, but let's just ignore that). This will allow you to practice more complex joins.
+
+
+
+# Customizing tables
+
+
+## Basic `gt()` examples
+
+* The `gt` package can make our tables look much nicer in html output. 
+
+::: {.panel-tabset}
+### No grouping
+
+* Table output without `gt()`
+
+```{r}
+# Just a regular summarize tibble result
+mouse_biomarker_long %>% 
+  group_by(biomarker_type) %>%
+  summarize(
+    mean_biomarker = mean(biomarker_value, na.rm = TRUE)) 
+```
+
+<br>
+
+* Using default `gt()` settings for making tables output nicer
+
+```{r}
+# add on gt()
+mouse_biomarker_long %>% 
+  group_by(biomarker_type) %>%
+  summarize(
+    mean_biomarker = mean(biomarker_value, na.rm = TRUE)) %>%
+  gt()
+```
+
+### With grouping
+
+* Table output without `gt()`
+
+```{r}
+# regular tibble output
+mouse_biomarker_long %>% 
+  group_by(
+    time_month, biomarker_location, biomarker_type) %>%
+  summarize(
+    mean_biomarker = mean(biomarker_value, na.rm = TRUE))
+```
+
+<br>
+
+* If we have multiple grouping variables, by default `gt()` will make grouped headers
+
+```{r}
+mouse_biomarker_long %>% 
+  group_by(
+    time_month, biomarker_location, biomarker_type) %>%
+  summarize(
+    mean_biomarker = mean(biomarker_value, na.rm = TRUE)) %>%
+  gt()
+```
+
+
+
+:::
+
+
+## `adorn` `tabyl`s
+
+-   There are various `adorn_*` functions within the `janitor` package that can add lots of summary stats to your cross `tabyl`s. 
+-   See lots of examples in the [vignette](https://sfirke.github.io/janitor/articles/tabyls.html)
+
+::: {.panel-tabset}
+### Basic `tabyl`
+
+-   Here we're using the Palmer penguins data since it has more interesting categorical data values
+
+```{r}
+# simple cross table with counts
+penguins %>% 
+  tabyl(species, sex) 
+```
+
+### `adorn_percentages()`
+
+-   *How were the percentages calculated?*
+-   What values are being shown? (hint: they're not percentages)
+
+```{r}
+# simple cross table with percents (denominator is row by default)
+penguins %>% 
+  tabyl(species, sex) %>%
+  adorn_percentages()
+```
+
+<br>
+
+-   Calculate **column** percentages
+
+```{r}
+# ?adorn_percentages
+
+penguins %>% 
+  tabyl(species, sex) %>%
+  # instead of counts, show percentages, the default denominator is row
+  adorn_percentages(denominator = "col") 
+```
+
+<br>
+
+-   Calculate **overall** percentages
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  # percent of total (denominator is the total sum)
+  adorn_percentages(denominator = "all")
+```
+
+
+### `adorn_totals`
+
+-   Include a row and/or column with row and/or column totals
+-   Ideally only include totals that make sense...
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  adorn_percentages(denominator = "col") %>%
+  # add row and column totals, the default is to show just column totals in "row"
+  # this makes for a strange row total, though, as we get 300% total
+  adorn_totals(where = c("row", "col")) 
+```
+
+<br>
+
+-   Including both row & column totals makes more sense with "overall" percentages
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  # percent of total (denominator is the total sum)
+  adorn_percentages(denominator = "all") %>%
+  # now it makes more sense to have totals in both row and column
+  adorn_totals(where = c("row", "col")) 
+```
+
+
+### `adorn_pct_formatting()`
+
+-   Convert the proportions into actual percents:
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  # percent of total (denominator is the total sum)
+  adorn_percentages(denominator = "all") %>%
+  # now it makes more sense to have totals in both row and column
+  adorn_totals(where = c("row", "col")) %>%
+  adorn_pct_formatting() 
+```
+
+### `adorn_ns()`
+
+* Include the counts:
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  # percent of total (denominator is the total sum)
+  adorn_percentages(denominator = "all") %>%
+  adorn_totals(where = c("row", "col")) %>%
+  adorn_pct_formatting() %>%
+  # add back in counts in ()
+  # need to have adorn_ns AFTER adding pct formatting, otherwise error
+  adorn_ns()
+
+```
+
+<br>
+
+* Switch the order of n and `%`:
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  # percent of total (denominator is the total sum)
+  adorn_percentages(denominator = "all") %>%
+  adorn_totals(where = c("row", "col")) %>%
+  adorn_pct_formatting() %>%
+  # add position = "front" within adorn_ns
+  adorn_ns(position = "front")  # default is position = "rear"
+```
+
+### `adorn_title()`
+
+Add in the names of the second variable (column variable)
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  adorn_percentages(denominator = "all") %>%
+  adorn_totals(where = c("row", "col")) %>%
+  adorn_pct_formatting() %>%
+  adorn_ns(position = "front") %>%
+  # add title, need placement = "combined" for gt to work
+  adorn_title() 
+```
+
+<br>
+
+-   What does `adorn_title(placement = "combined")` do?
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  adorn_percentages(denominator = "all") %>%
+  adorn_totals(where = c("row", "col")) %>%
+  adorn_pct_formatting() %>%
+  adorn_ns(position = "front") %>%
+  # add title, need placement = "combined" for gt to work
+  adorn_title(placement = "combined") 
+```
+
+
+:::
+
+## Add `gt()` options to `tabyl()`
+
+::: {.panel-tabset}
+
+### `gt()`
+
+-   Default `gt()`
+-   **Important!!!** `adorn_title()` does not work together with `gt()` unless the option `placement = "combined"` is included
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  adorn_percentages(denominator = "all") %>%
+  adorn_totals(where = c("row", "col")) %>%
+  adorn_pct_formatting() %>%
+  adorn_ns(position = "front") %>%
+  # add title, need placement = "combined" for gt to work
+  adorn_title(placement = "combined") %>%
+  # make it fancy html
+  gt()
+```
+
+### `tab_stubhead()`, `tab_header()`, & `tab_spanner()`
+
+-   We can use `gt` package functions to make the table even nicer
+-   `tab_spanner()` is also a prettier and clearer way to add in the name for the column headers instead of using `adorn_title()`
+
+```{r}
+penguins %>% 
+  tabyl(species, sex) %>%
+  adorn_percentages(denominator = "all") %>%
+  adorn_totals(where = c("row", "col")) %>%
+  adorn_pct_formatting() %>%
+  adorn_ns(position = "front") %>%
+  # specify that species denotes the name of the rows (removes the column label)
+  # add line between row names and rest of table
+  gt(                                   
+    rowname_col = "species") %>%
+  # add Species back in as row header
+  tab_stubhead(                          
+    label = "Species") %>%
+  # add sex label across multiple columns
+  tab_spanner(
+    label = "Sex",
+    columns = c(female, male, `NA_`)
+  ) %>%
+  # add title
+  tab_header(
+    title = "Species by sex percentages (counts)",
+    subtitle = "Palmer penguin data"
+  )
+```
+
+### `gt` vignettes
+
+::: {.columns}
+
+::: {.column width="40%"}
+See the very useful [vignettes](https://gt.rstudio.com/){target="_blank"}  about the `gt` package, for more.
+:::
+
+::: {.column width="60%"}
+![Image from [https://gt.rstudio.com/](https://gt.rstudio.com/)](image/gt_parts_of_a_table.png){fig-align="center" width="100%"} 
+:::
+                                          
+
+                                          
+:::
+
+
+
+:::
+
+## `gtsummary::tbl_summary()`
+
+The [`gtsummary` package](https://www.danieldsjoberg.com/gtsummary/) is built on `gt`:
+
+```{r}
+mouse_data %>%
+  gtsummary::tbl_summary(
+    by = time_month, 
+    include = c(-sid,-time))
+```
+
+# More about `factor`s
+
+## Adding an empty `factor` level, and how this affects figures and summary tables
+
+```{r}
+levels(mouse_biomarker_long$time_month)
+```
+
+::: {.panel-tabset}
+### Create vars
+
+-   Create 3 new variables based off of `time_month` variable
+    -   The original factor variable
+    -   A character variable
+    -   A factor variable with the "empty" level "0 months"
+-   *Note that we're saving this as a different dataset, `mouse_fac`*
+
+```{r}
+mouse_fac <- mouse_biomarker_long %>%
+  mutate(
+    time_month_factor = time_month,
+    time_month_char = as.character(time_month_factor),
+    time_month_factor4 =
+      factor(
+        time_month_char,
+        levels = c("0 months", "1 month", "6 months", "12 months")
+      )
+  )
+
+glimpse(mouse_fac)
+```
+
+### `tabyl`s of new vars
+
+-   Let's look at tables of these new variables:
+
+```{r}
+mouse_fac %>% tabyl(time_month_char)
+
+mouse_fac %>% tabyl(time_month_factor)
+
+mouse_fac %>% tabyl(time_month_factor4)
+
+mouse_fac %>% tabyl(time_month_factor4, trt)
+```
+
+:::
+
+
+## Using `group_by()` and `summarize()` with empty factor levels
+
+-   Summarize mean `mirna` values grouped by time `time_month_factor4`
+
+::: {.panel-tabset}
+### Default
+
+-   Note that the empty factor level doesn't show up in the output
+
+```{r}
+mouse_fac %>% 
+  group_by(time_month_factor4) %>%
+  summarize(across(mirna1:mirna2, 
+                   ~ mean(.x, na.rm = TRUE)))
+
+```
+
+
+### Add `.drop = FALSE`
+
+-   Use .drop = FALSE in the `group_by()` function to show the empty factor level
+
+```{r}
+
+mouse_fac %>% 
+  # add .drop = FALSE to keep factor levels that don't appear in data
+  group_by(time_month_factor4, 
+           .drop = FALSE) %>%
+  summarize(across(mirna1:mirna2, 
+                   ~ mean(.x, na.rm = TRUE)))
+```
+
+
+### Group by 2 vars
+
+-   Group by both time month and treatment:
+
+```{r}
+mouse_fac %>% 
+  # add .drop = FALSE to keep factor levels that don't appear in data
+  group_by(time_month_factor4, trt, 
+           .drop = FALSE) %>%
+  summarize(across(mirna1:mirna2, 
+                   ~ mean(.x, na.rm = TRUE)))
+```
+
+<br>
+
+To show both levels of `trt`, make it a factor first:
+
+```{r}
+mouse_fac %>% 
+  mutate(trt = factor(trt)) %>%
+  group_by(time_month_factor4, trt, 
+           .drop = FALSE) %>%
+  summarize(across(mirna1:mirna2, 
+                   ~ mean(.x, na.rm = TRUE)))
+```
+
+
+:::
+
+
+## ggplot boxplot example
+
+
+::: {.panel-tabset}
+
+### Character var
+
+```{r}
+ggplot(mouse_fac) + 
+  aes(x = time_month_char, y = learning_outcome) +
+  geom_boxplot()
+```
+
+### Factor var
+
+```{r}
+ggplot(mouse_fac) + 
+  aes(x = time_month_factor, y = learning_outcome) +
+  geom_boxplot()
+```
+
+
+### Factor var with empty level
+
+```{r}
+ggplot(mouse_fac) + 
+  aes(x = time_month_factor4, y = learning_outcome) +
+  geom_boxplot()
+
+```
+
+<br>
+
+-   This doesn't show the empty time category "0 months". 
+-   We can fix this with `scale_x_discrete()`:
+
+```{r}
+ggplot(mouse_fac) + 
+  aes(x = time_month_factor4, y = learning_outcome) +
+  geom_boxplot() +
+  scale_x_discrete(drop = FALSE)
+```
+
+
+### Faceting
+
+-   If we want to use the factor as a facet (without adding that extra row of empty data), we can also show an empty level with `drop = FALSE` inside `facet_grid()`:
+
+```{r}
+#| fig.width: 6.0
+#| fig.height: 4.0
+
+# could even add the factor level as a facet
+# do not need to add extra row, since we use drop=FALSE
+ggplot(mouse_fac,
+       aes(x = biomarker_location,
+           y = biomarker_value,
+           fill = trt)) +
+  geom_boxplot() + 
+  facet_grid(cols = vars(time_month_factor4),
+             rows = vars(biomarker_type), 
+             scales="free_y",
+             # WE NEED TO ADD THIS BECAUSE NO DATA
+             drop = FALSE) +
+  theme_bw() +
+  labs(x = "Biomarker Tissue", 
+       y = "Biomarker Value (pg/mg)", 
+       fill = "Treatment") +
+  ggthemes::scale_fill_tableau()
+```
+
+:::
+
+
+
+## `fct_rev()` - reversing the order of a factor
+
+-   Very useful when using factors on the y-axis, because the default ordering is first value at the bottom, rather than first value at the top.
+
+::: {.panel-tabset}
+### `fct_rev()`
+
+```{r}
+# library(forcats)
+
+mouse_fac <- mouse_fac %>%
+  mutate(
+    time_month_factor_rev = fct_rev(time_month_factor))
+
+# check: compare original & reversed factor vars
+mouse_fac %>% tabyl(time_month_factor, time_month_factor_rev) %>% 
+  adorn_title()
+```
+
+
+### Figure w/o reversing
+
+```{r}
+#show original factor
+ggplot(mouse_fac,
+       aes(y = time_month_factor, x = learning_outcome)) +
+  geom_boxplot()
+
+```
+
+### Figure w/ reversing
+
+```{r}
+#show factor with reversed order
+ggplot(mouse_fac,
+       aes(y = time_month_factor_rev, x = learning_outcome)) +
+  geom_boxplot()
+
+```
+
+:::
+
+## `fct_reorder()`
+
+-   `fct_reorder()` lets you reorder factors by another `numeric` variable.
+-   Below we reorder the levels of `time_month_factor` by the median values of `mirna2` at the 3 time points.
+
+::: {.panel-tabset}
+### Median values
+
+```{r}
+mouse_fac %>% 
+  group_by(time_month_factor) %>%
+  summarize(m = median(mirna2, na.rm = TRUE)) %>%
+  arrange(m)
+```
+
+### Apply `fct_reorder()` 
+
+-   Reorder the levels of `time_month_factor` by the median values of `mirna2` at the 3 time points.
+
+```{r}
+mouse_fac <- mouse_fac %>%
+  mutate(time_month_factor_reorder = 
+           fct_reorder(time_month_factor, mirna2, 
+                       .fun = median, na.rm = TRUE))
+
+# check
+mouse_fac %>% 
+  tabyl(time_month_factor_reorder, time_month_factor)
+```
+
+### Boxplot with reordered levels
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(mouse_fac) + 
+  aes(
+    y = time_month_factor_reorder, 
+    x = mirna2) +
+  geom_boxplot()
+
+```
+
+:::
+
+## Other useful `forcats` functions
+
+* `fct_recode()` - lets you recode values manually.
+* `fct_other()` - lets you define what categories are grouped/lumped together into an `other` variable (see example in Part 5)
+    * For more examples using `fct_other()` see [Winter 2023 Muddiest Points on Class 5 at the bottom of the page](https://sph-r-programming-2023.netlify.app/class/05-class/)
+
+
+
+
+
+
+# Additional ggplot practice
+
+## `geom_jitter()` & "dodged" boxplots
+
+::: {.panel-tabset}
+### Notes on jittering
+
+* With small datasets, it is often more informative to show the actual data values, rather than a summary like a boxplot. 
+
+* We use `geom_jitter` to show the data values with random horizontal (or vertical, or both) "jitter" (noise) so they don't all pile on top of each other.
+
+* When we have **"dodged" boxplots**, that is, boxplots side by side based on a fill or color, we need to take special care with the position argument.
+
+* Always read the reference/help on these functions for more examples; [geom_jitter](https://ggplot2.tidyverse.org/reference/geom_jitter.html).
+
+
+### "Dodged" boxplots w/ jittering (Take 1)
+
+>What is wrong with the jittering?
+ 
+```{r}
+#| label: boxplot_biomarker_jitter1
+#| fig-width: 6
+#| fig-height: 4
+#| output-location: column
+
+ggplot(mouse_biomarker_long,
+       aes(x = biomarker_location,
+           y = biomarker_value,
+           fill = trt)) +
+  geom_boxplot(
+    alpha = 0.5, 
+    outlier.color = NA) +
+  geom_jitter(pch = 21) +  # jitter layer
+  facet_grid(
+    cols = vars(time_month),
+    rows = vars(biomarker_type),
+    scales = "free_y"
+  ) +
+  theme_bw() +
+  labs(
+    x = "Biomarker Tissue",
+    y = "Biomarker Value (pg/mg)",
+    fill = "Treatment") +
+  ggthemes::scale_fill_tableau()
+  
+```
+
+
+### `pch`
+
+* `pch` is short for plotting character. 
+    - What happens if you remove the `pch = 21` within the `geom_jitter`?
+    - Learn more about different [pch symbol options](https://r-charts.com/base-r/pch-symbols/).
+
+
+### Take 2
+
+-   Adding `position = position_jitterdodge()` is a fix for the jittering problem:
+
+```{r}
+#| label: boxplot_biomarker_jitter2
+#| fig-width: 6
+#| fig-height: 4
+#| output-location: column
+
+ggplot(mouse_biomarker_long,
+       aes(x = biomarker_location,
+           y = biomarker_value,
+           fill = trt)) +
+  geom_boxplot(
+    alpha = 0.5, 
+    outlier.color = NA) +
+  # note we need position 
+  # when we have "dodged" boxplots
+  geom_jitter(
+    pch = 21, 
+    position = position_jitterdodge()
+    ) +
+  # This can also be achieved with geom_point:
+  # geom_point(pch = 21, position = position_jitterdodge()) +
+  facet_grid(
+    cols = vars(time_month),
+    rows = vars(biomarker_type),
+    scales = "free_y"
+  ) +
+  theme_bw() +
+  labs(
+    x = "Biomarker Tissue",
+    y = "Biomarker Value (pg/mg)",
+    fill = "Treatment") +
+  ggthemes::scale_fill_tableau()
+  
+```
+
+
+:::
+
+
+## `geom_histogram()` with `fill`
+
+::: {.panel-tabset}
+### Comments
+
+* Below we make histograms of the biomarker values, 
+    - again faceted by the tissue and type. 
+* We can fill by treatment. 
+    - The default behavior is to stack the histograms for treatment on top of each other, 
+    - so if we want to show overlaid histograms we need to use `position = "identity"` argument, 
+        - and be sure to choose alpha less than 1 or else you won't be able to see the two histogram layers.
+
+Note that in `facet_grid()` the variables are being listed in a different way than what I have showed you previously, which is the same as:
+
+`facet_grid(rows = vars(biomarker_type), cols = vars(biomarker_location))`
+
+### Take 1
+
+-   Histograms with `fill = trt` 
+-   How to interpret the "filled" histograms? 
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(
+  # Just show the first time point
+  mouse_biomarker_long %>% 
+    filter(time == "tp1"),
+  aes(x = biomarker_value,
+      fill = trt)) +
+  geom_histogram() +
+  facet_grid(
+    # the formula way to use facet_grid, 
+    biomarker_type ~ biomarker_location,
+    scales = "free_y") +
+  theme_bw() +
+  labs(
+    x = "Biomarker value (pg/mg)",
+    title = "Biomarker distribution (Time Point 1)",
+    subtitle = "Stratified by biomarker type and tissue type",
+    fill = "Treatment"
+  ) +
+  ggthemes::scale_fill_tableau()
+```
+
+
+### Take 2
+
+-   Below we add `position = "identity"` within `geom_histogram()`
+-   How does this change the "filled" histograms?
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(
+  # Just show the first time point
+  mouse_biomarker_long %>% 
+    filter(time == "tp1"),
+  aes(x = biomarker_value,
+      fill = trt)) +
+  geom_histogram(
+    position = "identity"
+    ) +
+  facet_grid(
+    # the formula way to use facet_grid, 
+    biomarker_type ~ biomarker_location,
+    scales = "free_y") +
+  theme_bw() +
+  labs(
+    x = "Biomarker value (pg/mg)",
+    title = "Biomarker distribution (Time Point 1)",
+    subtitle = "Stratified by biomarker type and tissue type",
+    fill = "Treatment"
+  ) +
+  ggthemes::scale_fill_tableau()
+```
+
+### Take 3
+
+-   Below we add `alpha = .4` in addition to `position = "identity"` within `geom_histogram()`
+-   How does this change the "filled" histograms?
+
+
+```{r}
+#| label: biomarker_histogram
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(
+  # Just show the first time point
+  mouse_biomarker_long %>% 
+    filter(time == "tp1"),
+  aes(x = biomarker_value,
+      fill = trt)) +
+  geom_histogram(
+    alpha = .4,
+    position = "identity"
+    ) +
+  facet_grid(
+    # the formula way to use facet_grid, 
+    biomarker_type ~ biomarker_location,
+    scales = "free_y") +
+  theme_bw() +
+  labs(
+    x = "Biomarker value (pg/mg)",
+    title = "Biomarker distribution (Time Point 1)",
+    subtitle = "Stratified by biomarker type and tissue type",
+    fill = "Treatment"
+  ) +
+  ggthemes::scale_fill_tableau()
+```
+
+:::
+
+
+
+## Scatterplot with different shapes
+
+-   New! `shape` within `aes()`
+
+```{r}
+#| label: scatterplot_biomarker
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(mouse_biomarker_long %>% 
+         filter(time=="tp1"),
+       aes(x = biomarker_value,
+           y = learning_outcome,
+           color = trt,
+           shape = strain)) +
+  geom_point() +  
+  facet_grid(
+    biomarker_type ~ biomarker_location,
+    scales = "free_x") +
+  theme_bw() +
+  labs(
+    x = "Biomarker value (pg/mg)",
+    y = "Learning Outcome",
+    title = "Learning outcome vs biomarkers (Time Point 1)",
+    subtitle = "Stratified by biomarker type and tissue type",
+    color = "Treatment",
+    shape = "Strain") +
+  ggthemes::scale_color_tableau()
+```
+
+## Challenge 1 (on your own 5 minutes) 
+
+::: {.panel-tabset}
+### Q1
+
+What's going on with `tp1`?
+
+There seems to be a batch effect in `mirna1`, can you manipulate this plot to figure out what's going on?
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(mouse_data, 
+       aes(x = mirna1, 
+           y = mirna2)) +
+  geom_point() + 
+  theme_bw()
+```
+
+
+### Q2
+
+-   What does this plot show?
+-   In particular, how is `geom_miss_point()` different from `geom_point()`?
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(mouse_data, 
+       aes(x = mirna2, 
+           y = learning_outcome)) +
+  naniar::geom_miss_point() + 
+  theme_bw()
+```
+
+
+:::
+
+
+## `geom_line()`: scatterplot trajectories 
+
+::: {.panel-tabset}
+### No lines
+
+-   Familiarize yourself with the figure. What does it show?
+
+-   *Also, note how a `facet_wrap` with two variables figure looks different from using `facet_grid`.*
+
+```{r}
+n_distinct(mouse_data$sid)
+```
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(mouse_data %>%
+         arrange(sid,time), 
+       aes(x = mirna2, 
+           y = learning_outcome, 
+           color = trt, 
+           shape= time_month)
+       ) +
+  geom_point() + 
+  facet_wrap(vars(strain, sex)) +
+  theme_bw() +
+  labs(
+    x = "miRNA2 expression", 
+    y = "Learning Outcome", 
+    title = "miRNA vs outcome across time points",
+    subtitle = "Stratified by 2strain and sex (M/F)") +
+  ggthemes::scale_color_tableau()
+```
+
+### Take 1
+
+-   Add trajectories with `geom_line()`.
+-   *What trajectories are being shown???*
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(mouse_data %>%
+         arrange(sid,time), 
+       aes(x = mirna2, 
+           y = learning_outcome, 
+           color = trt, 
+           shape= time_month)
+       ) +
+  geom_point() + 
+  geom_line() +
+  facet_wrap(vars(strain, sex)) +
+  theme_bw() +
+  labs(
+    x = "miRNA2 expression", 
+    y = "Learning Outcome", 
+    title = "miRNA vs outcome across time points",
+    subtitle = "Stratified by 2strain and sex (M/F)") +
+  ggthemes::scale_color_tableau()
+```
+
+### Take 2
+
+-   Add `group = sid` within the `aes()`.
+-   How does this change the trajectories?
+
+```{r}
+#| label: scatterplot_mirna_outcome
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(mouse_data %>%
+         arrange(sid,time), 
+       aes(x = mirna2, 
+           y = learning_outcome, 
+           color = trt, 
+           shape= time_month,
+           group = sid
+           )) +
+  geom_point() + 
+  geom_line() + 
+  facet_wrap(vars(strain, sex)) +
+  theme_bw() +
+  labs(
+    x = "miRNA2 expression", 
+    y = "Learning Outcome", 
+    title = "Trajectory of miRNA vs outcome across time points",
+    subtitle = "Stratified by 2strain and sex (M/F)") +
+  ggthemes::scale_color_tableau()
+```
+
+:::
+
+## `geom_tile()` - with `summarize`d data
+ 
+-   `geom_tile()` is similar to a heatmap, in that the colors of the "tiles" represent numeric values. 
+
+::: {.panel-tabset}
+### Setup
+
+Here we use a somewhat complex example. 
+
+-   Suppose we want to __show the difference in mean biomarker between treated and untreated (`trt` `+` minus `-`)__ mice, 
+    -   stratified by biomarker_type, biomarker_location, strain, and sex. 
+-   We first need to create a dataframe that contains the means 
+    -   for *every combination* of the treatment group and stratification variables
+-   Then we need to take the differences of the two treatment means. 
+
+### Data prep
+
+-   Calculate mean of biomarker value for each combination of groupings
+
+```{r}
+tmpdata_mean = mouse_biomarker_long %>% 
+  group_by(biomarker_type, 
+           biomarker_location, 
+           trt, 
+           strain, 
+           sex) %>%
+  summarize(m = mean(biomarker_value, na.rm = TRUE))  
+
+tmpdata_mean
+
+```
+
+<br>
+
+-   `pivot_wider()` so that we have a `+` column and a `-` column that contains those means
+-   Then add a column with the differences
+
+```{r}
+tmpdata_mean_wide = pivot_wider(tmpdata_mean, 
+                      id_cols = c(biomarker_type, 
+                                  biomarker_location, 
+                                  strain, 
+                                  sex),
+                      names_from = trt,
+                      values_from = m
+                      ) %>% 
+  mutate(diff = `+` - `-`)
+
+tmpdata_mean_wide
+
+```
+
+### Heatmap with `geom_tile()`
+
+Figure using wide data:
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(tmpdata_mean_wide, 
+       aes(x = biomarker_type, 
+           y = biomarker_location, 
+           fill = diff))+
+  geom_tile()+
+  facet_grid(
+    rows = vars(strain), 
+    cols = vars(sex),
+    labeller = labeller(
+      sex = label_both, 
+      strain = label_both)
+    ) +
+  scale_fill_gradient2(
+    low = "purple",
+    mid = "white",
+    high = "orange") +
+  labs(
+    x = "Biomarker Type", 
+    y = "Biomarker Tissue",
+    fill = "Difference in Means",
+    title = "Difference in mean biomarker values (treated - untreated)"
+    ) +
+  theme_bw()
+```
+
+:::
+
+
+## `geom_tile()` - with `summarize()`^2 (more advanced coding)
+
+::: {.panel-tabset}
+### Motivation
+
+-   Just showing a difference in means may not reflect the varying ranges and variability in the biomarkers. 
+-   Let's show the difference in means divided by the standard error:
+
+$$\frac{mu_+ - mu_-}{\sqrt{sd^2_+/n_+ + sd^2_-/n_-}}$$
+
+-   Instead of using `pivot_wider`, we can actually use `summarize` a second time
+    -   (and we could have done this in the above example as well). 
+
+### Data prep
+
+::: {.panel-tabset}
+#### 1st `summarize`
+
+-    (similar to before)
+
+```{r}
+tmpdata_summarize = mouse_biomarker_long %>% 
+  group_by(biomarker_type, 
+           biomarker_location, 
+           trt, 
+           strain, 
+           sex) %>%
+  summarize(m = mean(biomarker_value, na.rm = TRUE),
+            se = var(biomarker_value, na.rm = TRUE) /
+              length(biomarker_value))
+
+tmpdata_summarize
+```
+
+#### Indexing note
+
+-   In the next bit of code we use a "base R" indexing of a vector. 
+-   Here's a simple example of this kind of indexing:
+
+```{r}
+m = c(1,2,3)
+g = c("a","b","a")
+m[g == "a"]
+m[g == "b"]
+```
+
+#### 2nd `summarize`
+
+-   The code below works because we know that there is just 
+    -   one value within each group when `trt` = "+" and 
+    -   one value within group when `trt` = "-". 
+-   The value of `diff` needs to be a numeric value of length 1, i.e one number.
+
+```{r}
+tmpdata_diff <- tmpdata_summarize %>% 
+  group_by(biomarker_type, 
+           biomarker_location, 
+           strain, 
+           sex) %>%
+  # take m value where trt is + and subtract m value where trt is - and then divide....
+  summarize(std_diff = (m[trt == "+"] - m[trt == "-"]) /
+              sqrt(se[trt == "+"] + se[trt == "-"])
+            )
+
+tmpdata_diff
+```
+
+:::
+
+### Heatmap with `geom_tile()`
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(tmpdata_diff, 
+       aes(x = biomarker_type, 
+           y = biomarker_location, 
+           fill = std_diff)) +
+  geom_tile() +
+  facet_grid(
+    rows = vars(strain), 
+    cols = vars(sex),
+    labeller = labeller(
+      sex = label_both, 
+      strain = label_both)
+    ) +
+  scale_fill_gradient2(
+    low = "purple",
+    mid="white",
+    high="orange") +
+  labs(
+    x = "Biomarker Type", 
+    y = "Biomarker Tissue",
+    fill = "Difference in mean/sd",
+    title = "Difference in mean/sd biomarker values (treated - untreated)") +
+  theme_bw()
+```
+
+:::
+
+
+## `geom_smooth()`
+
+-   `geom_smooth()` adds a smoothing curve (or line) to a scatterplot. 
+-   The default method is `loess` 
+    -   but we can also show a linear association by using `method = "lm"` 
+    -   to show the least squares fit linear regression line to the data.
+
+::: {.panel-tabset}
+### `facet` by `time_month`
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(mouse_data %>% 
+         filter(time!="tp1"), 
+       aes(x = mirna1, 
+           preference_obj2, 
+           color = trt)) +
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  ggthemes::scale_color_tableau() +
+  facet_wrap(vars(time_month)) + 
+  theme_bw() + 
+  labs(
+    x = "miRNA1", 
+    y = "Preference for object 2 (%)", 
+    color = "Treatment")
+```
+
+
+### Make data long by mirna
+
+* We can make a longer dataset based on mirna values similar to what we did with the biomarker data, to create one plot of both miRNAs:
+
+```{r}
+# create long mirna data
+mouse_mirna_long <- mouse_data %>%
+  pivot_longer(cols = starts_with("mir"),
+               names_to = "mirna",
+               values_to = "mirna_value")
+
+glimpse(mouse_mirna_long)
+```
+
+
+### `facet` by `time_month` & `mirna`
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 6
+
+ggplot(mouse_mirna_long,
+       aes(x = mirna_value, 
+           preference_obj2, 
+           color = trt)) +
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  ggthemes::scale_color_tableau() +
+  facet_grid(vars(mirna), 
+             vars(time_month), 
+             scales = "free_x") + 
+  theme_bw() + 
+  labs(
+    x = "miRNA", 
+    y ="Preference for object 2 (%)", 
+    color = "Treatment")
+```
+
+:::
+
+# Next time
+
+>We will continue to practice with ggplot, but in the next "part" we will start focusing on lists and functions!
+
+
+
+# Post Class Survey
+
+Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo){target="_blank"}. 
+
+Your responses are anonymous in that I separate your names from the survey answers before compiling/reading. 
+
+You may want to review previous years' feedback [here](https://niederhausen.github.io/BSTA_526_W26/survey_feedback_previous_years){target="_blank"}.
+
+
+
+# Acknowledgements
+
+-   Part 7 is based on the BSTA 505 Winter 2023 course, taught by Jessica Minnier.
+    -   I made modifications to update the material from RMarkdown to Quarto, and streamlined/edited content for slides.
+
+-   Minnier's Acknowledgements:
+    -   Written by Jessica Minnier and inspired by work of Ted Laderas.
+

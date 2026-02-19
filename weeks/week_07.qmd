@@ -1,7 +1,7 @@
 ---
 title: "Week 7"
 pagetitle: "Week 7 BSTA 526"
-description: "`gt` tables, adding and reordering `factor`s, and more `ggplot`"
+description: "Customizing tables, adding and reordering `factor`s, and more `ggplot`"
 date: "`r library(here); source(here('schedule_class_dates.R')); w7d1`"
 date-modified: "today"
 categories: [""]
@@ -31,7 +31,7 @@ source(here::here("schedule_class_dates.R"))
 
 ### Part 7: 
 
--   **Learn** new options for personalizing tables
+-   **Learn** new options for customizing tables
 -   **Practice** modifying factor levels
 -   **Practice** ggplot and **Learn** more geometries
 
@@ -76,7 +76,8 @@ source(here::here("schedule_class_dates.R"))
 
 | Part | OneDrive folder | Slides | Webpage |
 |--------------|--------------|--------------|--------------------------------|
-| 6 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart5) | [{{< iconify simple-icons:quarto >}}](../part6/part_06_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part6/part_06_b526.qmd) |
+| 6 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart6) | [{{< iconify simple-icons:quarto >}}](../part6/part_06_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part6/part_06_b526.qmd) |
+| 7 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart7) | [{{< iconify simple-icons:quarto >}}](../part7/part_07_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part7/part_07_b526.qmd) |
 
 <!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
 
