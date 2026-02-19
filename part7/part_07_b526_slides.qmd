@@ -981,6 +981,10 @@ ggplot(mouse_biomarker_long %>%
 
 ## Challenge 1 (on your own 5 minutes) 
 
+```{r}
+countdown::countdown(minutes = 5, play_sound = TRUE)
+```
+
 ::: {.panel-tabset}
 ### Q1
 

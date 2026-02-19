@@ -1,0 +1,218 @@
+---
+title: "`ggplot::geom_pointrange` and `ggplot::geom_crossbar`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Add point ranges and cross bars to plots"
+author: "Earle Page"
+date: "2/19/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(palmerpenguins)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `Function(s) Name(s)`
+
+The functions I will be discussing today are `geom_pointrange()` and `geom_crossbar()`
+
+# What is it for?
+
+Both `geom_pointrange()` and `geom_crossbar()` are functions within the ggplot package to assist in data visualization. 
+
+`geom_pointrange()` creates a vertical line on the plot with a point in the middle, this can be used to represent an interval such as a mean and standard error. It can also be useful for displaying minimum, median, and maximum values. 
+
+`geom_crossbar()` functions similary to `geom_pointrange()`, however `geom_crossbar()` generates a hollow box with three vertical positions. Visually it is similar to a boxplot. It is also used to represent intervals such as mean and standard error. 
+
+
+# Examples
+
+```{r}
+data("penguins")
+```
+
+We will be working with the Palmer Penguins data as it provides nicely grouped data based on species. These data can be found in the "palmerpenguins" library.
+
+First, when running both `geom_crossbar()` and `geom_pointrange()` we need to specify ranges for our data, for this example I will use mean and 1 standard deviaton of body mass.
+
+Before using either of these two functions we need to define upper, lower, and mean values so we can create our intervals. There are several ways to do this, here I am using summarize and mutate to create new columns which represent the intervals grouped by speceies. 
+
+```{r}
+penguin_group <- penguins %>% 
+  group_by(species) %>% 
+  summarize( #keeps just the information we're interested in (our intervals and mean) 
+    mean = mean(body_mass_g, na.rm = TRUE),
+    sd = sd(body_mass_g, na.rm = TRUE)
+  ) %>% 
+  mutate(
+    lower = mean - sd, #creating upper and lower bounds for our confidence intervals
+    upper = mean + sd
+  )
+```
+
+
+When applying the function we need to specify the upper and lower bounds of our interval, as well as a value for the point. The specific aesthetics required for `geom_pointrange()` are y, ymin, and ymax (this can also be done with the x axis as well). Other arguments within geom_pointrange include ways to change the line using linetype =, and alpha =  to control transparency.
+
+```{r}
+penguin_group %>% 
+  ggplot(aes(x = species,
+             y = mean, #point value
+             ymin = lower, #lower bound
+             ymax = upper, #upper bound
+             fill = species,
+             color = species)) + #color based on species
+  geom_pointrange(size = 1,#size of point
+                  linewidth = 2) + #width of line 
+  labs(x = "Penguin Species",
+       y = "Body Mass (g)",
+       title = "Penguin body mass by species")
+```
+
+Aesthetic variations of `geom_pointrange()`
+
+`linetype = ` changes what the line looks like.
+
+`shape = ` changes the shape of the central point, these can be characters, for instance "A", or shapes "triangle".
+
+`size = ` changes the size of the entire object.
+
+`color  = ` changes color of the entire object. 
+
+```{r}
+penguin_group %>% 
+  ggplot(aes(x = species,
+             y = mean, #point value
+             ymin = lower, #lower bound
+             ymax = upper, #upper bound
+             fill = species,
+             color = species)) + #color based on species
+  geom_pointrange(size = 2,#size of point
+                  linewidth = 0.5, #width of line 
+                  linetype = "dashed", #change linetype to dashed
+                  shape = "cross") + #change central point to a cross
+  labs(x = "Penguin Species",
+       y = "Body Mass (g)",
+       title = "Penguin body mass by species")
+```
+
+We can also couple `geom_pointrange()` with other graphs such as a scatter plot.
+
+```{r}
+ggplot() +
+  geom_jitter(data = penguins,
+              aes(x = species,
+                  y = body_mass_g)) + 
+  geom_pointrange(data = penguin_group,
+         aes(x = species,
+             y = mean, #point value
+             ymin = lower, #lower bound
+             ymax = upper, #upper bound
+             fill = species,
+             color = species), 
+         linetype = "dashed",#this creates dashed lines
+         linewidth = 1) + #sets the width of lines
+  labs(x = "Penguin Species",
+       y = "Body Mass (g)",
+       title = "Penguin body mass (g) by species")
+```
+
+
+We can use the same summarized data to compare the means of body mass using the `geom_crossbar()` function as well. The required arguments are the same y, ymin, and ymax (can be applied to x as well) to define the interval for the size of our box.
+
+```{r}
+penguin_group %>% 
+  ggplot(aes(x = species,
+             y = mean, #point value
+             ymin = lower, #lower bound
+             ymax = upper, #upper bound
+             #fill = species,
+             color = species)) + #color based on species
+  geom_crossbar(size = 2,#size of point
+                  linewidth = 1, #width of box border
+                width = 0.3) + #controls width of the box
+  labs(x = "Penguin Species",
+       y = "Body Mass (g)",
+       title = "Penguin body mass by species")
+```
+
+Aesthetic variations of `geom_crossbar()`
+
+Options for changing how the crossbar looks include:
+
+`middle.linetype =` changes what the middle line looks like.
+
+`box.linetype =` changes what the outside lines of the box look like.
+
+`middle.color = ` controls color of the middle line.
+
+`box.color = ` controls color of outside box border
+
+`show.legend = ` controls visibility of legend.
+
+`orientation = ` controls orientation of the box (x or y axis).
+
+
+```{r}
+penguin_group %>% 
+  ggplot(aes(x = species,
+             y = mean, #point value
+             ymin = lower, #lower bound
+             ymax = upper, #upper bound
+             color = species)) + #color based on species
+  geom_crossbar(size = 2,#size of crossbar
+                  linewidth = 1, #width of box border
+                width = 0.3,#controls width of the box
+                middle.linetype = "dashed", #changes middle line to dashed
+                box.linetype = "dotted") + #changes outside of box to dashed
+  labs(x = "Penguin Species",
+       y = "Body Mass (g)",
+       title = "Penguin body mass by species")
+```
+
+`geom_crossbar()` looks much better when overlying data, it can be used to define boundaries for data points visually. This can help provide perspective on how much of the data falls within certain specified boundaries. For this example I have used mean and 1 standard deviation away from it, but the bounds of the box can be set for any value. 
+
+```{r}
+ggplot() +
+  geom_jitter(data = penguins, 
+              aes(x = species,
+                  y = body_mass_g,
+                  color = species
+                  ), 
+              width = 0.1) +
+  geom_crossbar(data = penguin_group,
+                aes(x = species,
+                    y = mean,
+                    ymin = lower,
+                    ymax = upper
+                    ),
+                width = 0.3) +
+  labs(x = "Penguin Species",
+       y = "Body Mass (g)",
+       title = "Penguin body mass by species")
+```
+
+
+
+# Is it helpful?
+
+Both functions have their merits when making plots in R. `geom_pointrange()` seems to be best at providing insight when comparing estimates and confidence intervals in a straightforward and uncluttered way. You can easily visualize and determine if there are overlapping confidence intervals between groups. `geom_crossbar` provides a way to present data in a way that makes it obvious whether observations are falling outside of set boundaries. The crossbar plots seem more useful in communication of results rather than for analysis. Both functions serve very similar, but slightly different purposes. 

@@ -1,0 +1,127 @@
+---
+title: "`gt():: opt_interactive`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Interactive Tables in HTML outputs, inclding pagination, sorting, and searching"
+author: "Shelby Duhn"
+date: "2/19/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(gt)
+library(openintro)
+library(janitor)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Load your own dataset
+
+```{r}
+data(county)
+clean_names(county)%>%
+  names()
+```
+
+Data is from the openintro() package. The data is originally from Census Quick Facts that is no longer available. Data from 3,142 different counties collected between 2000-2017. 
+
+# `Function(s) Name(s)`
+
+The function opt_interative() is from the gt() package.
+
+# What is it for?
+
+The opt_interactive() function allows for a gt() table to be more presentable and interactive. Has the ability for pagination, searching for specific information, and sort based on different variables. 
+
+# Examples
+
+::: {.panel-tabset}
+
+# gt() 
+
+```{r}
+county_table <- county %>%
+  gt() %>%
+    cols_label(
+    name= "County",
+    state= "State",
+    pop2000= "Population 2000",
+    pop2010= "Population 2010",
+    pop2017= "Population 2017",
+    pop_change= "Population Change",
+    poverty= "Poverty",
+    homeownership= "Homeownership",
+    multi_unit= "Mulit Unit",
+    unemployment_rate= "Unemployment Rate",
+    metro= "Metro",
+    median_edu= "Median Education",
+    per_capita_income = "Per Capita Income",
+    median_hh_income = "Median HH Income",
+    smoking_ban = "Smoking Ban")%>%
+   data_color(
+    columns = state,
+    method = "factor",
+    palette = scales::hue_pal()(length(unique(county$state))))%>%
+    data_color(
+    columns = pop_change,
+    method = "numeric",
+    palette = c("red", "white", "green")) %>%
+   data_color(
+    columns = poverty,
+    rows = poverty > 11.1,
+    colors = "salmon"   
+  )
+county_table
+```
+
+
+# Pagination, Sorting, and Searching
+
+```{r}
+county_table %>%
+  opt_interactive(
+    use_pagination = TRUE,
+    use_sorting = TRUE,
+    use_search = TRUE)
+```
+
+# Compact Mode
+
+```{r}
+county_table %>%
+   opt_interactive(
+    use_pagination = TRUE,
+    use_sorting = TRUE,
+    use_search = TRUE,
+    use_compact_mode = TRUE)
+```
+
+:::
+
+# Is it helpful?
+
+> Discuss whether you think this function(s) is useful for you and your work. Is it the best thing since sliced bread, or is it not really relevant to your work? If not relevant to you, can you think of examples of when it would be useful?
+
++ Depending upon the purpose of your work this could be useful. If you are wanting to present data and allow for more interaction of the data, this would be a useful. Drawbacks of this function is the limitations to HDMLs and limits with adjusting settings. 
+
+
