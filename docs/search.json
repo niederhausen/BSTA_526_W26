@@ -200,7 +200,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Schedule is subject to change.\nLinks have been added to all weeks, but weeks we have not covered yet will have broken links.\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopics\n\n\n\n\n1\nTh 01/08\nIntroduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types\n\n\n\n\n\n\n\n2\nTh 01/15\nLoading Data, data.frames, and ggplot2\n\n\n\n\nHW 1 due\n\n\n\n\n\n\n\n3\nTh 01/22\ndplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets\n\n\n\n\nHW 2 due\n\n\n\n\n\n\n\n4\nTh 01/29\ndplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales\n\n\n\n\nHW 3 due\n\n\n\n\n\n\n\n5\nTh 02/05\nMerging multiple datasets; cleaning & reshaping data\n\n\n\n\nHW 4 due\n\n\n\nTh 02/05\nTake Home Midterm Assigned\n\n\n\n\n\n\n\n6\nTh 02/12\nStart with your goal: more data wrangling\n\n\n\n\nHW 5 due\n\n\n\n\n\n\n\n7\nTh 02/19\nMore data wrangling practice ctd.\n\n\n\n\nHW 6 due\n\n\n\nSu 02/22\nTake home Midterm due (Sunday)\n\n\n\n\n\n\n\n8\nTh 02/26\nIntro to functions, working with lists\n\n\n\n\nHW 7 due\n\n\n\n\n\n\n\n9\nTh 03/05\nIteration\n\n\n\n\nHW 8 due\n\n\n\n\n\n\n\n10\nTu 03/10\nFinal Exam Assigned (Tuesday)\n\n\n\nTh 03/12\nMore Stats/Purrr\n\n\n\n\nHW 9 due\n\n\n\n\n\n\n\n11\nTh 03/19\nNo Class, Office Hour\n\n\n\n\nHW 10 due\n\n\n\nFri 03/20\nFinal Exam Due (Friday 5pm end of term)"
+    "text": "Schedule is subject to change.\nLinks have been added to all weeks, but weeks we have not covered yet will have broken links.\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopics\n\n\n\n\n1\nTh 01/08\nIntroduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types\n\n\n\n\n\n\n\n2\nTh 01/15\nLoading Data, data.frames, and ggplot2\n\n\n\n\nHW 1 due\n\n\n\n\n\n\n\n3\nTh 01/22\ndplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets\n\n\n\n\nHW 2 due\n\n\n\n\n\n\n\n4\nTh 01/29\ndplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales\n\n\n\n\nHW 3 due\n\n\n\n\n\n\n\n5\nTh 02/05\nMerging multiple datasets; cleaning & reshaping data\n\n\n\n\nHW 4 due\n\n\n\nTh 02/05\nTake Home Midterm Assigned\n\n\n\n\n\n\n\n6\nTh 02/12\nStart with your goal: more data wrangling\n\n\n\n\nHW 5 due\n\n\n\n\n\n\n\n7\nTh 02/19\ngt tables, adding and reordering factors, and more ggplot\n\n\n\n\nHW 6 due\n\n\n\nSu 02/22\nTake home Midterm due (Sunday)\n\n\n\n\n\n\n\n8\nTh 02/26\nIntro to functions, working with lists\n\n\n\n\nHW 7 due\n\n\n\n\n\n\n\n9\nTh 03/05\nIteration\n\n\n\n\nHW 8 due\n\n\n\n\n\n\n\n10\nTu 03/10\nFinal Exam Assigned (Tuesday)\n\n\n\nTh 03/12\nMore Stats/Purrr\n\n\n\n\nHW 9 due\n\n\n\n\n\n\n\n11\nTh 03/19\nNo Class, Office Hour\n\n\n\n\nHW 10 due\n\n\n\nFri 03/20\nFinal Exam Due (Friday 5pm end of term)"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#rrstudio",
@@ -4330,7 +4330,7 @@
     "href": "weeks/week_06.html#readings",
     "title": "Week 6",
     "section": "Readings",
-    "text": "Readings\n\nOptional\n\ntabyl vignette: learn about the various adorn options\ngt package: learn more about creating customized tables with various gt options\ngtsummary package: great for creating summary tables (Table 1); a companion package to gt\n\nI recommend starting with the tbl_summary() tutorial"
+    "text": "Readings\n\nNone\nDuring Week 6 I listed some optional readings here, which I moved to Week 7 since they more closely relate to the Week 7 material."
   },
   {
     "objectID": "weeks/week_06.html#post-class-survey",
@@ -4737,5 +4737,61 @@
     "title": "dplyr::sample_n() & dplyr::sample_frac()",
     "section": "3.2 Function Arguments",
     "text": "3.2 Function Arguments\nFor both of these functions, they each have arguments that can be changed to fit what you want to do. We have already shown that you need to specify the data you want to use, as well as the number or fraction of randomly selected observations you want. However, there are two other arguments you can specify.\n\nreplaceweight\n\n\n\nFor both functions, you can specify the argument replace as either TRUE or FALSE. Specifying the argument as TRUE allows a chance for observations to be selected multiple times (selection with replacement). Specifying FALSE, which is the default setting, does not allow the chance for observations to be selected multiple times (selection without replacement). For a fun example, when using the sample_n() function, you are usually limited by the maximum number of observations in the original data set when choosing how many random observations you want. However, with replace = TRUE, we can exceed that maximum, as seen below with 400 observations.\n\n\npenguins %&gt;%\n  sample_n(400, replace = TRUE) %&gt;%\n  \n  # New observation number.\n  nrow()\n\n[1] 400\n\n\n\n\n\nAlso for both functions, you can specify the argument weight. This argument makes it so that certain rows have a higher chance of being selected. weight = NULL is the default setting, where there is no weight being applied. To use this argument, you can create a new column in your data set specifying your weight values for what you want weighted, and then use that new column in your weight argument. The weight values should be anything between 0-1, and should sum to 1. As seen with the table, a Chinstrap penguin was only chosen once (low weight) while the other species were chosen more often (high weight).\n\n\n# First, create the weight column.\n\npenguins %&gt;% \n  mutate(\n  weight = case_when(\n    species == \"Chinstrap\" ~ 0.1,\n    species == \"Adelie\" ~ 0.3,\n    species == \"Gentoo\" ~ 0.6\n  )\n) %&gt;%\n  \n# Use the weight argument.\n  \n  sample_frac(0.5, replace = FALSE, weight = weight) %&gt;%\n  slice(1:10) %&gt;%\n  gt()\n\n\n\n\n\n  \n    \n      species\n      island\n      bill_length_mm\n      bill_depth_mm\n      flipper_length_mm\n      body_mass_g\n      sex\n      year\n      weight\n    \n  \n  \n    Gentoo\nBiscoe\n46.9\n14.6\n222\n4875\nfemale\n2009\n0.6\n    Adelie\nBiscoe\n40.6\n18.8\n193\n3800\nmale\n2008\n0.3\n    Gentoo\nBiscoe\n46.5\n14.4\n217\n4900\nfemale\n2008\n0.6\n    Chinstrap\nDream\n49.7\n18.6\n195\n3600\nmale\n2008\n0.1\n    Adelie\nDream\n35.6\n17.5\n191\n3175\nfemale\n2009\n0.3\n    Gentoo\nBiscoe\n48.5\n14.1\n220\n5300\nmale\n2008\n0.6\n    Gentoo\nBiscoe\n46.5\n13.5\n210\n4550\nfemale\n2007\n0.6\n    Gentoo\nBiscoe\n52.5\n15.6\n221\n5450\nmale\n2009\n0.6\n    Gentoo\nBiscoe\n44.5\n14.7\n214\n4850\nfemale\n2009\n0.6\n    Adelie\nTorgersen\n39.7\n18.4\n190\n3900\nmale\n2008\n0.3"
+  },
+  {
+    "objectID": "weeks/week_07.html",
+    "href": "weeks/week_07.html",
+    "title": "Week 7",
+    "section": "",
+    "text": "Practice thinking through and planning ahead data wrangling steps to prepare a dataset ready for analysis\nPractice working with real data\nPractice cleaning variables\nPractice merging datasets with bind_rows and joining\nPractice making data long by pivoting\nPractice making complex visualizations with ggplot\n\n\n\n\n\nLearn new options for personalizing tables\nPractice modifying factor levels\nPractice ggplot and Learn more geometries"
+  },
+  {
+    "objectID": "weeks/week_07.html#topics",
+    "href": "weeks/week_07.html#topics",
+    "title": "Week 7",
+    "section": "",
+    "text": "Practice thinking through and planning ahead data wrangling steps to prepare a dataset ready for analysis\nPractice working with real data\nPractice cleaning variables\nPractice merging datasets with bind_rows and joining\nPractice making data long by pivoting\nPractice making complex visualizations with ggplot\n\n\n\n\n\nLearn new options for personalizing tables\nPractice modifying factor levels\nPractice ggplot and Learn more geometries"
+  },
+  {
+    "objectID": "weeks/week_07.html#announcements",
+    "href": "weeks/week_07.html#announcements",
+    "title": "Week 7",
+    "section": "Announcements",
+    "text": "Announcements\n\n\n\nThe Midterm is posted on OneDrive. It is due Sunday 2/22/26.\n\nPlease start early on this since finding a suitable dataset might take some time.\nI encourage you to meet with me to discuss your research question and data, to make sure you are on the right track.\n\nFunctions of the Week\n\nSignup sheet for your functions of the week presentations. The file is in OneDrive in the functions_of_the_week folder.\nPresentations will be during weeks 5-10. Please no more than 4 presentations per week.\nIf there is a function you are interested in presenting that is not on the signup sheet, please check with me. If it hasn’t been covered before and isn’t covered in the class, then most likely I will approve it.\n\nCascadia R Conf in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on."
+  },
+  {
+    "objectID": "weeks/week_07.html#class-materials",
+    "href": "weeks/week_07.html#class-materials",
+    "title": "Week 7",
+    "section": "Class materials",
+    "text": "Class materials\n\nClass materials in OneDrive folder BSTA_526_W26_class_materials_public.\nFor today’s class, make sure to download to your computer the folder called part7.\nOpen RStudio by double-clicking on the project file called BSTA_526_W26_class_materials_public.Rproj in the main OneDrive folder.\n\n\n\nWe will first finish the Week 6 slides, starting with Section 4.7: Challenge 3.\nWeek 7 slides are coming soon!\n\n\n\n\n\nPart\nOneDrive folder\nSlides\nWebpage\n\n\n\n\n6"
+  },
+  {
+    "objectID": "weeks/week_07.html#readings",
+    "href": "weeks/week_07.html#readings",
+    "title": "Week 7",
+    "section": "Readings",
+    "text": "Readings\n\nOptional\nNote: These were original listed as the Week 6 Optional readings. They actually more closely relate to the Week 7 material and thus I moved them to Week 7.\n\ntabyl vignette: learn about the various adorn options\ngt package: learn more about creating customized tables with various gt options\ngtsummary package: great for creating summary tables (Table 1); a companion package to gt\n\nI recommend starting with the tbl_summary() tutorial"
+  },
+  {
+    "objectID": "weeks/week_07.html#post-class-survey",
+    "href": "weeks/week_07.html#post-class-survey",
+    "title": "Week 7",
+    "section": "Post-class survey",
+    "text": "Post-class survey\n\nPlease fill out the post-class survey to provide feedback. Thank you!\nPrevious muddiest points and clearest points with responses are collected here."
+  },
+  {
+    "objectID": "weeks/week_07.html#homework",
+    "href": "weeks/week_07.html#homework",
+    "title": "Week 7",
+    "section": "Homework",
+    "text": "Homework\n\nSee OneDrive folder for homework assignment.\nHW 7 due on 02/19."
+  },
+  {
+    "objectID": "weeks/week_07.html#recording",
+    "href": "weeks/week_07.html#recording",
+    "title": "Week 7",
+    "section": "Recording",
+    "text": "Recording\n\nIn-class recording links are on Sakai. Navigate to Course Materials -&gt; Schedule with links to in-class recordings."
   }
 ]

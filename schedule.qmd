@@ -39,7 +39,7 @@ source(here::here("schedule_class_dates.R"))
 |[6](weeks/week_06.qmd) | Th `r format(w6d1, "%m/%d")` | Start with your goal: more data wrangling |
 |  | | HW 5 due |
 |  |  |  |  |
-| 7 | Th `r format(w7d1, "%m/%d")` | More data wrangling practice ctd.  |
+|[7](weeks/week_07.qmd) | Th `r format(w7d1, "%m/%d")` | `gt` tables, adding and reordering `factor`s, and more `ggplot`  |
 |  | | HW 6 due |
 |  | Su `r format(midterm_due, "%m/%d")` | **[Take home Midterm due (Sunday)]{style="color:#046b94;"}** |  |
 |  |  |  |  |

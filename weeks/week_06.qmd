@@ -27,12 +27,12 @@ Finish Part 5:
 
 Part 6: 
 
-- **Practice** thinking through and planning ahead data wrangling steps to prepare a dataset ready for analysis
-- **Practice** working with real data
-- **Practice** cleaning variables
-- **Practice** merging datasets with `bind_rows` and `join`ing 
-- **Practice** making data long by `pivot`ing
-- **Practice** making complex visualizations with ggplot
+-   **Practice** thinking through and planning ahead data wrangling steps to prepare a dataset ready for analysis
+-   **Practice** working with real data
+-   **Practice** cleaning variables
+-   **Practice** merging datasets with `bind_rows` and `join`ing 
+-   **Practice** making data long by `pivot`ing
+-   **Practice** making complex visualizations with ggplot
 
 
 
@@ -83,13 +83,9 @@ Part 6:
 
 ## Readings
 
+-   None
+-   During Week 6 I listed some optional readings here, which I moved to Week 7 since they more closely relate to the Week 7 material.
 
-### Optional
-
--   [`tabyl`](https://cran.r-project.org/web/packages/janitor/vignettes/tabyls.html) vignette: learn about the various `adorn` options
--   [`gt`](https://gt.rstudio.com/) package: learn more about creating customized tables with various `gt` options
--   [`gtsummary`](https://www.danieldsjoberg.com/gtsummary/) package: great for creating summary tables (Table 1); a companion package to `gt`
-    -   I recommend starting with the [`tbl_summary()`](https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html) tutorial
 
 
 ## Post-class survey
