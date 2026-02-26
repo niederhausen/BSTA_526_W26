@@ -58,18 +58,14 @@ source(here::here("schedule_class_dates.R"))
 -   For today's class, make sure to download to your computer the folder called `part8`. 
 -   *Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.*
 
-<br>
 
--   Week 8 slides are coming soon!
+**Note: The link to the slides version of the class notes is not working. Please see the OneDrive folder for the html of the slides. **
 
+| Part | OneDrive folder | Slides | Webpage |
+|--------------|--------------|--------------|--------------------------------|
+| 8 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart8) | [{{< iconify simple-icons:quarto >}}](../part8/part_08_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part8/part_08_b526.qmd) |
 
-
-
-<!-- | Part | OneDrive folder | Slides | Webpage | -->
-<!-- |--------------|--------------|--------------|--------------------------------| -->
-<!-- | 8 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart8) | [{{< iconify simple-icons:quarto >}}](../part8/part_08_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part8/part_08_b526.qmd) | -->
-
-<!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
+: {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"}
 
 
 ## Readings

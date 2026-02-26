@@ -1,0 +1,1574 @@
+---
+title: "8: Functions and Lists"
+pagetitle: "8: Functions and Lists"
+subtitle: "BSTA 526: R Programming for Health Data Science"
+author: "Meike Niederhausen, PhD & Jessica Minnier, PhD"
+institute: "OHSU-PSU School of Public Health"
+date: "2/26/2026"
+date-modified: "today"
+format: 
+  # html:
+  #   link-external-newwindow: true
+  #   toc: true
+  #   toc_float:
+  #     collapsed: false
+  #   number-sections: true
+  #   number-depth: 5
+  #   theme: minty
+  #   embed-resources: true
+  #   html-math-method: mathjax
+  revealjs:
+      incremental: false
+      scrollable: true
+      chalkboard: true
+      theme: [../sky_modified_smaller_font_B526_W26_v2.scss]
+      width:  1100 #1200 # 1050 #default 1050; ipad 3:5, 1600
+      # height: 825 #900 #800 #default 700; 788 for 3:5, 1200
+      slide-number: true
+      number-sections: true
+      number-depth: 5
+      link-external-newwindow: true
+      html-math-method: mathjax
+      auto-stretch: false  # stop autosizing figures
+execute:
+  echo: true
+  message: false
+  warning: false
+  fig.align: "center"
+  fig-width: 8
+  fig-height: 5
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The first chunk is special 
+# because if you try to run a chunk below without running anything else first, 
+# R will automatically run this first
+
+knitr::opts_chunk$set(echo = TRUE, fig.path = "output_figs/")
+
+# Here I am loading libraries/packages and installing packages you don't have yet. Add the argument `update=TRUE` if you want to update your packages.
+pacman::p_load(
+  vembedr,      # youtube embedder
+  skimr,        # get overview of data
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import Excel data
+  gtsummary,    # summary statistics and tests
+  ggthemes,     # lots of themes
+  here,         # helps with file management
+  janitor,      # for data cleaning, making tables
+  palmerpenguins, # penguin data
+  ghibli,       # studio ghibli palettes
+  paletteer,    # additional ggplot2 palettes
+  gt,           # beautiful tables
+  rstatix,      # summary stats for numeric vars
+  naniar        # missing values exploration
+  )
+
+# set ggplot theme for slides 
+# theme_set(theme_bw(base_size = 22))
+theme_update(text = element_text(size=22))  # set global text size for ggplots
+
+```
+
+
+
+
+# Welcome to R Programming: Part 8!
+
+Today we will learn more about customizing tables, adding and reordering `factor`s, and `ggplot`.
+
+<br>
+
+Before you get started:
+
+>Remember to save this notebook under a new name, such as `part_08_b526_YOURNAME.qmd`.
+
+<br>
+
+-   Load the packages in the setup code chunk
+
+## Learning Objectives
+
+-   **Learn** how to write and use custom functions
+-   **Learn** about lists as a general purpose data structure
+-   **Learn** and **utilize** list properties
+-   **Access** list elements using `$` and `[[]]`
+-   **Understand** the difference between homogeneous and heterogeneous lists
+-   **Use** `purrr::pluck()` to access list elements
+-   **Understand** how `data.frames()` are list-like
+
+
+
+## Load data sets
+
+```{r}
+# load various data sets
+data(penguins)
+
+smoke_complete <- read_csv(here::here("part8", "data", "clinical.csv"))
+lusc_data <- read_csv(here::here("part8", "data", "tumor", "LUSC.csv"))
+meso_data <- read_csv(here::here("part8", "data", "tumor", "MESO.csv"))
+prad_data <- read_csv(here::here("part8", "data", "tumor", "PRAD.csv"))
+read_data <- read_csv(here::here("part8", "data", "tumor", "READ.csv"))
+```
+
+
+# Motivation
+
+Today: building blocks for truly automating your data wrangling or analysis work. 
+
+<br>
+
+This is the true power of learning how to program!
+
+
+## Custom Functions & Lists
+
+At first these two sections will seem disjointed:
+
+-   Functions
+    -   Create your own functions
+    -   Use for data wrangling or analyses or visualization, anything
+-   Lists
+    -   An object type in R that can be very useful
+    -   Spoiler alert: data frames can actually behave like a `list`
+
+<br>
+
+-   Next week we will use them together with "Functional Programming Tools" 
+    -   such as `purrr::map()` type functions to iterate a function 
+    -   over a list or over rows of a data frame, for example.
+
+## Custom Functions
+
+***Please read the [Functions](https://r4ds.hadley.nz/functions.html) chapter in R4DS for some background!*** (Chapter 25)
+
+We know what a function is in R, for instance, these are "built-in" functions in R
+
+```{r}
+mean(1:10)
+toupper("abc")
+```
+
+But what if we want to create our own custom functions?
+
+We have actually done this before! When we used `across()`:
+
+```{r}
+penguins %>% summarize(across(.cols = ends_with("mm"),
+                              .fns = ~ mean(.x, na.rm = TRUE))) # this is a custom function, in a way
+```
+
+## Motivating Example
+
+-   Here is another example for motivating today's work.
+
+::: {.panel-tabset}
+### One dataset
+
+-   Let's say we want some summary measures from our data, 
+    -   specifically the means of days to death, age at diagnosis, and 
+    -   the correlation of those two variables.
+
+```{r}
+lusc_data %>% summarize(
+  mean_cig = mean(days_to_death, na.rm = TRUE),
+  mean_age = mean(age_at_diagnosis, na.rm = TRUE),
+  cor_cig_age = cor(days_to_death, age_at_diagnosis, 
+                    use = "complete.obs"))
+```
+
+### Many datasets
+
+-   Now, we have read in multiple data sets, and want to calculate this *for each data set*. 
+-   We can do this separately, with copy and paste and 
+    -   hope we don't make a mistake, and 
+    -   also keep track of all our outputs somehow:
+
+```{r}
+lusc_data %>% summarize(
+  mean_cig = mean(days_to_death, na.rm = TRUE),
+  mean_age = mean(age_at_diagnosis, na.rm = TRUE),
+  cor_cig_age = cor(days_to_death, age_at_diagnosis, 
+                    use = "complete.obs"))
+
+meso_data %>% summarize(
+  mean_cig = mean(days_to_death, na.rm = TRUE),
+  mean_age = mean(age_at_diagnosis, na.rm = TRUE),
+  cor_cig_age = cor(days_to_death, age_at_diagnosis, 
+                    use = "complete.obs"))
+
+prad_data %>% summarize(
+  mean_cig = mean(days_to_death, na.rm = TRUE),
+  mean_age = mean(age_at_diagnosis, na.rm = TRUE),
+  cor_cig_age = cor(days_to_death, age_at_diagnosis, 
+                    use = "complete.obs"))
+
+read_data %>% summarize(
+  mean_cig = mean(days_to_death, na.rm = TRUE),
+  mean_age = mean(age_at_diagnosis, na.rm = TRUE),
+  cor_cig_age = cor(days_to_death, age_at_diagnosis, 
+                    use = "complete.obs"))
+```
+
+### Custom function
+
+-   Or, we can create our own function to do this! 
+-   We will go through the parts of a function below, 
+    -   but this is what it would look like:
+
+```{r}
+# custom function
+myfun <- function(mydata){
+  mydata %>% summarize(
+    mean_cig = mean(days_to_death, na.rm = TRUE),
+    mean_age = mean(age_at_diagnosis, na.rm = TRUE),
+    cor_cig_age = cor(days_to_death, age_at_diagnosis, 
+                      use = "complete.obs"))
+}
+
+# apply custom function to each of the datasets 
+# (note that the output is not being saved below)
+myfun(lusc_data)
+myfun(meso_data)
+myfun(prad_data)
+myfun(read_data)
+```
+
+
+### With lists
+
+-   Later we will see that we can make a list of data frames, and 
+    -   use `purrr::map()` to iterate over this list and 
+    -   obtain all of the outputs at once. 
+-   This is a motivating example, it will take some time to get to this point!
+
+```{r}
+list_of_data <- list("LUSC" = lusc_data, 
+                     "MESO" = meso_data, 
+                     "PRAD" = prad_data, 
+                     "READ" = read_data)
+```
+
+::: {.panel-tabset}
+#### Return a list of outputs
+
+```{r}
+# returns a list of outputs
+map(list_of_data, myfun)
+```
+
+#### Return a data frame of outputs:
+
+```{r}
+# returns a data frame of outputs
+map_df(list_of_data, myfun, .id = "cancer_type")
+```
+
+
+[*We'll start with learning about how to create our own functions.*]{style="color:purple"}
+
+:::
+:::
+
+
+
+# Functions: Don't Repeat Yourself (DRY)
+
+## Motivation
+
+-   If you do something in R once and have to do it again, 
+    -   it's probably best to think of how to do it *well* once, 
+    -   rather than cutting and pasting again.
+
+-   Part of doing this is by using and writing *functions*. 
+    -   We can take code that we might have to write 10 times in a row, and 
+    -   package it in a way that we can use it multiple times.
+
+-   For the example above, 
+    -   we have some computations we want to perform on specific variables in a data set, and 
+    -   we have multiple data sets with those variables we need to do this with. 
+    -   A function can be used to perform these computations.
+
+## Advantages over using copy-and-paste
+
+From [R for Data Science](https://r4ds.hadley.nz/functions.html):
+
+> Writing a function has four big advantages over using copy-and-paste:
+>
+> 1.  You can give a function an evocative name that makes your code easier to understand.
+> 2.  As requirements change, you only need to update code in one place, instead of many.
+> 3.  You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
+> 4.  It makes it easier to reuse work from project-to-project, increasing your productivity over time.
+
+
+## Creating a function
+
+Let's learn about how we define a function.
+
+```{r}
+#| eval: false
+
+f <- function(<arguments>) {
+  ## Do something interesting or useful
+  ## Code
+  ## Return an output
+
+}
+```
+
+Things to ask yourself:
+
+1.    What do you want your function to do?
+1.    What will the *output* of the function be? 
+1.    What kind of *object* do you want the output to be?
+
+## Example of creating a function
+
+```{r}
+square_number <- function(number) {
+  output_number <- number * number 
+  return(output_number)
+}
+
+square_number(4)
+```
+
+::: {.panel-tabset}
+### Name & arguments
+
+-   We define our function by 
+    -   giving it a name, `square_number`, and 
+    -   defining its *arguments* within the parentheses of `function()`. 
+
+-   Our example function only has one argument, `number`:
+
+>`square_number <- function(number) {`
+
+### The `{`
+
+-   What about the `{`? 
+    -   It defines the beginning of a *code block* - 
+        -   a code block defines the code that will run when we use the function.
+
+### Stuff between the `{....}`
+
+-   Between the `{....}` we calculate the square of our number and 
+    -   assign it to `output_number`.
+-   The next line uses `return()` to return a value from our function. 
+-   Then we *close the code block with a `}`*.
+
+### `return()`
+
+-   The return value of a function is the last expression in the function body to be evaluated. 
+    -   i.e. `return()` should appear in the last line of the function.
+
+-   **Note that you don't *have* to use `return()`** 
+    -   but it makes things clearer once your functions get complicated, and 
+    -   especially if you are returning multiple outputs. 
+    
+### Function without `return()`   
+
+
+-   The function below without `return() does the same as above.
+
+[*If you don't specify the return object with `return()`, R will assume you meant to return the last line of code inside the function that returns a value.*]{style="color:green"}
+
+```{r}
+square_number_again <- function(number) {
+  number * number
+}
+
+square_number_again(4)
+```
+
+-   However, [be careful]{style="color:darkorange"}! Notice that the code below doesn't work. 
+-   Why? Because nothing was returned, 
+    -   the last line does not return a value but saves an object. 
+-   This is why it's best to just use `return()` 
+    -   so you can be sure you're returning what you want.
+
+```{r}
+square_number_again <- function(number) {
+  mynumsq <- number * number
+}
+
+square_number_again(4)
+
+# note the lack of output when running this function!
+```
+
+:::
+
+## Mini-challenge (on your own)
+
+-   Make a function called `cube_number` that returns the cube of a number. 
+-   Test it out and make sure it works.
+
+-   *Hint: you can find the cube of a number using `num^3`.*
+
+```{r}
+#| eval: false
+cube_number <- ___
+
+
+
+```
+
+## Arguments
+
+-   We also can input multiple arguments to a function, which can be of different types:
+
+::: {.panel-tabset}
+### Example 1
+
+```{r}
+abs_fun <- function(x, i) {
+  res <- abs(x - mean(x)) ^ i
+  return(res)
+}
+
+```
+
+-   What is the output of this function? 
+-   What type of data object is the output?
+
+```{r}
+abs_fun(x = 1:10, i = 4)
+```
+
+
+### Example 2
+
+
+```{r}
+mypet <- function(name, pet) {
+  mystring <- paste(name,"'s ", pet, sep = "")
+  mystring <- toupper(mystring)
+  return(mystring)
+}
+```
+
+-   You can name arguments, or use them in order, just like built-in R functions
+
+```{r}
+# not naming arguments and hoping they are ordered correctly:
+mypet("meike", "cat")
+
+# oops
+mypet("cat", "meike")
+
+# naming arguments:
+mypet(name = "meike",
+      pet = "cat")
+
+# naming arguments not in order:
+mypet(pet = "cat", 
+      name = "meike")
+```
+
+-   What if we only give one argument?
+
+```{r}
+#| eval: false
+
+mypet("meike")
+```
+
+### Default arguments
+
+-   We can also set default arguments. 
+-   If we define an argument inside function(), 
+    -   that is the default value and it no longer needs to be specified.
+
+```{r}
+mypet <- function(name, pet = "Mouse") {
+  mystring <- paste(name,"'s ", pet, sep = "")
+  mystring <- toupper(mystring)
+  return(mystring)
+}
+
+mypet("meike", "cat")
+
+mypet("meike")
+
+```
+
+:::
+
+## Save the output of the function
+
+-   We can save the output of a function just as we do with built-in functions:
+
+```{r}
+petstring <- mypet(name = "meike", pet = "cat")
+petstring
+```
+
+-   We can also manipulate the output, since it is an object:
+
+```{r}
+tolower(petstring)
+
+str_replace_all(string = petstring, 
+                pattern = "CAT", 
+                replacement = "DOG")
+```
+
+
+
+## Challenge 1 (10 min)
+
+1.  Create a function that calculates the mean of a numeric vector, removing `NA`'s. Make sure to test that it works. What happens when you input a character vector?
+
+2.  Create a function that takes a data frame and calculates the mean of all numeric variables using your custom mean function above. Try this with the penguins data set.
+
+```{r}
+
+```
+
+## What does the function name return?
+
+-   Type/run `cor` in the console (no parentheses). 
+    -   What do you see? 
+-   Also try a name of a function you created, such as `square_number`.
+
+```{r}
+# note: what yo see in the console is different than in the html output
+square_number
+```
+
+## Example: standardizing values in a vector
+
+-   Below we create our own function to *standardize* values in a vector:
+    -   subtract the mean of the values and 
+    -   divide by the standard deviation of the values
+
+```{r}
+# argument is a numeric vector
+standardize_fun <- function(vec) {
+  vec2 <- (vec - mean(vec, na.rm = TRUE)) / sd(vec, na.rm = TRUE)
+  return(vec2) # returns another numeric vector
+}
+
+# test 1
+tmpvec <- 1:10
+standardize_fun(tmpvec)
+
+# test 2
+tmpvec <- c(-3, -2, -1, 0, 1, 2, 3)
+standardize_fun(tmpvec)
+```
+
+-   Usually we create functions to do more complex tasks than simple number or text manipulation.
+    -   Often the input argument is a data frame or tibble.
+
+## Example & Mini challenge: counting categories in a variable from a data frame
+
+1.   What are the input and output of the function below? 
+1.   What requirements do we need for the input data frame? 
+
+::: {.panel-tabset}
+### Function code
+
+```{r}
+count_categories <- function(df){
+  counts <- df %>%
+    count(disease)
+  
+  return(counts)
+}
+
+```
+
+### Apply the function
+
+-   Apply the function to different data sets:
+
+```{r}
+# these data are loaded in the first section above
+
+count_categories(smoke_complete)
+
+count_categories(lusc_data)
+
+count_categories(meso_data)
+
+```
+
+-   Why does this not work?
+```{r}
+#| eval: false
+
+count_categories(penguins)
+
+```
+
+
+### Comments
+
+-   This function might be useful if you needed to summarize the diseases across a large number of files.
+
+<br>
+
+-   One thing you might notice is that `disease` is ["hard coded"]{style="color:green"} 
+    -   which means it always counts the column with that exact name. 
+-   There is a way to make this more flexible 
+    -   (i.e. take an argument that specifies the column name) 
+    -   using something called `tidyeval`, which we will learn about next time.
+
+:::
+
+
+## Example: read in data from a file path
+
+-   If you find yourself reading in many data sets the same way, 
+-   you might create your own custom function to do this the way you like.
+
+```{r}
+# custom function to read in a file (specified with argument path)
+# output is a data frame
+
+load_files <- function(path){
+  out_frame <- readxl::read_excel(path, na="NA", sheet=1)
+  out_frame <- janitor::clean_names(out_frame) %>%
+    mutate(path_name = path)
+  return(out_frame)
+}
+
+```
+
+-   Run the function:
+
+```{r}
+smoke1 <- load_files(path = here::here("part8", "data", "smoke_1.xlsx"))
+glimpse(smoke1)            # notice last column
+```
+
+-   You don't have to include "`path =`"
+
+```{r}
+smoke2 <- load_files(here::here("part8", "data", "smoke_2.xlsx"))
+glimpse(smoke2)            # notice last column
+```
+
+
+## Using custom functions within `mutate()` and `across()`
+
+::: {.panel-tabset}
+### Within `mutate()`
+
+-   We can use custom functions within `mutate()`:
+
+```{r}
+# standardize_fun is a function we created above
+
+# using inside mutate without across:
+smoke1 %>% 
+  mutate(age_std = standardize_fun(age_at_diagnosis)) %>% 
+  # selecting just a few columns to see new column:
+  select(primary_diagnosis, age_at_diagnosis, age_std)
+
+
+```
+
+### Within `mutate()` and `across()`
+
+-   When using `across()` within the `mutate()`, we can use the custom function
+-   Note that the code below replaces values in *all* numeric columns with standardized transformations of the values
+
+```{r}
+smoke1 %>% 
+  mutate(across(.cols = where(is.numeric),
+                .fns = standardize_fun))
+
+# we don't need the .fns = ~ standarize_fun(.x) 
+# because it is a name of a function and we aren't changing arguments
+```
+
+:::
+
+## Creating a function inside `across()`
+
+-   We have seen examples where we created a function inside `across()` 
+-   This is a bit messier but does the same thing
+-   We have to use `.x` as our function argument placeholder/name.
+
+```{r}
+smoke1 %>% 
+  mutate(across(.cols = where(is.numeric),
+                .fns = ~ (.x - mean(.x, na.rm = TRUE)) / sd(.x, na.rm = TRUE)
+                ))
+
+
+```
+
+-   You might think of the function like the one created in the code below, 
+    -   which is the same as what we specified above,
+    -   just with `.x` instead of `vec`, and no `return()`
+
+```{r}
+standardize_fun <- function(.x) {
+  (.x - mean(.x, na.rm = TRUE)) / sd(.x, na.rm = TRUE)
+}
+```
+
+
+## Using custom functions within `summarize()`
+
+-   Below we create a function and use it within `summarize()`. 
+    -   Input: a numeric vector (such as a numeric column of a dataset)
+    -   Output: it divides the mean of the vector by the standard deviation of the vector
+-   This custom function is a "summarizing" function that returns *one* value, 
+    -   *not a vector of multiple values*. 
+ 
+```{r}
+mean_over_sd <- function(vec) {
+  mean(vec, na.rm = TRUE) / sd(vec, na.rm = TRUE)
+}
+```
+
+-   Use the custom function within `summarize()`:
+
+```{r}
+penguins %>% 
+  group_by(species) %>%
+  summarize(std = mean_over_sd(bill_length_mm))
+
+```
+
+-   Use the custom function within `summarize()` and `across()`:
+    
+```{r}
+penguins %>% 
+  group_by(species) %>%
+  summarize(across(
+    .cols = where(is.numeric), 
+    .fns = mean_over_sd))
+```
+
+
+
+## Challenge 2 (15 min)
+
+1.  Use the above functions `standardize_fun()` and `mean_over_sd()` with the LUSC data to standardize the numeric vectors `age_at_diagnosis` and `cigarettes_per_day`. Calculate mean/sd for those vectors as well.
+
+2.  Create a custom function that converts mm to cm, and apply the function within a `mutate()` and `across()` on all the columns in `penguins` data that end with "mm".
+
+```{r}
+
+```
+
+
+
+## Checking for user errors with `if()`
+
+::: {.panel-tabset}
+
+### Motivation 
+
+-   What happens when someone tries `square_number("two")`? 
+-   Since "two" is a character, you can't multiply it. 
+
+
+```{r}
+#| eval: false
+# run this yourself, eval: false so we can knit
+square_number("two")
+```
+
+-   We can let the the user to know that this isn't what the function is expecting for its input.
+
+### `if(){ stop() }` code
+
+-   We can use `if(){ }` as a way to check if the input value  `number` is actually numeric.
+-   `if()` statements check the condition within the parentheses,
+    -   and then run the code in the `{ }` (curly brackets) if the condition is true.
+
+
+```{r}
+#| eval: false
+# run this yourself, eval: false so we can knit
+
+square_number_improved <- function(number) {
+  # check for whether number is numeric:
+  if(!is.numeric(number)) { 
+    # stop gives the error and exits the function:
+    stop("Your input was not a number")
+  }
+  
+  output_number <- number * number 
+  
+  return(output_number)
+  
+}
+
+square_number_improved(2)
+
+square_number_improved("two")
+```
+
+### Do you need to check for all errors?
+
+-   It depends on who uses your functions. 
+-   If the functions are just for you and your lab, as long as everyone understands what goes into the functions, you probably don't need to anticipate all kinds of errors, just a few major ones.
+-   It's when you are releasing your software as a freely available package that you should think about doing extensive testing for errors, especially the functions you anticipate will be used by most people who use your software.
+
+:::
+
+
+
+## Challenge 3 (10 minutes)
+
+::: {.panel-tabset}
+
+### Instructions
+
+-   Create a custom function that does the same data cleaning steps as the code below for one dataset, so that you don't repeat the same code 3 times. Put your solution in the code chunk below this, labeled `challenge1solns`.
+-   Your custom function should essentially be a copy of the code that **does these steps**:
+    -   Loads the time point data from an .xlsx file, 
+    -   cleans the data, 
+    -   renames any necessary columns, and 
+    -   then pivots the data into a long format.
+-   The function should have **two arguments**: 
+    -   the name of the excel file and 
+    -   the name of the sheet
+-   The function should output a long dataset
+-   Bind the data at the end of the code chunk *after* running the function three times.
+-   If you have time, add in an error check that when the sheet number is not between 2 and 4, returns an error message to say "Incorrect sheet value for time point data."
+
+
+### Code to "functionize"
+
+```{r}
+#| label: challenge1
+
+# Load data
+mouse_tp1 <- read_excel(here::here("part8", "data", "mouse_biomarker.xlsx"), 
+                        sheet = 2, 
+                        na = c("","/"),
+                        n_max = 34, # CAREFUL WITH THIS
+                        .name_repair = janitor::make_clean_names) %>%
+  remove_empty(which = c("rows","cols"))
+
+mouse_tp2 <- read_excel(here::here("part8", "data", "mouse_biomarker.xlsx"), 
+                        sheet = 3, 
+                        na = c("","/"),
+                        .name_repair = janitor::make_clean_names) %>%
+  remove_empty(which = c("rows","cols"))
+
+mouse_tp3 <- read_excel(here::here("part8", "data", "mouse_biomarker.xlsx"), 
+                        sheet = 4, 
+                        na = c("","/"),
+                        .name_repair = janitor::make_clean_names) %>%
+  remove_empty(which = c("rows","cols"))
+
+# rename columns (do this to all data, just in case)
+colnames(mouse_tp2) <- str_replace(colnames(mouse_tp2), "_ng", "_pg")
+
+mouse_tp1 <- mouse_tp1 %>%
+  rename(mirna1 = mirna_1,
+         mirna2 = mi_rna_2,
+         preference_obj1 = preference,
+         preference_obj2 = x_4) %>%
+  filter(!is.na(sid)) %>%
+  mutate(
+    preference_obj1 = as.numeric(preference_obj1),
+    preference_obj2 = as.numeric(preference_obj2)
+  ) 
+
+mouse_tp2 <- mouse_tp2 %>%
+  rename(mirna1 = mirna_1,
+         mirna2 = mi_rna_2,
+         preference_obj1 = preference,
+         preference_obj2 = x_4) %>%
+  filter(!is.na(sid)) %>%
+  mutate(
+    preference_obj1 = as.numeric(preference_obj1),
+    preference_obj2 = as.numeric(preference_obj2)
+  )  
+
+mouse_tp3 <- mouse_tp3 %>%
+  rename(mirna1 = mirna_1,
+         mirna2 = mi_rna_2,
+         preference_obj1 = preference,
+         preference_obj2 = x_4) %>%
+  filter(!is.na(sid)) %>%
+  mutate(
+    preference_obj1 = as.numeric(preference_obj1),
+    preference_obj2 = as.numeric(preference_obj2)
+  ) 
+
+# Pivot data
+mouse_tp1 <- mouse_tp1 %>%
+  pivot_longer(cols = starts_with("normalized"),
+               names_to = "biomarker_type",
+               values_to = "biomarker_value")
+mouse_tp2 <- mouse_tp2 %>%
+  pivot_longer(cols = starts_with("normalized"),
+               names_to = "biomarker_type",
+               values_to = "biomarker_value")
+mouse_tp3 <- mouse_tp3 %>%
+  pivot_longer(cols = starts_with("normalized"),
+               names_to = "biomarker_type",
+               values_to = "biomarker_value")
+
+# Note: the code below is not a part of your custom funcion
+
+# Bind data
+mouse_tp <- bind_rows("tp1" = mouse_tp1, 
+                      "tp2" = mouse_tp2,
+                      "tp3" = mouse_tp3,
+                      .id = "time")
+
+```
+
+
+### Code chunk for your solutions
+
+```{r}
+#| label: challenge1solns
+# create your function here
+
+# implement your function 3 times
+
+# bind the outputted data frames
+
+```
+
+:::
+
+
+# Lists
+
+## Lists, what are they?
+
+-   Lists are a general purpose data structure in R. 
+-   They are very flexible, in that they have *slots*. 
+-   Unlike vectors, a `list` can be heterogeneous. 
+    -   Each *slot* can contain elements of different types, such as vectors, matrices, data frames, or even other lists!
+-   Lists allow you to organize and store diverse types of data in a single object.
+
+## List basics
+
+::: {.panel-tabset}
+### Make a list
+
+-   We'll start with a making a list and understand different properties about it.
+
+```{r}
+my_list <- list(cat_names = c("Morris", "Julia"), 
+                hedgehog_names = "Spiny", 
+                dog_names = c("Rover", "Spot"))
+
+my_list
+```
+
+### List properties
+
+-   Lists have a `length()`:
+
+```{r}
+length(my_list)
+
+# note that there are no dimensions though:
+dim(my_list)
+```
+
+-   `glimpse()` a list
+
+```{r}
+glimpse(my_list)
+```
+
+-   If the lists elements are named, you can ask for their names:
+
+```{r}
+names(my_list)
+```
+
+
+### Accessing list elements
+
+::: {.panel-tabset}
+#### Accessing with `$` 
+
+-   We can access a single element in the list using `$` and its name, 
+    -   similar to how we access data frame columns:
+
+```{r}
+names(my_list)
+
+my_list$cat_names
+my_list$hedgehog_names
+my_list$dog_names
+```
+
+#### Accessing with `[[]]`
+
+-   We can also access an element using the `[[]]` (double brackets) accessor 
+
+```{r}
+my_list[[1]]
+my_list[[2]]
+my_list[[3]]
+
+# what happens when you run this?
+# my_list[[4]]
+```
+
+-   If a list's slots are named, they can be accessed with their name:
+
+```{r}
+my_list[["hedgehog_names"]]
+
+# what is the type/structure of the result?
+str(my_list[["hedgehog_names"]])
+
+str(my_list[["dog_names"]])
+
+```
+:::
+:::
+
+## Difference between `[]` and `[[]]`
+
+-   Beware of the difference between `[]` and `[[]]`. 
+-   The `[]` accessor returns a *list* of length 1, not the element in it:
+
+```{r}
+my_list <- list(cat_names = c("Morris", "Julia"), 
+                hedgehog_names = "Spiny", 
+                dog_names = c("Rover", "Spot"))
+
+my_list["hedgehog_names"]
+str(my_list["hedgehog_names"])
+
+```
+
+-   Compare to `[[]]`:
+
+```{r}
+my_list[["hedgehog_names"]]
+```
+
+In most cases, you want to use `[[]]`.
+
+
+## Vectors vs. lists, and `[]` vs. `[[]]`
+
+-   Vectors
+    -   `vec[1:3]` returns a vector of length 3
+    -   `vec[1]` returns a vector of length 1
+    -   `[[]]` cannot be used with vectors
+
+```{r}
+my_vec <- c("Morris", "Julia", "Spiny", "Rover", "Spot")
+
+my_vec[1:3]
+my_vec[1]
+```
+
+-   Lists
+    -   `list[1:3]` returns a list of length 3
+    -   `list[1]` returns a list of length 1
+    -   `list[[1]]` returns the first *element* of a list
+        -   this could be a number (vector of length 1), a vector, another list, a data frame, a ggplot, whatever!
+
+```{r}
+my_list[1:3]
+my_list[1]
+
+my_list[[1]]
+
+```
+
+From the help manual of `[[`:
+
+> "The most important distinction between `[`, `[[` and `$` is that the `[` can select more than one element whereas the other two select a single element."
+
+## What does `my_list[[1]][1]` do?
+
+
+```{r}
+my_list[[1]][1]
+```
+
+-   Let's break it up step-by-step to better understand what it does:
+
+```{r}
+# save the first element of the list as tmpout
+tmpout <-  my_list[[1]]
+str(tmpout)
+
+# now take the first element of tmpout
+tmpout[1]
+```
+
+-   The first part, `my_list[[1]]`, returns the first element of `my_list` 
+    -   which is a vector of length two (`c("Morris", "Julia")`) 
+-   The second part, `[1]`, returns the first element of that vector "Morris":
+
+```{r}
+str(my_list[[1]][1])
+```
+
+-   If you try to pull out an element that doesn't exist, you get a strange variety of results, so be careful!!
+
+```{r}
+#| eval: false
+# run in R on your computer to see the errors
+my_list[[1]][3]
+
+my_list[[6]]
+
+my_list[["dogg_names"]] # check your spelling!!!
+```
+
+## Mini-challenge (your turn)
+
+-   Find the length of the `cat_names` element in `my_list`. Then, find the length of `hedgehog_names`.
+
+```{r}
+#| label: list8
+#| exercise: true
+my_list <- list(cat_names = c("Morris", "Julia"), 
+                hedgehog_names = "Spiny", 
+                dog_names = c("Rover", "Spot"))
+
+
+```
+
+## `purrr::pluck()`
+
+-   The `purrr` package has an additional way to extract list elements: `purrr::pluck()`. 
+-   This is equivalent to using `[[]]`, but always returns `NULL` when the element does not exist.
+-   `pluck()` can be a handy way to extract something from a list without dealing with the `[[]]` and `[]` confusion.
+
+```{r}
+my_list <- list(cat_names = c("Morris", "Julia"), 
+                hedgehog_names = "Spiny", 
+                dog_names = c("Rover", "Spot"))
+
+my_list %>%
+  pluck("cat_names")
+
+# go deeper in a list
+my_list %>%
+  pluck("cat_names", 2)
+```
+
+-   `pluck()` outputs a vector, just like `my_list[["cat_names"]]`:
+
+```{r}
+my_list %>%
+  pluck("cat_names") %>%
+  str()
+```
+
+-   `pluck()` outputs NULL instead of an error:
+
+```{r}
+my_list %>% 
+  pluck("dogggg_names")
+
+my_list %>% 
+  pluck(10)
+```
+
+
+
+## Mini-challenge (your turn)
+
+-   Run the code below. What does it output?
+
+Did it output a `data.frame`, or a vector?
+
+```{r}
+penguins %>%
+  pluck("species")
+```
+
+## Adding things to Lists
+
+-   The *slots* in a `list` are not fixed. 
+-   We can take an already made list and add a new slot to it using `<-`:
+
+```{r}
+my_list <- list(cat_names = c("Morris", "Julia"), 
+                hedgehog_names = "Spiny", 
+                dog_names = c("Rover", "Spot"))
+
+my_list$raccoon_names <- c("Rocky")
+my_list
+
+my_list$cat_ages <- c(2, 5)
+my_list
+```
+
+-   This is a little bit like adding a column to a data frame (with `mutate()` or `add_column()` or even `$`). 
+  -   We can just keep adding!
+
+-   This also works numerically:
+
+```{r}
+# another list, this time not named, but named 
+my_list <- list(hello = c("hello", "world"),
+                c("a","b","c"),
+                stuff = "stuff")
+# notice only two elements have names, this is allowed
+my_list
+names(my_list)
+
+my_list[[4]] <- c("new","stuff")
+my_list
+
+my_list[[6]] <- "Does this work?"
+
+# What happened to the fifth element?
+my_list
+
+names(my_list)
+```
+
+## *homogeneous* versus *heterogeneous* lists
+
+::: {.panel-tabset}
+### Difference
+
+-   When we automate a repetitive process, we usually assume that the lists that we create are *homogeneous*. 
+    -   That is, the data type of the list element is the same for each slot in the list. 
+    -   In our case, usually the data.type will be a `data.frame`.
+
+-   However, lists can also be *heterogenous* as we can see in the list above when we added `cat_ages` element.
+-   A common pattern is to return a *heterogenous* list from a function. 
+    -   For example, the `lm()` function actually returns a list.
+
+
+### Example 1: `lm()` output
+
+::: {.panel-tabset}
+#### Run model
+
+-   Run a linear regression model with lm()
+
+```{r}
+# outcome is on left side of ~
+# predictor/independent variable/covariate  is on right side of ~
+# specify data in data argument
+output <- lm(body_mass_g ~ bill_length_mm, data = penguins)
+
+# summary() produces summaries about the model results
+sum_output <- summary(output)
+
+sum_output
+```
+
+#### Output is a list
+
+-    The summary regression output is a list:
+
+```{r}
+names(sum_output)
+str(sum_output)
+```
+
+#### Access the coefficients
+
+-   There are different ways to access the coefficients element of the list:
+
+```{r}
+sum_output$coefficients
+
+sum_output[["coefficients"]]
+
+sum_output %>% pluck(coefficients)
+```
+
+#### Object type of coefficients
+
+-   Note this is a matrix, not a data frame!
+
+```{r}
+str(sum_output[["coefficients"]])
+```
+
+
+- What if we use `[]`?
+
+```{r}
+# [] returns a list:
+sum_output["coefficients"]
+str(sum_output["coefficients"])
+
+```
+
+-  Use `[]` to access multiple elements of the list:
+
+```{r}
+sum_output[c("call","coefficients")]
+
+# a list of length 2
+str(sum_output[c("call","coefficients")])
+
+```
+
+-   Remember you cannot use [[]] with more than one name:
+
+```{r}
+sum_output[[c("call","coefficients")]]
+```
+
+:::
+
+
+### Example 3
+
+-   This function runs a linear model using the penguins data and saves some of the regression output as a heterogeneous list
+
+```{r}
+run_penguin_model <- function(myisland = "Torgersen") {
+  
+  subset_penguins <- penguins %>%
+    filter(island == myisland)
+  
+  output <- summary(lm(body_mass_g ~ bill_length_mm, data=subset_penguins))
+  
+  out_list <- list(
+    coefficients = output$coefficients, 
+    call = output$call, 
+    island = myisland)
+  
+  return(out_list)
+}
+
+output_model <- run_penguin_model("Torgersen")
+
+output_model
+```
+:::
+
+
+
+## List of lists
+
+-   Lists can be heterogeneous, and since they can contain anything, they can also contain other lists!
+
+```{r}
+my_info_list <- list(
+  name = "Patty",
+  pets = c("Cat", "Dog","Parrot","Kangaroo"),
+  address = list(number = 273,
+                 street = "N Main St",
+                 city = "Portland",
+                 state = "Oregon")
+)
+
+my_info_list
+
+```
+
+-   We can pull out elements from the list inside a list
+
+```{r}
+my_info_list[["address"]][["street"]]
+
+my_info_list %>% pluck("address", "street")
+```
+
+
+
+## View a list
+
+-   Try using `View()` with `my_list`, `my_info_list`, and `output` from the linear model above.
+-   Rstudio tries to give you an interactive viewing experience for each element.
+-   While in the View screen, click on the icon at the very right of the screen, what does that do?
+
+
+```{r}
+#| eval: false
+# run this in R
+
+View(my_list)
+
+View(my_info_list)
+
+View(output)
+```
+
+
+
+## `data.frame`s are list-like
+
+-   You can access columns in a `data.frame` using `$`. 
+-   This is because a `data.frame` is a special *instance* of a list.
+-   Hence, you can use all of the above accessors to manipulate variables in a `data.frame`.
+
+-   Load the `mtcars` data frame (it's nice and small)
+
+```{r}
+data(mtcars)
+glimpse(mtcars)
+
+```
+
+-   What is `length` doing here? how does it compare to `dim`?
+
+```{r}
+length(mtcars)
+```
+
+-   `mtcars` is also a kind of list - we can use `$, [[]],` and `pluck()`:
+
+```{r}
+mtcars$mpg
+mtcars[[1]]
+str(mtcars[[1]])
+
+mtcars[["mpg"]]
+
+mtcars %>% pluck("mpg")
+
+mtcars %>% pull("mpg")
+```
+
+-   Compare the output above to that below when using a single `[]`:
+
+```{r}
+mtcars[1]
+str(mtcars[1])
+```
+
+
+-   A common pattern in Base-R for filtering that you should be aware of is using the `$` operator for filtering on rows. -   The `tidyverse` simplifies this with `filter()` and that's what I encourage you to use, 
+    -   but this pattern is often used with objects in the Bioconductor package (or in other people's code ;))
+
+```{r}
+mtcars[mtcars$cyl == 8, ]
+```
+
+-   This is the tidyverse version of the above "base-R" code
+
+```{r}
+mtcars %>% 
+  filter(cyl == 8)
+```
+
+
+## Recap of lists
+
+-   These are some basic operations with lists in R. 
+-   Lists are powerful for organizing and manipulating complex data structures in a flexible way.
+
+
+::: {.panel-tabset}
+### Creating a List:
+
+-   You can create a list using the `list()` function. 
+-   Elements within the list can be of different types:
+
+```{r}
+# Example list
+my_list <- list(
+  numeric_vector = c(1, 2, 3),
+  character_vector = c("a", "b", "c"),
+  matrix = matrix(1:4, nrow = 2),
+  data_frame = data.frame(name = c("John", "Jane"), age = c(25, 30))
+)
+
+my_list
+```
+
+### Accessing Elements:
+
+-   You can access elements in a list using 
+    -   double square brackets `[[]]` 
+    -   or the dollar sign `$` for named elements:
+
+```{r}
+# Accessing elements
+(numeric_vector <- my_list[[1]])
+(character_vector <- my_list$character_vector)
+```
+
+### Adding Elements:
+
+-   You can add elements to a list 
+    -   using the `c()` function or 
+    -   by assigning a new element to a specific index or 
+    -   using the familiar `$`:
+
+```{r}
+# Adding elements
+my_list <- c(my_list, new_element = "This is a new element")
+
+my_list[[6]] <- "Another new element"
+my_list$new3 <- "Yet another new element"
+
+my_list
+```
+
+### List Attributes:
+
+-   Lists can have attributes, such as names and dimensions. 
+-   You can assign names to list elements:
+
+```{r}
+names(my_list)
+
+# Assigning names to list elements
+names(my_list) <- c("numeric", "character", "matrix", "dataframe", "new1", "new2", "new3")
+
+names(my_list)
+```
+
+### Nested Lists:
+
+-   Lists can be nested, meaning you can have lists within lists:
+
+```{r}
+# Nested list
+nested_list <- list(
+  sublist1 = list(a = 1, b = 2),
+  sublist2 = list(c = "apple", d = "banana")
+)
+
+nested_list
+```
+
+
+
+:::
+
+
+
+# Next time
+
+Next class we will focus on iteration using functions, lists, and `purrr::map()`.
+
+
+
+# Post Class Survey
+
+Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo){target="_blank"}. 
+
+Your responses are anonymous in that I separate your names from the survey answers before compiling/reading. 
+
+You may want to review previous years' feedback [here](https://niederhausen.github.io/BSTA_526_W26/survey_feedback_previous_years){target="_blank"}.
+
+
+
+# Acknowledgements
+
+-   Part 8 is based on the BSTA 505 Winter 2023 course, taught by Jessica Minnier.
+    -   I made modifications to update the material from RMarkdown to Quarto, and streamlined/edited content for slides.
+
+-   Minnier's Acknowledgements:
+    -   Written by Jessica Minnier and Ted Laderas. 
+    -   Some material inspired by [Kelly Bodwin's Adventures in R](https://www.adventures-in-r.com/post/05-loops-packages/).
+
+
