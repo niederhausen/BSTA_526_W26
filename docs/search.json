@@ -5156,14 +5156,14 @@
     "href": "weeks/week_08.html",
     "title": "Week 8",
     "section": "",
-    "text": "Learn new options for customizing tables\nPractice modifying factor levels\nPractice ggplot and Learn more geometries"
+    "text": "Learn how to write and use custom functions\nLearn about lists as a general purpose data structure\nLearn and utilize list properties\nAccess list elements using $ and [[]]\nUnderstand the difference between homogeneous and heterogeneous lists\nUse purrr::pluck() to access list elements\nUnderstand how data.frames() are list-like"
   },
   {
     "objectID": "weeks/week_08.html#topics",
     "href": "weeks/week_08.html#topics",
     "title": "Week 8",
     "section": "",
-    "text": "Learn new options for customizing tables\nPractice modifying factor levels\nPractice ggplot and Learn more geometries"
+    "text": "Learn how to write and use custom functions\nLearn about lists as a general purpose data structure\nLearn and utilize list properties\nAccess list elements using $ and [[]]\nUnderstand the difference between homogeneous and heterogeneous lists\nUse purrr::pluck() to access list elements\nUnderstand how data.frames() are list-like"
   },
   {
     "objectID": "weeks/week_08.html#announcements",
