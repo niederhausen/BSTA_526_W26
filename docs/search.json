@@ -200,7 +200,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Schedule is subject to change.\nLinks have been added to all weeks, but weeks we have not covered yet will have broken links.\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopics\n\n\n\n\n1\nTh 01/08\nIntroduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types\n\n\n\n\n\n\n\n2\nTh 01/15\nLoading Data, data.frames, and ggplot2\n\n\n\n\nHW 1 due\n\n\n\n\n\n\n\n3\nTh 01/22\ndplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets\n\n\n\n\nHW 2 due\n\n\n\n\n\n\n\n4\nTh 01/29\ndplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales\n\n\n\n\nHW 3 due\n\n\n\n\n\n\n\n5\nTh 02/05\nMerging multiple datasets; cleaning & reshaping data\n\n\n\n\nHW 4 due\n\n\n\nTh 02/05\nTake Home Midterm Assigned\n\n\n\n\n\n\n\n6\nTh 02/12\nStart with your goal: more data wrangling\n\n\n\n\nHW 5 due\n\n\n\n\n\n\n\n7\nTh 02/19\nCustomizing tables, adding and reordering factors, and more ggplot\n\n\n\n\nHW 6 due\n\n\n\nSu 02/22\nTake home Midterm due (Sunday)\n\n\n\n\n\n\n\n8\nTh 02/26\nIntro to functions, working with lists\n\n\n\n\nHW 7 due\n\n\n\n\n\n\n\n9\nTh 03/05\nIteration\n\n\n\n\nHW 8 due\n\n\n\n\n\n\n\n10\nTu 03/10\nFinal Exam Assigned (Tuesday)\n\n\n\nTh 03/12\nMore Stats/Purrr\n\n\n\n\nHW 9 due\n\n\n\n\n\n\n\n11\nTh 03/19\nNo Class, Office Hour\n\n\n\n\nHW 10 due\n\n\n\nFri 03/20\nFinal Exam Due (Friday 5pm end of term)"
+    "text": "Schedule is subject to change.\nLinks have been added to all weeks, but weeks we have not covered yet will have broken links.\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopics\n\n\n\n\n1\nTh 01/08\nIntroduction to course/expectations, Intro to R/RStudio, Functions, Vectors, Data Types\n\n\n\n\n\n\n\n2\nTh 01/15\nLoading Data, data.frames, and ggplot2\n\n\n\n\nHW 1 due\n\n\n\n\n\n\n\n3\nTh 01/22\ndplyr: subsetting using filter()/select(), more ggplot: themes, scales, facets\n\n\n\n\nHW 2 due\n\n\n\n\n\n\n\n4\nTh 01/29\ndplyr: mutate(), across(), case_when(), factors, summarize() and group_by(); ggplot: boxplots, scales\n\n\n\n\nHW 3 due\n\n\n\n\n\n\n\n5\nTh 02/05\nMerging multiple datasets; cleaning & reshaping data\n\n\n\n\nHW 4 due\n\n\n\nTh 02/05\nTake Home Midterm Assigned\n\n\n\n\n\n\n\n6\nTh 02/12\nStart with your goal: more data wrangling\n\n\n\n\nHW 5 due\n\n\n\n\n\n\n\n7\nTh 02/19\nCustomizing tables, adding and reordering factors, and more ggplot\n\n\n\n\nHW 6 due\n\n\n\nSu 02/22\nTake home Midterm due (Sunday)\n\n\n\n\n\n\n\n8\nTh 02/26\nCreating functions and working with lists\n\n\n\n\nHW 7 due\n\n\n\n\n\n\n\n9\nTh 03/05\nIteration\n\n\n\n\nHW 8 due\n\n\n\n\n\n\n\n10\nTu 03/10\nFinal Exam Assigned (Tuesday)\n\n\n\nTh 03/12\nMore Stats/Purrr\n\n\n\n\nHW 9 due\n\n\n\n\n\n\n\n11\nTh 03/19\nNo Class, Office Hour\n\n\n\n\nHW 10 due\n\n\n\nFri 03/20\nFinal Exam Due (Friday 5pm end of term)"
   },
   {
     "objectID": "part1/part_01_b526_slides.html#rrstudio",
@@ -4764,7 +4764,7 @@
     "href": "weeks/week_07.html#class-materials",
     "title": "Week 7",
     "section": "Class materials",
-    "text": "Class materials\n\nClass materials in OneDrive folder BSTA_526_W26_class_materials_public.\nFor today’s class, make sure to download to your computer the folder called part7.\nOpen RStudio by double-clicking on the project file called BSTA_526_W26_class_materials_public.Rproj in the main OneDrive folder.\n\n\n\nWe will first finish the Week 6 slides, starting with Section 4.7: Challenge 3.\nWeek 7 slides are coming soon!\n\n\n\n\n\nPart\nOneDrive folder\nSlides\nWebpage\n\n\n\n\n6\n\n\n\n\n\n7"
+    "text": "Class materials\n\nClass materials in OneDrive folder BSTA_526_W26_class_materials_public.\nFor today’s class, make sure to download to your computer the folder called part7.\nOpen RStudio by double-clicking on the project file called BSTA_526_W26_class_materials_public.Rproj in the main OneDrive folder.\n\n\n\nWe will first finish the Week 6 slides, starting with Section 4.7: Challenge 3.\n\n\n\n\n\nPart\nOneDrive folder\nSlides\nWebpage\n\n\n\n\n6\n\n\n\n\n\n7"
   },
   {
     "objectID": "weeks/week_07.html#readings",
@@ -5150,5 +5150,61 @@
     "title": "beepr::beepr",
     "section": "3.2 Example 3",
     "text": "3.2 Example 3\n\n# Run a loop and beep when complete\ntotal &lt;- 0\nfor (i in 1:100) {\n  total &lt;- total + i\n}\n\nbeep(8)            # plays a mario sound to signal the loop is done\nprint(total)\n\n[1] 5050"
+  },
+  {
+    "objectID": "weeks/week_08.html",
+    "href": "weeks/week_08.html",
+    "title": "Week 8",
+    "section": "",
+    "text": "Learn new options for customizing tables\nPractice modifying factor levels\nPractice ggplot and Learn more geometries"
+  },
+  {
+    "objectID": "weeks/week_08.html#topics",
+    "href": "weeks/week_08.html#topics",
+    "title": "Week 8",
+    "section": "",
+    "text": "Learn new options for customizing tables\nPractice modifying factor levels\nPractice ggplot and Learn more geometries"
+  },
+  {
+    "objectID": "weeks/week_08.html#announcements",
+    "href": "weeks/week_08.html#announcements",
+    "title": "Week 8",
+    "section": "Announcements",
+    "text": "Announcements\n\n\n\nFunctions of the Week\n\nSignup sheet for your functions of the week presentations. The file is in OneDrive in the functions_of_the_week folder.\nPresentations will be during weeks 5-10. Please no more than 4 presentations per week.\nIf there is a function you are interested in presenting that is not on the signup sheet, please check with me. If it hasn’t been covered before and isn’t covered in the class, then most likely I will approve it.\nPlease upload to Sakai your FOTW presentation by 7 am of the day you are presenting.\n\nCascadia R Conf in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on."
+  },
+  {
+    "objectID": "weeks/week_08.html#class-materials",
+    "href": "weeks/week_08.html#class-materials",
+    "title": "Week 8",
+    "section": "Class materials",
+    "text": "Class materials\n\nClass materials in OneDrive folder BSTA_526_W26_class_materials_public.\nFor today’s class, make sure to download to your computer the folder called part8.\nOpen RStudio by double-clicking on the project file called BSTA_526_W26_class_materials_public.Rproj in the main OneDrive folder.\n\n\n\nWeek 8 slides are coming soon!"
+  },
+  {
+    "objectID": "weeks/week_08.html#readings",
+    "href": "weeks/week_08.html#readings",
+    "title": "Week 8",
+    "section": "Readings",
+    "text": "Readings\n\nRequired\n\nR4DS book:\n\nFunctions: Chapter 25\nLists: Section 23.2\n\n\n\n\nOptional\n\nSoftware Carpentry’s lesson on functions in R\nVectors and Lists - Jenny Bryan"
+  },
+  {
+    "objectID": "weeks/week_08.html#post-class-survey",
+    "href": "weeks/week_08.html#post-class-survey",
+    "title": "Week 8",
+    "section": "Post-class survey",
+    "text": "Post-class survey\n\nPlease fill out the post-class survey to provide feedback. Thank you!\nPrevious muddiest points and clearest points with responses are collected here."
+  },
+  {
+    "objectID": "weeks/week_08.html#homework",
+    "href": "weeks/week_08.html#homework",
+    "title": "Week 8",
+    "section": "Homework",
+    "text": "Homework\n\nSee OneDrive folder for homework assignment.\nHW 8 due on 02/26."
+  },
+  {
+    "objectID": "weeks/week_08.html#recording",
+    "href": "weeks/week_08.html#recording",
+    "title": "Week 8",
+    "section": "Recording",
+    "text": "Recording\n\nIn-class recording links are on Sakai. Navigate to Course Materials -&gt; Schedule with links to in-class recordings."
   }
 ]

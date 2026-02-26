@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-02-26">
+<meta name="description" content="Functions and lists">
 
-<title>Functions of the Week BSTA 526</title>
+<title>Week 8 BSTA 526</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,40 +62,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -104,10 +74,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-sm navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/IMG_6759_med.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/IMG_6759_med.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">BSTA 526 Winter 2026</span>
     </a>
   </div>
@@ -118,23 +88,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html" rel="" target="">
+    <a class="nav-link" href="../schedule.html" rel="" target="">
  <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./survey_feedback_previous_years.html" rel="" target="">
+    <a class="nav-link" href="../survey_feedback_previous_years.html" rel="" target="">
  <span class="menu-text">Survey</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./function_week.html" rel="" target="">
+    <a class="nav-link" href="../function_week.html" rel="" target="">
  <span class="menu-text">FotW</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -148,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./function_week.html">Functions of the Week</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week_01.html">Weekly pages</a></li><li class="breadcrumb-item"><a href="../weeks/week_08.html">Week 8</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -170,19 +140,19 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
@@ -197,49 +167,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_01.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_02.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_03.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_04.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_05.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_06.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 6</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_07.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 7</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/week_08.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/week_08.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 8</span></a>
   </div>
 </li>
@@ -247,13 +217,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./survey_feedback_previous_years.html" class="sidebar-item-text sidebar-link">
+  <a href="../survey_feedback_previous_years.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Survey Feedback</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./function_week.html" class="sidebar-item-text sidebar-link active">
+  <a href="../function_week.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions of the Week</span></a>
   </div>
 </li>
@@ -263,212 +233,158 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#topics" id="toc-topics" class="nav-link active" data-scroll-target="#topics">Topics</a>
+  <ul class="collapse">
+  <li><a href="#part-8" id="toc-part-8" class="nav-link" data-scroll-target="#part-8">Part 8:</a></li>
+  </ul></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  <li><a href="#class-materials" id="toc-class-materials" class="nav-link" data-scroll-target="#class-materials">Class materials</a></li>
+  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings">Readings</a>
+  <ul class="collapse">
+  <li><a href="#required" id="toc-required" class="nav-link" data-scroll-target="#required">Required</a></li>
+  <li><a href="#optional" id="toc-optional" class="nav-link" data-scroll-target="#optional">Optional</a></li>
+  </ul></li>
+  <li><a href="#post-class-survey" id="toc-post-class-survey" class="nav-link" data-scroll-target="#post-class-survey">Post-class survey</a></li>
+  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
+  <li><a href="#recording" id="toc-recording" class="nav-link" data-scroll-target="#recording">Recording</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Functions of the Week</h1>
+<h1 class="title">Week 8</h1>
 </div>
 
+<div>
+  <div class="description">
+    Functions and lists
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 26, 2026</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 25, 2026</p>
+    </div>
+  </div>
     
   </div>
   
 
 </header>
 
-<p>See the <a href="https://niederhausen.github.io/BSTA_526_W26/syllabus.html#function-of-the-week">syllabus</a> for information about the Functions of the Week, as well as links to presentations from previous years.</p>
-<p>Below are links to functions of the week presentations.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-title-sort" data-direction="asc">
-          Title
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<section id="topics" class="level2">
+<h2 class="anchored" data-anchor-id="topics">Topics</h2>
+<section id="part-8" class="level3">
+<h3 class="anchored" data-anchor-id="part-8">Part 8:</h3>
+<ul>
+<li><strong>Learn</strong> new options for customizing tables</li>
+<li><strong>Practice</strong> modifying factor levels</li>
+<li><strong>Practice</strong> ggplot and <strong>Learn</strong> more geometries</li>
+</ul>
+</section>
+</section>
+<section id="announcements" class="level2">
+<h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li><strong>Functions of the Week</strong>
+<ul>
+<li><a href="https://ohsuitg-my.sharepoint.com/:x:/r/personal/niederha_ohsu_edu/_layouts/15/Doc.aspx?sourcedoc=%7BBAE3FF1C-3623-437E-B2DB-C057EC36BF7B%7D&amp;file=signup_functions_of_the_week_2026.xlsx&amp;action=default&amp;mobileredirect=true">Signup sheet</a> for your functions of the week presentations. The file is in OneDrive in the <a href="https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Ffunctions%5Fof%5Fthe%5Fweek&amp;viewid=f39696a4%2D6b6c%2D4d5a%2Db1d1%2D6b17a205bb96">functions_of_the_week folder</a>.</li>
+<li>Presentations will be during weeks 5-10. <em>Please no more than 4 presentations per week.</em></li>
+<li>If there is a function you are interested in presenting that is not on the signup sheet, please check with me. If it hasn’t been covered before and isn’t covered in the class, then most likely I will approve it.</li>
+<li><strong>Please upload to Sakai your FOTW presentation by 7 am of the day you are presenting.</strong></li>
+</ul></li>
+<li><a href="https://cascadiarconf.com/"><strong>Cascadia R Conf</strong></a> in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on.</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/CascadiaR_logo_2026.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
 </div>
-
-<table class="quarto-listing-table table table-hover">
-<thead>
-<tr>
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1767859200000" data-listing-file-modified-sort="1767833646000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="`package::function`" data-listing-filename-sort="presentation_template.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">1/8/26</span>
-</td>
-<td>
-<a href="./function_week/presentation_template.html" class="title listing-title"><code>package::function</code></a>
-</td>
-<td>
-<span class="listing-description">(template file) Very brief description of function</span>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1770278400000" data-listing-file-modified-sort="1770287696000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="`stringr::str_to_camel()|str_to_snake()|str_to_kebab()`" data-listing-filename-sort="fotw_Arboren.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/5/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_Arboren.html" class="title listing-title"><code>stringr::str_to_camel()|str_to_snake()|str_to_kebab()</code></a>
-</td>
-<td>
-<span class="listing-description">changes chosen string via capitalization, ’_’ and ‘-’ </span>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1770278400000" data-listing-file-modified-sort="1770287446000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-title-sort="`patchwork::patchwork`" data-listing-filename-sort="fotw_CHILDRESS.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/5/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_CHILDRESS.html" class="title listing-title"><code>patchwork::patchwork</code></a>
-</td>
-<td>
-<span class="listing-description">A package for arranging/aligning plots</span>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1770278400000" data-listing-file-modified-sort="1770287446000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-title-sort="`ggrain::geom_rain()`" data-listing-filename-sort="fotw_Klee.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/5/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_Klee.html" class="title listing-title"><code>ggrain::geom_rain()</code></a>
-</td>
-<td>
-<span class="listing-description">Create rain plots with ggplot</span>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1770883200000" data-listing-file-modified-sort="1770887594000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="`ggalluvial::geom_flow`" data-listing-filename-sort="fotw_Campbell.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/12/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_Campbell.html" class="title listing-title"><code>ggalluvial::geom_flow</code></a>
-</td>
-<td>
-<span class="listing-description">geom_flow is a function within the R package ggalluvial. This function plots the ‘flow’ between different categories across time points/stages, the thickness of the flow represents the frequency of proportion</span>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1770883200000" data-listing-file-modified-sort="1770887922000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="`cowplot::draw_plot`" data-listing-filename-sort="fotw_NGUYEN.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/12/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_NGUYEN.html" class="title listing-title"><code>cowplot::draw_plot</code></a>
-</td>
-<td>
-<span class="listing-description">Draw images onto plots</span>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1770883200000" data-listing-file-modified-sort="1770888226000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="`GWalkR::gwalkr`" data-listing-filename-sort="fotw_MENDOZA.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/12/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_MENDOZA.html" class="title listing-title"><code>GWalkR::gwalkr</code></a>
-</td>
-<td>
-<span class="listing-description">An Introduction to an Interactive Exploratory Data Analysis Tool</span>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1771488000000" data-listing-file-modified-sort="1771472574000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-title-sort="`ggplot::geom_pointrange` and `ggplot::geom_crossbar`" data-listing-filename-sort="fotw_PAGE.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/19/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_PAGE.html" class="title listing-title"><code>ggplot::geom_pointrange</code> and <code>ggplot::geom_crossbar</code></a>
-</td>
-<td>
-<span class="listing-description">Add point ranges and cross bars to plots</span>
-</td>
-</tr>
-<tr data-index="8" data-listing-date-sort="1771488000000" data-listing-file-modified-sort="1771490566000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="`beepr::beepr`" data-listing-filename-sort="fotw_minh.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/19/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_minh.html" class="title listing-title"><code>beepr::beepr</code></a>
-</td>
-<td>
-<span class="listing-description">beepR</span>
-</td>
-</tr>
-<tr data-index="9" data-listing-date-sort="1771488000000" data-listing-file-modified-sort="1770886994000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="`dplyr::sample_n()` &amp; `dplyr::sample_frac()`" data-listing-filename-sort="fotw_McCrea.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/19/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_McCrea.html" class="title listing-title"><code>dplyr::sample_n()</code> &amp; <code>dplyr::sample_frac()</code></a>
-</td>
-<td>
-<span class="listing-description">Randomly selecting a number of rows, or a proportion of rows, from a data set.</span>
-</td>
-</tr>
-<tr data-index="10" data-listing-date-sort="1771488000000" data-listing-file-modified-sort="1771472570000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="`gt():: opt_interactive`" data-listing-filename-sort="fotw_DUHN.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">2/19/26</span>
-</td>
-<td>
-<a href="./function_week/fotw_DUHN.html" class="title listing-title"><code>gt():: opt_interactive</code></a>
-</td>
-<td>
-<span class="listing-description">Interactive Tables in HTML outputs, inclding pagination, sorting, and searching</span>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+</section>
+<section id="class-materials" class="level2">
+<h2 class="anchored" data-anchor-id="class-materials">Class materials</h2>
+<ul>
+<li>Class materials in OneDrive folder <a href="https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic">BSTA_526_W26_class_materials_public</a>.</li>
+<li>For today’s class, make sure to download to your computer the folder called <code>part8</code>.</li>
+<li><em>Open RStudio by double-clicking on the project file called <code>BSTA_526_W26_class_materials_public.Rproj</code> in the main OneDrive folder.</em></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Week 8 slides are coming soon!</li>
+</ul>
+<!-- | Part | OneDrive folder | Slides | Webpage | -->
+<!-- |--------------|--------------|--------------|--------------------------------| -->
+<!-- | 8 | [](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart8) | [](../part8/part_08_b526_slides.qmd) | [](../part8/part_08_b526.qmd) | -->
+<!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
+</section>
+<section id="readings" class="level2">
+<h2 class="anchored" data-anchor-id="readings">Readings</h2>
+<section id="required" class="level3">
+<h3 class="anchored" data-anchor-id="required">Required</h3>
+<ul>
+<li><em>R4DS</em> book:
+<ul>
+<li>Functions: <a href="https://r4ds.hadley.nz/functions.html">Chapter 25</a></li>
+<li>Lists: <a href="https://r4ds.hadley.nz/rectangling.html#lists">Section 23.2</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="optional" class="level3">
+<h3 class="anchored" data-anchor-id="optional">Optional</h3>
+<ul>
+<li><a href="https://swcarpentry.github.io/r-novice-inflammation/02-func-R.html">Software Carpentry’s lesson on functions in R</a></li>
+<li><a href="https://jennybc.github.io/purrr-tutorial/bk00_vectors-and-lists.html">Vectors and Lists</a> - Jenny Bryan</li>
+</ul>
+</section>
+</section>
+<section id="post-class-survey" class="level2">
+<h2 class="anchored" data-anchor-id="post-class-survey">Post-class survey</h2>
+<ul>
+<li>Please fill out the <a href="https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo">post-class survey</a> to provide feedback. Thank you!</li>
+<li>Previous muddiest points and clearest points with responses are collected <a href="../survey_feedback_previous_years.html">here</a>.</li>
+</ul>
+</section>
+<section id="homework" class="level2">
+<h2 class="anchored" data-anchor-id="homework">Homework</h2>
+<ul>
+<li>See OneDrive folder for homework assignment.</li>
+<li>HW 8 due on 02/26.</li>
+</ul>
+</section>
+<section id="recording" class="level2">
+<h2 class="anchored" data-anchor-id="recording">Recording</h2>
+<ul>
+<li><strong>In-class</strong> recording links are on <a href="https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&amp;studentItemId=0&amp;backPath=&amp;bltiAppStores=false&amp;errorMessage=&amp;clearAttr=&amp;messageId=&amp;source=&amp;title=&amp;newTopLevel=false&amp;sendingPage=232002&amp;postedComment=false&amp;addBefore=&amp;itemId=5509813&amp;path=push&amp;reviewAssessment=false&amp;topicId=&amp;addTool=-1&amp;recheck=&amp;id=&amp;forumId=">Sakai</a>. Navigate to <em>Course Materials</em> -&gt; <em>Schedule with links to in-class recordings</em>.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

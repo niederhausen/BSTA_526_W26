@@ -43,7 +43,7 @@ source(here::here("schedule_class_dates.R"))
 |  | | HW 6 due |
 |  | Su `r format(midterm_due, "%m/%d")` | **[Take home Midterm due (Sunday)]{style="color:#046b94;"}** |  |
 |  |  |  |  |
-| 8 | Th `r format(w8d1, "%m/%d")` | Intro to functions, working with lists |
+|[8](weeks/week_08.qmd) | Th `r format(w8d1, "%m/%d")` | Creating functions and working with lists |
 |  | | HW 7 due |
 |  |  |  |  |
 | 9 | Th `r format(w9d1, "%m/%d")` | Iteration |

@@ -69,7 +69,7 @@ source(here::here("schedule_class_dates.R"))
 <br>
 
 -   We will first finish the Week 6 slides, starting with [Section 4.7: Challenge 3](https://niederhausen.github.io/BSTA_526_W26/part6/part_06_b526_slides.html#/challenge-3---group-work).
--   Week 7 slides are coming soon!
+
 
 <!-- -   [Link to Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?sakai.tool.placement.id=0a1dc228-11f3-4ae0-a5d1-1d4597c01180) for link to Week 6 group work files -->
 
