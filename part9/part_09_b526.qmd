@@ -1011,6 +1011,8 @@ tmpout
 # str(tmpout)
 ```
 
+:::
+
 ## Challenge 4
 
 -   Create a similar function as `my_ttest` above that fits a linear regression instead of a t-test with the same outcome/group variables, and apply to the list of data sets using `map()`.

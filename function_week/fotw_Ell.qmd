@@ -1,0 +1,120 @@
+---
+title: "`details::details`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Collapsible sections in quarto"
+author: "Walter Ell"
+date: "3/5/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(palmerpenguins)
+
+```
+
+See the [syllabus](https://niederhausen.github.io/BSTA_526_W26/syllabus.html#function-of-the-week) for links to presentations from previous years.
+
+
+
+# `Function(s) Name(s)`
+
+> What function(s) is being presented and what package is it from?
+
+```{r}
+#::: {.callout-note collapse="true"}
+# ## Two # is one way to make the title
+# Content here
+#:::
+
+#::: {.callout-note collapse="true" title=" Different title"}
+# Content here
+#:::
+
+
+```
+
+
+
+# What is it for?
+
+::: {.callout-note collapse="true"}
+## For content labeled for notes
+
+::: {.callout-tip collapse="true"}
+## For content used for tips
+
+Placing text within the nested layer above can cause problems
+:::
+:::
+
+
+This formatting allows for quarto to format with collapsible sections to reduce visual clutter.
+
+# Examples
+
+::: {.callout-caution collapse="true"}
+## For content used for cautionary warnings
+
+The three : that are used for the wrapper can cause issues with some packages
+when using Python
+:::
+
+::: {.callout-important collapse="true"}
+## For content used for important info
+
+:::
+
+::: {.callout-tip collapse="true" title="They can have different titles"}
+## Be care ful about changing the title
+
+It often overrides other formats within
+:::
+
+
+::: {.callout-caution collapse="true" title="R code can be placed within"}
+```{r}
+head(penguins)
+```
+:::
+
+```{r}
+#::: {.callout-important collapse="true" icon=false appearance=minimal}
+# Content here
+#:::
+
+```
+
+::: {.callout-important collapse="true" icon=false appearance=minimal}
+## Customization
+The icon can be turned off and the appearance changed
+:::
+
+
+
+# Is it helpful?
+
+Useful for making the vertical space of a quarto document less cluttered and more selective.
+However the formating can be disrupted by other quarto formating. Some extentions
+to the customization can be done via terminal commands.

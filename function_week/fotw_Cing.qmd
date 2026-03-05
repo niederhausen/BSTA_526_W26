@@ -1,0 +1,111 @@
+---
+title: "`lubridate::ceiling_date`, `lubridate::floor_date`, `lubridate::round_date`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Rounding dates and time object to a specified unit of time"
+author: "Sofia Cing"
+date: "3/5/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(lubridate)
+```
+
+
+# `lubridate::ceiling_date`, `lubridate::floor_date`, & `lubridate::round_date`
+
+> What function(s) is being presented and what package is it from?
+
+`ceiling_date`, `floor_date`, and `round_date` are rounding date function from the `lubridate` package. 
+
+# What is it for?
+
+> Discuss what the function(s) does. 
+
+`ceiling_date` rounds **up** date or time (of choice) to the closest boundary of specified time unit. 
+
+`floor_date` rounds **down** the date or time (of choice) to the closest boundary of the specified time unit. 
+
+`round_date` rounds the date or time (of choice) to the **nearest** boundary of the specified time unit. 
+
+
+# Examples 
+>Provide at least two examples that you have created yourself for your dataset of choice that show how to use the function(s).
+
+```{r}
+data_dates <- tibble(
+  messy_dates = c("05/05/1987", "11/23/1994", "03/17/2025",
+                  "03/05/2026","01/17/2019", "04,15,2023",
+                  "04,16,2023"))
+```
+These functions operate on Date or date-time objects. If dates are stored as character strings, they must first be parsed using functions like `mdy()` or `ymd()` to convert them into Date or POSIX date-time formats.
+  
+:::{.panel-tabset}
+## ceiling_date
+```{r}
+data_dates %>%
+  mutate(
+    dates = mdy(messy_dates),
+    ceiling_month = ceiling_date(dates, "month")
+  )
+```
+Works on units: ".1 sec", "second", " minute", "5 mins", "hour", "day", "week", "month", "bimonth", "quarter", "season", "halfyear", "year"
+
+## floor_date
+```{r}
+data_dates %>%
+  mutate(
+    dates = mdy(messy_dates),
+    floor_month = floor_date(dates, "month")
+  )
+```
+Works on units: ".1s", "second", "minute", "hour", "day",
+"week", "month", "bimonth", "quarter", "season", "halfyear",
+"year"
+
+## round_date
+```{r}
+data_dates %>%
+  mutate(
+    dates = mdy(messy_dates),
+    round_month = round_date(dates, "month")
+  )
+```
+Works on units: ".5s", "sec", "second", "minute", "hour", "2 hours", "day", "week", "month", "bimonth", "quarter", "halfyear", "year"
+
+:::
+
+
+# Is it helpful?
+
+> Discuss whether you think this function(s) is useful for you and your work. Is it the best thing since sliced bread, or is it not really relevant to your work? If not relevant to you, can you think of examples of when it would be useful?
+
+I think the functions would be useful, especially when working with datasets that include many dates. Since data is often collected over time, so being able to round dates to the nearest month or year would make it easier to organize and summarize trends. For example, grouping patient visits by month to look at changes in outcomes over time.
+
+I don’t think these functions are something I would use every single day, but they are very helpful when working with time-based data. They make organizing and analyzing dates much easier and more efficient.

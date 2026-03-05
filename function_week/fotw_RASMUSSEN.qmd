@@ -1,0 +1,101 @@
+---
+title: "`lubridate::as_datetime(), as_date(), as_hms()`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Coercing NAMCS data into date, date-time, and time objects"
+author: "Ella Rasmussen"
+date: "3/5/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(lubridate)
+library(hms)
+library(haven)
+library(here)
+
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `Function(s) Name(s)`
+
+> The functions being presented are as_datetime(), as_date(), and as_hms() from the lubridate package.
+
+# What is it for?
+
+> In health research, dates and visit times are often imported as character strings or numeric values that R cannot use for calculations in their raw form.
+>
+> **as_date():** Converts strings or numbers into a "Date" object (YYYY-MM-DD), which is the standard format for tracking days and years.
+>
+> **as_datetime():** Coerces data into a "POSIXct" object, which includes both the calendar date and the precise clock time (Hours:Minutes:Seconds).
+>
+> **as_hms():** Specifically handles the time-of-day, which is often used to manage variables like patient arrival times.
+
+# Examples
+
+> These examples will use the 2015 National Ambulatory Medical Care Survey (NAMCS) dataset from the CDC. This is a national survey designed to provide data about medical care in the United States. The specific file used, (namcs2015-spss.sav) is an SPSS data set that includes thousands of rows representing individual patient visits. Each row contains clinical information such as age, the month, and the day of the visit.
+>
+> In the CDC's NAMCS survey, date information is often provided in separate numeric columns, such as "VMONTH" for month and "VDAYR" for day. We can use these functions to synthesize this data into usable objects.
+
+```{r}
+# Load the NAMCS SPSS dataset
+namcs <- read_sav(here::here("function_week", "data", "namcs2015-spss.sav"))
+
+# Data before coercion 
+namcs %>% select(VMONTH, VDAYR) %>% head(3)
+
+# Creating a subset of the NAMCS 2015 data
+namcs_sample <- tibble(
+  VMONTH = c(10, 12, 4), # Numeric October, December, April
+  VDAYR = c(2, 2, 5),    # Numeric days of the week/month
+  AGE = c(65, 45, 75)
+)
+
+# Sample types before coercion 
+glimpse(namcs_sample) 
+
+# Example 1: Using as_date() to create a visit date
+# Combine numeric components into a string and coerce to a Date object
+(namcs_dates <- namcs_sample %>%
+  mutate(date_string = paste("2015", VMONTH, VDAYR, sep = "-")) %>%
+  mutate(Visit_Date = as_date(date_string)))
+# Check: Confirm the class is now "Date"
+class(namcs_dates$Visit_Date)
+
+# Example 2: Using as_datetime() and as_hms() for timestamps
+# Imagine we have raw character strings for patient arrival times
+(namcs_times <- namcs_dates %>%
+  mutate(arrival_raw = c("08:30:00", "14:15:22", "19:05:10")) %>%
+  # Coerce to a full Date-Time object
+  mutate(Arrival_DT = as_datetime(paste(date_string, arrival_raw))) %>%
+  # Coerce just the Time using as_hms()
+  mutate(Arrival_Time = as_hms(arrival_raw)))
+
+# Check: Show data types after coercion
+namcs_times %>% 
+  select(Visit_Date, Arrival_Time, Arrival_DT) %>% 
+  glimpse()
+```
+
+# Is it helpful?
+
+> Yes, these functions are helpful for health data science. In clinical settings like NAMCS, data is often collected longitudinally. Without these functions, R would treat visit dates as simple text. This makes it impossible to sort them chronologically or calculate metrics such as "days since last follow-up" or "patient age at time of visit". These tools take messy survey characters and turn them into mathematically active time objects, which automates the data wrangling process.
