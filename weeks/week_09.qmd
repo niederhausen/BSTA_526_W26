@@ -22,9 +22,11 @@ source(here::here("schedule_class_dates.R"))
 
 ### Part 9: 
 
--   `for` loops
--    Iteration
--   `purrr`
+-   **Introduce** statistical modeling and *learn* how to fit a simple linear regression model and run a t-test in R
+-   **Learn** how to use `broom` functions to tidy up statistical model output
+-   **Learn** about `for` loops
+-   **Understand** how to apply a function to a list
+-   **Learn** how to iterate over a list using `map()` functions from the `purrr` package
 
 
 ## Announcements
@@ -54,15 +56,15 @@ source(here::here("schedule_class_dates.R"))
 
 **Note: The link to the slides version of the class notes is not working. Please see the OneDrive folder for the html of the slides. **
 
-<br>
+<!-- <br> -->
 
-Week 9 notes coming soon!
+<!-- Week 9 notes coming soon! -->
 
-<!-- | Part | OneDrive folder | Slides | Webpage | -->
-<!-- |--------------|--------------|--------------|--------------------------------| -->
-<!-- | 9 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart9) | [{{< iconify simple-icons:quarto >}}](../part9/part_09_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part9/part_09_b526.qmd) | -->
+| Part | OneDrive folder | Slides | Webpage |
+|--------------|--------------|--------------|--------------------------------|
+| 9 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart9) | [{{< iconify simple-icons:quarto >}}](../part9/part_09_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part9/part_09_b526.qmd) |
 
-<!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
+: {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"}
 
 
 ## Readings
