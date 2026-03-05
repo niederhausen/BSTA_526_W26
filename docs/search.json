@@ -186,7 +186,7 @@
     "href": "function_week.html",
     "title": "Functions of the Week",
     "section": "",
-    "text": "See the syllabus for information about the Functions of the Week, as well as links to presentations from previous years.\nBelow are links to functions of the week presentations.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\n1/8/26\n\n\npackage::function\n\n\n(template file) Very brief description of function\n\n\n\n\n2/5/26\n\n\nstringr::str_to_camel()|str_to_snake()|str_to_kebab()\n\n\nchanges chosen string via capitalization, ’_’ and ‘-’ \n\n\n\n\n2/5/26\n\n\npatchwork::patchwork\n\n\nA package for arranging/aligning plots\n\n\n\n\n2/5/26\n\n\nggrain::geom_rain()\n\n\nCreate rain plots with ggplot\n\n\n\n\n2/12/26\n\n\nggalluvial::geom_flow\n\n\ngeom_flow is a function within the R package ggalluvial. This function plots the ‘flow’ between different categories across time points/stages, the thickness of the flow represents the frequency of proportion\n\n\n\n\n2/12/26\n\n\ncowplot::draw_plot\n\n\nDraw images onto plots\n\n\n\n\n2/12/26\n\n\nGWalkR::gwalkr\n\n\nAn Introduction to an Interactive Exploratory Data Analysis Tool\n\n\n\n\n2/19/26\n\n\nggplot::geom_pointrange and ggplot::geom_crossbar\n\n\nAdd point ranges and cross bars to plots\n\n\n\n\n2/19/26\n\n\nbeepr::beepr\n\n\nbeepR\n\n\n\n\n2/19/26\n\n\ndplyr::sample_n() & dplyr::sample_frac()\n\n\nRandomly selecting a number of rows, or a proportion of rows, from a data set.\n\n\n\n\n2/19/26\n\n\ngt():: opt_interactive\n\n\nInteractive Tables in HTML outputs, inclding pagination, sorting, and searching\n\n\n\n\n\n\nNo matching items"
+    "text": "See the syllabus for information about the Functions of the Week, as well as links to presentations from previous years.\nBelow are links to functions of the week presentations.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\n1/8/26\n\n\npackage::function\n\n\n(template file) Very brief description of function\n\n\n\n\n2/5/26\n\n\nstringr::str_to_camel()|str_to_snake()|str_to_kebab()\n\n\nchanges chosen string via capitalization, ’_’ and ‘-’ \n\n\n\n\n2/5/26\n\n\npatchwork::patchwork\n\n\nA package for arranging/aligning plots\n\n\n\n\n2/5/26\n\n\nggrain::geom_rain()\n\n\nCreate rain plots with ggplot\n\n\n\n\n2/12/26\n\n\nggalluvial::geom_flow\n\n\ngeom_flow is a function within the R package ggalluvial. This function plots the ‘flow’ between different categories across time points/stages, the thickness of the flow represents the frequency of proportion\n\n\n\n\n2/12/26\n\n\ncowplot::draw_plot\n\n\nDraw images onto plots\n\n\n\n\n2/12/26\n\n\nGWalkR::gwalkr\n\n\nAn Introduction to an Interactive Exploratory Data Analysis Tool\n\n\n\n\n2/19/26\n\n\nggplot::geom_pointrange and ggplot::geom_crossbar\n\n\nAdd point ranges and cross bars to plots\n\n\n\n\n2/19/26\n\n\nbeepr::beepr\n\n\nbeepR\n\n\n\n\n2/19/26\n\n\ndplyr::sample_n() & dplyr::sample_frac()\n\n\nRandomly selecting a number of rows, or a proportion of rows, from a data set.\n\n\n\n\n2/19/26\n\n\ngt():: opt_interactive\n\n\nInteractive Tables in HTML outputs, inclding pagination, sorting, and searching\n\n\n\n\n2/26/26\n\n\nplotly::ggplotly()\n\n\nConverting ggplot2 plots into interactive Plotly visualizations\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "function_week/data/function_week.html",
@@ -5738,5 +5738,103 @@
     "title": "8: Functions and Lists",
     "section": "4.14 Recap of lists",
     "text": "4.14 Recap of lists\n\nThese are some basic operations with lists in R.\nLists are powerful for organizing and manipulating complex data structures in a flexible way.\n\n\nCreating a List:Accessing Elements:Adding Elements:List Attributes:Nested Lists:\n\n\n\nYou can create a list using the list() function.\nElements within the list can be of different types:\n\n\n# Example list\nmy_list &lt;- list(\n  numeric_vector = c(1, 2, 3),\n  character_vector = c(\"a\", \"b\", \"c\"),\n  matrix = matrix(1:4, nrow = 2),\n  data_frame = data.frame(name = c(\"John\", \"Jane\"), age = c(25, 30))\n)\n\nmy_list\n\n$numeric_vector\n[1] 1 2 3\n\n$character_vector\n[1] \"a\" \"b\" \"c\"\n\n$matrix\n     [,1] [,2]\n[1,]    1    3\n[2,]    2    4\n\n$data_frame\n  name age\n1 John  25\n2 Jane  30\n\n\n\n\n\nYou can access elements in a list using\n\ndouble square brackets [[]]\nor the dollar sign $ for named elements:\n\n\n\n# Accessing elements\n(numeric_vector &lt;- my_list[[1]])\n\n[1] 1 2 3\n\n(character_vector &lt;- my_list$character_vector)\n\n[1] \"a\" \"b\" \"c\"\n\n\n\n\n\nYou can add elements to a list\n\nusing the c() function or\nby assigning a new element to a specific index or\nusing the familiar $:\n\n\n\n# Adding elements\nmy_list &lt;- c(my_list, new_element = \"This is a new element\")\n\nmy_list[[6]] &lt;- \"Another new element\"\nmy_list$new3 &lt;- \"Yet another new element\"\n\nmy_list\n\n$numeric_vector\n[1] 1 2 3\n\n$character_vector\n[1] \"a\" \"b\" \"c\"\n\n$matrix\n     [,1] [,2]\n[1,]    1    3\n[2,]    2    4\n\n$data_frame\n  name age\n1 John  25\n2 Jane  30\n\n$new_element\n[1] \"This is a new element\"\n\n[[6]]\n[1] \"Another new element\"\n\n$new3\n[1] \"Yet another new element\"\n\n\n\n\n\nLists can have attributes, such as names and dimensions.\nYou can assign names to list elements:\n\n\nnames(my_list)\n\n[1] \"numeric_vector\"   \"character_vector\" \"matrix\"           \"data_frame\"      \n[5] \"new_element\"      \"\"                 \"new3\"            \n\n# Assigning names to list elements\nnames(my_list) &lt;- c(\"numeric\", \"character\", \"matrix\", \"dataframe\", \"new1\", \"new2\", \"new3\")\n\nnames(my_list)\n\n[1] \"numeric\"   \"character\" \"matrix\"    \"dataframe\" \"new1\"      \"new2\"     \n[7] \"new3\"     \n\n\n\n\n\nLists can be nested, meaning you can have lists within lists:\n\n\n# Nested list\nnested_list &lt;- list(\n  sublist1 = list(a = 1, b = 2),\n  sublist2 = list(c = \"apple\", d = \"banana\")\n)\n\nnested_list\n\n$sublist1\n$sublist1$a\n[1] 1\n\n$sublist1$b\n[1] 2\n\n\n$sublist2\n$sublist2$c\n[1] \"apple\"\n\n$sublist2$d\n[1] \"banana\""
+  },
+  {
+    "objectID": "function_week/fotw_GomezHernandez.html",
+    "href": "function_week/fotw_GomezHernandez.html",
+    "title": "plotly::ggplotly()",
+    "section": "",
+    "text": "The Porsche 914-2 shown below is one of the vehicles included in the mtcars dataset.\nImage: 1971 Porsche 914. Bob Adams from Amanzimtoti, South Africa, CC BY-SA 2.0, via Wikimedia Commons."
+  },
+  {
+    "objectID": "function_week/fotw_GomezHernandez.html#loading-dataset",
+    "href": "function_week/fotw_GomezHernandez.html#loading-dataset",
+    "title": "plotly::ggplotly()",
+    "section": "0.1 Loading dataset",
+    "text": "0.1 Loading dataset\n\n# Creating working version of the built-in mtcars dataset\n\nmtcars_tbl &lt;- mtcars %&gt;%\n  \n  # Converting row names (car names) into an explicit column\n  tibble::rownames_to_column(var = \"car\") %&gt;%\n  \n  # Converting selected numeric variables into categorical factors\n  # Showing categories rather than continuous measurements\n  mutate(\n    cyl = factor(cyl),  # Converting number of cylinders to factor\n    am  = factor(am,\n                 levels = c(0, 1),\n                 labels = c(\"Automatic\", \"Manual\"))  # Changing transmission type to labeled factor\n  )\n\n# Showing the first few rows of the cleaned dataset\nhead(mtcars_tbl)\n\n                car  mpg cyl disp  hp drat    wt  qsec vs        am gear carb\n1         Mazda RX4 21.0   6  160 110 3.90 2.620 16.46  0    Manual    4    4\n2     Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0    Manual    4    4\n3        Datsun 710 22.8   4  108  93 3.85 2.320 18.61  1    Manual    4    1\n4    Hornet 4 Drive 21.4   6  258 110 3.08 3.215 19.44  1 Automatic    3    1\n5 Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0 Automatic    3    2\n6           Valiant 18.1   6  225 105 2.76 3.460 20.22  1 Automatic    3    1"
+  },
+  {
+    "objectID": "function_week/fotw_GomezHernandez.html#the-function-has-some-useful-interactive-features-such-as",
+    "href": "function_week/fotw_GomezHernandez.html#the-function-has-some-useful-interactive-features-such-as",
+    "title": "plotly::ggplotly()",
+    "section": "2.1 The function has some useful interactive features such as:",
+    "text": "2.1 The function has some useful interactive features such as:\n\nHovering over data points to see values in more detail\nBeing able to zoom in/out of specific areas of figures\nToggling features on/off using the legend\nSaving figures as PNG files"
+  },
+  {
+    "objectID": "function_week/fotw_GomezHernandez.html#example-1",
+    "href": "function_week/fotw_GomezHernandez.html#example-1",
+    "title": "plotly::ggplotly()",
+    "section": "3.1 Example 1",
+    "text": "3.1 Example 1\n\n# Creating a scatterplot of fuel efficiency versus vehicle weight\ncarfig1 &lt;- ggplot(mtcars_tbl,\n             aes(x = wt, y = mpg, color = cyl)) +\n  geom_point(size = 3) +\n  theme_minimal() +\n  labs(\n    title = \"1974 Fuel Efficiency vs Weight by Cylinders\",\n    x = \"Weight (1000 lbs)\",\n    y = \"Miles per Gallon\",\n    color = \"Cylinders\"\n  )\n\n# Showing the static ggplot\ncarfig1\n\n\n\n\n\n# Converting the static ggplot into an interactive plot\nggplotly(carfig1)"
+  },
+  {
+    "objectID": "function_week/fotw_GomezHernandez.html#example-2",
+    "href": "function_week/fotw_GomezHernandez.html#example-2",
+    "title": "plotly::ggplotly()",
+    "section": "3.2 Example 2",
+    "text": "3.2 Example 2\n\n# Creating a boxplot comparing fuel efficiency by number of cylinders\n# Adding custom hover text for each car\n\ncarfig2 &lt;- ggplot(\n  mtcars_tbl,\n  aes(\n    x = cyl,\n    y = mpg,\n    fill = cyl,\n    text = paste0( # Specifying exact hover text\n      \"Car: \", car,\n      \"&lt;br&gt;MPG: \", mpg,\n      \"&lt;br&gt;Weight: \", wt,\n      \"&lt;br&gt;Transmission: \", am\n    ) )\n) +\n  geom_boxplot() +  \n geom_jitter(width = 0.15, alpha = 0.7, shape = 21, size = 3, stroke = 0.3) +  \n  # Showing individual observations\n  theme_minimal() +\n  labs(\n    title = \"1974 Fuel Efficiency by Number of Cylinders\",\n    x = \"Number of Cylinders\",\n    y = \"Miles per Gallon\",\n    fill = \"Cylinders\")\n\n# Showing the static boxplot\ncarfig2\n\n\n\n\n\n# Converting the boxplot into an interactive plot\n# Displaying only the custom hover text\nggplotly(carfig2, tooltip = \"text\") # Specifying interactive feature\n\n\n\n\n# Additional tooltip options include: \"x\", \"y\", \"fill\", and \"colour\""
+  },
+  {
+    "objectID": "function_week/fotw_GomezHernandez.html#yes",
+    "href": "function_week/fotw_GomezHernandez.html#yes",
+    "title": "plotly::ggplotly()",
+    "section": "4.1 Yes!",
+    "text": "4.1 Yes!\n\n4.1.1 Community Health & Emergency Response Coordinator at Latino Network\n\nI train Community Health Workers (CHWs) to become certified with OHA\nI also do workshops with Latinx community members regarding emergency preparedness, commercial tobacco cessation, & overdose prevention\nUsing ggplotly() could potentially be a fun & interactive way to present data to community members & CHWs\n\n\n\n4.1.2 Epidemiology\n\nI would create visualizations using this function for an interactive research presentation, maybe even a digital research poster"
+  },
+  {
+    "objectID": "weeks/week_09.html",
+    "href": "weeks/week_09.html",
+    "title": "Week 9",
+    "section": "",
+    "text": "for loops\nIteration\npurrr"
+  },
+  {
+    "objectID": "weeks/week_09.html#topics",
+    "href": "weeks/week_09.html#topics",
+    "title": "Week 9",
+    "section": "",
+    "text": "for loops\nIteration\npurrr"
+  },
+  {
+    "objectID": "weeks/week_09.html#announcements",
+    "href": "weeks/week_09.html#announcements",
+    "title": "Week 9",
+    "section": "Announcements",
+    "text": "Announcements\n\n\n\nFunctions of the Week\n\nPlease upload to Sakai your FOTW presentation by 7 am of the day you are presenting.\n\nCascadia R Conf in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on."
+  },
+  {
+    "objectID": "weeks/week_09.html#class-materials",
+    "href": "weeks/week_09.html#class-materials",
+    "title": "Week 9",
+    "section": "Class materials",
+    "text": "Class materials\n\nClass materials in OneDrive folder BSTA_526_W26_class_materials_public.\nFor today’s class, make sure to download to your computer the folder called part9.\nOpen RStudio by double-clicking on the project file called BSTA_526_W26_class_materials_public.Rproj in the main OneDrive folder.\n\nNote: The link to the slides version of the class notes is not working. Please see the OneDrive folder for the html of the slides. \n\nWeek 9 notes coming soon!"
+  },
+  {
+    "objectID": "weeks/week_09.html#readings",
+    "href": "weeks/week_09.html#readings",
+    "title": "Week 9",
+    "section": "Readings",
+    "text": "Readings\n\nRequired\n\nR4DS book:\n\nfor loops: 27.5\nIteration: Chapter 26\n\nSection 26.2: Modifying multiple columns is on using the across() function, such as in mutate(across()), which we’ve already covered. You can skip this section if you like.\nSection 26.3 Reading multiple files introduces purrr::map() which is new to us. Make sure to read this section.\n\n\nLearn to purrr from Rebecca Barter’s blog. This is a nice non-technical introduction to purrr and the various map variants.\n\n\n\nOptional\n\npurrr tutorial by Jenny Bryan\n\nI recommend the Core purrr lessons\n\nAdvanced R book (we’ve graduated from the R4DS book!) by Hadley Wickham\n\nFunctionals: Chapter 9\n\nThis chapter covers purrr in detail. It’s the most technical of the suggested readings."
+  },
+  {
+    "objectID": "weeks/week_09.html#post-class-survey",
+    "href": "weeks/week_09.html#post-class-survey",
+    "title": "Week 9",
+    "section": "Post-class survey",
+    "text": "Post-class survey\n\nPlease fill out the post-class survey to provide feedback. Thank you!\nPrevious muddiest points and clearest points with responses are collected here."
+  },
+  {
+    "objectID": "weeks/week_09.html#homework",
+    "href": "weeks/week_09.html#homework",
+    "title": "Week 9",
+    "section": "Homework",
+    "text": "Homework\n\nSee OneDrive folder for homework assignment.\nHW 9 due on 03/05."
+  },
+  {
+    "objectID": "weeks/week_09.html#recording",
+    "href": "weeks/week_09.html#recording",
+    "title": "Week 9",
+    "section": "Recording",
+    "text": "Recording\n\nIn-class recording links are on Sakai. Navigate to Course Materials -&gt; Schedule with links to in-class recordings."
   }
 ]

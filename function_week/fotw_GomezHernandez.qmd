@@ -1,0 +1,168 @@
+---
+title: "`plotly::ggplotly()`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Converting ggplot2 plots into interactive Plotly visualizations"
+author: "Isaac Gomez Hernandez"
+date: "2/26/2026"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: false
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r}
+#| label: setup
+#| include: false
+#| message: false
+#| warning: false
+
+# Loading packages
+
+pacman::p_load(
+  tidyverse,
+  plotly
+)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+The Porsche 914-2 shown below is one of the vehicles included in the `mtcars` dataset.
+
+![1971 Porsche 914](https://upload.wikimedia.org/wikipedia/commons/a/a2/1971_Porsche_914_%2812403993623%29.jpg){width=100%}
+
+*Image: 1971 Porsche 914. Bob Adams from Amanzimtoti, South Africa, CC BY-SA 2.0, via Wikimedia Commons.*
+
+## Loading dataset
+
+```{r}
+# Creating working version of the built-in mtcars dataset
+
+mtcars_tbl <- mtcars %>%
+  
+  # Converting row names (car names) into an explicit column
+  tibble::rownames_to_column(var = "car") %>%
+  
+  # Converting selected numeric variables into categorical factors
+  # Showing categories rather than continuous measurements
+  mutate(
+    cyl = factor(cyl),  # Converting number of cylinders to factor
+    am  = factor(am,
+                 levels = c(0, 1),
+                 labels = c("Automatic", "Manual"))  # Changing transmission type to labeled factor
+  )
+
+# Showing the first few rows of the cleaned dataset
+head(mtcars_tbl)
+```
+
+
+
+# `Function(s) Name(s)`
+
+The function being presented is `ggplotly()` from the `plotly` package in R.  
+
+
+
+# What is it for?
+
+## The function has some useful interactive features such as:
+- Hovering over data points to see values in more detail
+- Being able to zoom in/out of specific areas of figures
+- Toggling features on/off using the legend
+- Saving figures as PNG files
+
+
+# Examples
+
+## Example 1
+```{r}
+# Creating a scatterplot of fuel efficiency versus vehicle weight
+carfig1 <- ggplot(mtcars_tbl,
+             aes(x = wt, y = mpg, color = cyl)) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(
+    title = "1974 Fuel Efficiency vs Weight by Cylinders",
+    x = "Weight (1000 lbs)",
+    y = "Miles per Gallon",
+    color = "Cylinders"
+  )
+
+# Showing the static ggplot
+carfig1
+```
+
+
+```{r}
+# Converting the static ggplot into an interactive plot
+ggplotly(carfig1)
+```
+
+
+## Example 2
+
+```{r}
+# Creating a boxplot comparing fuel efficiency by number of cylinders
+# Adding custom hover text for each car
+
+carfig2 <- ggplot(
+  mtcars_tbl,
+  aes(
+    x = cyl,
+    y = mpg,
+    fill = cyl,
+    text = paste0( # Specifying exact hover text
+      "Car: ", car,
+      "<br>MPG: ", mpg,
+      "<br>Weight: ", wt,
+      "<br>Transmission: ", am
+    ) )
+) +
+  geom_boxplot() +  
+ geom_jitter(width = 0.15, alpha = 0.7, shape = 21, size = 3, stroke = 0.3) +  
+  # Showing individual observations
+  theme_minimal() +
+  labs(
+    title = "1974 Fuel Efficiency by Number of Cylinders",
+    x = "Number of Cylinders",
+    y = "Miles per Gallon",
+    fill = "Cylinders")
+
+# Showing the static boxplot
+carfig2
+```
+
+```{r}
+# Converting the boxplot into an interactive plot
+# Displaying only the custom hover text
+ggplotly(carfig2, tooltip = "text") # Specifying interactive feature
+
+# Additional tooltip options include: "x", "y", "fill", and "colour"
+```
+
+
+
+
+# Is it helpful?
+
+## Yes!
+### Community Health & Emergency Response Coordinator at Latino Network
+- I train Community Health Workers (CHWs) to become certified with OHA
+- I also do workshops with Latinx community members regarding emergency preparedness, commercial tobacco cessation, & overdose prevention 
+- Using `ggplotly()` could potentially be a fun & interactive way to present data to community members & CHWs
+
+### Epidemiology
+- I would create visualizations using this function for an interactive research presentation, maybe even a digital research poster
+
+

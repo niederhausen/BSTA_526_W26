@@ -46,7 +46,7 @@ source(here::here("schedule_class_dates.R"))
 |[8](weeks/week_08.qmd) | Th `r format(w8d1, "%m/%d")` | Creating functions and working with lists |
 |  | | HW 7 due |
 |  |  |  |  |
-| 9 | Th `r format(w9d1, "%m/%d")` | Iteration |
+|[9](weeks/week_09.qmd) | Th `r format(w9d1, "%m/%d")` | Iteration |
 |  | | HW 8 due |
 |  |  |  |  |
 | 10 | Tu `r format(final_open, "%m/%d")` | **[Final Exam Assigned (Tuesday)]{style="color:#046b94;"}** |  |
