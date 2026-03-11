@@ -49,8 +49,8 @@ source(here::here("schedule_class_dates.R"))
 |[9](weeks/week_09.qmd) | Th `r format(w9d1, "%m/%d")` | Iteration |
 |  | | HW 8 due |
 |  |  |  |  |
-| 10 | Tu `r format(final_open, "%m/%d")` | **[Final Exam Assigned (Tuesday)]{style="color:#046b94;"}** |  |
-|  | Th `r format(w10d1, "%m/%d")` | More Stats/Purrr |
+|[10](weeks/week_10.qmd) | Tu `r format(final_open, "%m/%d")` | **[Final Exam Assigned (Tuesday)]{style="color:#046b94;"}** |  |
+|  | Th `r format(w10d1, "%m/%d")` | More `purrr`ing |
 |  | | HW 9 due |
 |  |  |  |  |
 | 11 | Th `r format(w11d1, "%m/%d")` | No Class, Office Hour |  |

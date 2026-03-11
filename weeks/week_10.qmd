@@ -1,0 +1,155 @@
+---
+title: "Week 10"
+pagetitle: "Week 10 BSTA 526"
+description: "More `purrr`ing"
+date: "`r library(here); source(here('schedule_class_dates.R')); w10d1`"
+date-modified: "today"
+categories: [""]
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+source(here::here("schedule_class_dates.R"))
+```
+
+
+## Topics
+
+### Part 10: 
+
+- **Use** `map()` functions from the `purrr` package to iterate functions
+- **Nest** datasets into list-columns, and iterate statistical modeling and/or visualization functions over those elements
+- **Use** `map2()` from the `purrr` package to iterate functions across two inputs
+- **Learn** how to iterate regression modeling across different model variables 
+
+
+## Announcements
+
+-   **_Please fill out the course evaluations for the class._ **
+    -   Course evaluations are very helpful for making improvements to our classes. 
+    -   If too few students fill out the evaluations, they are not released to me.
+-   **Please complete the [SPH's Annual Student Survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_9sJYw1fes2Ah24u?Q_CHL=qr)**
+    -    *Responses help us improve our SPH programs!*
+
+::: {.columns}
+                                        
+::: {.column width="70%"}
+
+-   [**Cascadia R Conf**](https://cascadiarconf.com/) in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on. 
+:::
+                                          
+::: {.column width="30%"}
+![](../images/CascadiaR_logo_2026.png){fig-align="center" width="60%"}
+:::
+                                          
+:::
+
+## Class materials
+
+-   Class materials in OneDrive folder [BSTA_526_W26_class_materials_public](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic).
+-   For today's class, make sure to download to your computer the folder called `part10`. 
+-   *Open RStudio by double-clicking on the project file called `BSTA_526_W26_class_materials_public.Rproj` in the main OneDrive folder.*
+
+
+**Note: The link to the slides version of the class notes is not working. Please see the OneDrive folder for the html of the slides. **
+
+<br>
+
+Week 10 notes coming soon!
+
+<!-- | Part | OneDrive folder | Slides | Webpage | -->
+<!-- |--------------|--------------|--------------|--------------------------------| -->
+<!-- | 10 | [{{< iconify logos:microsoft-onedrive >}}](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart10) | [{{< iconify simple-icons:quarto >}}](../part10/part_10_b526_slides.qmd) | [{{< iconify streamline web size=20px >}}](../part10/part_10_b526.qmd) | -->
+
+<!-- : {.striped .hover tbl-colwidths="\[3, 4, 4, 4\]"} -->
+
+
+## Readings
+
+
+### Required
+
+
+-   [`purrr` tutorial](https://jennybc.github.io/purrr-tutorial/) by Jenny Bryan
+    -   This was listed as optional last week. If you haven't read it, I strongly recommend the Core `purrr` lessons, and in particular [*Introduction to `map()`: extract elements*](https://jennybc.github.io/purrr-tutorial/ls01_map-name-position-shortcuts.html).
+        -   Note: it uses `map_dfr()` which is the "newer" version of `map_df()`, but both are superseded as of `purrr` 1.0.0 though. Instead used `map()` combined with `list_rbind()` as mentioned in [part 9](https://niederhausen.github.io/BSTA_526_W26/part9/part_09_b526.html#data-frame-output).
+-   `gtsummary`:
+    -   [`tbl_regression()` tutorial](https://www.danieldsjoberg.com/gtsummary/articles/tbl_regression.html)
+    -   Merge tables with [`tbl_merge()`](https://www.danieldsjoberg.com/gtsummary/reference/tbl_merge.html)
+
+
+### Optional
+
+-   *Great **classic** `purrr` resources.* The drawback is that some of the functions have newer versions in the mean time. I am still recommending them though since they are classics and give great overviews of `purrr` and `map()`. 
+    -   [Joy of Functional programming talk by Hadley Wickham](https://learning.acm.org/techtalks/functionalprogramming) - more on nesting/iteration
+    -   More on using map and nested data with modeling: [Many Models](https://r4ds.had.co.nz/many-models.html)
+        -   This is from the 1st edition in the R4DS book and was removed in the 2nd edition.
+        -   It's a great introduction to using `map()` on nested data.
+-   Combining `bromm`'s `tidy()` with  `purrr:::map()`: [broom and dplyr](https://broom.tidymodels.org/articles/broom_and_dplyr.html)  
+
+
+### Suggested additional R readings
+
+
+::: {.panel-tabset}
+
+#### Miscellaneous R
+
+-   Useful vignettes on table output: [gtsummary intro to tbl_summary](https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html)
+-   tidy evaluation: [Programming with dplyr](https://dplyr.tidyverse.org/articles/programming.html) - in case I can't get to tidy evaluation use for functions with tidyverse
+-   [ggplot2 in packages](https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html) 
+    -   Examples how to use ggplot inside functions. It's meant for people writing packages, but's helpful in general.
+-   Ted Laderas's interactive workbook on learning rowwise and nested data: [learning rowwise](https://tladeras.shinyapps.io/learning_rowwise)
+-   [Dates and times in R for Data Science](https://r4ds.hadley.nz/datetimes.html
+-   Cross tables with `gtsummary::`[`tbl_cross()`](https://www.danieldsjoberg.com/gtsummary/reference/tbl_cross.html)
+ 
+
+
+#### Statistics with R
+
+For learning more about statistics with R:
+
+-   Modern Dive / Statistical Inference via Data Science by Chester Ismay and Albert Y Kim is a nice place to start: <https://moderndive.com/v2/>
+-   Danielle Navarro's Learning Statistics with R is excellent and talks much more about statistics: <https://learningstatisticswithr.com/>
+-   [Model Basics](https://r4ds.had.co.nz/model-basics.html) from R for Data Science
+-   More on survival analysis in R
+  -   [Survival Analysis in R Tutorial by Dr. Emily C Zabor](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html)
+  -   [Survminer survival plot vignette](https://cran.r-project.org/web/packages/survminer/vignettes/Informative_Survival_Plots.html)
+  -   [UVA's Survival Workshop materials](https://bioconnector.github.io/workshops/r-survival.html)
+  -   [Rview's Survival Analysis](https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/)
+-   `tidymodels` package
+    -   [Introduction to Machine Learning with the Tidyverse](https://education.rstudio.com/blog/2020/02/conf20-intro-ml/)
+    -   [Tidy Modeling with R](https://www.tmwr.org/)
+    -   [UMAP and Cocktail Recipes](https://juliasilge.com/blog/cocktail-recipes-umap/)
+    -   [Tidymodels: K-means](https://www.tidymodels.org/learn/statistics/k-means/)
+    -   [PCA and Penguins](https://allisonhorst.github.io/palmerpenguins/articles/pca.html)
+
+
+
+
+
+:::
+
+## Post-class survey
+
+* Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo) to provide feedback. Thank you!
+* Previous muddiest points and clearest points with responses are collected  [here](../survey_feedback_previous_years.qmd).
+
+## Homework
+
+* See OneDrive folder for homework assignment.
+* HW 10 due on `r format(w10d1, "%m/%d")`.
+
+## Recording
+
+* __In-class__ recording links are on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&studentItemId=0&backPath=&bltiAppStores=false&errorMessage=&clearAttr=&messageId=&source=&title=&newTopLevel=false&sendingPage=232002&postedComment=false&addBefore=&itemId=5509813&path=push&reviewAssessment=false&topicId=&addTool=-1&recheck=&id=&forumId=). Navigate to _Course Materials_ -> _Schedule with links to in-class recordings_. 
+
+
+
+
+

@@ -7,6 +7,7 @@ author: "Charles Childress"
 date: "2/5/2026"
 format: 
   html:
+    code-fold: true
     link-external-newwindow: true
     toc: true
     toc_float:
@@ -79,7 +80,10 @@ p1 <- ggplot(penguins,
        y = "Body mass (g)") +
   theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
         axis.title.x = element_text(size = 10),
-        axis.title.y = element_text(size = 10))
+        axis.title.y = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        legend.text  = element_text(size = 8),
+        legend.key.size = unit(0.75, "lines"))
 
 # Plot 2
 p2 <- ggplot(penguins, 
@@ -92,7 +96,10 @@ p2 <- ggplot(penguins,
        y = "Body mass (g)") +
   theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
         axis.title.x = element_text(size = 10),
-        axis.title.y = element_text(size = 10))
+        axis.title.y = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        legend.text  = element_text(size = 8),
+        legend.key.size = unit(0.75, "lines"))
 
 # Plot 3
 p3 <- ggplot(penguins, 
@@ -105,7 +112,10 @@ p3 <- ggplot(penguins,
        y = "Body mass (g)") +
   theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
         axis.title.x = element_text(size = 10),
-        axis.title.y = element_text(size = 10))
+        axis.title.y = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        legend.text  = element_text(size = 8),
+        legend.key.size = unit(0.75, "lines"))
 
 # Plot 4
 p4 <- ggplot(penguins, 
@@ -118,7 +128,10 @@ p4 <- ggplot(penguins,
        y = "Body mass (g)") +
   theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
         axis.title.x = element_text(size = 10),
-        axis.title.y = element_text(size = 10))
+        axis.title.y = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        legend.text  = element_text(size = 8),
+        legend.key.size = unit(0.75, "lines"))
 
 # Plot 5
 p5 <- ggplot(penguins, 
@@ -131,11 +144,16 @@ p5 <- ggplot(penguins,
        y = "Body mass (g)") +
   theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
         axis.title.x = element_text(size = 10),
-        axis.title.y = element_text(size = 10))
+        axis.title.y = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        legend.text  = element_text(size = 8),
+        legend.key.size = unit(0.75, "lines"))
 
 ```
 
-**Example 0:**
+::: panel-tabset
+
+## Example 0
 
 Below we combine four base R plots without using `patchwork()` or `ggplot()`.  This example is included as a reference point.  
 
@@ -163,7 +181,7 @@ plot(density(na.omit(penguins$body_mass_g)),
 
 We used base R because the `par()` method is really finicky with `ggplot()`, and we couldn't get it to work with the plots we outlined in the setup code chunk. We could accomplish something nicer than this with the `grid.arrange()` function from the `gridExtra` package, but we are not comparing `patchwork()` to `grid.arrange()` in this demo.
 
-**Example 1 (very basic):**
+## Example 1 (very basic)
 
 The rest of the examples are created using `patchwork()`.  Here are four of our `ggplot()` plots stitched together in a basic configuration
 
@@ -180,7 +198,7 @@ Notice:
 * The plot keys are combined
 * The y-axes are carried across
 
-**Example (Sets built with `+` and `/`):**
+## Example 2 (Sets built with `+` and `/`)
 
 ```{r}
 # Slightly more advanced
@@ -199,7 +217,7 @@ In this example:
 * The lower set takes up the bottom third of the vertical space
   * It contains the fourth plot with a designated spot for the key
 
-**Example 3 (Inset plots):**
+## Example 3 (Inset plots)
 
 ```{r}
 # Inset one plot inside another
@@ -210,11 +228,13 @@ p1 + inset_element(p4, left = 0.0, bottom = 0.6, right = 0.5, top = 1) +
 
 Here we have inset our fourth plot into the corner of our first plot.  This isn't a particularly compelling example, but it may be useful at some point to have a reference shape/distribution/variable/something that can be pinned into a corner.  
 
-**Example 4 (Manual customization):**
+## Example 4 (Manual customization)
 
-We can also customize the layout manually by giving specific input.  Let's get all 5 of our plots involved for these examples.
+We can also customize the layout manually by giving specific input.  Let's get all 5 of our plots involved for these examples. Let's add some tags as well, so we can refer to plots without mentioning the individual titles.
 
-**Sub-example 4a:**
+::: panel-tabset
+
+### Sub-example 4a
 
 ```{r}
 # Customize 1
@@ -232,10 +252,10 @@ DDEEEFFF
 # Easy notation again
 p1 + p2 + p3 + p4 + p5 + guide_area() +
   plot_layout(design = layout1, guides = "collect", axes = "collect") +
-  plot_annotation(title = 'Morphology of Penguins All 5')
+  plot_annotation(title = 'Morphology of Penguins All 5', tag_levels = "I")
 ```
 
-**Sub-example 4b:**
+### Sub-example 4b
 
 ```{r}
 # Customize 2
@@ -251,10 +271,10 @@ CCCCDDF
 # Easy notation again
 p1 + p2 + p3 + p4 + p5 + guide_area() +
   plot_layout(design = layout2, guides = "collect", axes = "collect") +
-  plot_annotation(title = 'Morphology of Penguins All 5')
+  plot_annotation(title = 'Morphology of Penguins All 5', tag_levels = "I")
 ```
 
-**Sub-example 4c:**
+### Sub-example 4c
 
 ```{r}
 # Customize 3
@@ -274,10 +294,14 @@ AABBCC
 # Easy notation again
 p1 + p2 + p3 + p4 + p5 + guide_area() +
   plot_layout(design = layout3, guides = "collect", axes = "collect") +
-  plot_annotation(title = 'Morphology of Penguins All 5')
+  plot_annotation(title = 'Morphology of Penguins All 5', tag_levels = "I")
 ```
 
 The `patchwork()` function will always default to trying to make a roughly square output, and it isn't afraid to stretch or compress the user's plots as needed.  As long as the both the layout and the individual plots inside the layout are rectangles, the customization should go through without errors.   
+
+:::
+
+:::
 
 # Is it helpful?
 
