@@ -1,0 +1,40 @@
+---
+title: "`closeread`"
+pagetitle: "Functions of the Week"
+subtitle: "BSTA 526 Functions of the Week"
+description: "Scrollytelling extension for Quarto"
+author: "Gabriel Zangirolani"
+date: "3/12/26"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+<br>
+
+Click [here](https://niederhausen.github.io/BSTA_526_W26/function_week/fotw_ZANGIROLANI_original.html) for `closeread` FOTW presentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
