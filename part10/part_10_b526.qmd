@@ -1,0 +1,891 @@
+---
+title: "10: More `purrr`ing"
+pagetitle: "10: More `purrr`ing"
+subtitle: "BSTA 526: R Programming for Health Data Science"
+author: "Meike Niederhausen, PhD & Jessica Minnier, PhD"
+institute: "OHSU-PSU School of Public Health"
+date: "3/5/2026"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 5
+    theme: minty
+    embed-resources: true
+    html-math-method: mathjax
+  # revealjs:
+  #     incremental: false
+  #     scrollable: true
+  #     chalkboard: true
+  #     theme: [../sky_modified_smaller_font_B526_W26_v2.scss]
+  #     width:  1100 #1200 # 1050 #default 1050; ipad 3:5, 1600
+  #     # height: 825 #900 #800 #default 700; 788 for 3:5, 1200
+  #     slide-number: true
+  #     number-sections: true
+  #     number-depth: 5
+  #     link-external-newwindow: true
+  #     html-math-method: mathjax
+  #     auto-stretch: false  # stop autosizing figures
+execute:
+  echo: true
+  message: false
+  warning: false
+  fig.align: "center"
+  fig-width: 5
+  fig-height: 3
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The first chunk is special 
+# because if you try to run a chunk below without running anything else first, 
+# R will automatically run this first
+
+knitr::opts_chunk$set(echo = TRUE, fig.path = "output_figs/")
+
+# Here I am loading libraries/packages and installing packages you don't have yet. Add the argument `update=TRUE` if you want to update your packages.
+pacman::p_load(
+  vembedr,      # youtube embedder
+  skimr,        # get overview of data
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import Excel data
+  gtsummary,    # summary statistics and tests
+  ggthemes,     # lots of themes
+  here,         # helps with file management
+  janitor,      # for data cleaning, making tables
+  palmerpenguins, # penguin data
+  ghibli,       # studio ghibli palettes
+  paletteer,    # additional ggplot2 palettes
+  gt,           # beautiful tables
+  rstatix,      # summary stats for numeric vars
+  naniar,       # missing values exploration
+  glue,          # strings
+  broom         # for tidy-ing model output
+  )
+
+# set ggplot theme for slides 
+# theme_set(theme_bw(base_size = 22))
+# theme_update(text = element_text(size=22))  # set global text size for ggplots
+
+```
+
+
+
+
+# Welcome to R Programming: Part 10!
+
+
+::: {.columns}
+                                        
+::: {.column width="50%"}
+![](image/IMG_6759_med.png){fig-align="center" width="80%"} 
+:::
+                                          
+::: {.column width="50%"}
+Today we will learn more about iterating in R with `purrr`.
+
+<br>
+
+Before you get started:
+
+>Remember to save this notebook under a new name, such as `part_10_b526_YOURNAME.qmd`.
+
+<br>
+
+-   Load the packages in the setup code chunk
+:::
+                                          
+:::
+
+
+
+## Learning Objectives
+
+- **Use** `map()` functions from the `purrr` package to iterate functions
+- **Nest** datasets into list-columns, and iterate statistical modeling and/or visualization functions over those elements
+- **Use** `map2()` from the `purrr` package to iterate functions across two inputs
+- **Learn** how to iterate regression modeling across different model variables 
+
+
+## Select all squares with pipes before moving on...
+
+![](image/captchas_pipe_wickham.png){fig-align="center" width="40%"} 
+
+
+# Last time: iteration with `purrr`
+
+![[Artwork by @allison_horst](https://allisonhorst.com/wickham-tidy-bakers)](image/purrr_cat.png){fig-align="center" width=40%}
+
+Please look at the [purrr cheatsheet](https://rstudio.github.io/cheatsheets/purrr.pdf).
+
+## Why `purrr`?
+
+From the first edition of [R for Data Science](https://r4ds.had.co.nz/iteration.html):
+
+> The goal of using purrr functions instead of for loops is to allow you to break common list manipulation challenges into independent pieces:
+
+> * How can you solve the problem for a single element of the list? Once you’ve solved that problem, purrr takes care of generalising your solution to every element in the list.
+> * If you’re solving a complex problem, how can you break it down into bite-sized pieces that allow you to advance one small step towards a solution? With purrr, you get lots of small pieces that you can compose together with the pipe.
+
+> This structure makes it easier to solve new problems. It also makes it easier to understand your solutions to old problems when you re-read your old code.
+
+
+
+## `purrr::map()` applied to lists 
+
+![[From old 2017 purrr cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_purrr.pdf)](image/purrr_cheatsheet_old_map.png){fig-align="center" width=100%}
+
+
+Remember `purrr::map()` from part 8:
+
+* `purrr::map()` lets us *apply* a function to each element of a list (or data frame). 
+* It will always return a list with the number of elements that is the same as the list we input it with. 
+* Each slot of the returned list will contain the output of the functions applied to each element of the input list.
+
+The way to read a `map()` statement is:
+
+`map(.x = LIST_OBJECT, .f = FUNCTION_TO_APPLY)`
+
+
+
+
+# `purrr::map()` on **nested** data frames
+
+* Last time we learned how to apply `map()` on a *list of data frames* (Part 8, Section 5)
+* Typically we have just one data frame though, and we want to perform the same operation on subsets of that data frame. 
+
+## Example
+
+Example: on your homework the `penguins` data was grouped by `species` and `group_split()` was used to create a *list of data frames*:
+
+
+```{r}
+# split one data frame into three data frames defined by the species (grouping variable)
+# .keep = TRUE keeps the species (grouping) column in the data sets
+penguins_by_species <- penguins  %>% 
+  group_by(species) %>% 
+  group_split(.keep = TRUE)
+
+penguins_by_species  # lists are numbered
+
+penguin_names <- levels(penguins$species)
+
+names(penguins_by_species) <- penguin_names
+
+penguins_by_species # lists are now named with species names
+
+```
+
+* Today we're going to do this a different and more common way using **group_nest()**.
+* To use this method we must understand what it means to “nest” and what list-columns are.
+
+
+## List-columns
+
+* A **list-column** is a column of a data frame that contains lists. 
+* We are familiar with vector-columns that contain a vector of character or numeric (usually) data. 
+* This is the same idea, except each element of the column is a list.
+
+
+Example: 
+
+```{r}
+mydf <- tibble(
+  patientid = c(1123, 2534, 13253),
+  date = c("2021-01","2022-02","2022-03"),
+  listcol = list(a = c("a","b"),
+                 b = 1:3,
+                 c = "c"))
+mydf
+```
+
+
+* You can see above that the `listcol` column is of type list, and we see abbreviated information about it. 
+* We can see a little bit more with glimpse:
+
+```{r}
+glimpse(mydf)
+```
+
+
+## Nesting
+
+![[From old 2017 purrr cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_purrr.pdf)](image/purrr_cheatsheet_old_nested.png){fig-align="center"}
+
+
+So what does this have to do with mapping data frames? Below we are nesting our data frame by the grouping variable, species:
+
+```{r}
+# cute name, huh?
+penguins_nested <- penguins %>%
+  mutate(
+    bill_length_long = case_when(
+      bill_length_mm >= 44 ~ "Yes",  # median is 44.45, mean is 43.92 
+      bill_length_mm < 44 ~ "No"),
+    bill_length_long = factor(bill_length_long)
+    ) %>% 
+  # use species column to define the new rows
+  group_by(species) %>% 
+  nest()
+
+penguins_nested
+
+glimpse(penguins_nested)
+```
+
+**Note**: There is also the `dplyr` function  `group_nest()`, which was used at the end of part 8 and does the same thing as `group_by()` followed by `nest()`. This is in lifecycle "experimental" though and may be deprecated in the future. 
+
+
+## Look at the nested datasets
+
+We can pull out our data column with the `$` and see it is a list:
+
+```{r}
+penguins_nested$data
+class(penguins_nested$data)
+```
+
+Which means we can index it with the `[[]]` double brackets:
+
+```{r}
+# The first "row" which is the first element of the list
+penguins_nested$data[[1]]
+```
+
+**Note that `species` is no longer a column in these datasets!!!**
+
+
+
+# `mutate` and `map` nested data
+
+How do we apply functions to this nested data set? 
+
+* We can use `mutate()` to mutate the list column along with `map()`! 
+* We use `mutate()` because we are mutating a *COLUMN* (which happens to be a list column) in a data frame.
+
+
+![[From old 2017 purrr cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_purrr.pdf)](image/purrr_cheatsheet_old_list_col_workflow.png){fig-align="center"}
+
+## Example: `dim()`
+
+Let's see a simple example before running our model.
+
+Remember how `penguins_nested` looks:
+
+```{r}
+glimpse(penguins_nested)
+```
+
+* The column that we want to mutate/map is called `data`. 
+* We want to create a new column by applying a function to that list-column.
+
+
+```{r}
+# Create a new column called dim_data (it will be a list-column)
+# First argument of map is the name of the column with the list of data
+# Second argument of map is the function name (without parens)
+
+penguins_nested <- penguins_nested %>%
+  # new column name = map(list-column-name, function-to-apply)
+  mutate(dim_data = map(.x = data, .f = dim)) 
+
+penguins_nested
+
+penguins_nested %>%
+  glimpse()
+
+# a list of dimensions
+penguins_nested$dim_data
+```
+
+
+## Example: logistic regression with `glm()`
+
+::: {.panel-tabset}
+
+### intro
+
+* Suppose we want to look at the association between having a long bill length (`bill_length_long`) and the variable bill depth. 
+    * Since the outcome is a binary variable. we use a logistic regression model (covered in BSTA 513).
+
+* Note that we no longer have a column `species` in the data subsets in the list-column. 
+    * The species information remained in the `species` column of the `penguins_nested` tibble. 
+    * The list-column contains every column *except* `species`.
+
+### Create `run_glm` function
+
+```{r}
+# function only takes data frame as an input
+# runs glm
+run_glm <- function(df) {
+  # fit a logistic regression model with these data
+  # glm(bill_length_long ~ sex, data = df)
+  glm(bill_length_long ~ bill_depth_mm, 
+      family = "binomial",
+      data = df)
+}
+```
+
+
+Test function:
+
+```{r}
+run_glm(df = penguins_nested$data[[1]])
+```
+
+
+### `map` it!
+
+```{r}
+# create a new column called model_out (it will be a list-column)
+# first argument of map is the name of the column with the list of data
+# second argument of map is the function name (no parens)
+
+penguins_nested <- penguins_nested %>%
+  # new column name = map(list-column-name, function-to-apply)
+  mutate(model_out = map(.x = data, .f = run_glm))
+
+penguins_nested
+
+# model output for each species:
+penguins_nested$model_out
+```
+
+
+
+### Why do we need to use `map()`? 
+
+In other words, why doesn't this work:
+
+```{r}
+#| eval: false
+# DOES NOT WORK
+penguins_nested %>%
+  mutate(model_out = run_glm(data))
+```
+
+* Because our `run_model_tidy()` is not *vectorized* function. 
+* That is, it cannot take a list of data as an input -- it can only take one data frame at a time. 
+* When we use `map()` inside mutate, it applies that function "row-wise" across each species-row to the column that we specify in the first argument.
+
+### Tidy the output
+
+* Note: with the `tidy` option `exponentiate = TRUE` our model coefficients are now odds ratios instead of log-odds. 
+
+```{r}
+penguins_nested <- penguins_nested %>%
+  mutate(tidy_glm = map(.x = model_out, ~ tidy(.x, exponentiate = TRUE)))
+
+penguins_nested
+
+penguins_nested$tidy_glm
+```
+
+
+### `unnest()` the output
+
+* The function `unnest()` will "stretch out" the list-column into a stacked data frame (i.e. row-binding). 
+* It's basically the reverse operation of `nest()`. Try it out and see what it looks like:
+
+```{r}
+glm_unnest <- penguins_nested %>%
+  select(species, tidy_glm) %>%
+  # use unnest to stack the data frames in model_out
+  # use cols to specify the columns you want to unnest
+  unnest(cols = c(tidy_glm))
+
+glm_unnest
+```
+
+If we only want the rows for the term `bill_depth_mm` we can filter the tibble:
+
+```{r}
+glm_unnest %>% 
+  filter(term != "(Intercept)") %>% 
+  select(species, estimate, std.error, p.value) %>% 
+  gt()
+```
+
+
+### Warning!
+
+Note that `list_rbind()` does not work here since our tibble is grouped by species. 
+
+```{r}
+#| eval: false
+# DOES NOT WORK
+
+penguins_nested %>% list_rbind(tidy_glm)
+
+# Error in `list_rbind()`:
+# ! `x` must be a list, not a <grouped_df/tbl_df/tbl/data.frame>
+#   object.
+```
+
+:::
+
+## Challenge 1
+
+1. Unnest the `dim_data` column of `penguins_nested`.
+
+```{r}
+
+```
+
+
+2. Add a list-column to `penguins_nested` with the `glance()` values for the logistic regression model. Then unnest the values and keep only the columns with species and the number of observations (`nobs`).
+
+```{r}
+
+```
+
+
+# `map2()`: map over two inputs
+
+## `map2()`
+
+* The `map2()` function maps a function over two lists
+* In the example below we will use 2 columns from our nested data frame.
+
+![[From old 2017 purrr cheatsheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_purrr.pdf)](image/purrr_cheatsheet_old_map2.png){fig-align="center"}
+
+
+`?map2`: "map over multiple inputs simultaneously." It takes the first two arguments:
+
+- `.x` and `.y`, Vectors of the *same length*, a vector of length 1 will be recycled
+- `.f` a function
+
+
+The way to read a `map2()` statement is:
+
+`map2(.x = FIRST_LIST_NAME, .y = SECOND_LIST_NAME, .f = FUNCTION_TO_APPLY)` 
+
+## Example: `build_scatterplot()` function
+
+* Note that the `build_scatterplot()` function has two inputs: df and species
+
+```{r}
+build_scatterplot <- function(df, species){
+  ggplot(df) +
+    aes(x = bill_depth_mm, y = bill_length_mm) +
+    geom_point() +
+    geom_smooth(method = "lm") +
+    labs(title = species)
+}
+```
+
+* Now we call `map2()` inside `mutate()` similar to the way we used `map()` inside `mutate()` up above, 
+    * but we *specify our two column names* first as the first two arguments
+
+```{r}
+penguins_nested <- penguins_nested %>%
+  # create a new list column plot_out
+  mutate(plot_out = map2(
+    # first argument is going in the df = slot of build_scatterplot
+    .x = data, 
+    # second argument is going in the df = species slot of build_Scatterplot
+    .y = species, 
+    # name of function
+    .f = build_scatterplot))
+
+# or simply:
+penguins_plotdata <- penguins_nested %>%
+  mutate(plot_out = map2(data, species, build_scatterplot))
+
+# we now have a list-column containing ggplots!
+penguins_plotdata
+```
+
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+
+# We can show all our plots by calling the vector:
+penguins_plotdata$plot_out
+```
+
+
+## `ggpubr::ggarrange()`
+
+There's a function `ggarrange()` in the package `ggpubr` which will put multiple ggplots on the same figure for you:
+
+```{r}
+#| warning: false
+
+ggpubr::ggarrange(plotlist = penguins_plotdata$plot_out)
+```
+
+
+
+# Mapping lists of variables for regression modeling
+
+* Below we will use the [`reformulate()`](https://www.r-bloggers.com/2023/06/simplifying-model-formulas-with-the-r-function-reformulate/) function to create a regression formula to use when running a regression model. 
+* This will be very handy for running many regression models at once. 
+
+## `reformulate` for regression formula
+
+* Recall that when running a regression model using `lm()`, the first parameter being specified is a formula. 
+* In the example below using the `penguins` data, we specify `formula = flipper_length_mm ~ bill_depth_mm + species`:
+
+```{r}
+lm(formula = flipper_length_mm ~ bill_depth_mm + species, 
+   data = penguins) %>% tidy()
+```
+
+* Instead of specifying the formula within `lm()`, we can first create the formula as an R object, and then refer to the R object within `lm()`. 
+* Below we create the formula using the `reformulate()` function. The `termlabels` are the independent variables and `response` the dependent variable of the model:
+
+```{r}
+penguin_formula <- reformulate(termlabels = c("bill_depth_mm", "species"),
+                               response = "flipper_length_mm")
+penguin_formula
+
+lm(formula = penguin_formula, data = penguins) %>% 
+  tidy()
+```
+
+* The advantage of creating a formula this way, is that we can then specify the `termlabels` and  `response` as R objects as well:
+
+```{r}
+covariates <- c("bill_depth_mm", "species")
+outcome <- "flipper_length_mm"
+
+penguin_formula <- reformulate(termlabels = covariates, 
+                       response = outcome)
+penguin_formula
+
+lm(formula = penguin_formula, data = penguins) %>% tidy()
+```
+
+## Create function for regression model using `reformulate()`
+
+* Using `reformulate()` to run a regression model lets us more easily specify the variables that go into a model when using function.
+* Below is the function `run_regression` that can be used to run a linear model: 
+
+```{r}
+# Function to run linear regression with specified covariates
+run_regression <- function(covariates, outcome, dataset) {
+  formula <- reformulate(termlabels = covariates, 
+                         response = outcome)
+  lm(formula, data = dataset)
+}
+```
+
+* An example using the function `run_regression` with the `penguins` data: 
+
+```{r}
+penguins_covariates <- c("bill_depth_mm", "species")
+
+lm_pengiuns <- run_regression(covariates = penguins_covariates,
+               outcome = "flipper_length_mm",
+               dataset = penguins)
+
+tidy(lm_pengiuns)
+```
+
+
+## Example from cannabis use study
+
+::: {.panel-tabset}
+
+### Background 
+
+* Data are from the baseline time point of an ongoing longitudinal study investigating relationships between pain, mental health, cannabis use, and prescribed opioid doses. 
+* Participants are Veterans from across the country that are on long-term opioid therapy and have recently tested positive for cannabis use via periodic urine drug testing.
+* Most of the variables in the dataset are from the baseline survey participants completed. 
+    * Variables are described in the questions below where they are being use. 
+* The data for this example are a random sample of the actual dataset and only include a small subset of all the variables data were collected on. Some variables have had their values slightly altered to further de-identify the data. 
+
+
+### Data
+
+```{r}
+load(here::here("part10", "data", "ddd.Rdata"))
+
+glimpse(ddd)
+```
+
+### Variables
+
+Descriptions of some of the variables:
+
+* Pain 
+    * The [Brief Pain Inventory](https://www.mdanderson.org/research/departments-labs-institutes/departments-divisions/symptom-research/symptom-assessment-tools/brief-pain-inventory.html) (BPI) was used to measure pain via the survey. 
+    * __Pain intensity__: 
+        * The variable `bpi_intensityscore` in the dataset is the mean of 4 questions on the BPI (not included in the dataset) asking about pain, 
+        * each of which ranged from 0 (No pain) to 10 (Pain as bad as you can imagine).
+    * __Pain interference__:
+        * The variable `bpi_interferencescore` in the dataset is the mean of 7 questions on the BPI (not included in the dataset) about daily acitivty, 
+        * each of which ranged from 0 (Does not interfere) to 10 (Completely interferes).
+
+* Routes of cannabis administration
+    * Participants were asked the following question:
+        * _During the past 30 days, what were all of the ways you used cannabis/marijuana? Please check all the boxes that apply._
+    * Choices
+        * Smoke (ex. joint, bong, pipe, blunt, spliff)
+        * Eat (ex. In brownies, cakes, cookies, candy)
+        * Drink (ex. In tea, soda, alcohol, or tincture)
+        * Vape (ex. In an e-cigarette-like vaporizer, vape pen, or another vaporizing device)
+        * Dab (ex. Using waxes or concentrates in a dab rig or other dabbing device)
+        * Applied to skin (ex. Lotion, ointment, or salve)
+        * Transdermal (patch)
+        * Used it in some other way ( ex. pills or tabs)
+    * The variable `used_2more_methods` is
+        * Yes if 2 or more routes of administration were selected
+        * No if 1 route of administration was selected
+
+### One Model
+
+Model `bpi_intensityscore` vs  `freq_Smoke`
+
+
+* One of the survey questions was _"On average, how many days per week do you typically smoke cannabis/marijuana?"_
+    * Values are 1-7, where 1 denotes at most 1 day a week, on average.
+    * Responses are recorded in the variable `freq_Smoke`. 
+
+* Use the function `run_regression` defined above to run a linear regression model using the dataset `ddd` with `bpi_intensityscore` as the outcome variable and  `freq_Smoke` as the independent variable of the model. 
+* `tidy` the output so that it includes the confidence intervals.
+
+
+```{r}
+lm__pain_Smoke <- run_regression(covariates = "freq_Smoke",
+               outcome = "bpi_intensityscore",
+               dataset = ddd)
+
+tidy(lm__pain_Smoke, conf.int = TRUE) %>% gt()
+```
+
+
+
+### Clean regression output
+
+Create a function to clean regression output
+
+* Create a new function with the parameters `covariates`, `outcome`, and `dataset`, 
+    * that runs a regression model using the `run_regression` function from above, and
+    * reformats the `tidy` output so that it creates a regression table     
+
+
+```{r}
+lm_table <- function(covariates, outcome, dataset) {
+  run_regression(covariates, outcome, dataset) %>% 
+    tidy(conf.int = TRUE) %>% 
+    select(term, estimate, conf.low, conf.high, p.value) %>% 
+    mutate(
+      p.value = scales::pvalue(p.value),
+      across(.col = dplyr::where(is.numeric), 
+             .fns = ~ scales::number(x = ., accuracy = 0.1))) 
+}
+```
+
+Test the function:
+
+```{r}
+lm_table(covariates = "freq_Smoke",
+         outcome = "bpi_intensityscore",
+         dataset = ddd) 
+```
+
+
+
+### Many models
+
+* In addition to the variable `freq_Smoke`, the dataset has variables `freq_Eat`, `freq_Drink`, `freq_Vape`, `freq_Dab`, `freq_Skin`, and `freq_Other` for the frequency of cannabis use for the other routes of administration included in the survey. 
+    * Similarly to `freq_Smoke`, each of these are how many days per week on average respondents use the respective routes of administration. 
+    * Values are 1-7, where 1 denotes at most 1 day a week, on average.
+
+* We want to run separate regression models for each of the routes of cannabis administration. 
+    * all have `bpi_intensityscore` as the outcome variable and 
+    * each model uses one of the 8 routes of administration as the independent variable of the model.
+
+* We will do this by using `purrr:map()` and having it iterate the function `lm_table` over the `covariates_list` created below:
+
+
+```{r}
+covariates_list <- list(Smoke = "freq_Smoke",
+                        Eat = "freq_Eat",
+                        Drink = "freq_Drink",
+                        Vape = "freq_Vape",
+                        Dab = "freq_Dab",
+                        Skin = "freq_Skin",
+                        Other = "freq_Other")
+```
+
+
+
+```{r}
+route_models_tidy <- map(
+  .x = covariates_list,
+  ~ lm_table(covariates = .x,
+                  outcome = "bpi_intensityscore", 
+                  dataset =ddd))
+
+route_models_tidy
+
+```
+
+
+
+### List output $\to$ df
+
+In part 8 we learned how to convert `map`'s list output to a tibble with 
+`list_rbind()`: 
+
+```{r}
+route_models_tidy %>% 
+  list_rbind(names_to = "data_source")
+```
+
+Can further improve this:
+
+```{r}
+route_models_tidy %>% 
+  list_rbind(names_to = "data_source") %>% 
+  filter(term != "(Intercept)") %>% 
+  unite(col = CI, conf.low:conf.high, sep = ", ") %>% 
+  gt()
+```
+
+
+### `gtsummary` tables
+
+`gtsummary` tables of model output
+
+```{r}
+route_models <- map(
+  .x = covariates_list,
+  ~ run_regression(covariates = .x,
+                  outcome = "bpi_intensityscore", 
+                  dataset =ddd))
+
+route_models
+
+# Create gtsummary regression tables for each of the models:
+tbl_reg_route_models <- map(
+  route_models, 
+  ~tbl_regression(.x))
+
+tbl_merge(tbl_reg_route_models)
+```
+
+
+:::
+
+## Challenge 2
+
+1. For the cannabis study (dataset `ddd`), run three linear regression models using `map()` where
+    * all have pain interference as the outcome
+    * the independent variables are different for each:
+        * gender, Age, Carboxy_TH
+        * gender, Age, Carboxy_TH, used_2more_methods
+        * gender, Age, Carboxy_TH, used_2more_methods, freq_Smoke
+2. Create a merged table of the three regression models using the `gtsummary` package.
+
+
+
+
+# Where Next?
+
+Using and understanding `purrr` functions opens up something really powerful: parallel computing. You can have multiple cores of a machine running iterations of your list using the `furrr` (short for future purrr) package.
+
+Learning more about functions and vectorization will help you to reduce the number of mistakes in analysis. 
+
+
+# Debugging functions
+
+## Debugging tip
+
+Here's a tip regarding function "debugging." Let's say you have a function
+
+```{r}
+myfun <- function(df_input) {
+   if(nrow(df_input) < 10) {stop("Need more columns")}
+   df_input %>% summarize(mean_b = mean(species))
+}
+```
+
+and you're trying to figure out why you're getting an error or not getting the right result. In the console or in your qmd type
+
+```{r}
+df_input <- penguins
+```
+
+
+* Then run the lines of code in your function one by one, in order, from the top, and see what causes the break. 
+* Since you've "defined" the object as `df_input` as something, now you can test/debug the lines of code inside the function that use `df_input`. 
+* It's pretty difficult to just keep editing your function when you're trying to figure out what works/does not work!
+
+This would be my thought process:
+
+```{r}
+
+myfun <- function(df_input) {
+  if(nrow(df_input) < 10) {stop("Need more rows")}
+  df_input %>% summarize(mean_b = mean(species))
+}
+
+# doesn't work, not an error but I get a warning and a weird result of NA
+myfun(penguins)
+
+df_input <- penguins
+
+# now I can run through my function code:
+
+if(nrow(df_input) < 10) {stop("Need more rows")}
+# that's fine, didn't report an error/stop
+
+df_input %>% summarize(mean_b = mean(species))
+# Warning; Caused by warning in `mean.default()`:
+# ! argument is not numeric or logical: returning NA 
+
+# This isn't an error but I am getting a warning that
+# my argument is not numeric or logical. Oops! I can't
+# take mean of species, species is a character! I should fix
+
+df_input %>% summarize(mean_b = mean(body_mass_g))
+
+# still getting NA, need to fix again
+df_input %>% summarize(mean_b = mean(body_mass_g, na.rm = TRUE))
+
+
+# ok now I fixed my function, it should work
+
+myfun <- function(df_input) {
+  if(nrow(df_input) < 10) {stop("Need more columns")}
+  df_input %>% summarize(mean_b = mean(body_mass_g, na.rm = TRUE))
+}
+
+# doesn't work, not an error but I get a warning and a weird result of NA
+myfun(penguins)
+
+```
+
+
+
+
+# Post Class Survey
+
+Please fill out the [post-class survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_2f0SKdTYUo80aRo){target="_blank"}. 
+
+Your responses are anonymous in that I separate your names from the survey answers before compiling/reading. 
+
+You may want to review previous years' feedback [here](https://niederhausen.github.io/BSTA_526_W26/survey_feedback_previous_years){target="_blank"}.
+
+
+
+# Acknowledgements
+
+-   Meike Niederhausen adapted from notes written by Jessica Minnier, which were adapted from Ted Laderas' lessons on `purrr`.
+-    New material added by Meike Niederhausen on iterating regression models for different variables.
+
+
+
+
+

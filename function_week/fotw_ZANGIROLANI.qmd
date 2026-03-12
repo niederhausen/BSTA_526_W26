@@ -27,7 +27,8 @@ editor_options:
 Click [here](https://niederhausen.github.io/BSTA_526_W26/function_week/fotw_ZANGIROLANI_original.html) for `closeread` FOTW presentation.
 
 
-
+<!-- Note to self: I was not able to render the qmd since I need a newer version of R. 
+Thus I saved the submitted html file to the docs/function_week folder and appended _original to the file name.-->
 
 
 
