@@ -53,7 +53,7 @@ source(here::here("schedule_class_dates.R"))
 |  | Th `r format(w10d1, "%m/%d")` | More `purrr`ing |
 |  | | HW 9 due |
 |  |  |  |  |
-| 11 | Th `r format(w11d1, "%m/%d")` | No Class, Office Hour |  |
+|[11](weeks/week_11.qmd) | Th `r format(w11d1, "%m/%d")` | No Class, Office Hour |  |
 |  | | HW 10 due |
 |  | Fri `r format(final_due, "%m/%d")` | **[Final Exam Due (Friday 5pm end of term)]{style="color:#046b94;"}** |  |
 : {.hover .rowlines tbl-colwidths="\[8, 8, 40\]"}

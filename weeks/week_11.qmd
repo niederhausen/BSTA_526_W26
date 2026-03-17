@@ -1,0 +1,66 @@
+---
+title: "Week 11"
+pagetitle: "Week 11 BSTA 526"
+description: "Finals Week"
+date: "`r library(here); source(here('schedule_class_dates.R')); w11d1`"
+date-modified: "today"
+categories: [""]
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+source(here::here("schedule_class_dates.R"))
+```
+
+
+## Week 11 
+
+-   No new material will be covered this week.
+-   Usual class time is a virtual open office hour.
+    -   See [link on Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?sakai.tool.placement.id=0a1dc228-11f3-4ae0-a5d1-1d4597c01180).
+-   [HW 10](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Fpart10&viewid=f39696a4%2D6b6c%2D4d5a%2Db1d1%2D6b17a205bb96) is due on Thurs, `r format(w10d1, "%m/%d")`.
+-   [Final Exam](https://ohsuitg-my.sharepoint.com/my?id=%2Fpersonal%2Fniederha%5Fohsu%5Fedu%2FDocuments%2Fteaching%2FBSTA%20526%2FW26%2FBSTA%5F526%5FW26%5Fclass%5Fmaterials%5Fpublic%2Ffinal%5Fexam&viewid=f39696a4%2D6b6c%2D4d5a%2Db1d1%2D6b17a205bb96) is due on Fri, 03/20 at 5 pm. 
+
+
+## Announcements
+
+-   **_Please fill out the course evaluations for the class._ **
+    -   Course evaluations are very helpful for making improvements to our classes. 
+    -   If too few students fill out the evaluations, they are not released to me.
+-   **Please complete the [SPH's Annual Student Survey](https://ohsu.ca1.qualtrics.com/jfe/form/SV_9sJYw1fes2Ah24u?Q_CHL=qr)**
+    -    *Responses help us improve our SPH programs!*
+
+::: {.columns}
+                                        
+::: {.column width="70%"}
+
+-   [**Cascadia R Conf**](https://cascadiarconf.com/) in June 26-27 this year. It will be held at OHSU in RLSB. This is a great conference to meet other R enthusiasts in the area and learn more about what they are working on.
+    -   The **[pre-conference workshops](https://cascadiarconf.com/workshop/)** have been posted!
+    -   GitHub, GIS, Shiny, Rust, Quarto websites
+:::
+                                          
+::: {.column width="30%"}
+![](../images/CascadiaR_logo_2026.png){fig-align="center" width="60%"}
+:::
+                                          
+:::
+
+
+## Homework
+
+* See OneDrive folder for homework assignment.
+* HW 10 due on `r format(w10d1, "%m/%d")`.
+
+## Recording
+
+* __In-class__ recording links are on [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-526-1-21029-W26/tool/0a1dc228-11f3-4ae0-a5d1-1d4597c01180/ShowPage?returnView=&studentItemId=0&backPath=&bltiAppStores=false&errorMessage=&clearAttr=&messageId=&source=&title=&newTopLevel=false&sendingPage=232002&postedComment=false&addBefore=&itemId=5509813&path=push&reviewAssessment=false&topicId=&addTool=-1&recheck=&id=&forumId=). Navigate to _Course Materials_ -> _Schedule with links to in-class recordings_. 
+
+
+
+
+
