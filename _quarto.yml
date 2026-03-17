@@ -59,8 +59,8 @@ website:
             text: Week 9
           - href: weeks/week_10.qmd
             text: Week 10
-          # - href: weeks/week_11.qmd
-          #   text: Week 11 
+          - href: weeks/week_11.qmd
+            text: Week 11
       # - href: weeks.qmd
       #   text: Weeks
       # - href: readings.qmd
